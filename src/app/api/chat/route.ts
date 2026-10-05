@@ -37,8 +37,47 @@ export async function POST(req: NextRequest) {
       "gemini-3.8-flash",
     ];
 
+    // Calculate reference script and expected next turn
+    const referenceScript = scenario.sampleDialogue
+      .map(
+        (t, idx) =>
+          `Turn ${idx} (${t.roleName}): ${t.textEn} (Vi: ${t.textVi})`
+      )
+      .join("\n");
+
+    const nextTurnIndex = messages.length;
+    const nextScriptedTurn = scenario.sampleDialogue[nextTurnIndex];
+    const previousScriptedTurn = scenario.sampleDialogue[nextTurnIndex - 1];
+
+    const scriptGuideline = nextScriptedTurn
+      ? `
+OFFICIAL LESSON SCRIPT FOR THIS SCENARIO:
+${referenceScript}
+
+EXPECTED NEXT SCRIPTED LINE (Turn ${nextTurnIndex}):
+- English: "${nextScriptedTurn.textEn}"
+- Vietnamese: "${nextScriptedTurn.textVi}"
+(Expected learner response for previous Turn ${nextTurnIndex - 1}: "${
+          previousScriptedTurn ? previousScriptedTurn.textEn : ""
+        }")
+
+CRITICAL SCRIPT PRIORITIZATION RULE:
+1. Examine the learner's latest message carefully.
+2. If the learner's response reasonably answers the question, follows the lesson dialogue flow, or provides the expected information (even if they used different words, synonyms, shorter/longer phrasing, or had minor grammar mistakes):
+   -> YOU MUST RETURN THE EXACT EXPECTED SCRIPTED LINE:
+      {
+        "textEn": "${nextScriptedTurn.textEn.replace(/"/g, '\\"')}",
+        "textVi": "${nextScriptedTurn.textVi.replace(/"/g, '\\"')}"
+      }
+   DO NOT invent a new or paraphrased line when the learner followed the expected flow!
+3. ONLY IF the learner's message is fundamentally different, off-script, unexpected, asks a completely different question (e.g. asking about lost items, special rules, pet policies, directions, complaints, or expressing confusion):
+   -> THEN AND ONLY THEN: Generate a custom, natural in-character response (1-2 sentences).`
+      : `The student has completed all scripted dialogue turns for this lesson. Now continue the conversation freely and naturally in character. If the interaction has reached a natural conclusion, politely wrap up.`;
+
     // Build the system prompt
-    const systemPrompt = `You are a native English speaker roleplaying as "${aiRole || scenario.defaultRoles.ai.name}" in a conversational English practice app for Vietnamese learners.
+    const systemPrompt = `You are a native English speaker roleplaying as "${
+      aiRole || scenario.defaultRoles.ai.name
+    }" in a conversational English practice app for Vietnamese learners.
 The user is roleplaying as "${userRole || scenario.defaultRoles.user.name}".
 Context / Situation: "${scenario.situation}".
 Topic: "${scenario.titleEn}".
@@ -47,7 +86,7 @@ IMPORTANT INSTRUCTIONS:
 1. Deeply stay in character as "${aiRole || scenario.defaultRoles.ai.name}".
 2. Keep your response CONCISE: 1 to 2 sentences maximum. Real conversation flows back and forth quickly!
 3. Focus on communicative intent: If the learner makes minor grammar or phrasing mistakes, understand what they mean and respond naturally. DO NOT correct their grammar or lecture them.
-4. Allow natural exploration: If the learner asks off-script questions or changes the topic slightly, answer helpfully in character.
+4. ${scriptGuideline}
 5. Provide your response in valid JSON format with two fields:
    - "textEn": Your spoken English response in character (1-2 sentences).
    - "textVi": Accurate natural Vietnamese translation of your response (for learner subtitles).
@@ -73,7 +112,7 @@ Return ONLY the JSON object, nothing else.`;
         const model = genAI.getGenerativeModel({
           model: modelName,
           generationConfig: {
-            temperature: 0.7,
+            temperature: 0.25,
             maxOutputTokens: 1000,
           },
         });
