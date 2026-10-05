@@ -6,6 +6,110 @@
   "description": "Luyện giao tiếp tiếng Anh khi đi ăn nhà hàng: đặt bàn, gọi món, yêu cầu đặc biệt và thanh toán.",
   "scenarios": [
     {
+      "id": "restaurant-freetalk",
+      "order": 0,
+      "section": "🌟 THỰC CHIẾN TỰ DO (OPEN ROLEPLAY)",
+      "titleEn": "Restaurant Free Talk (Không Giới Hạn)",
+      "titleVi": "Thực chiến nhà hàng tự do",
+      "situation": "Phòng thực chiến tự do: AI đóng vai Quản lý / Bồi bàn nhà hàng. Bạn có thể tự do đặt bàn, hỏi món ăn, gọi đồ uống, phàn nàn sự cố hoặc yêu cầu thanh toán tùy ý!",
+      "isFreeTalk": true,
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Server & Host",
+          "titleEn": "Server & Host",
+          "titleVi": "Nhân viên nhà hàng",
+          "avatar": "🌟"
+        },
+        "user": {
+          "id": "user",
+          "name": "Guest",
+          "titleEn": "Guest",
+          "titleVi": "Thực khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Good evening! Welcome to our restaurant. How can I help you tonight?",
+      "initialMessageVi": "Chào buổi tối! Chào mừng quý khách đến nhà hàng của chúng tôi. Tôi có thể giúp gì cho bạn tối nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-1-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        },
+        {
+          "id": "res-vocab-2-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        },
+        {
+          "id": "res-vocab-3-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        },
+        {
+          "id": "res-vocab-4-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [],
+      "suggestedHints": [
+        "A table for two, please.",
+        "What is your chef special dish today?",
+        "Can you make this dish less spicy?",
+        "Could we get the bill and a to-go box, please?"
+      ]
+    },
+    {
       "id": "restaurant-scenario-1",
       "order": 1,
       "section": "🍽️ Restaurant Dialogues",

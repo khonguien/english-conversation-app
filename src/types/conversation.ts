@@ -43,6 +43,7 @@ export interface Scenario {
   vocabulary: VocabularyItem[];
   sampleDialogue: DialogueTurn[];
   suggestedHints: string[];
+  isFreeTalk?: boolean;
 }
 
 export interface Topic {

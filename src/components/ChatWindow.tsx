@@ -45,12 +45,25 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   return (
     <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 space-y-4 max-w-3xl mx-auto w-full">
       {/* Scenario Briefing Card */}
-      <div className="bg-gradient-to-r from-indigo-50/70 via-sky-50/70 to-emerald-50/70 border border-indigo-100/80 rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-slate-700 shadow-2xs">
+      <div
+        className={`border rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-slate-700 shadow-2xs ${
+          scenario.isFreeTalk
+            ? "bg-gradient-to-r from-amber-50/90 via-orange-50/70 to-indigo-50/90 border-amber-200"
+            : "bg-gradient-to-r from-indigo-50/70 via-sky-50/70 to-emerald-50/70 border-indigo-100/80"
+        }`}
+      >
         <div className="flex items-start gap-2.5">
-          <span className="text-xl sm:text-2xl mt-0.5">📌</span>
+          <span className="text-xl sm:text-2xl mt-0.5">
+            {scenario.isFreeTalk ? "🌟" : "📌"}
+          </span>
           <div className="space-y-1">
-            <h3 className="font-bold text-slate-900 text-sm sm:text-base">
-              {scenario.titleEn} – {scenario.titleVi}
+            <h3 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+              <span>{scenario.titleEn} – {scenario.titleVi}</span>
+              {scenario.isFreeTalk && (
+                <span className="text-[10px] font-extrabold uppercase bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">
+                  Tự do
+                </span>
+              )}
             </h3>
             <p className="text-slate-600 leading-relaxed">
               {scenario.situation}
@@ -62,8 +75,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
               <span className="bg-white/80 px-2 py-0.5 rounded-full border border-slate-200">
                 Bạn: {scenario.defaultRoles.user.avatar} {scenario.defaultRoles.user.name}
               </span>
-              <span className="text-indigo-600 font-medium">
-                🎯 Mục tiêu: Trả lời tự nhiên, đúng ý
+              <span className={scenario.isFreeTalk ? "text-amber-800 font-bold" : "text-indigo-600 font-medium"}>
+                {scenario.isFreeTalk
+                  ? "🎯 Tự do nói bất kỳ điều gì, không ràng buộc kịch bản"
+                  : "🎯 Mục tiêu: Trả lời tự nhiên, đúng kịch bản"}
               </span>
             </div>
           </div>

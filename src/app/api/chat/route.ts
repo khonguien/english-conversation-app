@@ -30,12 +30,15 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
+    // Prioritize ultra-low latency models for lightning-fast responses (< 1s)
     const candidateModels = [
-      "gemini-flash-latest",
-      "gemini-flash-lite-latest",
       "gemini-3.5-flash-lite",
+      "gemini-flash-lite-latest",
+      "gemini-flash-latest",
       "gemini-3.8-flash",
     ];
+
+    const isFreeTalk = Boolean(scenario.isFreeTalk);
 
     // Calculate reference script and expected next turn
     const referenceScript = scenario.sampleDialogue
@@ -49,7 +52,11 @@ export async function POST(req: NextRequest) {
     const nextScriptedTurn = scenario.sampleDialogue[nextTurnIndex];
     const previousScriptedTurn = scenario.sampleDialogue[nextTurnIndex - 1];
 
-    const scriptGuideline = nextScriptedTurn
+    const scriptGuideline = isFreeTalk
+      ? `THIS IS AN OPEN REAL-WORLD PRACTICE (FREE TALK) SESSION.
+There is NO fixed script. The student can ask or talk about anything!
+You have complete freedom to roleplay in character, answer any questions, and converse naturally. Keep replies punchy (1-2 sentences).`
+      : nextScriptedTurn
       ? `
 OFFICIAL LESSON SCRIPT FOR THIS SCENARIO:
 ${referenceScript}

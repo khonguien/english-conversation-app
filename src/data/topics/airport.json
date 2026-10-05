@@ -6,6 +6,178 @@
   "description": "Luyện giao tiếp tiếng Anh sân bay thực tế qua 12 tình huống từ Ga đi, Trên máy bay đến Ga đến.",
   "scenarios": [
     {
+      "id": "airport-freetalk",
+      "order": 0,
+      "section": "🌟 THỰC CHIẾN TỰ DO (OPEN ROLEPLAY)",
+      "titleEn": "Airport Free Talk (Không Giới Hạn)",
+      "titleVi": "Thực chiến sân bay tự do",
+      "situation": "Phòng thực chiến tự do: AI đóng vai nhân viên hỗ trợ tổng hợp tại sân bay quốc tế. Bạn có thể hỏi bất kỳ điều gì, từ check-in, tìm đồ thất lạc, đổi vé, hỏi đường, ăn uống... thỏa sức trò chuyện mà không bị ràng buộc kịch bản!",
+      "isFreeTalk": true,
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Airport Assistant",
+          "titleEn": "Airport Assistant",
+          "titleVi": "Nhân viên hỗ trợ sân bay",
+          "avatar": "🌟"
+        },
+        "user": {
+          "id": "user",
+          "name": "Traveler",
+          "titleEn": "Traveler",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Hello and welcome to the airport! How can I assist you with your journey today?",
+      "initialMessageVi": "Xin chào và chào mừng quý khách đến sân bay! Tôi có thể hỗ trợ gì cho hành trình của bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "vocab-1-1",
+          "word": "check-in counter",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtʃek ɪn ˈkaʊntər/",
+          "meaningVi": "quầy làm thủ tục",
+          "synonyms": [
+            "check-in desk (bàn làm thủ tục)",
+            "ticket counter (quầy vé và thủ tục)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "go to / proceed to the check-in counter: đi tới quầy làm thủ tục",
+            "open / close the check-in counter: mở / đóng quầy làm thủ tục",
+            "queue at the check-in counter: xếp hàng chờ tại quầy thủ tục",
+            "self-service check-in kiosk: quầy làm thủ tục tự động qua máy cảm ứng"
+          ],
+          "exampleEn": "Please go to the check-in counter to get your boarding pass.",
+          "exampleVi": "Vui lòng tới quầy làm thủ tục để nhận thẻ lên máy bay."
+        },
+        {
+          "id": "vocab-2-1",
+          "word": "overweight",
+          "partOfSpeech": "adj",
+          "ipa": "/ˌoʊvərˈweɪt/",
+          "meaningVi": "quá cân",
+          "synonyms": [
+            "exceeding weight limit (vượt quá trọng lượng quy định)",
+            "heavy (quá nặng)",
+            "oversized (quá khổ về kích thước)"
+          ],
+          "antonyms": [
+            "underweight (dưới mức trọng lượng cho phép)",
+            "within limit (trong giới hạn cân nặng quy định)"
+          ],
+          "collocations": [
+            "overweight luggage / baggage: hành lý vượt quá cân quy định",
+            "overweight fee / surcharge: phí phụ thu hành lý quá cân",
+            "overweight by [number] kilos: quá cân bao nhiêu kilogam"
+          ],
+          "exampleEn": "Your luggage is overweight by 3 kilograms.",
+          "exampleVi": "Hành lý của bạn bị quá cân 3 kilôgam."
+        },
+        {
+          "id": "vocab-3-1",
+          "word": "terminal",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtɜːrmɪnəl/",
+          "meaningVi": "nhà ga sân bay",
+          "synonyms": [
+            "concourse (khu sảnh / hành lang ga sân bay)",
+            "passenger terminal (nhà ga hành khách)",
+            "air terminal (nhà ga hàng không)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "international terminal (T2): nhà ga quốc tế",
+            "domestic terminal (T1): nhà ga nội địa",
+            "terminal building: tòa nhà ga",
+            "transfer between terminals: di chuyển giữa các nhà ga",
+            "departure / arrival terminal: nhà ga đi / nhà ga đến"
+          ],
+          "exampleEn": "Our flight departs from Terminal 2.",
+          "exampleVi": "Chuyến bay của chúng tôi khởi hành từ Nhà ga số 2."
+        },
+        {
+          "id": "vocab-4-1",
+          "word": "delayed",
+          "partOfSpeech": "adj",
+          "ipa": "/dɪˈleɪd/",
+          "meaningVi": "bị hoãn/trễ",
+          "synonyms": [
+            "postponed (bị dời lại thời gian)",
+            "held up (bị ách lại",
+            "kẹt lại)",
+            "deferred (bị tạm hoãn)",
+            "late (muộn",
+            "trễ)"
+          ],
+          "antonyms": [
+            "on time / on schedule (đúng giờ / chuẩn lịch trình)",
+            "early (đến trước giờ dự kiến)"
+          ],
+          "collocations": [
+            "flight is delayed: chuyến bay bị hoãn",
+            "heavily / severely delayed: bị hoãn rất lâu",
+            "delayed due to bad weather: bị trễ do thời tiết xấu",
+            "delayed by [time]: bị hoãn mất khoảng thời gian là..."
+          ],
+          "exampleEn": "The flight has been delayed by one hour.",
+          "exampleVi": "Chuyến bay đã bị hoãn lại một tiếng đồng hồ."
+        },
+        {
+          "id": "vocab-5-1",
+          "word": "flight attendant",
+          "partOfSpeech": "n",
+          "ipa": "/flaɪt əˈtendənt/",
+          "meaningVi": "tiếp viên hàng không",
+          "synonyms": [
+            "cabin crew member (thành viên đoàn tiếp viên)",
+            "air steward / air stewardess (nam / nữ tiếp viên (cách gọi truyền thống))",
+            "in-flight crew (đội ngũ phục vụ trên khoang)"
+          ],
+          "antonyms": [
+            "passenger (hành khách)"
+          ],
+          "collocations": [
+            "call the flight attendant: bấm chuông gọi tiếp viên",
+            "senior flight attendant / purser: tiếp viên trưởng",
+            "flight attendant call button: nút gọi tiếp viên trên trần máy bay",
+            "listen to the flight attendant: lắng nghe hướng dẫn của tiếp viên"
+          ],
+          "exampleEn": "The flight attendant served drinks during the flight.",
+          "exampleVi": "Tiếp viên hàng không đã phục vụ đồ uống trong suốt chuyến bay."
+        },
+        {
+          "id": "vocab-6-1",
+          "word": "meal",
+          "partOfSpeech": "n",
+          "ipa": "/miːl/",
+          "meaningVi": "bữa ăn",
+          "synonyms": [
+            "in-flight meal (suất ăn trên máy bay)",
+            "dish (món ăn)",
+            "repast (bữa ăn (văn phong trang trọng))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "hot meal: suất ăn nóng hổi",
+            "meal service: khung giờ phục vụ bữa ăn chính",
+            "special meal (vegetarian, halal, kosher, gluten-free): suất ăn đặc biệt (chay, đạo Hồi, Kosher, không gluten)",
+            "pre-order a meal: đặt trước suất ăn khi mua vé"
+          ],
+          "exampleEn": "The meal will be served in 30 minutes.",
+          "exampleVi": "Bữa ăn sẽ được tiếp viên phục vụ trong khoảng 30 phút nữa."
+        }
+      ],
+      "sampleDialogue": [],
+      "suggestedHints": [
+        "I need to check in for my flight.",
+        "Where is the nearest currency exchange booth?",
+        "Could you tell me how to get to gate 15A?",
+        "I lost my luggage on the conveyor belt, what should I do?"
+      ]
+    },
+    {
       "id": "airport-scenario-1",
       "order": 1,
       "section": "🛫 Ga đi (Departure)",

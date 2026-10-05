@@ -95,15 +95,19 @@ export const ScenarioSelector: React.FC<ScenarioSelectorProps> = ({
                         onClose();
                       }}
                       className={`text-left p-3.5 rounded-xl border transition flex flex-col justify-between group ${
-                        isSelected
+                        sc.isFreeTalk
+                          ? isSelected
+                            ? "bg-gradient-to-br from-amber-50 to-indigo-50 border-amber-300 ring-2 ring-amber-400/30 shadow-md"
+                            : "bg-gradient-to-br from-amber-50/50 via-white to-indigo-50/40 border-amber-200 hover:border-amber-300 hover:shadow-md"
+                          : isSelected
                           ? "bg-indigo-50/80 border-indigo-300 ring-2 ring-indigo-500/20 shadow-xs"
                           : "bg-white border-slate-200 hover:border-indigo-200 hover:bg-slate-50/80 hover:shadow-xs"
                       }`}
                     >
                       <div className="space-y-1">
                         <div className="flex items-center justify-between">
-                          <span className="text-xs font-bold text-indigo-600">
-                            Bài {sc.order}
+                          <span className={`text-xs font-bold ${sc.isFreeTalk ? "text-amber-700 font-extrabold flex items-center gap-1" : "text-indigo-600"}`}>
+                            {sc.isFreeTalk ? "🌟 THỰC CHIẾN TỰ DO" : `Bài ${sc.order}`}
                           </span>
                           {isSelected && (
                             <span className="flex items-center gap-1 text-[11px] font-semibold text-indigo-600 bg-indigo-100 px-2 py-0.5 rounded-full">
