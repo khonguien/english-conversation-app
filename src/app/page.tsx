@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { ALL_TOPICS } from "@/data/topics";
 import { ChatMessage, Scenario, Topic } from "@/types/conversation";
 import { Header } from "@/components/Header";
@@ -24,6 +24,12 @@ export default function Home() {
   const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+
+  // Ref to hold the latest speech rate without causing re-renders or resetting conversations
+  const speechRateRef = useRef(speechRate);
+  useEffect(() => {
+    speechRateRef.current = speechRate;
+  }, [speechRate]);
 
   // Initialize conversation when scenario changes
   const initScenario = useCallback(
@@ -49,25 +55,25 @@ export default function Home() {
 
       // Play initial line after slight delay
       setTimeout(() => {
-        speakText(scenario.initialMessageEn, speechRate, () => {
+        speakText(scenario.initialMessageEn, speechRateRef.current, () => {
           setActiveAudioId(null);
         });
         setActiveAudioId(initialId);
       }, 400);
     },
-    [speechRate]
+    []
   );
 
   useEffect(() => {
     initScenario(currentScenario, userRole);
-  }, [currentScenario, userRole, initScenario]);
+  }, [currentScenario.id, userRole, initScenario]);
 
   // Audio Playback
   const handlePlayAudio = (msgId: string, text: string) => {
     unlockAudio();
     stopSpeaking();
     setActiveAudioId(msgId);
-    speakText(text, speechRate, () => {
+    speakText(text, speechRateRef.current, () => {
       setActiveAudioId(null);
     });
   };
@@ -164,7 +170,7 @@ export default function Home() {
       setMessages((prev) => [...prev, aiMessage]);
 
       // Speak AI response automatically
-      speakText(data.textEn, speechRate, () => {
+      speakText(data.textEn, speechRateRef.current, () => {
         setActiveAudioId(null);
       });
       setActiveAudioId(aiMsgId);
