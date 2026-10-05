@@ -108,6 +108,9 @@ export function speakText(
 
     const handleEnded = () => {
       cleanup();
+      try {
+        audio.pause();
+      } catch (e) {}
       if (!hasEnded) {
         hasEnded = true;
         onEnd?.();

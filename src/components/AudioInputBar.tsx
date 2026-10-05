@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { Mic, MicOff, Send, Lightbulb, ChevronUp, ChevronDown } from "lucide-react";
 import { stopSpeaking, isSpeaking } from "@/utils/speech";
 
@@ -32,68 +32,101 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   const recognitionRef = useRef<any>(null);
   const lastTriggerRef = useRef(autoListenTrigger);
 
-  // Initialize Web Speech Recognition
+  // Check speech recognition support once on mount
   useEffect(() => {
     if (typeof window !== "undefined") {
       const SpeechRecognition =
         (window as any).SpeechRecognition ||
         (window as any).webkitSpeechRecognition;
-
       if (!SpeechRecognition) {
         setIsSpeechSupported(false);
-        return;
       }
+    }
+  }, []);
 
-      const recognition = new SpeechRecognition();
-      recognition.continuous = false;
-      recognition.interimResults = true;
-      recognition.lang = "en-US";
+  // Clean stop for recognition
+  const stopListening = useCallback(() => {
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {}
+      recognitionRef.current = null;
+    }
+    setIsListening(false);
+  }, []);
 
-      recognition.onstart = () => {
-        setIsListening(true);
-      };
+  // Fresh start recognition instance for EVERY turn (crucial for iOS Safari & WebKit reuse)
+  const startListening = useCallback(() => {
+    if (typeof window === "undefined") return;
 
-      recognition.onresult = (event: any) => {
-        let transcript = "";
-        for (let i = 0; i < event.results.length; i++) {
-          transcript += event.results[i][0].transcript;
-        }
-        setInputText(transcript);
-      };
+    const SpeechRecognition =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition;
 
-      recognition.onerror = (event: any) => {
-        console.warn("Speech recognition error:", event.error);
-        setIsListening(false);
-        if (event.error === "not-allowed") {
-          alert(
-            "Trình duyệt Safari chưa được cấp quyền Micro!\n\nCách bật: Vào Cài đặt (Settings) trên iPhone/iPad > Safari > Micro (Microphone) > Chọn 'Cho phép' (Allow) và tải lại trang nhé!"
-          );
-        }
-      };
-
-      recognition.onend = () => {
-        setIsListening(false);
-      };
-
-      recognitionRef.current = recognition;
+    if (!SpeechRecognition) {
+      alert(
+        "Trình duyệt này chưa hỗ trợ nhận diện giọng nói trực tiếp. Bạn có thể dùng tính năng đọc chính tả (biểu tượng Micro trên bàn phím điện thoại) hoặc gõ văn bản!"
+      );
+      return;
     }
 
-    return () => {
-      if (recognitionRef.current) {
+    // Stop and discard any previous instance if lingering
+    if (recognitionRef.current) {
+      try {
         recognitionRef.current.abort();
+      } catch (e) {}
+      recognitionRef.current = null;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = "en-US";
+
+    recognition.onstart = () => {
+      setIsListening(true);
+    };
+
+    recognition.onresult = (event: any) => {
+      let transcript = "";
+      for (let i = 0; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+      setInputText(transcript);
+    };
+
+    recognition.onerror = (event: any) => {
+      console.warn("Speech recognition error:", event.error);
+      setIsListening(false);
+      if (event.error === "not-allowed") {
+        alert(
+          "Trình duyệt Safari chưa được cấp quyền Micro!\n\nCách bật: Vào Cài đặt (Settings) trên iPhone/iPad > Safari > Micro (Microphone) > Chọn 'Cho phép' (Allow) và tải lại trang nhé!"
+        );
       }
     };
+
+    recognition.onend = () => {
+      setIsListening(false);
+      recognitionRef.current = null;
+    };
+
+    recognitionRef.current = recognition;
+
+    try {
+      recognition.start();
+    } catch (e) {
+      console.warn("Could not start recognition:", e);
+      setIsListening(false);
+      recognitionRef.current = null;
+    }
   }, []);
 
   // Stop mic immediately if AI starts speaking
   useEffect(() => {
-    if (isAiSpeaking && isListening && recognitionRef.current) {
-      try {
-        recognitionRef.current.stop();
-      } catch (e) {}
-      setIsListening(false);
+    if (isAiSpeaking && isListening) {
+      stopListening();
     }
-  }, [isAiSpeaking, isListening]);
+  }, [isAiSpeaking, isListening, stopListening]);
 
   // Auto-start listening ONLY when autoListenTrigger increments (when AI finishes speaking)
   useEffect(() => {
@@ -104,14 +137,8 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       // Only proceed if auto-mic is enabled, not disabled, and AI is not speaking
       if (autoMicEnabled && !disabled && !isAiSpeaking) {
         const timer = setTimeout(() => {
-          // Double check that speech has completely stopped before activating mic
-          if (!isSpeaking() && !isAiSpeaking && recognitionRef.current) {
-            try {
-              recognitionRef.current.start();
-              setIsListening(true);
-            } catch (e) {
-              console.warn("Auto-start mic notice:", e);
-            }
+          if (!isSpeaking() && !isAiSpeaking) {
+            startListening();
           }
         }, 500);
 
@@ -121,39 +148,28 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       // Keep ref synchronized
       lastTriggerRef.current = autoListenTrigger;
     }
-  }, [autoListenTrigger, autoMicEnabled, disabled, isAiSpeaking]);
+  }, [autoListenTrigger, autoMicEnabled, disabled, isAiSpeaking, startListening]);
+
+  // Clean up on component unmount
+  useEffect(() => {
+    return () => {
+      stopListening();
+    };
+  }, [stopListening]);
 
   const toggleListening = () => {
-    if (!recognitionRef.current) {
-      alert("Trình duyệt này chưa hỗ trợ nhận diện giọng nói trực tiếp. Bạn có thể dùng tính năng đọc chính tả (biểu tượng Micro trên bàn phím điện thoại) hoặc gõ văn bản!");
-      return;
-    }
-
     if (isListening) {
-      try {
-        recognitionRef.current.stop();
-      } catch (e) {}
-      setIsListening(false);
+      stopListening();
     } else {
       stopSpeaking(); // stop AI speech if playing
       onStopAudio?.(); // Clear activeAudioId in page.tsx so isAiSpeaking becomes false immediately!
-      try {
-        recognitionRef.current.start();
-        setIsListening(true);
-      } catch (e) {
-        console.warn("Could not start recognition:", e);
-      }
+      startListening();
     }
   };
 
   const handleSend = () => {
     if (!inputText.trim() || disabled) return;
-    if (recognitionRef.current) {
-      try {
-        recognitionRef.current.stop();
-      } catch (e) {}
-      setIsListening(false);
-    }
+    stopListening();
     onSendMessage(inputText.trim());
     setInputText("");
   };
