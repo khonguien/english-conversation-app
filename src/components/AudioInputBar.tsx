@@ -8,9 +8,6 @@ interface AudioInputBarProps {
   onSendMessage: (text: string) => void;
   disabled?: boolean;
   suggestedHints: string[];
-  autoListenTrigger?: number;
-  autoMicEnabled?: boolean;
-  onToggleAutoMic?: () => void;
   isAiSpeaking?: boolean;
   onStopAudio?: () => void;
 }
@@ -19,9 +16,6 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   onSendMessage,
   disabled = false,
   suggestedHints,
-  autoListenTrigger = 0,
-  autoMicEnabled = true,
-  onToggleAutoMic,
   isAiSpeaking = false,
   onStopAudio,
 }) => {
@@ -30,7 +24,6 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   const [showHints, setShowHints] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(true);
   const recognitionRef = useRef<any>(null);
-  const lastTriggerRef = useRef(autoListenTrigger);
 
   // Check speech recognition support once on mount
   useEffect(() => {
@@ -111,13 +104,6 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
         alert(
           "Trình duyệt Safari chưa được cấp quyền Micro!\n\nCách bật: Vào Cài đặt (Settings) trên iPhone/iPad > Safari > Micro (Microphone) > Chọn 'Cho phép' (Allow) và tải lại trang nhé!"
         );
-      } else if (event.error === "audio-capture" || event.error === "aborted") {
-        // WebKit hardware lock recovery: retry once after settle window
-        setTimeout(() => {
-          if (!isSpeaking() && !isAiSpeaking) {
-            startListening();
-          }
-        }, 400);
       }
     };
 
@@ -143,29 +129,6 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       stopListening();
     }
   }, [isAiSpeaking, isListening, stopListening]);
-
-  // Auto-start listening ONLY when autoListenTrigger increments (when AI finishes speaking)
-  useEffect(() => {
-    // Only react when autoListenTrigger actually increments from a previous value
-    if (autoListenTrigger > lastTriggerRef.current) {
-      lastTriggerRef.current = autoListenTrigger;
-
-      // Only proceed if auto-mic is enabled, not disabled, and AI is not speaking
-      if (autoMicEnabled && !disabled && !isAiSpeaking) {
-        // 900ms settle window gives iOS Safari CoreAudio time to transition from playback to recording
-        const timer = setTimeout(() => {
-          if (!isSpeaking() && !isAiSpeaking) {
-            startListening();
-          }
-        }, 900);
-
-        return () => clearTimeout(timer);
-      }
-    } else {
-      // Keep ref synchronized
-      lastTriggerRef.current = autoListenTrigger;
-    }
-  }, [autoListenTrigger, autoMicEnabled, disabled, isAiSpeaking, startListening]);
 
   // Clean up on component unmount
   useEffect(() => {
@@ -234,25 +197,6 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
               </span>
             )}
 
-            {onToggleAutoMic && (
-              <button
-                type="button"
-                onClick={onToggleAutoMic}
-                className={`text-[11px] sm:text-xs font-medium px-2.5 py-0.5 rounded-full border transition flex items-center gap-1 cursor-pointer ${
-                  autoMicEnabled
-                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
-                    : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
-                }`}
-                title="Tự động bật micro sau khi AI nói xong"
-              >
-                <span
-                  className={`w-1.5 h-1.5 rounded-full ${
-                    autoMicEnabled ? "bg-emerald-500 animate-pulse" : "bg-slate-400"
-                  }`}
-                />
-                Auto-Mic: {autoMicEnabled ? "Bật" : "Tắt"}
-              </button>
-            )}
           </div>
         </div>
 

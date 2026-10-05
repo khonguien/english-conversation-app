@@ -24,19 +24,12 @@ export default function Home() {
   const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
-  const [autoListenTrigger, setAutoListenTrigger] = useState<number>(0);
-  const [autoMicEnabled, setAutoMicEnabled] = useState<boolean>(true);
 
   // Ref to hold the latest speech rate without causing re-renders or resetting conversations
   const speechRateRef = useRef(speechRate);
   useEffect(() => {
     speechRateRef.current = speechRate;
   }, [speechRate]);
-
-  const autoMicEnabledRef = useRef(autoMicEnabled);
-  useEffect(() => {
-    autoMicEnabledRef.current = autoMicEnabled;
-  }, [autoMicEnabled]);
 
   // One-time interaction listener to unlock audio on mobile Safari / iOS
   useEffect(() => {
@@ -77,9 +70,6 @@ export default function Home() {
       setTimeout(() => {
         speakText(scenario.initialMessageEn, speechRateRef.current, () => {
           setActiveAudioId(null);
-          if (autoMicEnabledRef.current && role === "user") {
-            setAutoListenTrigger((prev) => prev + 1);
-          }
         });
         setActiveAudioId(initialId);
       }, 400);
@@ -207,9 +197,6 @@ export default function Home() {
       // Speak AI response automatically
       speakText(data.textEn, speechRateRef.current, () => {
         setActiveAudioId(null);
-        if (autoMicEnabledRef.current) {
-          setAutoListenTrigger((prev) => prev + 1);
-        }
       });
       setActiveAudioId(aiMsgId);
     } catch (error) {
@@ -277,9 +264,6 @@ export default function Home() {
         onSendMessage={handleSendMessage}
         disabled={isAiThinking}
         suggestedHints={currentScenario.suggestedHints}
-        autoListenTrigger={autoListenTrigger}
-        autoMicEnabled={autoMicEnabled}
-        onToggleAutoMic={() => setAutoMicEnabled((prev) => !prev)}
         isAiSpeaking={activeAudioId !== null}
         onStopAudio={handleStopAudio}
       />
