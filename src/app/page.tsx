@@ -267,6 +267,7 @@ export default function Home() {
         autoListenTrigger={autoListenTrigger}
         autoMicEnabled={autoMicEnabled}
         onToggleAutoMic={() => setAutoMicEnabled((prev) => !prev)}
+        isAiSpeaking={activeAudioId !== null}
       />
 
       {/* Scenario & Topic Selector Modal */}

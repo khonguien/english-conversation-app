@@ -1,5 +1,8 @@
 "use client";
 
+// Keep active utterance in module scope to prevent Chromium garbage collection bug
+let activeUtterance: SpeechSynthesisUtterance | null = null;
+
 // Helper for Text-to-Speech using Web Speech API
 export function speakText(
   text: string,
@@ -15,6 +18,7 @@ export function speakText(
 
   // Cancel any ongoing speech
   window.speechSynthesis.cancel();
+  activeUtterance = null;
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "en-US";
@@ -23,37 +27,43 @@ export function speakText(
 
   // Pick a natural English voice if available
   const voices = window.speechSynthesis.getVoices();
-  const englishVoice = voices.find(
-    (v) =>
-      (v.lang === "en-US" || v.lang === "en-GB") &&
-      (v.name.includes("Samantha") ||
-        v.name.includes("Daniel") ||
-        v.name.includes("Karen") ||
-        v.name.includes("Google") ||
-        v.name.includes("Natural"))
-  ) || voices.find((v) => v.lang.startsWith("en"));
+  const englishVoice =
+    voices.find(
+      (v) =>
+        (v.lang === "en-US" || v.lang === "en-GB") &&
+        (v.name.includes("Samantha") ||
+          v.name.includes("Daniel") ||
+          v.name.includes("Karen") ||
+          v.name.includes("Google") ||
+          v.name.includes("Natural"))
+    ) || voices.find((v) => v.lang.startsWith("en"));
 
   if (englishVoice) {
     utterance.voice = englishVoice;
   }
 
+  activeUtterance = utterance;
+
   utterance.onend = () => {
+    activeUtterance = null;
     onEnd?.();
   };
 
   utterance.onerror = (e) => {
-    // If interrupted because user clicked stop or next, don't trigger error
-    if (e.error !== "canceled" && e.error !== "interrupted") {
-      console.warn("Speech synthesis error:", e);
-      onError?.(e);
+    activeUtterance = null;
+    // If canceled or interrupted, do NOT trigger onEnd or onError
+    if (e.error === "canceled" || e.error === "interrupted") {
+      return;
     }
-    onEnd?.();
+    console.warn("Speech synthesis error:", e);
+    onError?.(e);
   };
 
   window.speechSynthesis.speak(utterance);
 
   // Return cancel function
   return () => {
+    activeUtterance = null;
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
       window.speechSynthesis.cancel();
     }
@@ -61,9 +71,17 @@ export function speakText(
 }
 
 export function stopSpeaking() {
+  activeUtterance = null;
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
   }
+}
+
+export function isSpeaking(): boolean {
+  if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    return window.speechSynthesis.speaking;
+  }
+  return false;
 }
 
 // iOS Safari audio unlock

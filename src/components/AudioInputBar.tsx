@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Mic, MicOff, Send, Lightbulb, ChevronUp, ChevronDown } from "lucide-react";
-import { stopSpeaking } from "@/utils/speech";
+import { stopSpeaking, isSpeaking } from "@/utils/speech";
 
 interface AudioInputBarProps {
   onSendMessage: (text: string) => void;
@@ -11,6 +11,7 @@ interface AudioInputBarProps {
   autoListenTrigger?: number;
   autoMicEnabled?: boolean;
   onToggleAutoMic?: () => void;
+  isAiSpeaking?: boolean;
 }
 
 export const AudioInputBar: React.FC<AudioInputBarProps> = ({
@@ -20,12 +21,14 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   autoListenTrigger = 0,
   autoMicEnabled = true,
   onToggleAutoMic,
+  isAiSpeaking = false,
 }) => {
   const [inputText, setInputText] = useState("");
   const [isListening, setIsListening] = useState(false);
   const [showHints, setShowHints] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(true);
   const recognitionRef = useRef<any>(null);
+  const lastTriggerRef = useRef(autoListenTrigger);
 
   // Initialize Web Speech Recognition
   useEffect(() => {
@@ -75,23 +78,43 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     };
   }, []);
 
-  // Auto-start listening when triggered (e.g. after AI finishes speaking)
+  // Stop mic immediately if AI starts speaking
   useEffect(() => {
-    if (autoListenTrigger > 0 && autoMicEnabled && !disabled) {
-      const timer = setTimeout(() => {
-        if (!isListening && recognitionRef.current) {
-          try {
-            recognitionRef.current.start();
-            setIsListening(true);
-          } catch (e) {
-            console.warn("Auto-start mic notice:", e);
-          }
-        }
-      }, 400);
-
-      return () => clearTimeout(timer);
+    if (isAiSpeaking && isListening && recognitionRef.current) {
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {}
+      setIsListening(false);
     }
-  }, [autoListenTrigger, autoMicEnabled, disabled]);
+  }, [isAiSpeaking, isListening]);
+
+  // Auto-start listening ONLY when autoListenTrigger increments (when AI finishes speaking)
+  useEffect(() => {
+    // Only react when autoListenTrigger actually increments from a previous value
+    if (autoListenTrigger > lastTriggerRef.current) {
+      lastTriggerRef.current = autoListenTrigger;
+
+      // Only proceed if auto-mic is enabled, not disabled, and AI is not speaking
+      if (autoMicEnabled && !disabled && !isAiSpeaking) {
+        const timer = setTimeout(() => {
+          // Double check that speech has completely stopped before activating mic
+          if (!isSpeaking() && !isAiSpeaking && recognitionRef.current) {
+            try {
+              recognitionRef.current.start();
+              setIsListening(true);
+            } catch (e) {
+              console.warn("Auto-start mic notice:", e);
+            }
+          }
+        }, 500);
+
+        return () => clearTimeout(timer);
+      }
+    } else {
+      // Keep ref synchronized
+      lastTriggerRef.current = autoListenTrigger;
+    }
+  }, [autoListenTrigger, autoMicEnabled, disabled, isAiSpeaking]);
 
   const toggleListening = () => {
     if (!recognitionRef.current) {
