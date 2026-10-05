@@ -125,6 +125,22 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
                 {isAi && (
                   <div className="flex items-center gap-1">
+                    {/* Eye toggle if subtitles are globally disabled */}
+                    {!subtitlesEnabled && (
+                      <button
+                        type="button"
+                        onClick={() => onToggleReveal(msg.id)}
+                        className="p-1 rounded-full text-slate-400 hover:text-amber-600 hover:bg-slate-100 transition cursor-pointer"
+                        title={msg.revealed ? "Ẩn lại phụ đề câu này" : "Xem phụ đề câu này"}
+                      >
+                        {msg.revealed ? (
+                          <EyeOff className="w-3.5 h-3.5 text-amber-600" />
+                        ) : (
+                          <Eye className="w-3.5 h-3.5" />
+                        )}
+                      </button>
+                    )}
+
                     {/* Audio Play/Stop Button */}
                     <button
                       onClick={() =>
@@ -132,7 +148,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                           ? onStopAudio()
                           : onPlayAudio(msg.id, msg.textEn)
                       }
-                      className={`p-1 rounded-full transition ${
+                      className={`p-1 rounded-full transition cursor-pointer ${
                         isPlaying
                           ? "bg-indigo-600 text-white animate-pulse"
                           : "text-slate-400 hover:text-indigo-600 hover:bg-slate-100"
@@ -163,21 +179,30 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                         </p>
                       )}
                       {!subtitlesEnabled && (
-                        <span className="inline-block text-[10px] text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">
-                          (Đã mở chữ câu này)
-                        </span>
+                        <div className="pt-1">
+                          <button
+                            type="button"
+                            onClick={() => onToggleReveal(msg.id)}
+                            className="inline-flex items-center gap-1.5 text-[11px] font-medium text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200/80 px-2 py-0.5 rounded-md transition cursor-pointer"
+                            title="Ẩn lại phụ đề câu này để luyện nghe"
+                          >
+                            <EyeOff className="w-3 h-3 text-amber-600" />
+                            <span>Ẩn lại phụ đề câu này</span>
+                          </button>
+                        </div>
                       )}
                     </div>
                   ) : (
                     /* Listening Challenge Mode: Masked text */
                     <button
+                      type="button"
                       onClick={() => onToggleReveal(msg.id)}
-                      className="text-left w-full py-1 text-slate-400 hover:text-slate-600 group"
+                      className="text-left w-full py-1 text-slate-400 hover:text-slate-600 group cursor-pointer"
                     >
                       <div className="font-mono text-sm tracking-widest text-slate-300 group-hover:text-slate-400 select-none">
                         •••• ••••••• ••••••••
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] text-amber-700 bg-amber-50/80 hover:bg-amber-100 px-2 py-0.5 rounded-md mt-1 transition">
+                      <div className="flex items-center gap-1.5 text-[11px] font-medium text-amber-700 bg-amber-50/80 group-hover:bg-amber-100 px-2 py-0.5 rounded-md mt-1 transition border border-amber-200/60">
                         <Eye className="w-3 h-3 text-amber-600" />
                         <span>Chạm để xem phụ đề nếu nghe chưa kịp</span>
                       </div>

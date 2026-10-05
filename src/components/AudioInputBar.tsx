@@ -2,17 +2,24 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Mic, MicOff, Send, Lightbulb, ChevronUp, ChevronDown } from "lucide-react";
+import { stopSpeaking } from "@/utils/speech";
 
 interface AudioInputBarProps {
   onSendMessage: (text: string) => void;
   disabled?: boolean;
   suggestedHints: string[];
+  autoListenTrigger?: number;
+  autoMicEnabled?: boolean;
+  onToggleAutoMic?: () => void;
 }
 
 export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   onSendMessage,
   disabled = false,
   suggestedHints,
+  autoListenTrigger = 0,
+  autoMicEnabled = true,
+  onToggleAutoMic,
 }) => {
   const [inputText, setInputText] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -43,7 +50,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
       recognition.onresult = (event: any) => {
         let transcript = "";
-        for (let i = event.resultIndex; i < event.results.length; i++) {
+        for (let i = 0; i < event.results.length; i++) {
           transcript += event.results[i][0].transcript;
         }
         setInputText(transcript);
@@ -68,9 +75,27 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     };
   }, []);
 
+  // Auto-start listening when triggered (e.g. after AI finishes speaking)
+  useEffect(() => {
+    if (autoListenTrigger > 0 && autoMicEnabled && !disabled) {
+      const timer = setTimeout(() => {
+        if (!isListening && recognitionRef.current) {
+          try {
+            recognitionRef.current.start();
+            setIsListening(true);
+          } catch (e) {
+            console.warn("Auto-start mic notice:", e);
+          }
+        }
+      }, 400);
+
+      return () => clearTimeout(timer);
+    }
+  }, [autoListenTrigger, autoMicEnabled, disabled]);
+
   const toggleListening = () => {
     if (!recognitionRef.current) {
-      alert("Trình duyệt này chưa hỗ trợ nhận diện giọng nói trực tiếp. Bạn có thể dùng tính năng đọc chính tả (biểu tượng Micro trên bàn phím iPhone) hoặc gõ văn bản!");
+      alert("Trình duyệt này chưa hỗ trợ nhận diện giọng nói trực tiếp. Bạn có thể dùng tính năng đọc chính tả (biểu tượng Micro trên bàn phím điện thoại) hoặc gõ văn bản!");
       return;
     }
 
@@ -78,6 +103,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       recognitionRef.current.stop();
       setIsListening(false);
     } else {
+      stopSpeaking(); // stop AI speech if playing
       try {
         recognitionRef.current.start();
         setIsListening(true);
@@ -89,8 +115,10 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
   const handleSend = () => {
     if (!inputText.trim() || disabled) return;
-    if (isListening && recognitionRef.current) {
-      recognitionRef.current.stop();
+    if (recognitionRef.current) {
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {}
       setIsListening(false);
     }
     onSendMessage(inputText.trim());
@@ -112,43 +140,68 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   return (
     <div className="sticky bottom-0 z-20 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg safe-bottom-padding">
       <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 space-y-2">
-        {/* Hints Bar (Toggleable) */}
-        {suggestedHints.length > 0 && (
-          <div>
-            <div className="flex items-center justify-between">
-              <button
-                onClick={() => setShowHints(!showHints)}
-                className="flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition py-0.5"
-              >
-                <Lightbulb className="w-3.5 h-3.5" />
-                <span>Gợi ý cách trả lời khi bí từ ({suggestedHints.length})</span>
-                {showHints ? (
-                  <ChevronDown className="w-3.5 h-3.5" />
-                ) : (
-                  <ChevronUp className="w-3.5 h-3.5" />
-                )}
-              </button>
-              {isListening && (
-                <span className="flex items-center gap-1.5 text-xs text-red-600 font-medium animate-pulse">
-                  <span className="w-2 h-2 rounded-full bg-red-600"></span>
-                  Đang thu âm tiếng Anh...
-                </span>
+        {/* Top bar: Hints & Auto-Mic Toggle / Status */}
+        <div className="flex items-center justify-between gap-2">
+          {suggestedHints.length > 0 ? (
+            <button
+              onClick={() => setShowHints(!showHints)}
+              className="flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition py-0.5"
+            >
+              <Lightbulb className="w-3.5 h-3.5" />
+              <span>Gợi ý cách trả lời ({suggestedHints.length})</span>
+              {showHints ? (
+                <ChevronDown className="w-3.5 h-3.5" />
+              ) : (
+                <ChevronUp className="w-3.5 h-3.5" />
               )}
-            </div>
+            </button>
+          ) : (
+            <div />
+          )}
 
-            {showHints && (
-              <div className="flex flex-wrap gap-1.5 pt-1.5 pb-1 animate-in fade-in slide-in-from-bottom-2 duration-150">
-                {suggestedHints.slice(0, 4).map((hint, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => handleSelectHint(hint)}
-                    className="text-xs text-left bg-indigo-50/80 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 px-2.5 py-1.5 rounded-xl transition shadow-2xs"
-                  >
-                    "{hint}"
-                  </button>
-                ))}
-              </div>
+          <div className="flex items-center gap-2">
+            {isListening && (
+              <span className="flex items-center gap-1.5 text-xs text-red-600 font-medium animate-pulse">
+                <span className="w-2 h-2 rounded-full bg-red-600"></span>
+                <span className="hidden sm:inline">Đang thu âm tiếng Anh...</span>
+                <span className="sm:hidden">Đang thu...</span>
+              </span>
             )}
+
+            {onToggleAutoMic && (
+              <button
+                type="button"
+                onClick={onToggleAutoMic}
+                className={`text-[11px] sm:text-xs font-medium px-2.5 py-0.5 rounded-full border transition flex items-center gap-1 cursor-pointer ${
+                  autoMicEnabled
+                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
+                    : "bg-slate-100 text-slate-500 border-slate-200 hover:bg-slate-200"
+                }`}
+                title="Tự động bật micro sau khi AI nói xong"
+              >
+                <span
+                  className={`w-1.5 h-1.5 rounded-full ${
+                    autoMicEnabled ? "bg-emerald-500 animate-pulse" : "bg-slate-400"
+                  }`}
+                />
+                Auto-Mic: {autoMicEnabled ? "Bật" : "Tắt"}
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Hints expandable */}
+        {showHints && suggestedHints.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 pt-0.5 pb-1 animate-in fade-in slide-in-from-bottom-2 duration-150">
+            {suggestedHints.slice(0, 4).map((hint, idx) => (
+              <button
+                key={idx}
+                onClick={() => handleSelectHint(hint)}
+                className="text-xs text-left bg-indigo-50/80 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 px-2.5 py-1.5 rounded-xl transition shadow-2xs"
+              >
+                "{hint}"
+              </button>
+            ))}
           </div>
         )}
 

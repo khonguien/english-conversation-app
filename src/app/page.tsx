@@ -24,12 +24,19 @@ export default function Home() {
   const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [autoListenTrigger, setAutoListenTrigger] = useState<number>(0);
+  const [autoMicEnabled, setAutoMicEnabled] = useState<boolean>(true);
 
   // Ref to hold the latest speech rate without causing re-renders or resetting conversations
   const speechRateRef = useRef(speechRate);
   useEffect(() => {
     speechRateRef.current = speechRate;
   }, [speechRate]);
+
+  const autoMicEnabledRef = useRef(autoMicEnabled);
+  useEffect(() => {
+    autoMicEnabledRef.current = autoMicEnabled;
+  }, [autoMicEnabled]);
 
   // Initialize conversation when scenario changes
   const initScenario = useCallback(
@@ -57,6 +64,9 @@ export default function Home() {
       setTimeout(() => {
         speakText(scenario.initialMessageEn, speechRateRef.current, () => {
           setActiveAudioId(null);
+          if (autoMicEnabledRef.current && role === "user") {
+            setAutoListenTrigger((prev) => prev + 1);
+          }
         });
         setActiveAudioId(initialId);
       }, 400);
@@ -96,6 +106,18 @@ export default function Home() {
   const handleToggleRole = () => {
     const nextRole = userRole === "user" ? "ai" : "user";
     setUserRole(nextRole);
+  };
+
+  // Toggle global subtitles
+  const handleToggleSubtitles = () => {
+    setSubtitlesEnabled((prev) => {
+      const next = !prev;
+      if (!next) {
+        // When entering challenge mode (hiding subtitles), re-mask all AI messages
+        setMessages((msgs) => msgs.map((m) => ({ ...m, revealed: false })));
+      }
+      return next;
+    });
   };
 
   // Toggle reveal for individual masked message in challenge mode
@@ -172,6 +194,9 @@ export default function Home() {
       // Speak AI response automatically
       speakText(data.textEn, speechRateRef.current, () => {
         setActiveAudioId(null);
+        if (autoMicEnabledRef.current) {
+          setAutoListenTrigger((prev) => prev + 1);
+        }
       });
       setActiveAudioId(aiMsgId);
     } catch (error) {
@@ -200,7 +225,7 @@ export default function Home() {
         topic={currentTopic}
         scenario={currentScenario}
         subtitlesEnabled={subtitlesEnabled}
-        onToggleSubtitles={() => setSubtitlesEnabled(!subtitlesEnabled)}
+        onToggleSubtitles={handleToggleSubtitles}
         speechRate={speechRate}
         onChangeSpeechRate={handleChangeSpeechRate}
         isVocabOpen={isVocabOpen}
@@ -239,6 +264,9 @@ export default function Home() {
         onSendMessage={handleSendMessage}
         disabled={isAiThinking}
         suggestedHints={currentScenario.suggestedHints}
+        autoListenTrigger={autoListenTrigger}
+        autoMicEnabled={autoMicEnabled}
+        onToggleAutoMic={() => setAutoMicEnabled((prev) => !prev)}
       />
 
       {/* Scenario & Topic Selector Modal */}
