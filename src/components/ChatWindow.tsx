@@ -141,6 +141,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                       </button>
                     )}
 
+                    {/* First message prompt on Safari/iOS if autoplay was blocked */}
+                    {messages.length === 1 && !isPlaying && (
+                      <button
+                        type="button"
+                        onClick={() => onPlayAudio(msg.id, msg.textEn)}
+                        className="flex items-center gap-1 text-[10px] font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-full transition cursor-pointer"
+                        title="Bấm để nghe AI chào và kích hoạt giọng nói"
+                      >
+                        <Volume2 className="w-3 h-3 text-indigo-600 animate-pulse" />
+                        <span>Bấm nghe AI nói</span>
+                      </button>
+                    )}
+
                     {/* Audio Play/Stop Button */}
                     <button
                       onClick={() =>

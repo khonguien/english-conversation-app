@@ -12,6 +12,7 @@ interface AudioInputBarProps {
   autoMicEnabled?: boolean;
   onToggleAutoMic?: () => void;
   isAiSpeaking?: boolean;
+  onStopAudio?: () => void;
 }
 
 export const AudioInputBar: React.FC<AudioInputBarProps> = ({
@@ -22,6 +23,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   autoMicEnabled = true,
   onToggleAutoMic,
   isAiSpeaking = false,
+  onStopAudio,
 }) => {
   const [inputText, setInputText] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -62,6 +64,11 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       recognition.onerror = (event: any) => {
         console.warn("Speech recognition error:", event.error);
         setIsListening(false);
+        if (event.error === "not-allowed") {
+          alert(
+            "Trình duyệt Safari chưa được cấp quyền Micro!\n\nCách bật: Vào Cài đặt (Settings) trên iPhone/iPad > Safari > Micro (Microphone) > Chọn 'Cho phép' (Allow) và tải lại trang nhé!"
+          );
+        }
       };
 
       recognition.onend = () => {
@@ -123,10 +130,13 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     }
 
     if (isListening) {
-      recognitionRef.current.stop();
+      try {
+        recognitionRef.current.stop();
+      } catch (e) {}
       setIsListening(false);
     } else {
       stopSpeaking(); // stop AI speech if playing
+      onStopAudio?.(); // Clear activeAudioId in page.tsx so isAiSpeaking becomes false immediately!
       try {
         recognitionRef.current.start();
         setIsListening(true);

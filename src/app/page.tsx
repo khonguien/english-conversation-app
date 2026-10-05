@@ -38,6 +38,19 @@ export default function Home() {
     autoMicEnabledRef.current = autoMicEnabled;
   }, [autoMicEnabled]);
 
+  // One-time interaction listener to unlock audio on mobile Safari / iOS
+  useEffect(() => {
+    const handleFirstTouch = () => {
+      unlockAudio();
+    };
+    window.addEventListener("touchstart", handleFirstTouch, { once: true, passive: true });
+    window.addEventListener("click", handleFirstTouch, { once: true, passive: true });
+    return () => {
+      window.removeEventListener("touchstart", handleFirstTouch);
+      window.removeEventListener("click", handleFirstTouch);
+    };
+  }, []);
+
   // Initialize conversation when scenario changes
   const initScenario = useCallback(
     (scenario: Scenario, role: "user" | "ai") => {
@@ -268,6 +281,7 @@ export default function Home() {
         autoMicEnabled={autoMicEnabled}
         onToggleAutoMic={() => setAutoMicEnabled((prev) => !prev)}
         isAiSpeaking={activeAudioId !== null}
+        onStopAudio={handleStopAudio}
       />
 
       {/* Scenario & Topic Selector Modal */}

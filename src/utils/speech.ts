@@ -134,8 +134,19 @@ export function speakText(
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
-        console.warn("Audio play prevented, attempting Web Speech fallback:", err);
         cleanup();
+        console.warn("Audio play prevented/blocked:", err);
+
+        // If Safari/Chrome blocked autoplay (e.g. on initial page load without touch)
+        if (err.name === "NotAllowedError" || err.name === "AbortError") {
+          console.log("Autoplay was blocked by browser. Clearing active audio state.");
+          if (!hasEnded) {
+            hasEnded = true;
+            onEnd?.(); // Clears activeAudioId in parent so mic is NOT blocked!
+          }
+          return;
+        }
+
         speakWebSpeech(text, rate, onEnd, onError);
       });
     }
