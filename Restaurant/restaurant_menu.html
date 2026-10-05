@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Golden Bistro & Grill — Dining Menu & Roleplay Prop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0d1117;
+      --card-bg: #161b22;
+      --card-border: #30363d;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --gold-dark: #aa8c2c;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --accent-red: #ff7b72;
+      --accent-green: #7ee787;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-title: 'Cinzel', serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu-container {
+      max-width: 900px;
+      width: 100%;
+      background: #12161f;
+      border: 2px solid var(--gold-dark);
+      border-radius: 12px;
+      padding: 50px 60px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.15);
+      position: relative;
+    }
+
+    /* Inner decorative border */
+    .menu-container::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 8px;
+      pointer-events: none;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+      margin-bottom: 40px;
+    }
+
+    .logo-icon {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .restaurant-name {
+      font-family: var(--font-title);
+      font-size: 2.4rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+    }
+
+    .tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: 1.05rem;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .location-info {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* Roleplay Banner */
+    .roleplay-banner {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px dashed var(--gold);
+      border-radius: 8px;
+      padding: 12px 20px;
+      margin-bottom: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .roleplay-banner-title {
+      font-weight: 600;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 15px;
+      font-size: 0.8rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-gf { background: rgba(126, 231, 135, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .badge-vg { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid #38bdf8; }
+    .badge-special { background: rgba(212, 175, 55, 0.2); color: var(--gold-light); border: 1px solid var(--gold); }
+
+    /* Section Styling */
+    .menu-section {
+      margin-bottom: 45px;
+    }
+
+    .section-title {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      position: relative;
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .section-title::before, .section-title::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--gold-dark), transparent);
+      flex: 1;
+    }
+
+    /* Grid for Dishes */
+    .dish-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .dish-grid.two-col {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px 35px;
+      }
+    }
+
+    /* Dish Item */
+    .dish-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .dish-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      position: relative;
+    }
+
+    .dish-name {
+      font-family: var(--font-serif);
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .dish-dots {
+      flex: 1;
+      border-bottom: 1px dotted rgba(212, 175, 55, 0.4);
+      margin: 0 10px;
+      height: 1px;
+    }
+
+    .dish-price {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      color: var(--gold-light);
+      font-size: 1.1rem;
+    }
+
+    .dish-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .dish-cue {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-style: italic;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Featured Specials Box */
+    .featured-box {
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.12), rgba(18, 22, 31, 0.95));
+      border: 1px solid var(--gold);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 35px;
+      position: relative;
+      box-shadow: inset 0 0 15px rgba(212, 175, 55, 0.08);
+    }
+
+    .featured-label {
+      position: absolute;
+      top: -12px;
+      left: 25px;
+      background: var(--gold);
+      color: #000000;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 3px 12px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .featured-dish {
+      margin-bottom: 18px;
+    }
+
+    .featured-dish:last-child {
+      margin-bottom: 0;
+      padding-top: 18px;
+      border-top: 1px dashed rgba(212, 175, 55, 0.3);
+    }
+
+    /* Customization & Sides Strip */
+    .info-strip {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin-bottom: 35px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .info-strip strong {
+      color: var(--gold-light);
+    }
+
+    .info-strip ul {
+      margin-left: 20px;
+      margin-top: 6px;
+    }
+
+    /* Roleplay Prompts Footer */
+    .prompts-card {
+      background: #181f2a;
+      border: 1px solid #2d3748;
+      border-radius: 8px;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    .prompts-title {
+      font-family: var(--font-title);
+      color: var(--gold);
+      font-size: 1.15rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding-bottom: 8px;
+    }
+
+    .prompt-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .prompt-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .prompt-item {
+      background: rgba(0, 0, 0, 0.25);
+      border-left: 3px solid var(--gold);
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.85rem;
+    }
+
+    .prompt-situation {
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 2px;
+    }
+
+    .prompt-english {
+      color: #ffffff;
+    }
+
+    .prompt-viet {
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 30px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff;
+        color: #111111;
+        padding: 0;
+      }
+      .menu-container {
+        border: 2px solid #333333;
+        box-shadow: none;
+        background: #ffffff;
+        padding: 20px;
+      }
+      .restaurant-name {
+        color: #111111;
+        text-shadow: none;
+      }
+      .section-title, .dish-price, .tagline {
+        color: #222222;
+      }
+      .dish-name {
+        color: #000000;
+      }
+      .dish-desc, .prompt-viet {
+        color: #444444;
+      }
+      .featured-box {
+        background: #f9f9f9;
+        border: 1px solid #777777;
+      }
+      .featured-label {
+        background: #333333;
+        color: #ffffff;
+      }
+      .prompts-card {
+        background: #f4f4f4;
+        border: 1px solid #cccccc;
+      }
+      .prompt-english {
+        color: #111111;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-icon">🍽️</div>
+      <h1 class="restaurant-name">The Golden Bistro</h1>
+      <p class="tagline">Continental Cuisine, Artisan Steaks & Fine Wines</p>
+      <p class="location-info">124 Riverside Avenue &bull; Tel: (555) 019-2834 &bull; Service Included (10%)</p>
+    </header>
+
+    <!-- Roleplay Helper Banner -->
+    <div class="roleplay-banner">
+      <div class="roleplay-banner-title">
+        <span>🎭</span> English Speaking Roleplay Prop
+      </div>
+      <div class="legend">
+        <span class="badge badge-special">⭐ Chef's Special</span>
+        <span class="badge badge-gf">GF Gluten-Free</span>
+        <span class="badge badge-vg">VG Vegetarian</span>
+      </div>
+    </div>
+
+    <!-- Featured Specials Box -->
+    <div class="featured-box">
+      <div class="featured-label">⭐ Chef's Daily Specials (Món đặc biệt hôm nay)</div>
+      
+      <div class="featured-dish">
+        <div class="dish-header">
+          <div class="dish-name">
+            Grilled Atlantic Salmon with Asparagus
+            <span class="badge badge-gf">GF</span>
+            <span class="badge badge-special">⭐</span>
+          </div>
+          <div class="dish-dots"></div>
+          <div class="dish-price">$29.50</div>
+        </div>
+        <p class="dish-desc">Pan-seared Atlantic salmon fillet with garlic butter asparagus and lemon beurre blanc sauce. Completely gluten-free.</p>
+        <div class="dish-cue">🗣️ Cue: "What's the dish of the day?" &rarr; "Today we have the grilled salmon served with asparagus."</div>
+      </div>
+
+      <div class="featured-dish">
+        <div class="dish-header">
+          <div class="dish-name">
+            Prime Dry-Aged Ribeye Steak (300g)
+            <span class="badge badge-special">⭐</span>
+          </div>
+          <div class="dish-dots"></div>
+          <div class="dish-price">$38.00</div>
+        </div>
+        <p class="dish-desc">Char-grilled aged black Angus ribeye with roasted garlic herb butter. Cooked to your preferred doneness.</p>
+        <div class="dish-cue">🗣️ Doneness: Rare &bull; Medium Rare (Recommended) &bull; Medium &bull; Well-Done</div>
+      </div>
+    </div>
+
+    <!-- Appetizers & Starters -->
+    <section class="menu-section">
+      <h2 class="section-title">Appetizers &amp; Starters (Món khai vị)</h2>
+      <div class="dish-grid two-col">
+        
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Crispy Chicken Wings</div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$14.50</div>
+          </div>
+          <p class="dish-desc">Crispy golden wings tossed in mild Buffalo glaze, served with blue cheese dip and celery sticks.</p>
+          <div class="dish-cue">🗣️ "For appetizers, let me get the chicken wings, please."</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">French Fries <span class="badge badge-vg">VG</span></div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$7.00</div>
+          </div>
+          <p class="dish-desc">Hand-cut russet potatoes fried to crisp perfection, seasoned with rosemary sea salt.</p>
+          <div class="dish-cue">🗣️ "...as well as the French fries, please."</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Creamy Seafood Soup <span class="badge badge-special">⭐</span></div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$12.00</div>
+          </div>
+          <p class="dish-desc">Rich chowder with tender shrimp, calamari, clams, sweet corn, and fresh garden herbs.</p>
+          <div class="dish-cue">🗣️ "Can I get the seafood soup as a starter?"</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Warm Bread Basket <span class="badge badge-vg">VG</span></div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$5.50</div>
+          </div>
+          <p class="dish-desc">Freshly baked artisan sourdough and baguettes served with house garlic herb butter.</p>
+          <div class="dish-cue">🗣️ "Could we have some extra bread, please?"</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main Courses -->
+    <section class="menu-section">
+      <h2 class="section-title">Main Courses (Món chính)</h2>
+      <div class="dish-grid two-col">
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Classic Ribeye Steak <span class="badge badge-special">⭐</span></div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$35.00</div>
+          </div>
+          <p class="dish-desc">Tender Angus steak grilled to your choice, served with red wine reduction and one side dish.</p>
+          <div class="dish-cue">🗣️ "Let me get the ribeye steak with a side of mashed potatoes."</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Grilled Chicken Pasta</div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$22.00</div>
+          </div>
+          <p class="dish-desc">Fettuccine pasta in creamy mushroom garlic sauce with grilled marinated chicken breast.</p>
+          <div class="dish-cue">🗣️ "Could you make it less spicy? And no onions, please."</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Seafood Marinara Pasta</div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$26.00</div>
+          </div>
+          <p class="dish-desc">Spaghetti with king prawns, mussels, and squid sautéed in rich Italian tomato herb sauce.</p>
+          <div class="dish-cue">🗣️ Top-seller: "Our seafood pasta is an absolute customer favorite."</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Wild Mushroom Penne <span class="badge badge-vg">VG</span></div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$19.50</div>
+          </div>
+          <p class="dish-desc">Sautéed porcini and button mushrooms with extra virgin olive oil, garlic, and fresh basil.</p>
+          <div class="dish-cue">🗣️ "I'll go with the vegetarian option, please."</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Sides & Customizations -->
+    <div class="info-strip">
+      <strong>🥔 Side Dishes ("With a side of..."):</strong> Choose one complimentary side with any steak, or $6.00 each:
+      <ul>
+        <li><strong>Creamy Mashed Potatoes:</strong> Whipped Idaho potatoes with butter and cream.</li>
+        <li><strong>Steamed Asparagus:</strong> Tender young spears with lemon garlic butter.</li>
+        <li><strong>Side Garden Salad:</strong> Fresh greens with choice of dressing (available <em>on the side</em>).</li>
+      </ul>
+      <div style="margin-top: 10px;">
+        <strong>⚙️ Customization Options:</strong> <em>"No onions" &bull; "Less spicy" &bull; "Dressing on the side" &bull; "Extra cheese" &bull; "Without sauce"</em>
+      </div>
+    </div>
+
+    <!-- Desserts & Beverages -->
+    <section class="menu-section">
+      <h2 class="section-title">Desserts &amp; Beverages (Tráng miệng &amp; Đồ uống)</h2>
+      <div class="dish-grid two-col">
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Chef's Surprise Dessert <span class="badge badge-special">⭐</span></div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$11.00</div>
+          </div>
+          <p class="dish-desc">A handcrafted daily surprise dessert created by our pastry chef.</p>
+          <div class="dish-cue">🗣️ "Just surprise me with your best dessert!"</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">House Red Wine (Glass)</div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$11.00</div>
+          </div>
+          <p class="dish-desc">Rich and velvety Cabernet Sauvignon, perfectly paired with steak and red meats.</p>
+          <div class="dish-cue">🗣️ "Can I just get a glass of wine, please?"</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Classic Italian Tiramisu</div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$9.50</div>
+          </div>
+          <p class="dish-desc">Espresso-soaked ladyfingers layered with mascarpone cream and cocoa powder.</p>
+          <div class="dish-cue">🗣️ Or decline politely: "No, I'm stuffed, thank you!"</div>
+        </div>
+
+        <div class="dish-item">
+          <div class="dish-header">
+            <div class="dish-name">Iced Mineral Water / Tea</div>
+            <div class="dish-dots"></div>
+            <div class="dish-price">$4.00</div>
+          </div>
+          <p class="dish-desc">Chilled sparkling or still mineral water served with fresh lemon slices.</p>
+          <div class="dish-cue">🗣️ "Could we have some more water, please?"</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Quick Roleplay Cheat Sheet -->
+    <div class="prompts-card">
+      <h3 class="prompts-title">🎭 Roleplay Dialogue Cheat Sheet (Bí kíp đối thoại theo Menu)</h3>
+      <div class="prompt-grid">
+        <div class="prompt-item">
+          <div class="prompt-situation">1. Bắt đầu gọi món:</div>
+          <div class="prompt-english">"Excuse me, can I order please? We're ready."</div>
+          <div class="prompt-viet">Cho tôi gọi món nhé? Chúng tôi đã sẵn sàng.</div>
+        </div>
+        <div class="prompt-item">
+          <div class="prompt-situation">2. Hỏi gợi ý món:</div>
+          <div class="prompt-english">"What's the dish of the day? What do you recommend?"</div>
+          <div class="prompt-viet">Món đặc biệt hôm nay là gì? Bạn gợi ý món nào?</div>
+        </div>
+        <div class="prompt-item">
+          <div class="prompt-situation">3. Chọn độ chín bít tết:</div>
+          <div class="prompt-english">"Ribeye steak with mashed potatoes, medium rare, please."</div>
+          <div class="prompt-viet">Bít tết kèm khoai nghiền, chín vừa nhé.</div>
+        </div>
+        <div class="prompt-item">
+          <div class="prompt-situation">4. Tùy chỉnh khẩu vị:</div>
+          <div class="prompt-english">"Could you make it less spicy, with dressing on the side?"</div>
+          <div class="prompt-viet">Làm ít cay hơn và để riêng nước sốt nhé.</div>
+        </div>
+        <div class="prompt-item">
+          <div class="prompt-situation">5. Xin hộp mang về & Hóa đơn:</div>
+          <div class="prompt-english">"Can I get the bill and a to-go box for these leftovers?"</div>
+          <div class="prompt-viet">Cho tôi hóa đơn và hộp mang về cho thức ăn thừa nhé.</div>
+        </div>
+        <div class="prompt-item">
+          <div class="prompt-situation">6. Tách đôi hóa đơn:</div>
+          <div class="prompt-english">"Could you split the bill evenly down the middle?"</div>
+          <div class="prompt-viet">Chia đôi hóa đơn đều cho hai người được không?</div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer-note">
+      <p>Thank you for dining with The Golden Bistro &bull; All major credit cards accepted &bull; Split bills welcome</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

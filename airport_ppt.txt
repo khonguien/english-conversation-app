@@ -1,0 +1,725 @@
+================================================================================
+GIÁO TRÌNH TIẾNG ANH GIAO TIẾP: CHỦ ĐỀ SÂN BAY (AT THE AIRPORT)
+ĐỊNH DẠNG PLAIN TEXT DÀNH RIÊNG ĐỂ COPY VÀO POWERPOINT (PPT)
+================================================================================
+(Gợi ý: Mỗi khối [SLIDE ...] tương ứng với 1 trang thuyết trình. 
+ Bạn chỉ cần bôi đen và copy trực tiếp vào khung nội dung của PowerPoint.)
+
+================================================================================
+[SLIDE 1: COVER / TRANG BÌA]
+================================================================================
+ENGLISH IN CONVERSATION
+TOPIC: AT THE AIRPORT ✈️
+Tiếng Anh Giao Tiếp Thực Tế: Chủ Đề Sân Bay
+
+- Từ vựng trọng tâm (IPA + Nghĩa + Câu ví dụ)
+- 12 Tình huống hội thoại thực tế từ Ga đi -> Trên máy bay -> Ga đến
+- Kèm bản dịch tiếng Việt song ngữ chi tiết
+
+================================================================================
+[SLIDE 2: MỤC LỤC / AGENDA]
+================================================================================
+NỘI DUNG BÀI HỌC (LESSON OUTLINE)
+
+PHẦN 1: VOCABULARY (TỪ VỰNG THEO CHỦ ĐỀ)
+1. People (Con người)
+2. Airport (Khu vực sân bay)
+3. Flight (Chuyến bay)
+4. On the Plane (Trên máy bay)
+5. Transportation (Phương tiện di chuyển)
+
+PHẦN 2: REAL-LIFE CONVERSATIONS (12 TÌNH HUỐNG HỘI THOẠI)
+- 2.1 Ga đi (Departure): Check-in, Hành lý quá cân, An ninh, Hoãn chuyến
+- 2.2 Trên máy bay (On the Plane): Tìm ghế, Đồ ăn thức uống, Nhờ giúp đỡ
+- 2.3 Ga đến (Arrival): Nhập cảnh, Hải quan, Nhận hành lý, Thất lạc hành lý, Hỏi đường
+
+================================================================================
+[SLIDE 3: TỪ VỰNG - CON NGƯỜI (PEOPLE)]
+================================================================================
+TỪ VỰNG: CON NGƯỜI TẠI SÂN BAY & TRÊN MÁY BAY
+
+• passenger /ˈpæsɪndʒər/ (n): hành khách
+  Ví dụ: The passenger showed his boarding pass at the gate.
+
+• flight attendant /flaɪt əˈtendənt/ (n): tiếp viên hàng không
+  Ví dụ: The flight attendant served drinks during the flight.
+
+• stewardess /ˈstjuːərdəs/ (n): nữ tiếp viên hàng không
+  Ví dụ: The stewardess helped me find my seat.
+
+• steward /ˈstjuːərd/ (n): nam tiếp viên hàng không
+  Ví dụ: The steward brought extra blankets for us.
+
+• cabin crew /ˈkæbɪn kruː/ (n): tổ bay phục vụ
+  Ví dụ: The cabin crew prepared the cabin for takeoff.
+
+• pilot /ˈpaɪlət/ (n): phi công
+  Ví dụ: The pilot announced we would land in 20 minutes.
+
+• captain /ˈkæptɪn/ (n): cơ trưởng
+  Ví dụ: The captain welcomed all passengers on board.
+
+• co-pilot /ˌkoʊˈpaɪlət/ (n): cơ phó
+  Ví dụ: The co-pilot assisted the captain during landing.
+
+================================================================================
+[SLIDE 4: TỪ VỰNG - SÂN BAY (AIRPORT) - PHẦN 1]
+================================================================================
+TỪ VỰNG: KHU VỰC VÀ THỦ TỤC TẠI SÂN BAY (1/3)
+
+• airport /ˈerˌpɔːrt/ (n): sân bay
+  Ví dụ: We arrived at the airport two hours early.
+
+• terminal /ˈtɜːrmɪnəl/ (n): nhà ga sân bay
+  Ví dụ: Our flight departs from Terminal 2.
+
+• check-in counter /ˈtʃek ɪn ˈkaʊntər/ (n): quầy làm thủ tục
+  Ví dụ: Please go to the check-in counter to get your boarding pass.
+
+• gate /ɡeɪt/ (n): cổng ra máy bay
+  Ví dụ: Your flight leaves from gate 15A.
+
+• security check /sɪˈkjʊrəti tʃek/ (n): kiểm tra an ninh
+  Ví dụ: The security check took about 15 minutes.
+
+• boarding pass /ˈbɔːrdɪŋ pæs/ (n): thẻ lên máy bay
+  Ví dụ: Don't forget your boarding pass at the counter.
+
+• departure lounge /dɪˈpɑːrtʃər laʊndʒ/ (n): phòng chờ khởi hành
+  Ví dụ: We waited in the departure lounge for two hours.
+
+================================================================================
+[SLIDE 5: TỪ VỰNG - SÂN BAY (AIRPORT) - PHẦN 2]
+================================================================================
+TỪ VỰNG: HÀNH LÝ VÀ GIẤY TỜ (2/3)
+
+• passport /ˈpæspɔːrt/ (n): hộ chiếu
+  Ví dụ: May I see your passport, please?
+
+• visa /ˈviːzə/ (n): thị thực
+  Ví dụ: Do you have a valid visa for this country?
+
+• luggage /ˈlʌɡɪdʒ/ (n): hành lý
+  Ví dụ: How many pieces of luggage do you have?
+
+• baggage /ˈbæɡɪdʒ/ (n): hành lý
+  Ví dụ: Your baggage will be checked through to your final destination.
+
+• carry-on bag /ˈkæri ɑːn bæɡ/ (n): hành lý xách tay
+  Ví dụ: You can bring one carry-on bag on the plane.
+
+• checked luggage /tʃekt ˈlʌɡɪdʒ/ (n): hành lý ký gửi
+  Ví dụ: Each passenger is allowed one piece of checked luggage up to 23 kg.
+
+• scale /skeɪl/ (n): cái cân
+  Ví dụ: Please place your bag on the scale.
+
+• overweight /ˌoʊvərˈweɪt/ (adj): quá cân, thừa cân
+  Ví dụ: Your luggage is overweight by 3 kilograms.
+
+================================================================================
+[SLIDE 6: TỪ VỰNG - SÂN BAY (AIRPORT) - PHẦN 3]
+================================================================================
+TỪ VỰNG: GA ĐẾN VÀ DỊCH VỤ SÂN BAY (3/3)
+
+• baggage claim /ˈbæɡɪdʒ kleɪm/ (n): khu vực nhận hành lý
+  Ví dụ: The baggage claim area is on the first floor.
+
+• conveyor belt /kənˈveɪər belt/ (n): băng chuyền hành lý
+  Ví dụ: Wait for your luggage at the conveyor belt.
+
+• immigration /ˌɪmɪˈɡreɪʃən/ (n): cửa kiểm soát xuất nhập cảnh
+  Ví dụ: The immigration line was very long today.
+
+• customs /ˈkʌstəmz/ (n): hải quan
+  Ví dụ: You must go through customs when entering the country.
+
+• declaration form /ˌdekləˈreɪʃən fɔːrm/ (n): tờ khai hải quan
+  Ví dụ: Please fill out the declaration form before landing.
+
+• duty-free shop /ˌdjuːti ˈfriː ʃɑːp/ (n): cửa hàng miễn thuế
+  Ví dụ: I bought perfume at the duty-free shop.
+
+• exchange booth /ɪksˈtʃeɪndʒ buːθ/ (n): quầy đổi tiền
+  Ví dụ: There is an exchange booth near the exit.
+
+================================================================================
+[SLIDE 7: TỪ VỰNG - CHUYẾN BAY (FLIGHT) - PHẦN 1]
+================================================================================
+TỪ VỰNG: TÌNH TRẠNG & LOẠI CHUYẾN BAY (1/2)
+
+• flight /flaɪt/ (n): chuyến bay
+  Ví dụ: My flight departs at 3 PM.
+
+• departure /dɪˈpɑːrtʃər/ (n): sự khởi hành
+  Ví dụ: The departure time has been changed to 4 PM.
+
+• arrival /əˈraɪvəl/ (n): sự đến nơi, hạ cánh
+  Ví dụ: Our estimated arrival time is 5:30 PM.
+
+• destination /ˌdestɪˈneɪʃən/ (n): điểm đến
+  Ví dụ: What is your final destination?
+
+• layover /ˈleɪˌoʊvər/ (n): thời gian quá cảnh/chờ nối chuyến
+  Ví dụ: We have a 3-hour layover in Singapore.
+
+• connecting flight /kəˈnektɪŋ flaɪt/ (n): chuyến bay nối chuyến
+  Ví dụ: I need to catch a connecting flight to Tokyo.
+
+• direct flight /dəˈrekt flaɪt/ (n): chuyến bay thẳng
+  Ví dụ: Is this a direct flight to London?
+
+• runway /ˈrʌnweɪ/ (n): đường băng
+  Ví dụ: The plane is waiting on the runway.
+
+================================================================================
+[SLIDE 8: TỪ VỰNG - CHUYẾN BAY (FLIGHT) - PHẦN 2]
+================================================================================
+TỪ VỰNG: HOẠT ĐỘNG VÀ THỜI GIAN BAY (2/2)
+
+• takeoff /ˈteɪkɔːf/ (n): sự cất cánh
+  Ví dụ: Please fasten your seatbelt before takeoff.
+
+• landing /ˈlændɪŋ/ (n): sự hạ cánh
+  Ví dụ: We had a very smooth landing.
+
+• board /bɔːrd/ (v): lên (máy bay, tàu)
+  Ví dụ: Passengers in rows 20–30, please board now.
+
+• boarding /ˈbɔːrdɪŋ/ (n): việc lên máy bay
+  Ví dụ: Boarding will begin at 2:30 PM.
+
+• delayed /dɪˈleɪd/ (adj): bị hoãn, trễ
+  Ví dụ: The flight has been delayed by one hour.
+
+• cancelled /ˈkænsəld/ (adj): bị hủy
+  Ví dụ: Unfortunately, your flight has been cancelled.
+
+• on time /ɑːn taɪm/ (adv): đúng giờ
+  Ví dụ: Don't worry, the flight is on time.
+
+• turbulence /ˈtɜːrbjələns/ (n): vùng nhiễu động không khí
+  Ví dụ: We are experiencing some turbulence.
+
+• announcement /əˈnaʊnsmənt/ (n): thông báo phát thanh
+  Ví dụ: Please pay attention to the announcement.
+
+================================================================================
+[SLIDE 9: TỪ VỰNG - TRÊN MÁY BAY (ON THE PLANE) - PHẦN 1]
+================================================================================
+TỪ VỰNG: CHỖ NGỒI VÀ TIỆN NGHI TRÊN KHOANG (1/2)
+
+• aisle seat /aɪl siːt/ (n): ghế cạnh lối đi
+  Ví dụ: I prefer an aisle seat so I can stretch my legs.
+
+• window seat /ˈwɪndoʊ siːt/ (n): ghế cạnh cửa sổ
+  Ví dụ: Can I have a window seat, please?
+
+• middle seat /ˈmɪdl siːt/ (n): ghế ở giữa
+  Ví dụ: Nobody likes the middle seat.
+
+• overhead bin /ˌoʊvərˈhed bɪn/ (n): ngăn để hành lý phía trên đầu
+  Ví dụ: Please put your bag in the overhead bin.
+
+• tray table /treɪ ˈteɪbəl/ (n): bàn ăn xếp trước ghế
+  Ví dụ: Please fold up your tray table for landing.
+
+• seatbelt /ˈsiːtbelt/ (n): dây an toàn
+  Ví dụ: Please fasten your seatbelt.
+
+• fasten /ˈfæsən/ (v): thắt, cài (dây an toàn)
+  Ví dụ: Please fasten your seatbelt during takeoff.
+
+• emergency exit /ɪˈmɜːrdʒənsi ˈeɡzɪt/ (n): cửa thoát hiểm
+  Ví dụ: The emergency exit is located over the wing.
+
+================================================================================
+[SLIDE 10: TỪ VỰNG - TRÊN MÁY BAY & DI CHUYỂN (PHẦN 2)]
+================================================================================
+TỪ VỰNG: TIỆN ÍCH TRÊN MÁY BAY & PHƯƠNG TIỆN DI CHUYỂN
+
+• life vest /laɪf vest/ (n): áo phao cứu sinh
+  Ví dụ: The life vest is under your seat.
+
+• blanket /ˈblæŋkɪt/ (n): chăn, mền
+  Ví dụ: Could I have a blanket, please? It's cold.
+
+• pillow /ˈpɪloʊ/ (n): gối
+  Ví dụ: Can I get an extra pillow?
+
+• headphones /ˈhedfoʊnz/ (n): tai nghe
+  Ví dụ: The headphones are in the seat pocket in front of you.
+
+• beverage /ˈbevərɪdʒ/ (n): đồ uống, thức uống
+  Ví dụ: Would you like a beverage?
+
+• meal /miːl/ (n): bữa ăn
+  Ví dụ: The meal will be served in 30 minutes.
+
+• seat pocket /siːt ˈpɑːkɪt/ (n): túi đựng đồ sau lưng ghế
+  Ví dụ: The safety card is in the seat pocket.
+
+• taxi /ˈtæksi/ (n): xe taxi | subway /ˈsʌbweɪ/ (n): tàu điện ngầm
+• shuttle bus /ˈʃʌtl bʌs/ (n): xe buýt đưa đón | rental car /ˈrentl kɑːr/ (n): xe thuê tự lái
+
+================================================================================
+[SLIDE 11: PHẦN 2 - HỘI THOẠI 1: QUẦY CHECK-IN (TIẾNG ANH)]
+================================================================================
+CONVERSATION 1: CHECK-IN COUNTER (LÀM THỦ TỤC BAY)
+Tình huống: Hành khách làm thủ tục check-in, chọn chỗ ngồi và hỏi về hành lý gửi.
+
+Staff: Good afternoon, where are you flying today?
+Passenger: Hello, I'm flying to Bangkok at 3 PM.
+
+Staff: May I have your passport, please?
+Passenger: Of course, here you go.
+
+Staff: Are you checking any bags?
+Passenger: Yes, just one piece of luggage.
+
+Staff: Please place your bag on the scale.
+Passenger: Okay.
+
+Staff: That's fine. Do you have a seat preference?
+Passenger: Yes, do you have any aisle seat available?
+Staff: Let me check for you. Yes, we do. I'll put you in row 12, seat A — that's an aisle seat.
+Passenger: Wonderful, thank you so much!
+
+Staff: Here is your boarding pass. Your flight leaves from gate 15A and boarding begins at 2:30. Your seat number is 12A.
+Passenger: Perfect. And one more question — I have a layover in Singapore. Do I need to pick up my luggage there?
+Staff: No, it will go straight through to Bangkok.
+
+Passenger: Great. And which way is the security check?
+Staff: Right behind you to the right.
+Passenger: Thank you!
+
+================================================================================
+[SLIDE 12: HỘI THOẠI 1: BẢN DỊCH TIẾNG VIỆT]
+================================================================================
+HỘI THOẠI 1: BẢN DỊCH TIẾNG VIỆT
+
+NV: Chào buổi chiều, hôm nay bạn bay đi đâu ạ?
+HK: Xin chào, tôi bay đi Bangkok lúc 3 giờ chiều.
+
+NV: Cho tôi xem hộ chiếu của bạn được không?
+HK: Tất nhiên, đây ạ.
+
+NV: Bạn có gửi hành lý không?
+HK: Có, chỉ một kiện hành lý thôi.
+
+NV: Vui lòng đặt túi lên cân.
+HK: Vâng.
+
+NV: Được rồi. Bạn có muốn chọn chỗ ngồi không?
+HK: Vâng, còn ghế phía lối đi không ạ?
+NV: Để tôi kiểm tra. Có ạ. Tôi sẽ xếp bạn ở hàng 12, ghế A — ghế phía lối đi.
+HK: Tuyệt vời, cảm ơn rất nhiều!
+
+NV: Đây là thẻ lên máy bay của bạn. Chuyến bay khởi hành từ cổng 15A và bắt đầu lên máy bay lúc 2:30. Số ghế của bạn là 12A.
+HK: Hoàn hảo. Và một câu hỏi nữa — tôi có quá cảnh ở Singapore. Tôi có cần lấy hành lý ở đó không?
+NV: Không, hành lý sẽ được chuyển thẳng đến Bangkok.
+
+HK: Tuyệt. Và lối đi kiểm tra an ninh ở đâu ạ?
+NV: Ngay phía sau bạn, rẽ phải.
+HK: Cảm ơn!
+
+================================================================================
+[SLIDE 13: HỘI THOẠI 2: HÀNH LÝ QUÁ CÂN (OVERWEIGHT LUGGAGE)]
+================================================================================
+CONVERSATION 2: OVERWEIGHT LUGGAGE
+Tình huống: Hành lý bị quá cân và xử lý bỏ bớt đồ ra ngoài.
+
+[TIẾNG ANH]
+Staff: I'm sorry, sir. Your luggage is overweight.
+Passenger: By how much?
+Staff: About 5 kilograms.
+
+Passenger: Okay, let me take something out.
+(Hành khách bỏ bớt đồ ra)
+Passenger: How about now?
+Staff: It's just slightly overweight — about 0.5 kg. That should be fine. You're good to go.
+Passenger: Great, thank you!
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+NV: Xin lỗi anh. Hành lý của anh bị quá cân.
+HK: Quá bao nhiêu ạ?
+NV: Khoảng 5 kg.
+
+HK: Được rồi, để tôi bỏ bớt đồ ra.
+(Hành khách bỏ bớt đồ ra)
+HK: Giờ thì sao ạ?
+NV: Chỉ hơi quá một chút — khoảng 0,5 kg. Không sao đâu. Anh có thể đi được rồi.
+HK: Tuyệt, cảm ơn!
+
+================================================================================
+[SLIDE 14: HỘI THOẠI 3: KIỂM TRA AN NINH (SECURITY CHECK)]
+================================================================================
+CONVERSATION 3: SECURITY CHECK (KIỂM TRA AN NINH)
+Tình huống: Kiểm tra hành lý xách tay, tháo thiết bị điện tử và đi qua cổng từ.
+
+[TIẾNG ANH]
+Officer: Next, please. Place your belongings in the tray — your bag, jacket, belt, and any electronics.
+Passenger: Do I need to take my laptop out of the bag?
+Officer: Yes, please. Laptops and tablets must be placed separately in the tray.
+
+Passenger: What about liquids? I have a small bottle of water.
+Officer: Liquids over 100 ml are not allowed. You'll need to throw it away or drink it now.
+Passenger: Okay, I'll throw it away.
+
+Officer: Please walk through the metal detector.
+(Máy kêu bíp)
+Officer: Sir, could you step aside, please? Do you have anything in your pockets?
+Passenger: Oh, sorry! I forgot my keys.
+Officer: No problem. Put them in the tray and walk through again.
+(Không kêu nữa)
+Officer: You're all clear. Have a nice flight.
+Passenger: Thank you!
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+NV An ninh: Mời người tiếp theo. Vui lòng đặt đồ vào khay — túi xách, áo khoác, thắt lưng và thiết bị điện tử.
+HK: Tôi có cần lấy laptop ra khỏi túi không?
+NV An ninh: Vâng. Laptop và máy tính bảng phải để riêng vào khay.
+
+HK: Còn chất lỏng thì sao? Tôi có một chai nước nhỏ.
+NV An ninh: Chất lỏng trên 100 ml không được phép mang theo. Anh cần bỏ đi hoặc uống hết bây giờ.
+HK: Vâng, tôi sẽ bỏ đi.
+
+NV An ninh: Mời anh bước qua cổng dò kim loại.
+(Máy kêu bíp)
+NV An ninh: Anh vui lòng bước sang bên cạnh. Anh còn gì trong túi quần/áo không?
+HK: Ồ, xin lỗi! Tôi quên chùm chìa khóa.
+NV An ninh: Không sao. Bỏ chúng vào khay rồi bước qua lần nữa nhé.
+NV An ninh: Ổn rồi. Chúc anh chuyến bay tốt đẹp.
+HK: Cảm ơn!
+
+================================================================================
+[SLIDE 15: HỘI THOẠI 4: CHUYẾN BAY BỊ HOÃN (FLIGHT DELAY)]
+================================================================================
+CONVERSATION 4: FLIGHT DELAY (HOÃN CHUYẾN BAY)
+Tình huống: Chuyến bay bị hoãn, hỏi thời gian chờ và phương án nối chuyến.
+
+[TIẾNG ANH]
+Passenger: Excuse me, I noticed on the screen that flight VN123 to Bangkok has been delayed. Do you know how long the delay will be?
+Staff: Yes, I'm sorry about that. The flight has been delayed by approximately two hours due to bad weather.
+Passenger: Two hours? Will I miss my connecting flight to Chiang Mai?
+
+Staff: Let me check that for you. What time is your connecting flight?
+Passenger: It departs at 8 PM.
+Staff: You should still make it. But just in case, I can rebook you on a later connection at no extra charge.
+
+Passenger: That would be great. Thank you. Is there anywhere I can wait comfortably?
+Staff: Yes, there's a lounge on the second floor. You can also get free Wi-Fi — the password is on your boarding pass.
+Passenger: Thanks, I appreciate your help.
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+HK: Xin lỗi, tôi thấy trên màn hình chuyến bay VN123 đi Bangkok bị trễ. Bạn có biết sẽ hoãn bao lâu không?
+NV: Vâng, thành thật xin lỗi vì điều đó. Chuyến bay bị hoãn khoảng hai tiếng do thời tiết xấu.
+HK: Hai tiếng sao? Vậy tôi có bị lỡ chuyến bay nối tiếp đi Chiang Mai không?
+
+NV: Để tôi kiểm tra giúp bạn. Chuyến bay nối chuyến của bạn lúc mấy giờ?
+HK: Khởi hành lúc 8 giờ tối.
+NV: Bạn vẫn kịp giờ đấy. Nhưng để phòng ngừa, tôi có thể đổi cho bạn sang chuyến sau miễn phí.
+
+HK: Thế thì tốt quá. Cảm ơn bạn. Có chỗ nào để ngồi chờ thoải mái không?
+NV: Có, có phòng chờ ở tầng hai. Bạn cũng có thể dùng Wi-Fi miễn phí — mật khẩu in trên vé lên máy bay.
+HK: Cảm ơn sự hỗ trợ nhiệt tình của bạn!
+
+================================================================================
+[SLIDE 16: HỘI THOẠI 5: TÌM CHỖ NGỒI (FINDING YOUR SEAT)]
+================================================================================
+CONVERSATION 5: FINDING YOUR SEAT (TÌM CHỖ NGỒI TRÊN MÁY BAY)
+Tình huống: Bước vào máy bay, nhờ tiếp viên chỉ ghế và cất hành lý xách tay.
+
+[TIẾNG ANH]
+Passenger: Excuse me, could you help me? I can't find my seat. My boarding pass says 18F.
+Attendant: Of course. Row 18 is further down the aisle, on your left. F is the window seat.
+Passenger: Thank you! And is there room in the overhead bin? My bag is a bit heavy.
+Attendant: Let me help you with that. Yes, there's space right above your seat.
+Passenger: Thank you so much.
+
+Attendant: You're welcome. Please fasten your seatbelt and make sure your tray table is in the upright position. We'll be taking off shortly.
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+HK: Xin lỗi, bạn giúp tôi được không? Tôi không tìm thấy ghế của mình. Vé ghi là 18F.
+Tiếp viên: Chắc chắn rồi. Hàng 18 ở phía dưới lối đi này, bên tay trái anh. Ghế F là ghế sát cửa sổ.
+HK: Cảm ơn bạn! Ngăn hành lý phía trên còn chỗ không? Túi tôi hơi nặng một chút.
+Tiếp viên: Để tôi hỗ trợ anh. Vâng, ngay phía trên ghế anh vẫn còn chỗ trống.
+HK: Cảm ơn bạn rất nhiều.
+
+Tiếp viên: Không có chi ạ. Xin vui lòng thắt dây an toàn và đảm bảo bàn ăn được gập thẳng đứng. Chúng ta sẽ cất cánh sớm thôi.
+
+================================================================================
+[SLIDE 17: HỘI THOẠI 6: GỌI ĐỒ ĂN & UỐNG (ORDERING FOOD & DRINKS)]
+================================================================================
+CONVERSATION 6: ORDERING FOOD & DRINKS (PHỤC VỤ SUẤT ĂN)
+Tình huống: Tiếp viên đẩy xe đồ ăn, hỏi lựa chọn món ăn và thức uống.
+
+[TIẾNG ANH]
+Attendant: Good afternoon, ladies and gentlemen. We will now begin our meal service. Today we have two options: chicken with rice or beef with noodles. What would you prefer?
+Passenger: I'll have the chicken with rice, please.
+Attendant: Sure. And what would you like to drink? We have water, juice, coffee, tea, and soft drinks.
+Passenger: Can I have an orange juice, please?
+Attendant: Of course. Here you go.
+Passenger: Thank you.
+
+(After the meal...)
+Attendant: Are you finished with your tray?
+Passenger: Yes, thank you. Could I also get a cup of coffee?
+Attendant: Of course. Would you like milk or sugar?
+Passenger: Just black, please.
+Attendant: Here you are. Enjoy!
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+Tiếp viên: Xin chào quý khách. Bây giờ chúng tôi bắt đầu phục vụ bữa ăn. Hôm nay có hai lựa chọn: cơm gà hoặc mì bò. Quý khách muốn chọn món nào ạ?
+HK: Cho tôi xin phần cơm gà.
+Tiếp viên: Vâng ạ. Quý khách muốn dùng đồ uống gì? Chúng tôi có nước lọc, nước trái cây, cà phê, trà và nước ngọt có ga.
+HK: Cho tôi một ly nước cam nhé.
+Tiếp viên: Dạ vâng, của quý khách đây.
+HK: Cảm ơn.
+
+(Sau khi ăn xong...)
+Tiếp viên: Quý khách đã dùng xong khay ăn chưa ạ?
+HK: Tôi xong rồi, cảm ơn. Cho tôi xin thêm một ly cà phê được không?
+Tiếp viên: Dạ được chứ. Quý khách có muốn dùng thêm sữa hay đường không?
+HK: Cho tôi cà phê đen thôi nhé.
+Tiếp viên: Của quý khách đây. Chúc quý khách ngon miệng!
+
+================================================================================
+[SLIDE 18: HỘI THOẠI 7: NHỜ HỖ TRỢ TRÊN MÁY BAY (ASKING FOR HELP)]
+================================================================================
+CONVERSATION 7: ASKING FOR HELP ON THE PLANE
+Tình huống: Xin thêm chăn, đổi tai nghe hỏng và hỏi cách kết nối Wi-Fi.
+
+[TIẾNG ANH]
+Passenger: Excuse me, could I get a blanket? It's quite cold in here.
+Attendant: Of course. Here you go. Would you also like a pillow?
+Passenger: Yes, please. That would be great.
+
+Passenger: Also, do you have any headphones? Mine stopped working.
+Attendant: Sure, here's a new pair. Is there anything else I can help you with?
+
+Passenger: Actually, yes. How do I connect to the in-flight Wi-Fi?
+Attendant: You can find the instructions on the screen in front of you. Just select "Wi-Fi" and enter your seat number.
+Passenger: Got it. Thank you so much!
+Attendant: You're welcome. Just press the call button if you need anything else.
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+HK: Xin lỗi, cho tôi xin một chiếc chăn được không? Trong này khá lạnh.
+Tiếp viên: Dạ được chứ. Của bạn đây. Bạn có muốn lấy thêm gối không?
+HK: Có, cảm ơn bạn rất nhiều.
+
+HK: À, bạn có tai nghe không? Cái của tôi bị hỏng mất rồi.
+Tiếp viên: Dạ có, đây là chiếc mới. Bạn có cần tôi giúp gì thêm không ạ?
+
+HK: Thật ra là có. Làm thế nào để tôi kết nối vào Wi-Fi trên máy bay?
+Tiếp viên: Bạn có thể xem hướng dẫn hiển thị trên màn hình trước mặt nhé. Chỉ cần chọn mục "Wi-Fi" và nhập số ghế của bạn.
+HK: Tôi hiểu rồi. Cảm ơn bạn rất nhiều!
+Tiếp viên: Không có gì ạ. Nếu cần gì thêm, bạn chỉ cần bấm nút gọi tiếp viên nhé.
+
+================================================================================
+[SLIDE 19: HỘI THOẠI 8: NHẬP CẢNH (IMMIGRATION / PASSPORT CONTROL)]
+================================================================================
+CONVERSATION 8: IMMIGRATION / PASSPORT CONTROL
+Tình huống: Trả lời phỏng vấn hải quan/nhập cảnh tại sân bay nước ngoài.
+
+[TIẾNG ANH]
+Officer: Passport, please.
+Passenger: Here you are.
+
+Officer: What is the purpose of your visit?
+Passenger: I'm here on vacation.
+
+Officer: How long will you be staying?
+Passenger: About ten days.
+
+Officer: Where will you be staying?
+Passenger: At the Hilton Hotel in the city center.
+
+Officer: Do you have a return ticket?
+Passenger: Yes, here it is. I'm flying back on September 30th.
+
+Officer: Everything looks good. Welcome and enjoy your stay.
+Passenger: Thank you very much.
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+Hải quan: Vui lòng cho xem hộ chiếu.
+HK: Dạ, của tôi đây ạ.
+
+Hải quan: Mục đích chuyến đi của bạn là gì?
+HK: Tôi đến đây để đi du lịch, nghỉ dưỡng.
+
+Hải quan: Bạn dự định lưu trú bao lâu?
+HK: Khoảng 10 ngày ạ.
+
+Hải quan: Bạn sẽ ở đâu trong thời gian này?
+HK: Tại khách sạn Hilton ở trung tâm thành phố.
+
+Hải quan: Bạn có vé máy bay khứ hồi chiều về không?
+HK: Có ạ, đây ạ. Tôi bay về vào ngày 30 tháng 9.
+
+Hải quan: Mọi thông tin đều rõ ràng. Chào mừng bạn và chúc bạn có kỳ nghỉ tuyệt vời.
+HK: Cảm ơn anh rất nhiều!
+
+================================================================================
+[SLIDE 20: HỘI THOẠI 9: KHAI BÁO HẢI QUAN (CUSTOMS DECLARATION)]
+================================================================================
+CONVERSATION 9: CUSTOMS DECLARATION (CỬA HẢI QUAN)
+Tình huống: Kiểm tra hàng hóa, rượu, thực phẩm tươi sống và tiền mặt.
+
+[TIẾNG ANH]
+Officer: Do you have anything to declare?
+Passenger: I'm not sure. I have some souvenirs and a bottle of wine. Is that okay?
+Officer: How much wine?
+Passenger: Just one bottle.
+Officer: That's fine. One bottle is within the allowance. Do you have any food items — fruits, vegetables, or meat?
+Passenger: No, I don't.
+Officer: Any large amount of cash? Over $10,000?
+Passenger: No, not at all.
+Officer: Alright, you're good to go. Please proceed to the exit.
+Passenger: Thank you.
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+Hải quan: Bạn có hàng hóa gì cần khai báo không?
+HK: Tôi cũng không chắc lắm. Tôi có ít quà lưu niệm và một chai rượu vang. Có được phép không ạ?
+Hải quan: Chai rượu bao nhiêu dung tích/số lượng?
+HK: Dạ chỉ đúng 1 chai thôi ạ.
+Hải quan: Thế thì được. Một chai nằm trong hạn mức cho phép. Bạn có mang theo thực phẩm không — ví dụ hoa quả tươi, rau củ hay thịt?
+HK: Dạ không, tôi không mang.
+Hải quan: Bạn có mang lượng tiền mặt lớn trên 10.000 đô la không?
+HK: Dạ không có đâu ạ.
+Hải quan: Được rồi, bạn có thể đi qua. Mời bạn tiến ra cửa ra.
+HK: Cảm ơn anh.
+
+================================================================================
+[SLIDE 21: HỘI THOẠI 10: NHẬN HÀNH LÝ & QUẦY THÔNG TIN]
+================================================================================
+CONVERSATION 10: BAGGAGE CLAIM & INFORMATION DESK
+Tình huống: Hỏi đổi tiền, mua thẻ SIM và cách di chuyển về khách sạn.
+
+[TIẾNG ANH]
+Passenger: Hello.
+Staff: Welcome to Bangkok. How can I help you?
+Passenger: I have a few questions. First, where can I exchange some cash?
+Staff: There's a currency exchange booth right by the baggage claim area.
+
+Passenger: Great. Next, where can I get a local SIM card?
+Staff: There are several booths over there where you can get a local SIM card. It's very convenient and they accept credit cards too.
+
+Passenger: Awesome. Last question — I'm staying at this hotel. What's the best way for me to get there?
+Staff: The fastest way is to grab a taxi. But there's a lot of traffic right now. You could also take the airport shuttle or the subway — it's a bit crowded but definitely cheaper.
+
+Passenger: Which way is the subway?
+Staff: Go straight and follow the signs. It's about a 5-minute walk.
+Passenger: Thank you so much, I really appreciate it!
+Staff: You're welcome. Enjoy your stay!
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+HK: Xin chào.
+NV: Chào mừng bạn đến Bangkok. Tôi có thể hỗ trợ gì cho bạn?
+HK: Tôi có vài thắc mắc muốn hỏi. Đầu tiên, tôi có thể đổi tiền mặt ở đâu?
+NV: Có một quầy đổi ngoại tệ nằm ngay cạnh khu vực băng chuyền nhận hành lý.
+
+HK: Tuyệt. Câu tiếp theo, tôi có thể mua SIM điện thoại địa phương ở đâu?
+NV: Phía đằng kia có vài quầy bán SIM. Rất tiện lợi và họ có thanh toán cả bằng thẻ tín dụng nữa.
+
+HK: Rất tuyệt. Câu hỏi cuối — tôi đang ở tại khách sạn này. Cách tốt nhất để tôi đi tới đó là gì?
+NV: Nhanh nhất là bạn vẫy một chiếc taxi. Nhưng giờ này đang tắc đường lắm. Bạn cũng có thể đi xe buýt sân bay hoặc tàu điện ngầm — hơi đông một chút nhưng chắc chắn tiết kiệm hơn.
+
+HK: Đường đi ra ga tàu điện ngầm ở hướng nào?
+NV: Bạn cứ đi thẳng và nhìn theo các bảng chỉ dẫn nhé. Đi bộ tầm 5 phút là tới.
+HK: Cảm ơn bạn rất nhiều, bạn nhiệt tình quá!
+NV: Không có gì đâu ạ. Chúc bạn kỳ nghỉ vui vẻ nhé!
+
+================================================================================
+[SLIDE 22: HỘI THOẠI 11: THẤT LẠC HÀNH LÝ (LOST LUGGAGE)]
+================================================================================
+CONVERSATION 11: LOST LUGGAGE (BÁO MẤT HÀNH LÝ)
+Tình huống: Không tìm thấy hành lý tại băng chuyền, đến quầy Lost & Found.
+
+[TIẾNG ANH]
+Passenger: Excuse me, I've been waiting at the conveyor belt for 30 minutes but my luggage hasn't appeared. I think it might be lost.
+Staff: I'm sorry to hear that. Can I see your boarding pass and baggage claim tag?
+Passenger: Here you go. I had one large black suitcase.
+
+Staff: Let me check the system. It looks like your luggage was left behind in Singapore and will arrive on the next flight this evening.
+Passenger: Oh no. What should I do now?
+
+Staff: We can deliver it to your hotel once it arrives. Could you fill out this lost baggage form with your contact details and hotel address?
+Passenger: Sure. Will I get any compensation?
+Staff: Yes, we can offer you a basic toiletry kit and up to $50 for emergency purchases. Just keep your receipts.
+Passenger: Okay, thank you. When can I expect my luggage?
+Staff: It should be delivered to your hotel by tonight. We'll call you to confirm.
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+HK: Xin lỗi, tôi đã đứng chờ ở băng chuyền 30 phút rồi mà hành lý vẫn không thấy đâu. Tôi e là nó đã bị thất lạc rồi.
+NV: Rất tiếc khi nghe điều đó. Bạn cho tôi xem vé lên máy bay và cuống thẻ hành lý nhé?
+HK: Đây ạ. Tôi gửi một chiếc vali lớn màu đen.
+
+NV: Để tôi tra trên hệ thống. Dường như hành lý của bạn bị sót lại ở Singapore và sẽ được chuyển tới theo chuyến bay tiếp theo vào tối nay.
+HK: Ôi trời. Giờ tôi phải làm sao đây?
+
+NV: Chúng tôi sẽ vận chuyển miễn phí đến tận khách sạn cho bạn ngay khi hành lý tới nơi. Bạn vui lòng điền vào tờ khai báo thất lạc hành lý này số điện thoại và địa chỉ khách sạn nhé?
+HK: Vâng. Tôi có được hỗ trợ hay bồi thường gì không?
+NV: Dạ có, chúng tôi cung cấp một bộ đồ dùng vệ sinh cá nhân cơ bản và hỗ trợ tối đa 50 đô la cho các nhu cầu mua sắm khẩn cấp. Bạn nhớ giữ lại hóa đơn nhé.
+HK: Vâng, cảm ơn. Khi nào thì tôi có thể nhận lại được hành lý?
+NV: Dự kiến sẽ được giao tới khách sạn của bạn trong tối nay. Chúng tôi sẽ gọi điện báo trước cho bạn.
+
+================================================================================
+[SLIDE 23: HỘI THOẠI 12: HỎI ĐƯỜNG TRONG SÂN BAY (ASKING FOR DIRECTIONS)]
+================================================================================
+CONVERSATION 12: ASKING FOR DIRECTIONS IN THE AIRPORT
+Tình huống: Tìm nhà vệ sinh, trạm sạc pin điện thoại và khu ăn uống.
+
+[TIẾNG ANH]
+Passenger: Excuse me, is there a restroom nearby?
+Staff: Yes, go straight ahead and turn left. It's right next to the elevator.
+Passenger: Thank you. And do you know where I can charge my phone? My battery is almost dead.
+Staff: There's a charging station near gate 20. There are also some power outlets by the seating area over there.
+
+Passenger: One more thing — is there a place to get something to eat?
+Staff: Sure, there's a food court on the second floor. You can also find a coffee shop right around the corner.
+Passenger: Perfect. Thank you so much for your help!
+Staff: No problem. Have a great day!
+
+--------------------------------------------------------------------------------
+[BẢN DỊCH TIẾNG VIỆT]
+HK: Xin lỗi, quanh đây có nhà vệ sinh nào không bạn?
+NV: Dạ có, bạn cứ đi thẳng rồi rẽ trái nhé. Nó nằm ngay cạnh thang máy.
+HK: Cảm ơn bạn. Và bạn có biết chỗ nào để tôi sạc pin điện thoại không? Điện thoại tôi sắp sập nguồn rồi.
+NV: Có trạm sạc đặt ở gần cổng 20. Ngoài ra khu ghế ngồi đằng kia cũng có một số ổ cắm điện.
+
+HK: Thêm một câu nữa — quanh đây có chỗ nào ăn nhẹ được không?
+NV: Dạ có, trên tầng hai có khu ẩm thực rất nhiều món. Hoặc ngay khúc quanh góc đằng kia cũng có một quán cà phê.
+HK: Thật hoàn hảo. Cảm ơn bạn rất nhiều vì đã nhiệt tình hướng dẫn!
+NV: Không có chi đâu ạ. Chúc bạn có một ngày thật tốt lành!
+
+================================================================================
+[SLIDE 24: TỔNG KẾT & MẸO GIAO TIẾP TẠI SÂN BAY]
+================================================================================
+SUMMARY & TRAVEL TIPS (MẸO TIẾNG ANH KHI ĐI MÁY BAY)
+
+1. CÁC MẪU CÂU HỎI LỊCH SỰ NÊN DÙNG:
+• May I have your...? / Could you help me with...? (Xin phép / Nhờ vả lịch sự)
+• Where can I find / exchange / get...? (Hỏi địa điểm, dịch vụ)
+• Which way is the...? (Hỏi đường đi đến khu vực nào)
+• What is the best way to get to...? (Hỏi cách di chuyển tốt nhất)
+
+2. CÁC CỤM TỪ DỄ NHẦM LẪN:
+• Check-in luggage (Hành lý ký gửi) vs Carry-on bag (Hành lý xách tay)
+• Aisle seat (Ghế lối đi) vs Window seat (Ghế cửa sổ) vs Middle seat (Ghế giữa)
+• Departure (Khởi hành/Ga đi) vs Arrival (Đến nơi/Ga đến)
+• Customs (Hải quan kiểm tra hàng hóa) vs Immigration (Kiểm soát hộ chiếu/thị thực)
+
+3. KHI GẶP SỰ CỐ:
+• Chuyến bay hoãn/hủy: "Is there any alternative flight or accommodation provided?"
+• Hành lý thất lạc: "I'd like to file a lost baggage report."

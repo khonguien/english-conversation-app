@@ -1,0 +1,19 @@
+Bồi bàn: Hi, how was everything? How is everything tasting so far?
+*(Xin chào, bữa ăn của quý khách thế nào ạ? Mọi người dùng bữa thấy vị vừa miệng không ạ?)*	Khách: The food was excellent! The steak was truly delicious and cooked to perfection. Thank you very much.
+*(Món ăn xuất sắc lắm! Bít-tết thực sự rất ngon và được nướng chín hoàn hảo. Cảm ơn bạn rất nhiều.)*;
+Bồi bàn: I'm so glad to hear that! Fantastic. Would you like to order any dessert?
+*(Tôi rất vui khi nghe điều đó! Tuyệt quá ạ. Quý khách có muốn gọi món tráng miệng nào không ạ?)*	Khách: No, I'm stuffed, thank you!
+*(Không, tôi no căng bụng rồi, cảm ơn bạn nhé!)*;
+Bồi bàn: Would you like any coffee or tea, or would you like to pick a light dessert?
+*(Quý khách có muốn dùng chút cà phê hay trà không, hay bạn muốn tự chọn một món tráng miệng nhẹ nhàng ạ?)*	Khách: Actually, just surprise me with your best dessert to share.
+*(Thực ra thì cứ chọn giúp tôi món tráng miệng ngon nhất của quán để chúng tôi ăn chung nhé - hãy làm tôi bất ngờ!)*;
+Khách: Actually, just surprise me with your best dessert to share.
+*(Thực ra thì cứ chọn giúp tôi món tráng miệng ngon nhất của quán để chúng tôi ăn chung nhé - hãy làm tôi bất ngờ!)*	Bồi bàn: You got it! I'll bring out our house specialty dessert right away.
+*(Có ngay ạ! Tôi sẽ mang món tráng miệng đặc sản của quán ra ngay nhé.)*;
+[Khách] Món ăn xuất sắc lắm! Bít-tết thực sự rất ngon và được nướng chín hoàn hảo. Cảm ơn bạn rất nhiều.	The food was excellent! The steak was truly delicious and cooked to perfection. Thank you very much.;
+[Khách] Không, tôi no căng bụng rồi, cảm ơn bạn nhé!	No, I'm stuffed, thank you!;
+[Khách] Thực ra thì cứ chọn giúp tôi món tráng miệng ngon nhất của quán để chúng tôi ăn chung nhé - hãy làm tôi bất ngờ!	Actually, just surprise me with your best dessert to share.;
+[Bồi bàn] Xin chào, bữa ăn của quý khách thế nào ạ? Mọi người dùng bữa thấy vị vừa miệng không ạ?	Hi, how was everything? How is everything tasting so far?;
+[Bồi bàn] Tôi rất vui khi nghe điều đó! Tuyệt quá ạ. Quý khách có muốn gọi món tráng miệng nào không ạ?	I'm so glad to hear that! Fantastic. Would you like to order any dessert?;
+[Bồi bàn] Quý khách có muốn dùng chút cà phê hay trà không, hay bạn muốn tự chọn một món tráng miệng nhẹ nhàng ạ?	Would you like any coffee or tea, or would you like to pick a light dessert?;
+[Bồi bàn] Có ngay ạ! Tôi sẽ mang món tráng miệng đặc sản của quán ra ngay nhé.	You got it! I'll bring out our house specialty dessert right away.;

@@ -1,0 +1,13 @@
+[Khách] Dạ không, chúng tôi ổn rồi, cảm ơn bạn. Cho tôi xin hóa đơn và một hộp mang về cho phần thức ăn thừa này nhé?	No, we're all good, thank you. Can I just get the bill and a to-go box for these leftovers?;
+[Khách] Chia hóa đơn giúp chúng tôi được không?	Could you split the bill between us?;
+[Khách] Vâng đúng rồi ạ. Tôi có thể trả bằng thẻ không?	Yes, please. Can I pay by card?;
+[Khách] Đã bao gồm phí phục vụ trong tổng tiền chưa ạ?	Is service included in the total?;
+[Khách] Tuyệt vời. Cứ giữ lại tiền thừa làm tiền boa thêm cho dịch vụ tuyệt vời của bạn hôm nay nhé!	Great. Keep the change as an extra tip for your wonderful service today!;
+[Khách] Cảm ơn bạn, bữa ăn rất tuyệt! Chúc bạn một ngày tốt lành nhé!	Thank you, the meal was wonderful! Have a great day!;
+[Bồi bàn] Tôi có thể hỗ trợ thêm gì cho các bạn nữa không ạ?	Is there anything else I can help you guys with?;
+[Bồi bàn] Tất nhiên rồi ạ. Tôi để hóa đơn ngay đây nhé, và tôi sẽ mang hộp đóng gói lại ngay.	Of course. I'll just leave the bill right here, and I'll be right back with that to-go box.;
+[Bồi bàn] Dạ được, bạn muốn chia đôi đều cho hai người đúng không ạ?	Sure, would you like to split it evenly down the middle?;
+[Bồi bàn] Dạ được, chúng tôi nhận mọi loại thẻ. Bạn quẹt hoặc cắm thẻ ở đây nhé.	Yes, we accept all major cards. You can tap or insert right here.;
+[Bồi bàn] Dạ rồi, phí phục vụ đã được tính sẵn trong tổng tiền ạ.	Yes, a service charge is already included in the total.;
+[Bồi bàn] Bạn thật tốt bụng, cảm ơn bạn rất nhiều! Cảm ơn đã dùng bữa tại quán hôm nay ạ!	That's very kind of you, thank you so much! Thank you for dining with us today!;
+[Bồi bàn] Cảm ơn bạn! Chúc bạn ngày mới vui vẻ, mong sớm gặp lại bạn ạ!	Thank you! Have a wonderful day ahead, hope to see you again soon!;

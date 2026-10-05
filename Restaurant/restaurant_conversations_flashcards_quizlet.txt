@@ -1,0 +1,92 @@
+1. 🛎️ **Nhân viên:** Xin chào, tôi có thể giúp gì cho các bạn ạ? Nhóm mình đi mấy người thế ạ?	1. Hi, how may I help you? How many people are you guys?
+1. 👤 **Khách:** Xin chào, cho tôi bàn 2 người nhé. Hiện tại quán còn bàn trống không?	1. Hi, a table for two, please. Do you have a table available right now?
+2. 👤 **Khách:** Có danh sách chờ không? Chúng tôi phải chờ khoảng bao lâu?	2. Is there a waiting list? How long is the wait?
+2. 🛎️ **Nhân viên:** Hiện tại phải chờ khoảng 15 phút ạ. Bạn có muốn ghi tên vào danh sách chờ không?	2. It's about a 15-minute wait right now. Would you like me to put your name on the list?
+3. 👤 **Khách:** Xin chào, tôi có đặt bàn trước dưới tên John.	3. Hi, I have a reservation under the name John.
+3. 🛎️ **Nhân viên:** Chào mừng bạn John! Để tôi kiểm tra thông tin ngay ạ.	3. Welcome, Mr. John! Let me check that for you right away.
+4. 👤 **Khách:** Chúng tôi có đặt bàn cho 4 người lúc 7 giờ tối. Bạn kiểm tra giúp tôi được không?	4. We have a reservation for four at 7 PM. Could you please check our reservation?
+4. 🛎️ **Nhân viên:** Dạ vâng được chứ ạ! Bàn của quý khách đã chuẩn bị xong rồi, mời đi lối này ạ.	4. Yes, of course! Your table is all ready for you right this way.
+5. 👤 **Khách:** Tôi đã đặt trước một bàn lúc 8 giờ tối dưới tên Sarah.	5. I booked a table for 8 PM under the name Sarah.
+5. 🛎️ **Nhân viên:** Mời đi lối này bạn Sarah. Chúng tôi đã chuẩn bị một bàn rất đẹp cho bạn.	5. Right this way, Sarah. We have a lovely table prepared for you.
+6. 👤 **Khách:** Cho chúng tôi một bàn gần cửa sổ được không?	6. Could we get a table by the window, please?
+6. 🛎️ **Nhân viên:** Để tôi kiểm tra xem bàn đó đã có người đặt chưa nhé; nếu chưa thì bạn cứ thoải mái ngồi ạ.	6. Let me check if that table is reserved; if not, you're welcome to move.
+7. 👤 **Khách:** Chúng tôi ngồi ngoài trời được không? Nếu được thì chúng tôi thích bàn yên tĩnh hơn.	7. Is it possible to sit outside? We'd prefer a quiet table if possible.
+7. 🛎️ **Nhân viên:** Chắc chắn rồi ạ! Khu vực ngoài sân tối nay rất yên tĩnh. Mời bạn đi lối này ạ.	7. Certainly! Our patio area is very quiet tonight. Right this way.
+8. 👤 **Khách:** Cho chúng tôi khu vực không hút thuốc nhé. Và quán có ghế trẻ em không ạ?	8. Non-smoking area, please. And do you have a high chair for my baby?
+8. 🛎️ **Nhân viên:** Chắc chắn rồi, toàn bộ khu vực trong nhà đều cấm hút thuốc, và tôi sẽ mang ghế trẻ em lại ngay ạ.	8. Absolutely, all of our indoor dining is non-smoking, and I'll bring a high chair right over.
+9. 👤 **Khách:** Bàn này rất tuyệt, cảm ơn bạn. Chỗ này rất hoàn hảo.	9. This table is great, thank you. This is perfect.
+9. 🛎️ **Nhân viên:** Tuyệt quá! Thực đơn của bạn đây ạ. Tôi để bạn xem qua thực đơn vài phút nhé.	9. Wonderful! Here are your menus. I'll give you a few minutes to look them over.
+10. 👤 **Khách:** Xin lỗi, ghế/chỗ này có ai ngồi chưa? Chúng tôi có thể ngồi đây thay vì bàn kia được không?	10. Excuse me, is this seat taken? Could we sit here instead?
+10. 🛎️ **Nhân viên:** Dạ chưa có ai ngồi đâu ạ. Bạn cứ thoải mái ngồi đây nhé.	10. No, it's not taken at all. You're more than welcome to sit here.
+11. 👤 **Khách:** Xin lỗi, cho tôi gọi món nhé? Chúng tôi đã sẵn sàng gọi món rồi.	11. Excuse me, can I order please? We're ready to order.
+11. 🛎️ **Nhân viên:** Tất nhiên rồi ạ! Xin chào, hôm nay tôi có thể lấy món gì cho các bạn ạ?	11. Of course! Hi, what can I get for you guys today?
+12. 👤 **Khách:** Bây giờ chúng tôi gọi món luôn được chưa ạ?	12. Could we place our order now? Or can we order now?
+12. 🛎️ **Nhân viên:** Dạ được chứ ạ! Quý khách muốn bắt đầu bằng món gì trước ạ?	12. Sure thing! What would you like to start with?
+13. 👤 **Khách:** Bạn gợi ý món nào ngon? Món nào phổ biến/bán chạy nhất ở đây vậy?	13. What do you recommend? What's your most popular dish here?
+13. 🛎️ **Nhân viên:** Bít-tết sườn nướng và mì hải sản là hai món bán chạy nhất của quán chúng tôi đấy ạ!	13. Our grilled ribeye steak and seafood pasta are our top best-sellers!
+14. 👤 **Khách:** Món đặc sản của quán là gì? Nếu là bạn thì bạn sẽ đích thân chọn món nào?	14. What's your specialty here? What would you personally choose?
+14. 🛎️ **Nhân viên:** Hôm nay chúng tôi có món cá hồi nướng măng tây. Cá nhân tôi thì đây là món tôi thích nhất luôn đấy ạ!	14. Today we have the grilled salmon served with asparagus. Personally, that's my absolute favorite!
+15. 👤 **Khách:** Được rồi. Về món khai vị, cho tôi cánh gà cùng với khoai tây chiên nhé.	15. Ok. So for the appetizers, let me get the chicken wings as well as the French fries, please.
+15. 🛎️ **Nhân viên:** Lựa chọn tuyệt vời ạ. Còn về món chính bạn muốn dùng món gì ạ?	15. Fantastic choice. And what would you like for the main course?
+16. 👤 **Khách:** Cho tôi phần bít-tết sườn bò dùng kèm một phần khoai tây nghiền nhé.	16. Let me get the ribeye steak with a side of mashed potatoes, please.
+16. 🛎️ **Nhân viên:** Tuyệt ạ! Và bạn muốn bít-tết của mình được nướng chín ở mức độ nào ạ?	16. Great! And how would you like your steak cooked?
+17. 👤 **Khách:** Cho tôi mức chín vừa (tái chín) nhé. Và cho tôi thêm một súp hải sản làm món khai vị nữa nhé?	17. Let me get that medium rare, please. And can I get the seafood soup as a starter as well?
+17. 🛎️ **Nhân viên:** Xuất sắc ạ. Quý khách muốn dùng đồ uống gì kèm bữa ăn ạ?	17. Excellent. And what would you like to drink with your meal?
+18. 👤 **Khách:** Cho tôi một ly rượu vang đỏ được không?	18. Can I just get a glass of red wine, please?
+18. 🛎️ **Nhân viên:** Chắc chắn rồi ạ. Tôi sẽ mang đồ uống và món khai vị ra ngay nhé!	18. Sure, no problem. I'll be right back with your drinks and appetizers!
+19. 👤 **Khách:** Tôi sẽ chọn món chay—món mì Ý gà nướng nhưng bỏ phần thịt gà ra nhé.	19. I'll go with the vegetarian option—the grilled chicken pasta without chicken, please.
+19. 🛎️ **Nhân viên:** Tất nhiên rồi ạ, chúng tôi sẽ chế biến món chay hoàn toàn với nấm thêm cho bạn nhé.	19. Absolutely, we can make that completely vegetarian with extra mushrooms for you.
+20. 👤 **Khách:** Không hành nhé. Tôi hơi bị dị ứng với hành sống.	20. No onions, please. I have a slight allergy to raw onions.
+20. 🛎️ **Nhân viên:** Tôi đã ghi chú rồi ạ, tôi sẽ báo bếp đảm bảo không có cọng hành nào trong món của bạn.	20. Noted, I will inform the kitchen to make sure there are no onions in your food.
+21. 👤 **Khách:** Làm món ít cay hơn giúp tôi được không?	21. Could you make it less spicy, please?
+21. 🛎️ **Nhân viên:** Chắc chắn rồi ạ! Chúng tôi sẽ giảm lượng sốt ớt cho bạn nhé.	21. Certainly! We can tone down the chili sauce for you.
+22. 👤 **Khách:** Thêm phô mai giúp tôi nhé. Và cho tôi để riêng nước sốt salad ra ngoài được không?	22. Extra cheese, please. And can I have the dressing on the side?
+22. 🛎️ **Nhân viên:** Dạ được chứ, chúng tôi sẽ để nước sốt vào một chén nhỏ riêng cho bạn.	22. Of course, we'll put the sauce in a small separate cup for you.
+23. 👤 **Khách:** Món này không cho sốt được không? Và món này có chứa gluten không ạ?	23. Can I have it without sauce? And is this dish gluten-free?
+23. 🛎️ **Nhân viên:** Dạ được, chúng tôi sẽ không cho sốt. Và món đó hoàn toàn không chứa gluten ạ.	23. Yes, we can leave the sauce out. And that dish is completely gluten-free.
+24. 👤 **Khách:** Cho thêm nước giúp tôi nhé.	24. Could we have some more water, please?
+24. 🛎️ **Nhân viên:** Vâng, tôi mang thêm nước đá lại ngay ạ.	24. Sure thing, I'll bring some iced water right away.
+25. 👤 **Khách:** Cho tôi thêm khăn giấy.	25. Can I get another napkin?
+25. 🛎️ **Nhân viên:** Tất nhiên rồi, khăn của bạn đây ạ.	25. Of course, here you go.
+26. 👤 **Khách:** Cho thêm bánh mì nhé.	26. Could we have some extra bread?
+26. 🛎️ **Nhân viên:** Chắc chắn rồi, tôi sẽ báo bếp mang thêm một phần bánh mì cho bạn.	26. Certainly, I'll have the kitchen prepare another basket for you.
+27. 👤 **Khách:** Xin lỗi, cho thêm dao nĩa được không?	27. Excuse me, could we get some cutlery?
+27. 🛎️ **Nhân viên:** Có ngay ạ, tôi sẽ lấy một bộ dao nĩa mới cho bạn.	27. Right away, I'll bring you a fresh set.
+28. 🛎️ **Nhân viên:** Tôi có thể hỗ trợ thêm gì cho các bạn nữa không ạ?	28. Is there anything else I can help you guys with?
+28. 👤 **Khách:** Dạ không, hiện tại chúng tôi ổn rồi. Cảm ơn bạn rất nhiều nhé!	28. No, we're all good for now. Thank you so much!
+29. 🛎️ **Nhân viên:** Xin chào, bữa ăn của quý khách thế nào ạ? Mọi người dùng bữa thấy vị vừa miệng không ạ?	29. Hi, how was everything? How is everything tasting so far?
+29. 👤 **Khách:** Món này thực sự rất ngon! Đồ ăn rất xuất sắc. Cảm ơn bạn rất nhiều.	29. This is really delicious! The food was excellent. Thank you very much.
+30. 🛎️ **Nhân viên:** Tuyệt quá ạ! Tôi có thể lấy thêm gì cho bạn không? Bạn có muốn gọi món tráng miệng nào không ạ?	30. Fantastic! Is there anything else I can get for you? Would you like to order any dessert?
+30. 👤 **Khách:** Ôi không, tôi no căng bụng rồi! Cảm ơn bạn nhé. Mọi thứ đều rất tuyệt vời.	30. No, I'm stuffed! Thank you. Everything was perfect.
+31. 🛎️ **Nhân viên:** Quý khách có muốn dùng chút cà phê hay trà không? Hay bạn muốn tự chọn một món tráng miệng ạ?	31. Would you like any coffee or tea? Or would you like to pick your own dessert?
+31. 👤 **Khách:** Cứ chọn giúp tôi món tráng miệng ngon nhất của quán đi!	31. Just surprise me with your best dessert!
+32. 👤 **Khách:** Xin lỗi, đây không phải món tôi gọi.	32. Excuse me, I think this is not what I ordered.
+32. 🛎️ **Nhân viên:** Tôi rất xin lỗi về điều này. Để tôi kiểm tra lại thực đơn và đổi ngay ạ.	32. I am so sorry about that. Let me double-check your order and fix it right away.
+33. 👤 **Khách:** Đồ ăn của tôi bị nguội, có thể hâm lại không?	33. My food is cold, could you heat it up?
+33. 🛎️ **Nhân viên:** Thành thật xin lỗi bạn, tôi sẽ gửi bếp hâm nóng lại ngay lập tức.	33. Apologies for the inconvenience, I will have the kitchen reheat this immediately.
+34. 👤 **Khách:** Có thể đổi món này không?	34. Could you replace this, please?
+34. 🛎️ **Nhân viên:** Chắc chắn rồi ạ. Chúng tôi sẽ chuẩn bị phần mới ngay cho bạn.	34. Certainly. We will prepare a fresh one for you right away.
+35. 👤 **Khách:** Có vẻ đơn hàng của tôi bị nhầm.	35. There seems to be a mistake with my order.
+35. 🛎️ **Nhân viên:** Để tôi xem lại phiếu gọi món, và chúng tôi sẽ mang món đúng lên sớm nhất có thể ạ.	35. Let me check the ticket for you, and we will get the correct dish out as soon as possible.
+36. 👤 **Khách:** Tôi không cần thêm gì đâu, cảm ơn bạn. Cho tôi xin hóa đơn và một hộp mang về cho phần thức ăn thừa này nhé?	36. No, I'm good, thank you. Can I just get the bill and a to-go box for these leftovers?
+36. 🛎️ **Nhân viên:** Tất nhiên rồi ạ. Tôi để hóa đơn ngay đây nhé, và tôi sẽ mang hộp đóng gói lại ngay.	36. Of course. I'll just leave the bill right here, and I'll be right back with that to-go box.
+37. 👤 **Khách:** Cho chúng tôi xin hóa đơn nhé.	37. Could we get the bill, please? / Can we have the check, please?
+37. 🛎️ **Nhân viên:** Dạ được, tôi in hóa đơn mang lại ngay ạ. Quý khách có muốn kiểm tra hóa đơn ngay bây giờ không ạ?	37. Certainly, I'll print that out for you right now. Would you like to check right now?
+38. 👤 **Khách:** Chúng tôi muốn thanh toán. Tách hóa đơn nhé.	38. We'd like to pay, please. Separate bills, please.
+38. 🛎️ **Nhân viên:** Không vấn đề gì ạ, tôi sẽ tách hóa đơn riêng cho từng người.	38. No problem at all, I can split that up for each of you.
+39. 👤 **Khách:** Chia hóa đơn giúp chúng tôi được không?	39. Could you split the bill between us?
+39. 🛎️ **Nhân viên:** Dạ được, bạn muốn chia đôi đều cho hai người đúng không ạ?	39. Sure, would you like to split it evenly down the middle?
+40. 👤 **Khách:** Tôi có thể trả bằng thẻ không?	40. Can I pay by card?
+40. 🛎️ **Nhân viên:** Dạ được, chúng tôi nhận mọi loại thẻ. Bạn quẹt hoặc chạm thẻ ở đây nhé.	40. Yes, we accept all major cards. You can tap or insert right here.
+41. 👤 **Khách:** Có nhận tiền mặt không?	41. Do you accept cash?
+41. 🛎️ **Nhân viên:** Dạ có, trả tiền mặt hoàn toàn được ạ.	41. Yes, of course. Cash is totally fine.
+42. 👤 **Khách:** Đã bao gồm phí phục vụ chưa?	42. Is service included?
+42. 🛎️ **Nhân viên:** Dạ rồi, phí phục vụ đã được tính sẵn trong tổng tiền ạ.	42. Yes, a service charge is already included in the total.
+43. 👤 **Khách:** Không cần trả lại tiền thừa đâu.	43. Keep the change.
+43. 🛎️ **Nhân viên:** Bạn tốt quá, xin cảm ơn bạn rất nhiều!	43. That's very kind of you, thank you so much!
+44. 🛎️ **Nhân viên:** Cảm ơn quý khách đã dùng bữa hôm nay!	44. Thank you for dining with us today!
+44. 👤 **Khách:** Cảm ơn, bữa ăn rất tuyệt! Mọi thứ đều rất tốt.	44. Thank you, the meal was wonderful! Everything was great.
+45. 👤 **Khách:** Chúng tôi rất thích bữa ăn. Chúc bạn một ngày tốt lành!	45. We really enjoyed the food. Have a great day!
+45. 🛎️ **Nhân viên:** Cảm ơn bạn! Chúc bạn ngày mới vui vẻ, mong sớm gặp lại bạn.	45. Thank you! Have a wonderful day ahead, hope to see you again soon.
+46. 🛎️ **Nhân viên:** Cứ thong thả nhé, khi nào sẵn sàng thì gọi tôi.	46. Take your time, let me know when you're ready.
+46. 👤 **Khách:** Chúng tôi không vội đâu, cảm ơn.	46. We're in no rush, thank you.

@@ -1,0 +1,17 @@
+{
+  "name": "English in Conversation - AI Practice",
+  "short_name": "EngConversation",
+  "description": "Luyện giao tiếp tiếng Anh tương tác AI trên iPhone, iPad và Laptop",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

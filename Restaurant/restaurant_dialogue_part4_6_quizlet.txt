@@ -1,0 +1,73 @@
+Khách: Excuse me, could we get some cutlery? And can I get another napkin, please?
+*(Xin lỗi, cho chúng tôi xin thêm dao nĩa được không? Và cho tôi xin thêm một chiếc khăn ăn nữa nhé?)*	Bồi bàn: Right away, here is a fresh set of cutlery and napkins for you.
+*(Có ngay ạ, đây là bộ dao nĩa và khăn ăn mới cho quý khách.)*;
+Khách: Could we also have some more water and extra bread, please?
+*(Cho chúng tôi thêm một ít nước và thêm bánh mì được không?)*	Bồi bàn: Certainly, I'll have the kitchen prepare another basket of warm bread for you.
+*(Dạ chắc chắn rồi, tôi sẽ nhờ bếp chuẩn bị thêm một giỏ bánh mì nóng cho quý khách.)*;
+Khách: Excuse me, I think this is not what I ordered. There seems to be a mistake with my order, and the food is cold.
+*(Xin lỗi, tôi nghĩ đây không phải món tôi đã gọi. Hình như có sự nhầm lẫn với đơn của tôi, và đồ ăn thì bị nguội nữa.)*	Bồi bàn: I am so sorry about that! Let me check the ticket for you immediately. Apologies for the inconvenience.
+*(Tôi rất xin lỗi về điều đó! Để tôi kiểm tra lại phiếu gọi món ngay lập tức. Thành thật xin lỗi vì sự bất tiện này.)*;
+Khách: Could you please replace this with a warm, fresh one?
+*(Bạn có thể vui lòng đổi cho tôi một phần khác mới và nóng sốt được không?)*	Bồi bàn: Certainly! We will have the kitchen prepare a fresh replacement right away. We'll get it out as soon as possible.
+*(Dạ chắc chắn rồi! Chúng tôi sẽ nhờ bếp làm lại một phần mới ngay lập tức. Chúng tôi sẽ mang ra càng sớm càng tốt ạ.)*;
+[Khách] Xin lỗi, cho chúng tôi xin thêm dao nĩa được không? Và cho tôi xin thêm một chiếc khăn ăn nữa nhé?	Excuse me, could we get some cutlery? And can I get another napkin, please?;
+[Khách] Cho chúng tôi thêm một ít nước và thêm bánh mì được không?	Could we also have some more water and extra bread, please?;
+[Khách] Xin lỗi, tôi nghĩ đây không phải món tôi đã gọi. Hình như có sự nhầm lẫn với đơn của tôi, và đồ ăn thì bị nguội nữa.	Excuse me, I think this is not what I ordered. There seems to be a mistake with my order, and the food is cold.;
+[Khách] Bạn có thể vui lòng đổi cho tôi một phần khác mới và nóng sốt được không?	Could you please replace this with a warm, fresh one?;
+[Bồi bàn] Có ngay ạ, đây là bộ dao nĩa và khăn ăn mới cho quý khách.	Right away, here is a fresh set of cutlery and napkins for you.;
+[Bồi bàn] Dạ chắc chắn rồi, tôi sẽ nhờ bếp chuẩn bị thêm một giỏ bánh mì nóng cho quý khách.	Certainly, I'll have the kitchen prepare another basket of warm bread for you.;
+[Bồi bàn] Tôi rất xin lỗi về điều đó! Để tôi kiểm tra lại phiếu gọi món ngay lập tức. Thành thật xin lỗi vì sự bất tiện này.	I am so sorry about that! Let me check the ticket for you immediately. Apologies for the inconvenience.;
+[Bồi bàn] Dạ chắc chắn rồi! Chúng tôi sẽ nhờ bếp làm lại một phần mới ngay lập tức. Chúng tôi sẽ mang ra càng sớm càng tốt ạ.	Certainly! We will have the kitchen prepare a fresh replacement right away. We'll get it out as soon as possible.;
+Bồi bàn: Hi, how was everything? How is everything tasting so far?
+*(Xin chào, bữa ăn của quý khách thế nào ạ? Mọi người dùng bữa thấy vị vừa miệng không ạ?)*	Khách: The food was excellent! The steak was truly delicious and cooked to perfection. Thank you very much.
+*(Món ăn xuất sắc lắm! Bít-tết thực sự rất ngon và được nướng chín hoàn hảo. Cảm ơn bạn rất nhiều.)*;
+Bồi bàn: I'm so glad to hear that! Fantastic. Would you like to order any dessert?
+*(Tôi rất vui khi nghe điều đó! Tuyệt quá ạ. Quý khách có muốn gọi món tráng miệng nào không ạ?)*	Khách: No, I'm stuffed, thank you!
+*(Không, tôi no căng bụng rồi, cảm ơn bạn nhé!)*;
+Bồi bàn: Would you like any coffee or tea, or would you like to pick a light dessert?
+*(Quý khách có muốn dùng chút cà phê hay trà không, hay bạn muốn tự chọn một món tráng miệng nhẹ nhàng ạ?)*	Khách: Actually, just surprise me with your best dessert to share.
+*(Thực ra thì cứ chọn giúp tôi món tráng miệng ngon nhất của quán để chúng tôi ăn chung nhé - hãy làm tôi bất ngờ!)*;
+Khách: Actually, just surprise me with your best dessert to share.
+*(Thực ra thì cứ chọn giúp tôi món tráng miệng ngon nhất của quán để chúng tôi ăn chung nhé - hãy làm tôi bất ngờ!)*	Bồi bàn: You got it! I'll bring out our house specialty dessert right away.
+*(Có ngay ạ! Tôi sẽ mang món tráng miệng đặc sản của quán ra ngay nhé.)*;
+[Khách] Món ăn xuất sắc lắm! Bít-tết thực sự rất ngon và được nướng chín hoàn hảo. Cảm ơn bạn rất nhiều.	The food was excellent! The steak was truly delicious and cooked to perfection. Thank you very much.;
+[Khách] Không, tôi no căng bụng rồi, cảm ơn bạn nhé!	No, I'm stuffed, thank you!;
+[Khách] Thực ra thì cứ chọn giúp tôi món tráng miệng ngon nhất của quán để chúng tôi ăn chung nhé - hãy làm tôi bất ngờ!	Actually, just surprise me with your best dessert to share.;
+[Bồi bàn] Xin chào, bữa ăn của quý khách thế nào ạ? Mọi người dùng bữa thấy vị vừa miệng không ạ?	Hi, how was everything? How is everything tasting so far?;
+[Bồi bàn] Tôi rất vui khi nghe điều đó! Tuyệt quá ạ. Quý khách có muốn gọi món tráng miệng nào không ạ?	I'm so glad to hear that! Fantastic. Would you like to order any dessert?;
+[Bồi bàn] Quý khách có muốn dùng chút cà phê hay trà không, hay bạn muốn tự chọn một món tráng miệng nhẹ nhàng ạ?	Would you like any coffee or tea, or would you like to pick a light dessert?;
+[Bồi bàn] Có ngay ạ! Tôi sẽ mang món tráng miệng đặc sản của quán ra ngay nhé.	You got it! I'll bring out our house specialty dessert right away.;
+Bồi bàn: Is there anything else I can help you guys with?
+*(Tôi có thể hỗ trợ thêm gì cho các bạn nữa không ạ?)*	Khách: No, we're all good, thank you. Can I just get the bill and a to-go box for these leftovers?
+*(Dạ không, chúng tôi ổn rồi, cảm ơn bạn. Cho tôi xin hóa đơn và một hộp mang về cho phần thức ăn thừa này nhé?)*;
+Khách: Can I just get the bill and a to-go box for these leftovers?
+*(Cho tôi xin hóa đơn và một hộp mang về cho phần thức ăn thừa này nhé?)*	Bồi bàn: Of course. I'll just leave the bill right here, and I'll be right back with that to-go box.
+*(Tất nhiên rồi ạ. Tôi để hóa đơn ngay đây nhé, và tôi sẽ mang hộp đóng gói lại ngay.)*;
+Khách: Could you split the bill between us?
+*(Chia hóa đơn giúp chúng tôi được không?)*	Bồi bàn: Sure, would you like to split it evenly down the middle?
+*(Dạ được, bạn muốn chia đôi đều cho hai người đúng không ạ?)*;
+Khách: Yes, please. Can I pay by card?
+*(Vâng đúng rồi ạ. Tôi có thể trả bằng thẻ không?)*	Bồi bàn: Yes, we accept all major cards. You can tap or insert right here.
+*(Dạ được, chúng tôi nhận mọi loại thẻ. Bạn quẹt hoặc cắm thẻ ở đây nhé.)*;
+Khách: Is service included in the total?
+*(Đã bao gồm phí phục vụ trong tổng tiền chưa ạ?)*	Bồi bàn: Yes, a service charge is already included in the total.
+*(Dạ rồi, phí phục vụ đã được tính sẵn trong tổng tiền ạ.)*;
+Khách: Great. Keep the change as an extra tip for your wonderful service today!
+*(Tuyệt vời. Cứ giữ lại tiền thừa làm tiền boa thêm cho dịch vụ tuyệt vời của bạn hôm nay nhé!)*	Bồi bàn: That's very kind of you, thank you so much! Thank you for dining with us today!
+*(Bạn thật tốt bụng, cảm ơn bạn rất nhiều! Cảm ơn đã dùng bữa tại quán hôm nay ạ!)*;
+Khách: Thank you, the meal was wonderful! Have a great day!
+*(Cảm ơn bạn, bữa ăn rất tuyệt! Chúc bạn một ngày tốt lành nhé!)*	Bồi bàn: Thank you! Have a wonderful day ahead, hope to see you again soon!
+*(Cảm ơn bạn! Chúc bạn ngày mới vui vẻ, mong sớm gặp lại bạn ạ!)*;
+[Khách] Dạ không, chúng tôi ổn rồi, cảm ơn bạn. Cho tôi xin hóa đơn và một hộp mang về cho phần thức ăn thừa này nhé?	No, we're all good, thank you. Can I just get the bill and a to-go box for these leftovers?;
+[Khách] Chia hóa đơn giúp chúng tôi được không?	Could you split the bill between us?;
+[Khách] Vâng đúng rồi ạ. Tôi có thể trả bằng thẻ không?	Yes, please. Can I pay by card?;
+[Khách] Đã bao gồm phí phục vụ trong tổng tiền chưa ạ?	Is service included in the total?;
+[Khách] Tuyệt vời. Cứ giữ lại tiền thừa làm tiền boa thêm cho dịch vụ tuyệt vời của bạn hôm nay nhé!	Great. Keep the change as an extra tip for your wonderful service today!;
+[Khách] Cảm ơn bạn, bữa ăn rất tuyệt! Chúc bạn một ngày tốt lành nhé!	Thank you, the meal was wonderful! Have a great day!;
+[Bồi bàn] Tôi có thể hỗ trợ thêm gì cho các bạn nữa không ạ?	Is there anything else I can help you guys with?;
+[Bồi bàn] Tất nhiên rồi ạ. Tôi để hóa đơn ngay đây nhé, và tôi sẽ mang hộp đóng gói lại ngay.	Of course. I'll just leave the bill right here, and I'll be right back with that to-go box.;
+[Bồi bàn] Dạ được, bạn muốn chia đôi đều cho hai người đúng không ạ?	Sure, would you like to split it evenly down the middle?;
+[Bồi bàn] Dạ được, chúng tôi nhận mọi loại thẻ. Bạn quẹt hoặc cắm thẻ ở đây nhé.	Yes, we accept all major cards. You can tap or insert right here.;
+[Bồi bàn] Dạ rồi, phí phục vụ đã được tính sẵn trong tổng tiền ạ.	Yes, a service charge is already included in the total.;
+[Bồi bàn] Bạn thật tốt bụng, cảm ơn bạn rất nhiều! Cảm ơn đã dùng bữa tại quán hôm nay ạ!	That's very kind of you, thank you so much! Thank you for dining with us today!;
+[Bồi bàn] Cảm ơn bạn! Chúc bạn ngày mới vui vẻ, mong sớm gặp lại bạn ạ!	Thank you! Have a wonderful day ahead, hope to see you again soon!;

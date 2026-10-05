@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="128" fill="#4F46E5"/>
+  <circle cx="256" cy="256" r="160" fill="#6366F1"/>
+  <!-- Speech bubble with soundwaves -->
+  <path d="M160 200C160 177.909 177.909 160 200 160H312C334.091 160 352 177.909 352 200V270C352 292.091 334.091 310 312 310H230L175 350V310H200C177.909 310 160 292.091 160 270V200Z" fill="white"/>
+  <circle cx="225" cy="235" r="14" fill="#4F46E5"/>
+  <circle cx="256" cy="235" r="14" fill="#4F46E5"/>
+  <circle cx="287" cy="235" r="14" fill="#4F46E5"/>
+</svg>

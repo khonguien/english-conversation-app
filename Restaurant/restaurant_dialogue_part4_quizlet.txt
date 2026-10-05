@@ -1,0 +1,20 @@
+Khách: Excuse me, could we get some cutlery? And can I get another napkin, please?
+*(Xin lỗi, cho chúng tôi xin thêm dao nĩa được không? Và cho tôi xin thêm một chiếc khăn ăn nữa nhé?)*	Bồi bàn: Right away, here is a fresh set of cutlery and napkins for you.
+*(Có ngay ạ, đây là bộ dao nĩa và khăn ăn mới cho quý khách.)*;
+Khách: Could we also have some more water and extra bread, please?
+*(Cho chúng tôi thêm một ít nước và thêm bánh mì được không?)*	Bồi bàn: Certainly, I'll have the kitchen prepare another basket of warm bread for you.
+*(Dạ chắc chắn rồi, tôi sẽ nhờ bếp chuẩn bị thêm một giỏ bánh mì nóng cho quý khách.)*;
+Khách: Excuse me, I think this is not what I ordered. There seems to be a mistake with my order, and the food is cold.
+*(Xin lỗi, tôi nghĩ đây không phải món tôi đã gọi. Hình như có sự nhầm lẫn với đơn của tôi, và đồ ăn thì bị nguội nữa.)*	Bồi bàn: I am so sorry about that! Let me check the ticket for you immediately. Apologies for the inconvenience.
+*(Tôi rất xin lỗi về điều đó! Để tôi kiểm tra lại phiếu gọi món ngay lập tức. Thành thật xin lỗi vì sự bất tiện này.)*;
+Khách: Could you please replace this with a warm, fresh one?
+*(Bạn có thể vui lòng đổi cho tôi một phần khác mới và nóng sốt được không?)*	Bồi bàn: Certainly! We will have the kitchen prepare a fresh replacement right away. We'll get it out as soon as possible.
+*(Dạ chắc chắn rồi! Chúng tôi sẽ nhờ bếp làm lại một phần mới ngay lập tức. Chúng tôi sẽ mang ra càng sớm càng tốt ạ.)*;
+[Khách] Xin lỗi, cho chúng tôi xin thêm dao nĩa được không? Và cho tôi xin thêm một chiếc khăn ăn nữa nhé?	Excuse me, could we get some cutlery? And can I get another napkin, please?;
+[Khách] Cho chúng tôi thêm một ít nước và thêm bánh mì được không?	Could we also have some more water and extra bread, please?;
+[Khách] Xin lỗi, tôi nghĩ đây không phải món tôi đã gọi. Hình như có sự nhầm lẫn với đơn của tôi, và đồ ăn thì bị nguội nữa.	Excuse me, I think this is not what I ordered. There seems to be a mistake with my order, and the food is cold.;
+[Khách] Bạn có thể vui lòng đổi cho tôi một phần khác mới và nóng sốt được không?	Could you please replace this with a warm, fresh one?;
+[Bồi bàn] Có ngay ạ, đây là bộ dao nĩa và khăn ăn mới cho quý khách.	Right away, here is a fresh set of cutlery and napkins for you.;
+[Bồi bàn] Dạ chắc chắn rồi, tôi sẽ nhờ bếp chuẩn bị thêm một giỏ bánh mì nóng cho quý khách.	Certainly, I'll have the kitchen prepare another basket of warm bread for you.;
+[Bồi bàn] Tôi rất xin lỗi về điều đó! Để tôi kiểm tra lại phiếu gọi món ngay lập tức. Thành thật xin lỗi vì sự bất tiện này.	I am so sorry about that! Let me check the ticket for you immediately. Apologies for the inconvenience.;
+[Bồi bàn] Dạ chắc chắn rồi! Chúng tôi sẽ nhờ bếp làm lại một phần mới ngay lập tức. Chúng tôi sẽ mang ra càng sớm càng tốt ạ.	Certainly! We will have the kitchen prepare a fresh replacement right away. We'll get it out as soon as possible.;

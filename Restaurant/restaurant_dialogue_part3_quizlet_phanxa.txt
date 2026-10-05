@@ -1,0 +1,13 @@
+[Khách] Vâng, chúng tôi sẵn sàng rồi. Về món khai vị, cho tôi cánh gà cùng với khoai tây chiên nhé.	Yes, we're ready. For the appetizers, let me get the chicken wings as well as the French fries, please.;
+[Khách] Cho tôi phần bít-tết sườn bò dùng kèm một phần khoai tây nghiền nhé.	Let me get the ribeye steak with a side of mashed potatoes, please.;
+[Khách] Cho tôi mức chín vừa / tái chín nhé.	Let me get that medium rare, please.;
+[Khách] Tôi muốn dùng mì Ý gà nướng, nhưng bạn làm ít cay hơn giúp tôi được không? Và đừng cho hành nhé.	I'd like the grilled chicken pasta, but could you make it less spicy, please? And no onions, please.;
+[Khách] Vâng, thêm phô mai và để riêng nước sốt ra ngoài giúp tôi nhé.	Yes, extra cheese, and dressing on the side, please.;
+[Khách] Cho tôi một ly rượu vang đỏ và một chai nước khoáng nhé?	Can I just get a glass of red wine, and a bottle of mineral water, please?;
+[Bồi bàn] Chào mừng trở lại! Quý khách đã sẵn sàng gọi món chưa ạ?	Welcome back! Are you ready to place your order?;
+[Bồi bàn] Lựa chọn tuyệt vời ạ. Còn về món chính bạn muốn dùng món gì ạ?	Fantastic choice. And what would you like for the main course?;
+[Bồi bàn] Lựa chọn tuyệt vời! Và bạn muốn bít-tết của mình được nướng chín ở mức độ nào ạ?	Great choice! And how would you like your steak cooked?;
+[Bồi bàn] Tôi đã hiểu: bít-tết sườn bò chín vừa kèm khoai tây nghiền. Còn người đi cùng bạn dùng gì ạ?	Understood: ribeye steak, medium rare with mashed potatoes. And for your guest?;
+[Bồi bàn] Đã ghi chú: mì Ý gà nướng, ít cay, không hành. Bạn có muốn để riêng nước sốt ra ngoài không ạ?	Noted: grilled chicken pasta, less spicy, no onions. Would you like the dressing on the side?;
+[Bồi bàn] Được rồi ạ. Và quý khách muốn dùng đồ uống gì ạ?	Ok. And what would you like to drink?;
+[Bồi bàn] Dạ chắc chắn rồi, không vấn đề gì! Tôi sẽ quay lại ngay với đồ uống và món khai vị của quý khách.	Sure, no problem! I'll be right back with your drinks and appetizers.;

@@ -1,0 +1,691 @@
+{
+  "id": "restaurant",
+  "titleEn": "At the Restaurant",
+  "titleVi": "Tại Nhà Hàng",
+  "icon": "🍽️",
+  "description": "Luyện giao tiếp tiếng Anh khi đi ăn nhà hàng: đặt bàn, gọi món, yêu cầu đặc biệt và thanh toán.",
+  "scenarios": [
+    {
+      "id": "restaurant-scenario-1",
+      "order": 1,
+      "section": "🍽️ Restaurant Dialogues",
+      "titleEn": "Arrival, Reservation & Seating",
+      "titleVi": "Đón Customer, Đặt bàn & Chọn chỗ ngồi",
+      "situation": "Tình huống tại nhà hàng: Đón Customer, Đặt bàn & Chọn chỗ ngồi",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Waiter",
+          "titleEn": "Waiter",
+          "titleVi": "Bồi bàn / Nhân viên",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Customer",
+          "titleEn": "Customer",
+          "titleVi": "Khách hàng (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Hi, how may I help you? How many people are you guys?",
+      "initialMessageVi": "Chào mừng quý khách! Tôi có thể giúp gì cho bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-1-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Hi, how may I help you? How many people are you guys?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Hi, a table for two, please. Do you have a table available right now?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Did you have a reservation with us?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Yes, I have a reservation for two at 7 PM under the name John.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Let me check that for you right away. Yes, Mr. John, your table is all set! Right this way, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Could we get a table by the window, please? We'd prefer a quiet table if possible.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Let me check if that table is reserved; if not, you're welcome to move. Yes, it's free! Right here.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "This table is great, thank you. And non-smoking area, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "All of our indoor seating is non-smoking. Here are your menus. I'll give you a few minutes to look them over.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "This is perfect, thank you.",
+          "textVi": ""
+        }
+      ],
+      "suggestedHints": [
+        "Hi, a table for two, please. Do you have a table available right now?",
+        "Yes, I have a reservation for two at 7 PM under the name John.",
+        "Could we get a table by the window, please? We'd prefer a quiet table if possible.",
+        "This table is great, thank you. And non-smoking area, please.",
+        "This is perfect, thank you."
+      ]
+    },
+    {
+      "id": "restaurant-scenario-2",
+      "order": 2,
+      "section": "🍽️ Restaurant Dialogues",
+      "titleEn": "Asking for Recommendations",
+      "titleVi": "Hỏi gợi ý thực đơn",
+      "situation": "Tình huống tại nhà hàng: Hỏi gợi ý thực đơn",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Waiter",
+          "titleEn": "Waiter",
+          "titleVi": "Bồi bàn / Nhân viên",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Customer",
+          "titleEn": "Customer",
+          "titleVi": "Khách hàng (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Hi, what can I get for you guys today? Are you ready to order?",
+      "initialMessageVi": "Chào mừng quý khách! Tôi có thể giúp gì cho bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-2-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Hi, what can I get for you guys today? Are you ready to order?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Excuse me, can we order now? But first, what do you recommend? What's your most popular dish here?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Our ribeye steak and seafood pasta are definitely our top best-sellers.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "What's the dish of the day? What would you personally choose?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Today's special is grilled salmon served with asparagus. Personally, that's my absolute favorite.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "That sounds fantastic! Is that dish gluten-free?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Yes, that dish is completely gluten-free.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Awesome. We'll take a minute to decide our main courses.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Take your time, we're in no rush at all.",
+          "textVi": ""
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, can we order now? But first, what do you recommend? What's your most popular dish here?",
+        "What's the dish of the day? What would you personally choose?",
+        "That sounds fantastic! Is that dish gluten-free?",
+        "Awesome. We'll take a minute to decide our main courses."
+      ]
+    },
+    {
+      "id": "restaurant-scenario-3",
+      "order": 3,
+      "section": "🍽️ Restaurant Dialogues",
+      "titleEn": "Full Course Ordering & Customizing",
+      "titleVi": "Gọi món chi tiết & Tùy chỉnh",
+      "situation": "Tình huống tại nhà hàng: Gọi món chi tiết & Tùy chỉnh",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Waiter",
+          "titleEn": "Waiter",
+          "titleVi": "Bồi bàn / Nhân viên",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Customer",
+          "titleEn": "Customer",
+          "titleVi": "Khách hàng (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Welcome back! Are you ready to place your order?",
+      "initialMessageVi": "Chào mừng quý khách! Tôi có thể giúp gì cho bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-3-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Welcome back! Are you ready to place your order?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Yes, we're ready. For the appetizers, let me get the chicken wings as well as the French fries, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Fantastic choice. And what would you like for the main course?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Let me get the ribeye steak with a side of mashed potatoes, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Great choice! And how would you like your steak cooked?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Let me get that medium rare, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Understood: ribeye steak, medium rare with mashed potatoes. And for your guest?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "I'd like the grilled chicken pasta, but could you make it less spicy, please? And no onions, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Noted: grilled chicken pasta, less spicy, no onions. Would you like the dressing on the side?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Yes, extra cheese, and dressing on the side, please.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Ok. And what would you like to drink?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Can I just get a glass of red wine, and a bottle of mineral water, please?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Sure, no problem! I'll be right back with your drinks and appetizers.",
+          "textVi": ""
+        }
+      ],
+      "suggestedHints": [
+        "Yes, we're ready. For the appetizers, let me get the chicken wings as well as the French fries, please.",
+        "Let me get the ribeye steak with a side of mashed potatoes, please.",
+        "Let me get that medium rare, please.",
+        "I'd like the grilled chicken pasta, but could you make it less spicy, please? And no onions, please.",
+        "Yes, extra cheese, and dressing on the side, please.",
+        "Can I just get a glass of red wine, and a bottle of mineral water, please?"
+      ]
+    },
+    {
+      "id": "restaurant-scenario-4",
+      "order": 4,
+      "section": "🍽️ Restaurant Dialogues",
+      "titleEn": "During the Meal & Handling Issues",
+      "titleVi": "Trong bữa ăn & Xử lý sự cố",
+      "situation": "Tình huống tại nhà hàng: Trong bữa ăn & Xử lý sự cố",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Waiter",
+          "titleEn": "Waiter",
+          "titleVi": "Bồi bàn / Nhân viên",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Customer",
+          "titleEn": "Customer",
+          "titleVi": "Khách hàng (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Right away, here is a fresh set of cutlery and napkins for you.",
+      "initialMessageVi": "Chào mừng quý khách! Tôi có thể giúp gì cho bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-4-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Excuse me, could we get some cutlery? And can I get another napkin, please?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Right away, here is a fresh set of cutlery and napkins for you.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Could we also have some more water and extra bread, please?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Certainly, I'll have the kitchen prepare another basket of warm bread for you.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Excuse me, I think this is not what I ordered. There seems to be a mistake with my order, and the food is cold.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "I am so sorry about that! Let me check the ticket for you immediately. Apologies for the inconvenience.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Could you please replace this with a warm, fresh one?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Certainly! We will have the kitchen prepare a fresh replacement right away. We'll get it out as soon as possible.",
+          "textVi": ""
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, could we get some cutlery? And can I get another napkin, please?",
+        "Could we also have some more water and extra bread, please?",
+        "Excuse me, I think this is not what I ordered. There seems to be a mistake with my order, and the food is cold.",
+        "Could you please replace this with a warm, fresh one?"
+      ]
+    },
+    {
+      "id": "restaurant-scenario-5",
+      "order": 5,
+      "section": "🍽️ Restaurant Dialogues",
+      "titleEn": "Food Review & Dessert",
+      "titleVi": "Đánh giá món ăn & Món tráng miệng",
+      "situation": "Tình huống tại nhà hàng: Đánh giá món ăn & Món tráng miệng",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Waiter",
+          "titleEn": "Waiter",
+          "titleVi": "Bồi bàn / Nhân viên",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Customer",
+          "titleEn": "Customer",
+          "titleVi": "Khách hàng (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Hi, how was everything? How is everything tasting so far?",
+      "initialMessageVi": "Chào mừng quý khách! Tôi có thể giúp gì cho bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-5-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Hi, how was everything? How is everything tasting so far?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "The food was excellent! The steak was truly delicious and cooked to perfection. Thank you very much.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "I'm so glad to hear that! Fantastic. Would you like to order any dessert?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "No, I'm stuffed, thank you!",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Would you like any coffee or tea, or would you like to pick a light dessert?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Actually, just surprise me with your best dessert to share.",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "You got it! I'll bring out our house specialty dessert right away.",
+          "textVi": ""
+        }
+      ],
+      "suggestedHints": [
+        "The food was excellent! The steak was truly delicious and cooked to perfection. Thank you very much.",
+        "No, I'm stuffed, thank you!",
+        "Actually, just surprise me with your best dessert to share."
+      ]
+    },
+    {
+      "id": "restaurant-scenario-6",
+      "order": 6,
+      "section": "🍽️ Restaurant Dialogues",
+      "titleEn": "Bill, Leftovers To-Go & Payment",
+      "titleVi": "Hóa đơn, Gói mang về & Thanh toán",
+      "situation": "Tình huống tại nhà hàng: Hóa đơn, Gói mang về & Thanh toán",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Waiter",
+          "titleEn": "Waiter",
+          "titleVi": "Bồi bàn / Nhân viên",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Customer",
+          "titleEn": "Customer",
+          "titleVi": "Khách hàng (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Is there anything else I can help you guys with?",
+      "initialMessageVi": "Chào mừng quý khách! Tôi có thể giúp gì cho bạn hôm nay?",
+      "vocabulary": [
+        {
+          "id": "res-vocab-6-1",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt bàn / phòng trước",
+          "synonyms": [
+            "booking"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make a reservation",
+            "have a reservation"
+          ],
+          "exampleEn": "Do you have a reservation with us?",
+          "exampleVi": "Quý khách có đặt bàn trước với chúng tôi không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Is there anything else I can help you guys with?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "No, we're all good, thank you. Can I just get the bill and a to-go box for these leftovers?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Of course. I'll just leave the bill right here, and I'll be right back with that to-go box.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Could you split the bill between us?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Sure, would you like to split it evenly down the middle?",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Yes, please. Can I pay by card?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Yes, we accept all major cards. You can tap or insert right here.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Is service included in the total?",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Yes, a service charge is already included in the total.",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Great. Keep the change as an extra tip for your wonderful service today!",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "That's very kind of you, thank you so much! Thank you for dining with us today!",
+          "textVi": ""
+        },
+        {
+          "speaker": "user",
+          "roleName": "Customer",
+          "textEn": "Thank you, the meal was wonderful! Have a great day!",
+          "textVi": ""
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Waiter",
+          "textEn": "Thank you! Have a wonderful day ahead, hope to see you again soon!",
+          "textVi": ""
+        }
+      ],
+      "suggestedHints": [
+        "No, we're all good, thank you. Can I just get the bill and a to-go box for these leftovers?",
+        "Could you split the bill between us?",
+        "Yes, please. Can I pay by card?",
+        "Is service included in the total?",
+        "Great. Keep the change as an extra tip for your wonderful service today!",
+        "Thank you, the meal was wonderful! Have a great day!"
+      ]
+    }
+  ]
+}

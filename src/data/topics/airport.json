@@ -1,0 +1,2683 @@
+{
+  "id": "airport",
+  "titleEn": "At the Airport",
+  "titleVi": "Tại Sân Bay",
+  "icon": "✈️",
+  "description": "Luyện giao tiếp tiếng Anh sân bay thực tế qua 12 tình huống từ Ga đi, Trên máy bay đến Ga đến.",
+  "scenarios": [
+    {
+      "id": "airport-scenario-1",
+      "order": 1,
+      "section": "🛫 Ga đi (Departure)",
+      "titleEn": "Check-in Counter",
+      "titleVi": "Quầy làm thủ tục",
+      "situation": "Hành khách đến quầy check-in để làm thủ tục trước chuyến bay.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Staff",
+          "titleEn": "Staff",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Good afternoon, where are you flying today?",
+      "initialMessageVi": "Chào buổi chiều, hôm nay bạn bay đi đâu ạ?",
+      "vocabulary": [
+        {
+          "id": "vocab-1-1",
+          "word": "check-in counter",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtʃek ɪn ˈkaʊntər/",
+          "meaningVi": "quầy làm thủ tục",
+          "synonyms": [
+            "check-in desk (bàn làm thủ tục)",
+            "ticket counter (quầy vé và thủ tục)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "go to / proceed to the check-in counter: đi tới quầy làm thủ tục",
+            "open / close the check-in counter: mở / đóng quầy làm thủ tục",
+            "queue at the check-in counter: xếp hàng chờ tại quầy thủ tục",
+            "self-service check-in kiosk: quầy làm thủ tục tự động qua máy cảm ứng"
+          ],
+          "exampleEn": "Please go to the check-in counter to get your boarding pass.",
+          "exampleVi": "Vui lòng tới quầy làm thủ tục để nhận thẻ lên máy bay."
+        },
+        {
+          "id": "vocab-1-2",
+          "word": "passenger",
+          "partOfSpeech": "n",
+          "ipa": "/ˈpæsɪndʒər/",
+          "meaningVi": "hành khách",
+          "synonyms": [
+            "traveler (người đi lại / du khách)",
+            "commuter (người đi lại hàng ngày / người đi vé tháng)",
+            "flyer (khách đi máy bay (vd: frequent flyer))",
+            "voyager (lữ khách",
+            "người thực hiện chuyến đi dài (văn phong trang trọng))"
+          ],
+          "antonyms": [
+            "crew / staff (phi hành đoàn / nhân viên phục vụ chuyến bay)"
+          ],
+          "collocations": [
+            "transit passenger: hành khách quá cảnh",
+            "fellow passenger: hành khách đi cùng chuyến",
+            "passenger manifest: danh sách hành khách trên chuyến bay",
+            "passenger terminal: nhà ga hành khách",
+            "frequent flyer: hành khách bay thường xuyên (hội viên tích dặm)"
+          ],
+          "exampleEn": "The passenger showed his boarding pass at the gate.",
+          "exampleVi": "Hành khách đã xuất trình thẻ lên máy bay tại cửa khởi hành."
+        },
+        {
+          "id": "vocab-1-3",
+          "word": "passport",
+          "partOfSpeech": "n",
+          "ipa": "/ˈpæspɔːrt/",
+          "meaningVi": "hộ chiếu",
+          "synonyms": [
+            "travel document (giấy tờ đi lại quốc tế)",
+            "identification document (ID) (giấy tờ tùy thân)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "valid / expired passport: hộ chiếu còn hạn / hết hạn",
+            "biometric / e-passport: hộ chiếu gắn chip điện tử",
+            "passport control: khu vực kiểm soát hộ chiếu",
+            "renew a passport: gia hạn / làm mới hộ chiếu",
+            "hold a passport: sở hữu hộ chiếu quốc gia nào"
+          ],
+          "exampleEn": "May I see your passport, please?",
+          "exampleVi": "Làm ơn cho tôi xem hộ chiếu của bạn được không?"
+        },
+        {
+          "id": "vocab-1-4",
+          "word": "luggage",
+          "partOfSpeech": "n",
+          "ipa": "/ˈlʌɡɪdʒ/",
+          "meaningVi": "hành lý",
+          "synonyms": [
+            "baggage (hành lý (từ đồng nghĩa phổ biến trong tiếng Mỹ))",
+            "bags (túi xách",
+            "túi hành lý)",
+            "suitcases (vali)",
+            "belongings (đồ đạc cá nhân)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "piece of luggage: kiện hành lý (lưu ý: luggage không đếm được)",
+            "excess luggage: hành lý vượt cước",
+            "lost / misplaced luggage: hành lý thất lạc",
+            "luggage tag: thẻ gắn định danh hành lý",
+            "luggage trolley / cart: xe đẩy hành lý"
+          ],
+          "exampleEn": "How many pieces of luggage do you have?",
+          "exampleVi": "Bạn có tổng cộng bao nhiêu kiện hành lý?"
+        },
+        {
+          "id": "vocab-1-5",
+          "word": "baggage",
+          "partOfSpeech": "n",
+          "ipa": "/ˈbæɡɪdʒ/",
+          "meaningVi": "hành lý",
+          "synonyms": [
+            "luggage (hành lý (phổ biến trong tiếng Anh-Anh))",
+            "belongings (tài sản cá nhân mang theo)",
+            "gear (đồ đạc hành lý)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "baggage allowance: định mức hành lý miễn cước được phép mang",
+            "baggage drop-off: quầy ký gửi hành lý nhanh",
+            "baggage handler: nhân viên bốc dỡ hành lý sân bay",
+            "excess baggage fee: phí phạt quá cước hành lý",
+            "left baggage office: quầy giữ hành lý tạm thời"
+          ],
+          "exampleEn": "Your baggage will be checked through to your final destination.",
+          "exampleVi": "Hành lý của bạn sẽ được chuyển thẳng đến điểm đến cuối cùng."
+        },
+        {
+          "id": "vocab-1-6",
+          "word": "scale",
+          "partOfSpeech": "n",
+          "ipa": "/skeɪl/",
+          "meaningVi": "cái cân",
+          "synonyms": [
+            "weighing machine (máy cân trọng lượng)",
+            "weighing scales (bàn cân)",
+            "balance (cái cân (cân đối trọng))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "luggage scale: cân hành lý",
+            "digital scale: cân điện tử hiển thị số",
+            "place on the scale: đặt kiện hàng lên bàn cân",
+            "read the scale: đọc chỉ số trên cân"
+          ],
+          "exampleEn": "Please place your bag on the scale.",
+          "exampleVi": "Xin vui lòng đặt túi của bạn lên bàn cân."
+        },
+        {
+          "id": "vocab-1-7",
+          "word": "aisle seat",
+          "partOfSpeech": "n",
+          "ipa": "/aɪl siːt/",
+          "meaningVi": "ghế ngồi phía lối đi",
+          "synonyms": [
+            "walkway seat (ghế cạnh lối đi)",
+            "corridor seat (ghế lối hành lang)"
+          ],
+          "antonyms": [
+            "window seat (ghế cạnh cửa sổ)"
+          ],
+          "collocations": [
+            "prefer an aisle seat: thích ngồi ghế cạnh lối đi hơn",
+            "request an aisle seat: yêu cầu được xếp ghế cạnh lối đi",
+            "sit in an aisle seat: ngồi ở vị trí ghế cạnh lối đi",
+            "aisle seat advantage: lợi thế dễ đứng dậy đi vệ sinh hoặc duỗi chân"
+          ],
+          "exampleEn": "I prefer an aisle seat so I can stretch my legs.",
+          "exampleVi": "Tôi thích ghế cạnh lối đi hơn để có thể duỗi chân thoải mái."
+        },
+        {
+          "id": "vocab-1-8",
+          "word": "window seat",
+          "partOfSpeech": "n",
+          "ipa": "/ˈwɪndoʊ siːt/",
+          "meaningVi": "ghế cạnh cửa sổ",
+          "synonyms": [
+            "window-side seat (chỗ ngồi cạnh cửa sổ)"
+          ],
+          "antonyms": [
+            "aisle seat (ghế cạnh lối đi)"
+          ],
+          "collocations": [
+            "request / book a window seat: yêu cầu / đặt ghế cạnh cửa sổ",
+            "enjoy the view from a window seat: ngắm mây trời phong cảnh từ ghế cửa sổ",
+            "pull down / close the window shade: kéo tấm chắn sáng cửa sổ xuống"
+          ],
+          "exampleEn": "Can I have a window seat, please?",
+          "exampleVi": "Làm ơn cho tôi một ghế ngồi cạnh cửa sổ được không?"
+        },
+        {
+          "id": "vocab-1-9",
+          "word": "boarding pass",
+          "partOfSpeech": "n",
+          "ipa": "/ˈbɔːrdɪŋ pæs/",
+          "meaningVi": "thẻ lên máy bay",
+          "synonyms": [
+            "boarding ticket (vé / thẻ lên máy bay)",
+            "flight coupon (cuống vé chuyến bay)",
+            "e-boarding pass / mobile boarding pass (thẻ lên máy bay điện tử trên điện thoại)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "issue a boarding pass: in / cấp thẻ lên tàu bay",
+            "show / present your boarding pass: xuất trình thẻ lên máy bay",
+            "scan the boarding pass: quét mã thẻ lên máy bay tại cổng",
+            "print out the boarding pass: in thẻ lên máy bay giấy"
+          ],
+          "exampleEn": "Don't forget your boarding pass at the counter.",
+          "exampleVi": "Đừng để quên thẻ lên máy bay tại quầy làm thủ tục."
+        },
+        {
+          "id": "vocab-1-10",
+          "word": "flight",
+          "partOfSpeech": "n",
+          "ipa": "/flaɪt/",
+          "meaningVi": "chuyến bay",
+          "synonyms": [
+            "air trip (chuyến đi bằng đường hàng không)",
+            "plane journey (hành trình máy bay)",
+            "aviation travel (chuyến du hành bằng máy bay)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "book / catch / miss a flight: đặt vé / bắt kịp / lỡ chuyến bay",
+            "domestic / international flight: chuyến bay nội địa / quốc tế",
+            "direct / non-stop flight: chuyến bay thẳng / bay không dừng",
+            "long-haul / short-haul flight: chuyến bay đường dài / chặng ngắn",
+            "flight number: số hiệu chuyến bay (vd: VN123, TG456)"
+          ],
+          "exampleEn": "My flight departs at 3 PM.",
+          "exampleVi": "Chuyến bay của tôi sẽ khởi hành lúc 3 giờ chiều."
+        },
+        {
+          "id": "vocab-1-11",
+          "word": "gate",
+          "partOfSpeech": "n",
+          "ipa": "/ɡeɪt/",
+          "meaningVi": "cổng ra máy bay",
+          "synonyms": [
+            "boarding gate (cổng lên máy bay)",
+            "departure gate (cửa khởi hành)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "gate number: số cổng khởi hành",
+            "gate closes at...: cổng sẽ đóng lúc...",
+            "gate change: thay đổi cổng khởi hành",
+            "proceed to gate: di chuyển ra cửa lên tàu bay",
+            "gate agent: nhân viên phụ trách tại cửa khởi hành"
+          ],
+          "exampleEn": "Your flight leaves from gate 15A.",
+          "exampleVi": "Chuyến bay của bạn khởi hành từ cổng 15A."
+        },
+        {
+          "id": "vocab-1-12",
+          "word": "boarding",
+          "partOfSpeech": "n",
+          "ipa": "/ˈbɔːrdɪŋ/",
+          "meaningVi": "việc lên máy bay",
+          "synonyms": [
+            "embarkation (quá trình lên máy bay (thuật ngữ chính thức))",
+            "getting on board (việc hành khách lên máy bay)"
+          ],
+          "antonyms": [
+            "disembarkation / deplaning (việc xuống máy bay / rời máy bay)"
+          ],
+          "collocations": [
+            "boarding time: giờ bắt đầu cho khách lên máy bay",
+            "boarding gate: cổng lên tàu bay",
+            "final boarding call: thông báo gọi khách lên tàu lần cuối",
+            "boarding process: quy trình soát vé lên máy bay"
+          ],
+          "exampleEn": "Boarding will begin at 2:30 PM.",
+          "exampleVi": "Việc đón khách lên máy bay sẽ bắt đầu lúc 2:30 chiều."
+        },
+        {
+          "id": "vocab-1-13",
+          "word": "board",
+          "partOfSpeech": "v",
+          "ipa": "/bɔːrd/",
+          "meaningVi": "lên (máy bay)",
+          "synonyms": [
+            "embark (bước lên tàu / lên máy bay (trang trọng))",
+            "get on (bước lên máy bay (thông dụng))",
+            "enter the plane (vào trong máy bay)"
+          ],
+          "antonyms": [
+            "disembark / deplane / get off (xuống máy bay / rời máy bay)"
+          ],
+          "collocations": [
+            "board the aircraft / plane: bước lên máy bay",
+            "now boarding: đang cho hành khách lên tàu",
+            "ready to board: sẵn sàng lên máy bay",
+            "priority boarding: lối ưu tiên lên tàu trước"
+          ],
+          "exampleEn": "Passengers in rows 20–30, please board now.",
+          "exampleVi": "Các hành khách ở hàng ghế từ 20 đến 30, xin mời lên máy bay ngay bây giờ."
+        },
+        {
+          "id": "vocab-1-14",
+          "word": "layover",
+          "partOfSpeech": "n",
+          "ipa": "/ˈleɪˌoʊvər/",
+          "meaningVi": "quá cảnh",
+          "synonyms": [
+            "stopover (điểm dừng chân quá cảnh (thường kéo dài trên 24 giờ))",
+            "transit (việc quá cảnh)",
+            "connection (chặng nối chuyến)"
+          ],
+          "antonyms": [
+            "non-stop flight (chuyến bay thẳng liền mạch không dừng)"
+          ],
+          "collocations": [
+            "have a layover: có một chặng quá cảnh",
+            "3-hour layover: thời gian quá cảnh kéo dài 3 tiếng",
+            "overnight layover: quá cảnh qua đêm",
+            "layover airport / city: sân bay / thành phố dừng chân quá cảnh"
+          ],
+          "exampleEn": "We have a 3-hour layover in Singapore.",
+          "exampleVi": "Chúng tôi có một chặng quá cảnh kéo dài 3 tiếng tại Singapore."
+        },
+        {
+          "id": "vocab-1-15",
+          "word": "security check",
+          "partOfSpeech": "n",
+          "ipa": "/sɪˈkjʊrəti tʃek/",
+          "meaningVi": "kiểm tra an ninh",
+          "synonyms": [
+            "security screening (quá trình soi chiếu an ninh)",
+            "security checkpoint (trạm kiểm tra an ninh)",
+            "TSA checkpoint (cửa kiểm tra an ninh TSA (đặc thù tại Mỹ))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "go through security check: đi qua cổng kiểm tra an ninh",
+            "clear security check: hoàn tất thủ tục kiểm tra an ninh",
+            "strict security check: kiểm tra an ninh nghiêm ngặt",
+            "security check line / queue: hàng người chờ kiểm tra an ninh"
+          ],
+          "exampleEn": "The security check took about 15 minutes.",
+          "exampleVi": "Việc kiểm tra an ninh mất khoảng 15 phút."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Good afternoon, where are you flying today?",
+          "textVi": "Chào buổi chiều, hôm nay bạn bay đi đâu ạ?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Hello, I'm flying to Bangkok at 3 PM.",
+          "textVi": "Xin chào, tôi bay đi Bangkok lúc 3 giờ chiều."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "May I have your passport, please?",
+          "textVi": "Cho tôi xem hộ chiếu của bạn được không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Of course, here you go.",
+          "textVi": "Tất nhiên, đây ạ."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Are you checking any bags?",
+          "textVi": "Bạn có gửi hành lý không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Yes, just one piece of luggage.",
+          "textVi": "Có, chỉ một kiện hành lý thôi."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Please place your bag on the scale.",
+          "textVi": "Vui lòng đặt túi lên cân."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Okay.",
+          "textVi": "Vâng."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "That's fine. Do you have a seat preference?",
+          "textVi": "Được rồi. Bạn có muốn chọn chỗ ngồi không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Yes, do you have any aisle seat available?",
+          "textVi": "Vâng, còn ghế phía lối đi không ạ?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Let me check for you. Yes, we do. I'll put you in row 12, seat A — that's an aisle seat.",
+          "textVi": "Để tôi kiểm tra. Có ạ. Tôi sẽ xếp bạn ở hàng 12, ghế A — ghế phía lối đi."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Wonderful, thank you so much!",
+          "textVi": "Tuyệt vời, cảm ơn rất nhiều!"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Here is your boarding pass. Your flight leaves from gate 15A and boarding begins at 2:30. Your seat number is 12A.",
+          "textVi": "Đây là thẻ lên máy bay của bạn. Chuyến bay khởi hành từ cổng 15A và bắt đầu lên máy bay lúc 2:30. Số ghế của bạn là 12A."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Perfect. And one more question — I have a layover in Singapore. Do I need to pick up my luggage there?",
+          "textVi": "Hoàn hảo. Và một câu hỏi nữa — tôi có quá cảnh ở Singapore. Tôi có cần lấy hành lý ở đó không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "No, it will go straight through to Bangkok.",
+          "textVi": "Không, hành lý sẽ được chuyển thẳng đến Bangkok."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Great. And which way is the security check?",
+          "textVi": "Tuyệt. Và lối đi kiểm tra an ninh ở đâu ạ?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Right behind you to the right.",
+          "textVi": "Ngay phía sau bạn, rẽ phải."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you!",
+          "textVi": "Cảm ơn!"
+        }
+      ],
+      "suggestedHints": [
+        "Hello, I'm flying to Bangkok at 3 PM.",
+        "Of course, here you go.",
+        "Yes, just one piece of luggage.",
+        "Okay.",
+        "Yes, do you have any aisle seat available?",
+        "Wonderful, thank you so much!",
+        "Perfect. And one more question — I have a layover in Singapore. Do I need to pick up my luggage there?",
+        "Great. And which way is the security check?",
+        "Thank you!"
+      ]
+    },
+    {
+      "id": "airport-scenario-2",
+      "order": 2,
+      "section": "🛫 Ga đi (Departure)",
+      "titleEn": "Overweight Luggage",
+      "titleVi": "Hành lý quá cân",
+      "situation": "Hành lý của hành khách bị quá cân khi check-in.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Staff",
+          "titleEn": "Staff",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "I'm sorry, sir. Your luggage is overweight.",
+      "initialMessageVi": "Xin lỗi anh. Hành lý của anh bị quá cân.",
+      "vocabulary": [
+        {
+          "id": "vocab-2-1",
+          "word": "overweight",
+          "partOfSpeech": "adj",
+          "ipa": "/ˌoʊvərˈweɪt/",
+          "meaningVi": "quá cân",
+          "synonyms": [
+            "exceeding weight limit (vượt quá trọng lượng quy định)",
+            "heavy (quá nặng)",
+            "oversized (quá khổ về kích thước)"
+          ],
+          "antonyms": [
+            "underweight (dưới mức trọng lượng cho phép)",
+            "within limit (trong giới hạn cân nặng quy định)"
+          ],
+          "collocations": [
+            "overweight luggage / baggage: hành lý vượt quá cân quy định",
+            "overweight fee / surcharge: phí phụ thu hành lý quá cân",
+            "overweight by [number] kilos: quá cân bao nhiêu kilogam"
+          ],
+          "exampleEn": "Your luggage is overweight by 3 kilograms.",
+          "exampleVi": "Hành lý của bạn bị quá cân 3 kilôgam."
+        },
+        {
+          "id": "vocab-2-2",
+          "word": "carry-on bag",
+          "partOfSpeech": "n",
+          "ipa": "/ˈkæri ɑːn bæɡ/",
+          "meaningVi": "hành lý xách tay",
+          "synonyms": [
+            "hand luggage (hành lý xách tay (Anh-Anh))",
+            "cabin bag / cabin baggage (hành lý xách tay mang lên khoang khách)",
+            "carry-on luggage (hành lý xách tay)"
+          ],
+          "antonyms": [
+            "checked luggage / hold baggage (hành lý ký gửi trong khoang hàng)"
+          ],
+          "collocations": [
+            "carry-on bag size / dimensions: kích thước chuẩn của hành lý xách tay",
+            "bring a carry-on bag: mang một kiện hành lý xách tay",
+            "stow a carry-on bag: cất gọn hành lý xách tay lên hộc trên trần",
+            "carry-on weight limit: giới hạn cân nặng hành lý xách tay (thường 7kg)"
+          ],
+          "exampleEn": "You can bring one carry-on bag on the plane.",
+          "exampleVi": "Bạn được phép mang theo một túi hành lý xách tay lên máy bay."
+        },
+        {
+          "id": "vocab-2-3",
+          "word": "checked luggage",
+          "partOfSpeech": "n",
+          "ipa": "/tʃekt ˈlʌɡɪdʒ/",
+          "meaningVi": "hành lý ký gửi",
+          "synonyms": [
+            "checked baggage (hành lý ký gửi)",
+            "hold luggage / hold baggage (hành lý gửi trong khoang hàng (Anh-Anh))"
+          ],
+          "antonyms": [
+            "carry-on bag / hand luggage (hành lý xách tay mang lên khoang)"
+          ],
+          "collocations": [
+            "check in luggage: làm thủ tục ký gửi hành lý",
+            "checked luggage weight limit: giới hạn trọng lượng hành lý ký gửi (vd 23kg, 30kg)",
+            "drop off checked luggage: giao hành lý ký gửi tại quầy",
+            "retrieve checked luggage: nhận lại hành lý ký gửi sau chuyến bay"
+          ],
+          "exampleEn": "Each passenger is allowed one piece of checked luggage.",
+          "exampleVi": "Mỗi hành khách được phép ký gửi một kiện hành lý."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "I'm sorry, sir. Your luggage is overweight.",
+          "textVi": "Xin lỗi anh. Hành lý của anh bị quá cân."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "By how much?",
+          "textVi": "Quá bao nhiêu ạ?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "About 5 kilograms.",
+          "textVi": "Khoảng 5 kg."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Okay, let me take something out.",
+          "textVi": "Được rồi, để tôi bỏ bớt đồ ra."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "How about now?",
+          "textVi": "Giờ thì sao ạ?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "It's just slightly overweight — about 0.5 kg. That should be fine. You're good to go.",
+          "textVi": "Chỉ hơi quá một chút — khoảng 0,5 kg. Không sao đâu. Anh có thể đi được rồi."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Great, thank you!",
+          "textVi": "Tuyệt, cảm ơn!"
+        }
+      ],
+      "suggestedHints": [
+        "By how much?",
+        "Okay, let me take something out.",
+        "How about now?",
+        "Great, thank you!"
+      ]
+    },
+    {
+      "id": "airport-scenario-3",
+      "order": 3,
+      "section": "🛫 Ga đi (Departure)",
+      "titleEn": "Security Check",
+      "titleVi": "Kiểm tra an ninh",
+      "situation": "Hành khách đi qua khu vực kiểm tra an ninh.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Officer",
+          "titleEn": "Officer",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "👮"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Next, please. Place your belongings in the tray — your bag, jacket, belt, and any electronics.",
+      "initialMessageVi": "Mời người tiếp theo. Vui lòng đặt đồ vào khay — túi, áo khoác, thắt lưng, và các thiết bị điện tử.",
+      "vocabulary": [
+        {
+          "id": "vocab-3-1",
+          "word": "terminal",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtɜːrmɪnəl/",
+          "meaningVi": "nhà ga sân bay",
+          "synonyms": [
+            "concourse (khu sảnh / hành lang ga sân bay)",
+            "passenger terminal (nhà ga hành khách)",
+            "air terminal (nhà ga hàng không)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "international terminal (T2): nhà ga quốc tế",
+            "domestic terminal (T1): nhà ga nội địa",
+            "terminal building: tòa nhà ga",
+            "transfer between terminals: di chuyển giữa các nhà ga",
+            "departure / arrival terminal: nhà ga đi / nhà ga đến"
+          ],
+          "exampleEn": "Our flight departs from Terminal 2.",
+          "exampleVi": "Chuyến bay của chúng tôi khởi hành từ Nhà ga số 2."
+        },
+        {
+          "id": "vocab-3-2",
+          "word": "-> Dịch: Chuyến bay của chúng tôi khởi hành từ Nhà ga số 2.\n\n2. departure lounge",
+          "partOfSpeech": "n",
+          "ipa": "/dɪˈpɑːrtʃər laʊndʒ/",
+          "meaningVi": "phòng chờ khởi hành",
+          "synonyms": [
+            "waiting lounge (phòng chờ)",
+            "boarding lounge (khu phòng chờ lên máy bay)",
+            "gate lounge (khu vực ghế chờ tại cửa bay)",
+            "concourse lounge (sảnh chờ hành lang ga)"
+          ],
+          "antonyms": [
+            "arrival hall (sảnh đón khách đến)"
+          ],
+          "collocations": [
+            "wait in the departure lounge: ngồi chờ tại phòng chờ xuất phát",
+            "business class departure lounge: phòng chờ hạng thương gia",
+            "VIP departure lounge: phòng chờ khách VIP",
+            "relax in the departure lounge: nghỉ ngơi thư giãn tại phòng chờ"
+          ],
+          "exampleEn": "We waited in the departure lounge for two hours.",
+          "exampleVi": "Chúng tôi đã chờ ở phòng chờ khởi hành trong suốt hai giờ."
+        },
+        {
+          "id": "vocab-3-3",
+          "word": "airport",
+          "partOfSpeech": "n",
+          "ipa": "/ˈerˌpɔːrt/",
+          "meaningVi": "sân bay",
+          "synonyms": [
+            "airfield (sân bay nhỏ / phi trường quân sự)",
+            "aerodrome (phi trường (từ truyền thống Anh-Anh))",
+            "airstrip (đường băng dã chiến ngắn)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "international / domestic airport: sân bay quốc tế / nội địa",
+            "airport terminal: nhà ga sân bay",
+            "airport shuttle: xe buýt trung chuyển sân bay",
+            "airport code: mã sân bay (IATA: SGN, HAN, BKK...)",
+            "head to / arrive at the airport: khởi hành đến / tới sân bay"
+          ],
+          "exampleEn": "We arrived at the airport two hours early.",
+          "exampleVi": "Chúng tôi đã đến sân bay sớm hai tiếng đồng hồ."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Next, please. Place your belongings in the tray — your bag, jacket, belt, and any electronics.",
+          "textVi": "Mời người tiếp theo. Vui lòng đặt đồ vào khay — túi, áo khoác, thắt lưng, và các thiết bị điện tử."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Do I need to take my laptop out of the bag?",
+          "textVi": "Tôi có cần lấy laptop ra khỏi túi không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Yes, please. Laptops and tablets must be placed separately in the tray.",
+          "textVi": "Vâng. Laptop và máy tính bảng phải đặt riêng trong khay."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "What about liquids? I have a small bottle of water.",
+          "textVi": "Còn chất lỏng thì sao? Tôi có một chai nước nhỏ."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Liquids over 100 ml are not allowed. You'll need to throw it away or drink it now.",
+          "textVi": "Chất lỏng trên 100 ml không được mang theo. Anh cần vứt đi hoặc uống hết ngay bây giờ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Okay, I'll throw it away.",
+          "textVi": "Vâng, tôi sẽ vứt đi."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Please walk through the metal detector.",
+          "textVi": "Vui lòng đi qua máy dò kim loại."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Sir, could you step aside, please? Do you have anything in your pockets?",
+          "textVi": "Anh ơi, vui lòng đứng sang một bên. Anh có gì trong túi không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Oh, sorry! I forgot my keys.",
+          "textVi": "Ồ, xin lỗi! Tôi quên chìa khóa."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "No problem. Put them in the tray and walk through again.",
+          "textVi": "Không sao. Bỏ chúng vào khay rồi đi qua lại lần nữa."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "You're all clear. Have a nice flight.",
+          "textVi": "Anh qua rồi. Chúc chuyến bay vui vẻ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you!",
+          "textVi": "Cảm ơn!"
+        }
+      ],
+      "suggestedHints": [
+        "Do I need to take my laptop out of the bag?",
+        "What about liquids? I have a small bottle of water.",
+        "Okay, I'll throw it away.",
+        "Oh, sorry! I forgot my keys.",
+        "Thank you!"
+      ]
+    },
+    {
+      "id": "airport-scenario-4",
+      "order": 4,
+      "section": "🛫 Ga đi (Departure)",
+      "titleEn": "Flight Delay",
+      "titleVi": "Chuyến bay bị hoãn",
+      "situation": "Hành khách phát hiện chuyến bay bị trễ và hỏi nhân viên tại cổng.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Staff",
+          "titleEn": "Staff",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Yes, I'm sorry about that. The flight has been delayed by approximately two hours due to bad weather.",
+      "initialMessageVi": "Vâng, xin lỗi về điều đó. Chuyến bay bị hoãn khoảng hai tiếng do thời tiết xấu.",
+      "vocabulary": [
+        {
+          "id": "vocab-4-1",
+          "word": "delayed",
+          "partOfSpeech": "adj",
+          "ipa": "/dɪˈleɪd/",
+          "meaningVi": "bị hoãn/trễ",
+          "synonyms": [
+            "postponed (bị dời lại thời gian)",
+            "held up (bị ách lại",
+            "kẹt lại)",
+            "deferred (bị tạm hoãn)",
+            "late (muộn",
+            "trễ)"
+          ],
+          "antonyms": [
+            "on time / on schedule (đúng giờ / chuẩn lịch trình)",
+            "early (đến trước giờ dự kiến)"
+          ],
+          "collocations": [
+            "flight is delayed: chuyến bay bị hoãn",
+            "heavily / severely delayed: bị hoãn rất lâu",
+            "delayed due to bad weather: bị trễ do thời tiết xấu",
+            "delayed by [time]: bị hoãn mất khoảng thời gian là..."
+          ],
+          "exampleEn": "The flight has been delayed by one hour.",
+          "exampleVi": "Chuyến bay đã bị hoãn lại một tiếng đồng hồ."
+        },
+        {
+          "id": "vocab-4-2",
+          "word": "connecting flight",
+          "partOfSpeech": "n",
+          "ipa": "/kəˈnektɪŋ flaɪt/",
+          "meaningVi": "chuyến bay nối chuyến",
+          "synonyms": [
+            "transfer flight (chuyến bay trung chuyển)",
+            "onward flight (chuyến bay tiếp nối chặng sau)"
+          ],
+          "antonyms": [
+            "direct flight / non-stop flight (chuyến bay thẳng không nối chuyến)"
+          ],
+          "collocations": [
+            "catch / make a connecting flight: kịp bắt chuyến bay nối tiếp",
+            "miss a connecting flight: bị lỡ chuyến bay nối tiếp",
+            "tight connecting flight: khoảng thời gian nối chuyến rất gấp",
+            "transfer to a connecting flight: chuyển sang cửa chuyến bay kế tiếp"
+          ],
+          "exampleEn": "I need to catch a connecting flight to Tokyo.",
+          "exampleVi": "Tôi cần bắt chuyến bay nối tiếp để bay sang Tokyo."
+        },
+        {
+          "id": "vocab-4-3",
+          "word": "departure",
+          "partOfSpeech": "n",
+          "ipa": "/dɪˈpɑːrtʃər/",
+          "meaningVi": "sự khởi hành",
+          "synonyms": [
+            "takeoff (sự cất cánh)",
+            "leaving (sự rời đi)",
+            "outbound flight (chuyến bay chiều đi)"
+          ],
+          "antonyms": [
+            "arrival (sự đến nơi / chuyến bay đến)"
+          ],
+          "collocations": [
+            "departure time: giờ khởi hành",
+            "departure gate: cổng khởi hành",
+            "scheduled departure: giờ xuất phát theo lịch trình",
+            "departure board / flight information display: bảng điện tử thông tin chuyến bay đi",
+            "departures hall: sảnh đi của nhà ga"
+          ],
+          "exampleEn": "The departure time has been changed to 4 PM.",
+          "exampleVi": "Giờ khởi hành đã được lùi lại đến 4 giờ chiều."
+        },
+        {
+          "id": "vocab-4-4",
+          "word": "arrival",
+          "partOfSpeech": "n",
+          "ipa": "/əˈraɪvəl/",
+          "meaningVi": "sự đến nơi",
+          "synonyms": [
+            "landing (sự hạ cánh)",
+            "touchdown (cú tiếp đất của máy bay)",
+            "inbound flight (chuyến bay chiều đến)"
+          ],
+          "antonyms": [
+            "departure (sự khởi hành / chuyến bay đi)"
+          ],
+          "collocations": [
+            "estimated time of arrival (ETA): thời gian dự kiến hạ cánh",
+            "arrival hall / gate: sảnh đón khách đến / cửa đón khách",
+            "arrivals board: bảng thông báo các chuyến bay đến",
+            "upon arrival: ngay khi vừa hạ cánh / đến nơi"
+          ],
+          "exampleEn": "Our estimated arrival time is 5:30 PM.",
+          "exampleVi": "Thời gian hạ cánh dự kiến của chúng tôi là 5:30 chiều."
+        },
+        {
+          "id": "vocab-4-5",
+          "word": "destination",
+          "partOfSpeech": "n",
+          "ipa": "/ˌdestɪˈneɪʃən/",
+          "meaningVi": "điểm đến",
+          "synonyms": [
+            "arrival point (điểm đến)",
+            "final stop (điểm dừng chân cuối cùng)",
+            "target location (địa điểm hướng tới)"
+          ],
+          "antonyms": [
+            "point of origin / departure point (nơi xuất phát / điểm khởi hành)"
+          ],
+          "collocations": [
+            "final destination: điểm đến cuối cùng",
+            "holiday / tourist destination: điểm đến du lịch nghỉ dưỡng",
+            "reach one's destination: tới được nơi cần đến",
+            "popular destination: điểm đến nổi tiếng thu hút nhiều khách"
+          ],
+          "exampleEn": "What is your final destination?",
+          "exampleVi": "Điểm đến cuối cùng trong hành trình của bạn là đâu?"
+        },
+        {
+          "id": "vocab-4-6",
+          "word": "on time",
+          "partOfSpeech": "adv",
+          "ipa": "/ɑːn taɪm/",
+          "meaningVi": "đúng giờ",
+          "synonyms": [
+            "punctual (đúng giờ chuẩn xác)",
+            "on schedule (đúng theo lịch trình ấn định)",
+            "promptly (kịp thời",
+            "mau lẹ)"
+          ],
+          "antonyms": [
+            "delayed (bị hoãn / trễ giờ)",
+            "behind schedule (chậm so với lịch trình)"
+          ],
+          "collocations": [
+            "arrive on time: hạ cánh đúng giờ",
+            "depart on time: khởi hành đúng giờ",
+            "running on time: hoạt động đúng theo lịch trình",
+            "on-time performance: tỷ lệ các chuyến bay đúng giờ của hãng"
+          ],
+          "exampleEn": "Don't worry, the flight is on time.",
+          "exampleVi": "Đừng lo lắng, chuyến bay vẫn đang vận hành đúng giờ."
+        },
+        {
+          "id": "vocab-4-7",
+          "word": "cancelled",
+          "partOfSpeech": "adj",
+          "ipa": "/ˈkænsəld/",
+          "meaningVi": "bị hủy",
+          "synonyms": [
+            "called off (bị hủy bỏ)",
+            "grounded (bị giữ lại trên mặt đất không cho bay)",
+            "scratched (bị gạch tên khỏi lịch bay)"
+          ],
+          "antonyms": [
+            "confirmed (được xác nhận bay)",
+            "operated (được khai thác bình thường)"
+          ],
+          "collocations": [
+            "cancelled flight: chuyến bay đã bị hủy",
+            "officially cancelled: chính thức bị hủy bỏ",
+            "cancelled due to technical issues: bị hủy do sự cố kỹ thuật",
+            "compensation for cancelled flights: tiền bồi thường chuyến bay bị hủy"
+          ],
+          "exampleEn": "Unfortunately, your flight has been cancelled.",
+          "exampleVi": "Rất tiếc phải thông báo rằng chuyến bay của bạn đã bị hủy."
+        },
+        {
+          "id": "vocab-4-8",
+          "word": "announcement",
+          "partOfSpeech": "n",
+          "ipa": "/əˈnaʊnsmənt/",
+          "meaningVi": "thông báo",
+          "synonyms": [
+            "notice (thông báo)",
+            "public notification (lời thông báo công khai)",
+            "broadcast (bản tin phát thanh)",
+            "statement (lời tuyên bố)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "make an announcement: phát thanh đưa ra một thông báo",
+            "listen to / pay attention to the announcement: chú ý lắng nghe thông báo",
+            "public address (PA) announcement: thông báo qua hệ thống loa phát thanh",
+            "in-flight announcement: thông báo trong khoang khách khi đang bay",
+            "boarding announcement: thông báo mời hành khách lên tàu"
+          ],
+          "exampleEn": "Please pay attention to the announcement.",
+          "exampleVi": "Xin quý hành khách chú ý lắng nghe thông báo."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Excuse me, I noticed on the screen that flight VN123 to Bangkok has been delayed. Do you know how long the delay will be?",
+          "textVi": "Xin lỗi, tôi thấy trên màn hình chuyến bay VN123 đi Bangkok bị hoãn. Anh/chị có biết hoãn bao lâu không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Yes, I'm sorry about that. The flight has been delayed by approximately two hours due to bad weather.",
+          "textVi": "Vâng, xin lỗi về điều đó. Chuyến bay bị hoãn khoảng hai tiếng do thời tiết xấu."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Two hours? Will I miss my connecting flight to Chiang Mai?",
+          "textVi": "Hai tiếng? Vậy tôi có bị lỡ chuyến bay nối chuyến đi Chiang Mai không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Let me check that for you. What time is your connecting flight?",
+          "textVi": "Để tôi kiểm tra. Chuyến bay nối chuyến của anh mấy giờ?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "It departs at 8 PM.",
+          "textVi": "8 giờ tối."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "You should still make it. But just in case, I can rebook you on a later connection at no extra charge.",
+          "textVi": "Anh vẫn kịp. Nhưng phòng trường hợp, tôi có thể đổi sang chuyến nối chuyến muộn hơn miễn phí cho anh."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "That would be great. Thank you. Is there anywhere I can wait comfortably?",
+          "textVi": "Tốt quá. Cảm ơn. Có chỗ nào ngồi chờ thoải mái không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Yes, there's a lounge on the second floor. You can also get free Wi-Fi — the password is on your boarding pass.",
+          "textVi": "Có, có phòng chờ ở tầng hai. Anh cũng có thể dùng Wi-Fi miễn phí — mật khẩu ở trên thẻ lên máy bay."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thanks, I appreciate your help.",
+          "textVi": "Cảm ơn, tôi rất cảm kích sự giúp đỡ của bạn."
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, I noticed on the screen that flight VN123 to Bangkok has been delayed. Do you know how long the delay will be?",
+        "Two hours? Will I miss my connecting flight to Chiang Mai?",
+        "It departs at 8 PM.",
+        "That would be great. Thank you. Is there anywhere I can wait comfortably?",
+        "Thanks, I appreciate your help."
+      ]
+    },
+    {
+      "id": "airport-scenario-5",
+      "order": 5,
+      "section": "☁️ Trên máy bay (On the Plane)",
+      "titleEn": "Finding Your Seat",
+      "titleVi": "Tìm chỗ ngồi",
+      "situation": "Hành khách lên máy bay và tìm chỗ ngồi của mình.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Flight Attendant",
+          "titleEn": "Flight Attendant",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "✈️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Of course. Row 18 is further down the aisle, on your left. F is the window seat.",
+      "initialMessageVi": "Tất nhiên. Hàng 18 ở xa hơn phía trước, bên trái anh. F là ghế cạnh cửa sổ.",
+      "vocabulary": [
+        {
+          "id": "vocab-5-1",
+          "word": "flight attendant",
+          "partOfSpeech": "n",
+          "ipa": "/flaɪt əˈtendənt/",
+          "meaningVi": "tiếp viên hàng không",
+          "synonyms": [
+            "cabin crew member (thành viên đoàn tiếp viên)",
+            "air steward / air stewardess (nam / nữ tiếp viên (cách gọi truyền thống))",
+            "in-flight crew (đội ngũ phục vụ trên khoang)"
+          ],
+          "antonyms": [
+            "passenger (hành khách)"
+          ],
+          "collocations": [
+            "call the flight attendant: bấm chuông gọi tiếp viên",
+            "senior flight attendant / purser: tiếp viên trưởng",
+            "flight attendant call button: nút gọi tiếp viên trên trần máy bay",
+            "listen to the flight attendant: lắng nghe hướng dẫn của tiếp viên"
+          ],
+          "exampleEn": "The flight attendant served drinks during the flight.",
+          "exampleVi": "Tiếp viên hàng không đã phục vụ đồ uống trong suốt chuyến bay."
+        },
+        {
+          "id": "vocab-5-2",
+          "word": "stewardess",
+          "partOfSpeech": "n",
+          "ipa": "/ˈstjuːərdəs/",
+          "meaningVi": "nữ tiếp viên hàng không",
+          "synonyms": [
+            "female flight attendant (nữ tiếp viên hàng không (thuật ngữ hiện đại))",
+            "air hostess (nữ tiếp viên (từ truyền thống",
+            "hiện ít dùng hơn))"
+          ],
+          "antonyms": [
+            "steward (nam tiếp viên hàng không)",
+            "passenger (hành khách)"
+          ],
+          "collocations": [
+            "chief stewardess: nữ tiếp viên trưởng",
+            "airline stewardess: nữ tiếp viên của hãng hàng không",
+            "ground hostess: nữ nhân viên mặt đất"
+          ],
+          "exampleEn": "The stewardess helped me find my seat.",
+          "exampleVi": "Cô tiếp viên đã hướng dẫn tôi tìm đúng chỗ ngồi."
+        },
+        {
+          "id": "vocab-5-3",
+          "word": "steward",
+          "partOfSpeech": "n",
+          "ipa": "/ˈstjuːərd/",
+          "meaningVi": "nam tiếp viên hàng không",
+          "synonyms": [
+            "male flight attendant (nam tiếp viên hàng không (thuật ngữ trung tính))",
+            "air steward (nam tiếp viên hàng không)",
+            "cabin attendant (nhân viên phục vụ khoang khách)"
+          ],
+          "antonyms": [
+            "stewardess (nữ tiếp viên hàng không)",
+            "passenger (hành khách)"
+          ],
+          "collocations": [
+            "chief steward: nam tiếp viên trưởng",
+            "cabin steward: tiếp viên phụ trách khoang",
+            "ground steward: nam nhân viên phục vụ mặt đất"
+          ],
+          "exampleEn": "The steward brought extra blankets for us.",
+          "exampleVi": "Nam tiếp viên đã mang thêm chăn đắp cho chúng tôi."
+        },
+        {
+          "id": "vocab-5-4",
+          "word": "cabin crew",
+          "partOfSpeech": "n",
+          "ipa": "/ˈkæbɪn kruː/",
+          "meaningVi": "tổ bay phục vụ",
+          "synonyms": [
+            "flight attendants (đội ngũ tiếp viên)",
+            "in-flight team (đội ngũ phục vụ trên chuyến bay)",
+            "air crew (phi hành đoàn (thường bao gồm cả phi công))"
+          ],
+          "antonyms": [
+            "passengers (hành khách trên chuyến bay)"
+          ],
+          "collocations": [
+            "member of the cabin crew: thành viên đoàn tiếp viên",
+            "cabin crew instructions: chỉ dẫn an toàn của đoàn tiếp viên",
+            "cabin crew safety demonstration: màn minh họa an toàn bay",
+            "alert the cabin crew: báo động cho đoàn tiếp viên khi có sự cố"
+          ],
+          "exampleEn": "The cabin crew prepared the cabin for takeoff.",
+          "exampleVi": "Đoàn tiếp viên đã chuẩn bị khoang hành khách sẵn sàng để cất cánh."
+        },
+        {
+          "id": "vocab-5-5",
+          "word": "middle seat",
+          "partOfSpeech": "n",
+          "ipa": "/ˈmɪdl siːt/",
+          "meaningVi": "ghế giữa",
+          "synonyms": [
+            "center seat (ghế trung tâm giữa hai ghế)",
+            "between seat (ghế kẹp giữa)"
+          ],
+          "antonyms": [
+            "aisle seat (ghế cạnh lối đi)",
+            "window seat (ghế cạnh cửa sổ)"
+          ],
+          "collocations": [
+            "stuck in the middle seat: bị kẹt ngồi ở ghế giữa",
+            "avoid the middle seat: tránh đặt trúng ghế giữa",
+            "assigned a middle seat: bị xếp vào vị trí ghế giữa",
+            "armrest battle for the middle seat: quy ước nhường hai chỗ để tay cho người ngồi ghế giữa"
+          ],
+          "exampleEn": "Nobody likes the middle seat.",
+          "exampleVi": "Hầu như không ai thích phải ngồi ở ghế giữa cả."
+        },
+        {
+          "id": "vocab-5-6",
+          "word": "overhead bin",
+          "partOfSpeech": "n",
+          "ipa": "/ˌoʊvərˈhed bɪn/",
+          "meaningVi": "ngăn chứa hành lý phía trên",
+          "synonyms": [
+            "overhead compartment (ngăn hành lý trên đầu)",
+            "overhead locker (tủ hành lý trên trần (chuẩn Anh-Anh))",
+            "luggage bin (khoang chứa đồ trên cao)"
+          ],
+          "antonyms": [
+            "under-seat storage (khoảng trống cất đồ dưới gầm ghế)"
+          ],
+          "collocations": [
+            "put / stow in the overhead bin: cất hành lý vào hộc trên đầu",
+            "close / latch the overhead bin: đóng chốt nắp ngăn hành lý lại",
+            "full / crowded overhead bin: hộc hành lý đã chật kín",
+            "space in the overhead bin: khoảng trống trong ngăn hành lý"
+          ],
+          "exampleEn": "Please put your bag in the overhead bin.",
+          "exampleVi": "Vui lòng đặt túi xách của bạn vào ngăn hành lý phía trên đầu."
+        },
+        {
+          "id": "vocab-5-7",
+          "word": "tray table",
+          "partOfSpeech": "n",
+          "ipa": "/treɪ ˈteɪbəl/",
+          "meaningVi": "bàn ăn gập",
+          "synonyms": [
+            "fold-down table (bàn gập hạ xuống)",
+            "seatback table (bàn gắn sau lưng ghế)",
+            "meal tray (khay để đồ ăn)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "fold up / stow the tray table: gập gọn bàn ăn lại",
+            "lower / put down the tray table: hạ bàn ăn xuống phía trước",
+            "lock the tray table in upright position: chốt bàn ăn ở vị trí dựng thẳng đứng"
+          ],
+          "exampleEn": "Please fold up your tray table for landing.",
+          "exampleVi": "Vui lòng gập bàn ăn lại để máy bay chuẩn bị hạ cánh."
+        },
+        {
+          "id": "vocab-5-8",
+          "word": "seatbelt",
+          "partOfSpeech": "n",
+          "ipa": "/ˈsiːtbelt/",
+          "meaningVi": "dây an toàn",
+          "synonyms": [
+            "safety belt (đai an toàn)",
+            "lap belt (dây an toàn thắt ngang hông)",
+            "restraint (thiết bị giữ an toàn)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "fasten your seatbelt: cài thắt dây an toàn",
+            "unfasten / unbuckle the seatbelt: tháo mở chốt dây an toàn",
+            "keep your seatbelt fastened: duy trì thắt dây an toàn trong suốt chuyến bay",
+            "fasten seatbelt sign: đèn hiệu báo hiệu yêu cầu thắt dây an toàn"
+          ],
+          "exampleEn": "Please fasten your seatbelt.",
+          "exampleVi": "Xin quý hành khách vui lòng cài dây an toàn."
+        },
+        {
+          "id": "vocab-5-9",
+          "word": "fasten",
+          "partOfSpeech": "v",
+          "ipa": "/ˈfæsən/",
+          "meaningVi": "thắt, cài",
+          "synonyms": [
+            "buckle (cài chốt khóa)",
+            "secure (buộc / siết chặt an toàn)",
+            "latch (gài chốt)",
+            "tie (buộc lại)"
+          ],
+          "antonyms": [
+            "unfasten / unbuckle (tháo / mở chốt khóa dây an toàn)",
+            "loosen (nới lỏng)"
+          ],
+          "collocations": [
+            "fasten securely: thắt gài một cách chắc chắn",
+            "fasten seatbelts: thắt dây an toàn",
+            "ensure seatbelts are fastened: đảm bảo dây an toàn đã được cài đúng cách"
+          ],
+          "exampleEn": "Please fasten your seatbelt during takeoff.",
+          "exampleVi": "Vui lòng thắt dây an toàn trong suốt quá trình cất cánh."
+        },
+        {
+          "id": "vocab-5-10",
+          "word": "takeoff",
+          "partOfSpeech": "n",
+          "ipa": "/ˈteɪkɔːf/",
+          "meaningVi": "sự cất cánh",
+          "synonyms": [
+            "departure (sự khởi hành bay lên)",
+            "lift-off (sự nhấc mình khỏi mặt đất)",
+            "ascent (sự leo độ cao ban đầu)"
+          ],
+          "antonyms": [
+            "landing / touchdown (sự hạ cánh / tiếp đất)"
+          ],
+          "collocations": [
+            "prepare for takeoff: chuẩn bị cất cánh",
+            "cleared for takeoff: được kiểm soát không lưu cho phép cất cánh",
+            "smooth takeoff: pha cất cánh êm ái",
+            "takeoff runway: đường băng cất cánh",
+            "abort takeoff: hủy thao tác cất cánh khẩn cấp"
+          ],
+          "exampleEn": "Please fasten your seatbelt before takeoff.",
+          "exampleVi": "Xin vui lòng thắt dây an toàn trước khi máy bay cất cánh."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Excuse me, could you help me? I can't find my seat. My boarding pass says 18F.",
+          "textVi": "Xin lỗi, bạn có thể giúp tôi không? Tôi không tìm được ghế. Thẻ lên máy bay ghi 18F."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Of course. Row 18 is further down the aisle, on your left. F is the window seat.",
+          "textVi": "Tất nhiên. Hàng 18 ở xa hơn phía trước, bên trái anh. F là ghế cạnh cửa sổ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you! And is there room in the overhead bin? My bag is a bit heavy.",
+          "textVi": "Cảm ơn! Và ngăn hành lý phía trên còn chỗ không? Túi tôi hơi nặng."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Let me help you with that. Yes, there's space right above your seat.",
+          "textVi": "Để tôi giúp anh. Có, còn chỗ ngay phía trên ghế anh."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you so much.",
+          "textVi": "Cảm ơn rất nhiều."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "You're welcome. Please fasten your seatbelt and make sure your tray table is in the upright position. We'll be taking off shortly.",
+          "textVi": "Không có gì. Xin vui lòng thắt dây an toàn và đảm bảo bàn ăn gập đã dựng lên. Chúng ta sẽ cất cánh ngay."
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, could you help me? I can't find my seat. My boarding pass says 18F.",
+        "Thank you! And is there room in the overhead bin? My bag is a bit heavy.",
+        "Thank you so much."
+      ]
+    },
+    {
+      "id": "airport-scenario-6",
+      "order": 6,
+      "section": "☁️ Trên máy bay (On the Plane)",
+      "titleEn": "Ordering Food & Drinks",
+      "titleVi": "Gọi đồ ăn và uống",
+      "situation": "Tiếp viên phục vụ đồ ăn và thức uống trên máy bay.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Flight Attendant",
+          "titleEn": "Flight Attendant",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "✈️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Good afternoon, ladies and gentlemen. We will now begin our meal service. Today we have two options: chicken with rice or beef with noodles. What would you prefer?",
+      "initialMessageVi": "Chào buổi chiều, quý ông quý bà. Bây giờ chúng tôi bắt đầu phục vụ bữa ăn. Hôm nay có hai lựa chọn: gà với cơm hoặc bò với mì. Quý khách chọn gì ạ?",
+      "vocabulary": [
+        {
+          "id": "vocab-6-1",
+          "word": "meal",
+          "partOfSpeech": "n",
+          "ipa": "/miːl/",
+          "meaningVi": "bữa ăn",
+          "synonyms": [
+            "in-flight meal (suất ăn trên máy bay)",
+            "dish (món ăn)",
+            "repast (bữa ăn (văn phong trang trọng))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "hot meal: suất ăn nóng hổi",
+            "meal service: khung giờ phục vụ bữa ăn chính",
+            "special meal (vegetarian, halal, kosher, gluten-free): suất ăn đặc biệt (chay, đạo Hồi, Kosher, không gluten)",
+            "pre-order a meal: đặt trước suất ăn khi mua vé"
+          ],
+          "exampleEn": "The meal will be served in 30 minutes.",
+          "exampleVi": "Bữa ăn sẽ được tiếp viên phục vụ trong khoảng 30 phút nữa."
+        },
+        {
+          "id": "vocab-6-2",
+          "word": "beverage",
+          "partOfSpeech": "n",
+          "ipa": "/ˈbevərɪdʒ/",
+          "meaningVi": "đồ uống",
+          "synonyms": [
+            "drink (thức uống thông thường)",
+            "refreshment (đồ uống giải khát thanh mát)",
+            "potable (nước uống được (trang trọng))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "complimentary beverage: đồ uống phục vụ miễn phí trên máy bay",
+            "hot / cold beverage: thức uống nóng (trà, cà phê) / lạnh (nước ngọt, nước ép)",
+            "alcoholic / non-alcoholic beverage: đồ uống có cồn (rượu, bia) / không cồn",
+            "beverage service / cart: xe đẩy phục vụ đồ uống của tiếp viên"
+          ],
+          "exampleEn": "Would you like a beverage?",
+          "exampleVi": "Bạn có muốn dùng một món đồ uống nào không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Good afternoon, ladies and gentlemen. We will now begin our meal service. Today we have two options: chicken with rice or beef with noodles. What would you prefer?",
+          "textVi": "Chào buổi chiều, quý ông quý bà. Bây giờ chúng tôi bắt đầu phục vụ bữa ăn. Hôm nay có hai lựa chọn: gà với cơm hoặc bò với mì. Quý khách chọn gì ạ?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "I'll have the chicken with rice, please.",
+          "textVi": "Cho tôi gà với cơm."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Sure. And what would you like to drink? We have water, juice, coffee, tea, and soft drinks.",
+          "textVi": "Vâng. Và anh/chị muốn uống gì? Chúng tôi có nước lọc, nước ép, cà phê, trà và nước ngọt."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Can I have an orange juice, please?",
+          "textVi": "Cho tôi một ly nước cam."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Of course. Here you go.",
+          "textVi": "Tất nhiên. Mời anh/chị."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you.",
+          "textVi": "Cảm ơn."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Are you finished with your tray?",
+          "textVi": "Anh/chị dùng xong khay chưa ạ?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Yes, thank you. Could I also get a cup of coffee?",
+          "textVi": "Rồi, cảm ơn. Cho tôi xin thêm một tách cà phê được không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Of course. Would you like milk or sugar?",
+          "textVi": "Tất nhiên. Anh/chị muốn thêm sữa hay đường không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Just black, please.",
+          "textVi": "Cà phê đen thôi ạ."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Here you are. Enjoy!",
+          "textVi": "Mời anh/chị. Chúc ngon miệng!"
+        }
+      ],
+      "suggestedHints": [
+        "I'll have the chicken with rice, please.",
+        "Can I have an orange juice, please?",
+        "Thank you.",
+        "Yes, thank you. Could I also get a cup of coffee?",
+        "Just black, please."
+      ]
+    },
+    {
+      "id": "airport-scenario-7",
+      "order": 7,
+      "section": "☁️ Trên máy bay (On the Plane)",
+      "titleEn": "Asking for Help on the Plane",
+      "titleVi": "Xin hỗ trợ trên máy bay",
+      "situation": "Hành khách cần hỗ trợ trong chuyến bay.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Flight Attendant",
+          "titleEn": "Flight Attendant",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "✈️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Of course. Here you go. Would you also like a pillow?",
+      "initialMessageVi": "Tất nhiên. Đây ạ. Anh/chị có cần thêm gối không?",
+      "vocabulary": [
+        {
+          "id": "vocab-7-1",
+          "word": "blanket",
+          "partOfSpeech": "n",
+          "ipa": "/ˈblæŋkɪt/",
+          "meaningVi": "chăn, mền",
+          "synonyms": [
+            "throw (chăn đắp mỏng)",
+            "fleece (chăn nỉ giữ nhiệt)",
+            "quilt (chăn bông)",
+            "coverlet (tấm phủ giữ ấm)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "ask for an extra blanket: xin thêm một chiếc chăn",
+            "airline blanket: chăn phục vụ của hãng hàng không",
+            "warm blanket: chiếc chăn ấm áp",
+            "wrap up in a blanket: quấn chăn quanh người để ngủ"
+          ],
+          "exampleEn": "Could I have a blanket, please? It's cold.",
+          "exampleVi": "Cho tôi xin một chiếc chăn được không? Trong khoang hơi lạnh."
+        },
+        {
+          "id": "vocab-7-2",
+          "word": "pillow",
+          "partOfSpeech": "n",
+          "ipa": "/ˈpɪloʊ/",
+          "meaningVi": "gối",
+          "synonyms": [
+            "cushion (đệm tựa / gối đệm)",
+            "headrest (gối tựa đầu trên ghế máy bay)",
+            "travel pillow (gối cổ du lịch chữ U)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "ask for an extra pillow: xin thêm một chiếc gối",
+            "travel neck pillow: gối kê cổ hình chữ U",
+            "rest your head on the pillow: tựa đầu vào gối nghỉ ngơi"
+          ],
+          "exampleEn": "Can I get an extra pillow?",
+          "exampleVi": "Tôi có thể xin thêm một chiếc gối nữa được không?"
+        },
+        {
+          "id": "vocab-7-3",
+          "word": "headphones",
+          "partOfSpeech": "n",
+          "ipa": "/ˈhedfoʊnz/",
+          "meaningVi": "tai nghe",
+          "synonyms": [
+            "earphones (tai nghe nhét tai nhỏ gọn)",
+            "headset (bộ tai nghe trùm đầu kèm micro)",
+            "in-ear monitors (tai nghe in-ear)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "noise-cancelling headphones: tai nghe chống ồn chủ động cao cấp",
+            "airline-provided headphones: tai nghe do hãng hàng không phát",
+            "plug in headphones: cắm tai nghe vào giắc cắm trên ghế",
+            "headphone jack: lỗ cắm tai nghe trên thành ghế máy bay"
+          ],
+          "exampleEn": "The headphones are in the seat pocket in front of you.",
+          "exampleVi": "Tai nghe nằm trong túi ghế phía trước mặt bạn."
+        },
+        {
+          "id": "vocab-7-4",
+          "word": "seat pocket",
+          "partOfSpeech": "n",
+          "ipa": "/siːt ˈpɑːkɪt/",
+          "meaningVi": "túi ghế (phía trước)",
+          "synonyms": [
+            "seatback pocket (túi chứa đồ sau lưng ghế trước)",
+            "seat pouch (túi vải gắn sau ghế)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "safety briefing card in the seat pocket: thẻ hướng dẫn an toàn trong túi ghế",
+            "in-flight magazine in the seat pocket: tạp chí của hãng bay trong túi ghế",
+            "stow items in the seat pocket: nhét vật dụng cá nhân vào túi ghế",
+            "check the seat pocket before disembarking: kiểm tra túi ghế trước khi xuống máy bay tránh bỏ quên đồ"
+          ],
+          "exampleEn": "The safety card is in the seat pocket.",
+          "exampleVi": "Thẻ hướng dẫn an toàn bay nằm ngay trong túi ghế phía trước."
+        },
+        {
+          "id": "vocab-7-5",
+          "word": "emergency exit",
+          "partOfSpeech": "n",
+          "ipa": "/ɪˈmɜːrdʒənsi ˈeɡzɪt/",
+          "meaningVi": "lối thoát hiểm",
+          "synonyms": [
+            "fire exit (cửa thoát hiểm khi hỏa hoạn)",
+            "evacuation door (cửa sơ tán hành khách)",
+            "escape hatch (cửa thoát hiểm trên thân máy bay)"
+          ],
+          "antonyms": [
+            "main cabin door / entrance (cửa chính ra vào máy bay)"
+          ],
+          "collocations": [
+            "emergency exit row: hàng ghế ngay sát cửa thoát hiểm (chỗ để chân rộng)",
+            "locate the nearest emergency exit: xác định vị trí cửa thoát hiểm gần nhất",
+            "never block the emergency exit: không bao giờ để hành lý chắn lối thoát hiểm",
+            "emergency exit slide: máng trượt sơ tán khẩn cấp"
+          ],
+          "exampleEn": "The emergency exit is located over the wing.",
+          "exampleVi": "Lối thoát hiểm nằm ngay phía trên cánh máy bay."
+        },
+        {
+          "id": "vocab-7-6",
+          "word": "life vest",
+          "partOfSpeech": "n",
+          "ipa": "/laɪf vest/",
+          "meaningVi": "áo phao cứu sinh",
+          "synonyms": [
+            "life jacket (áo phao cứu sinh)",
+            "life preserver (phao cứu sinh cá nhân)",
+            "personal flotation device (PFD) (thiết bị nổi cứu sinh cá nhân)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "inflate the life vest: giật chốt làm phồng áo phao (khi đã ra khỏi cửa máy bay)",
+            "put on the life vest: mặc áo phao vào người",
+            "life vest located under your seat: áo phao được trang bị ngay dưới gầm ghế ngồi",
+            "whistle and emergency light on the vest: còi và đèn cứu nạn gắn trên áo phao"
+          ],
+          "exampleEn": "The life vest is under your seat.",
+          "exampleVi": "Áo phao cứu sinh được đặt ngay dưới gầm ghế của bạn."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Excuse me, could I get a blanket? It's quite cold in here.",
+          "textVi": "Xin lỗi, cho tôi xin một cái chăn được không? Ở đây khá lạnh."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Of course. Here you go. Would you also like a pillow?",
+          "textVi": "Tất nhiên. Đây ạ. Anh/chị có cần thêm gối không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Yes, please. That would be great.",
+          "textVi": "Vâng, có thì tốt quá."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Also, do you have any headphones? Mine stopped working.",
+          "textVi": "Ngoài ra, bạn có tai nghe không? Tai nghe của tôi bị hỏng rồi."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "Sure, here's a new pair. Is there anything else I can help you with?",
+          "textVi": "Có, đây là một đôi mới. Anh/chị cần gì nữa không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Actually, yes. How do I connect to the in-flight Wi-Fi?",
+          "textVi": "Thật ra có. Làm sao để kết nối Wi-Fi trên máy bay?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "You can find the instructions on the screen in front of you. Just select \"Wi-Fi\" and enter your seat number.",
+          "textVi": "Anh/chị xem hướng dẫn trên màn hình phía trước. Chỉ cần chọn \"Wi-Fi\" và nhập số ghế."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Got it. Thank you so much!",
+          "textVi": "Hiểu rồi. Cảm ơn rất nhiều!"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Flight Attendant",
+          "textEn": "You're welcome. Just press the call button if you need anything else.",
+          "textVi": "Không có gì. Nếu cần gì thêm, cứ bấm nút gọi nhé."
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, could I get a blanket? It's quite cold in here.",
+        "Yes, please. That would be great.",
+        "Also, do you have any headphones? Mine stopped working.",
+        "Actually, yes. How do I connect to the in-flight Wi-Fi?",
+        "Got it. Thank you so much!"
+      ]
+    },
+    {
+      "id": "airport-scenario-8",
+      "order": 8,
+      "section": "🛬 Ga đến (Arrival)",
+      "titleEn": "Immigration",
+      "titleVi": "Passport Control – Kiểm soát hộ chiếu nhập cảnh",
+      "situation": "Hành khách đến cửa kiểm soát nhập cảnh tại sân bay nước ngoài.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Officer",
+          "titleEn": "Officer",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "👮"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Passport, please.",
+      "initialMessageVi": "Hộ chiếu ạ.",
+      "vocabulary": [
+        {
+          "id": "vocab-8-1",
+          "word": "immigration",
+          "partOfSpeech": "n",
+          "ipa": "/ˌɪmɪˈɡreɪʃən/",
+          "meaningVi": "cửa kiểm soát xuất nhập cảnh",
+          "synonyms": [
+            "passport control (khu kiểm soát hộ chiếu xuất nhập cảnh)",
+            "border control (cơ quan kiểm soát biên giới)",
+            "immigration checkpoint (trạm kiểm soát nhập cảnh)"
+          ],
+          "antonyms": [
+            "emigration (thủ tục xuất cảnh rời khỏi quốc gia)"
+          ],
+          "collocations": [
+            "pass through immigration: làm thủ tục kiểm tra nhập cảnh",
+            "immigration officer: cán bộ quản lý xuất nhập cảnh",
+            "immigration clearance: thủ tục chấp thuận nhập cảnh",
+            "immigration form: mẫu đơn khai báo nhập cảnh"
+          ],
+          "exampleEn": "The immigration line was very long today.",
+          "exampleVi": "Hàng người chờ kiểm tra xuất nhập cảnh hôm nay rất dài."
+        },
+        {
+          "id": "vocab-8-2",
+          "word": "visa",
+          "partOfSpeech": "n",
+          "ipa": "/ˈviːzə/",
+          "meaningVi": "thị thực",
+          "synonyms": [
+            "entry permit (giấy phép nhập cảnh)",
+            "travel authorization (ủy quyền đi lại (vd: ESTA",
+            "ETA))"
+          ],
+          "antonyms": [
+            "visa exemption / visa-free (miễn thị thực)"
+          ],
+          "collocations": [
+            "tourist / business / transit visa: thị thực du lịch / công tác / quá cảnh",
+            "apply for a visa: nộp đơn xin cấp thị thực",
+            "grant / issue a visa: cấp thị thực",
+            "visa on arrival (VoA): thị thực cấp tại cửa khẩu",
+            "visa exemption / visa-free: miễn thị thực"
+          ],
+          "exampleEn": "Do you have a valid visa for this country?",
+          "exampleVi": "Bạn có thị thực còn hiệu lực đối với quốc gia này không?"
+        },
+        {
+          "id": "vocab-8-3",
+          "word": "direct flight",
+          "partOfSpeech": "n",
+          "ipa": "/dəˈrekt flaɪt/",
+          "meaningVi": "chuyến bay thẳng",
+          "synonyms": [
+            "non-stop flight (chuyến bay bay liền mạch không dừng tiếp nhiên liệu)",
+            "through flight (chuyến bay suốt tuyến (cùng số hiệu máy bay))"
+          ],
+          "antonyms": [
+            "connecting flight / layover flight (chuyến bay nối chuyến / quá cảnh)"
+          ],
+          "collocations": [
+            "book a direct flight: đặt vé bay chuyến bay thẳng",
+            "operate a direct flight: khai thác đường bay thẳng",
+            "prefer a direct flight: chuộng bay thẳng hơn bay quá cảnh"
+          ],
+          "exampleEn": "Is this a direct flight to London?",
+          "exampleVi": "Đây có phải là chuyến bay bay thẳng tới London không?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Passport, please.",
+          "textVi": "Hộ chiếu ạ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Here you are.",
+          "textVi": "Đây ạ."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "What is the purpose of your visit?",
+          "textVi": "Mục đích chuyến đi của anh/chị là gì?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "I'm here on vacation.",
+          "textVi": "Tôi đến du lịch."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "How long will you be staying?",
+          "textVi": "Anh/chị ở lại bao lâu?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "About ten days.",
+          "textVi": "Khoảng mười ngày."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Where will you be staying?",
+          "textVi": "Anh/chị ở đâu?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "At the Hilton Hotel in the city center.",
+          "textVi": "Khách sạn Hilton ở trung tâm thành phố."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Do you have a return ticket?",
+          "textVi": "Anh/chị có vé khứ hồi không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Yes, here it is. I'm flying back on September 30th.",
+          "textVi": "Có, đây ạ. Tôi bay về ngày 30 tháng 9."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Everything looks good. Welcome and enjoy your stay.",
+          "textVi": "Mọi thứ ổn. Chào mừng và chúc anh/chị có kỳ nghỉ vui vẻ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you very much.",
+          "textVi": "Cảm ơn rất nhiều."
+        }
+      ],
+      "suggestedHints": [
+        "Here you are.",
+        "I'm here on vacation.",
+        "About ten days.",
+        "At the Hilton Hotel in the city center.",
+        "Yes, here it is. I'm flying back on September 30th.",
+        "Thank you very much."
+      ]
+    },
+    {
+      "id": "airport-scenario-9",
+      "order": 9,
+      "section": "🛬 Ga đến (Arrival)",
+      "titleEn": "Customs Declaration",
+      "titleVi": "Khai báo hải quan",
+      "situation": "Hành khách đi qua cửa hải quan.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Officer",
+          "titleEn": "Officer",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "👮"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Do you have anything to declare?",
+      "initialMessageVi": "Anh/chị có gì cần khai báo không?",
+      "vocabulary": [
+        {
+          "id": "vocab-9-1",
+          "word": "customs",
+          "partOfSpeech": "n",
+          "ipa": "/ˈkʌstəmz/",
+          "meaningVi": "hải quan",
+          "synonyms": [
+            "customs and border protection (CBP) (cục hải quan và biên phòng)",
+            "border inspection (khu kiểm soát biên giới)",
+            "tariff bureau (cơ quan thuế quan)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "go through / clear customs: làm thủ tục thông quan / qua cửa hải quan",
+            "customs officer: cán bộ hải quan",
+            "customs declaration: khai báo hàng hóa hải quan",
+            "declare goods at customs: khai báo hàng thuộc diện chịu thuế",
+            "customs duty / duty-free: thuế hải quan / miễn thuế hải quan"
+          ],
+          "exampleEn": "You must go through customs when entering the country.",
+          "exampleVi": "Bạn phải đi qua cửa hải quan khi nhập cảnh vào quốc gia này."
+        },
+        {
+          "id": "vocab-9-2",
+          "word": "declaration form",
+          "partOfSpeech": "n",
+          "ipa": "/ˌdekləˈreɪʃən fɔːrm/",
+          "meaningVi": "tờ khai hải quan",
+          "synonyms": [
+            "customs form (tờ khai hải quan)",
+            "landing card (thẻ đến / tờ khai nhập cảnh (Anh-Anh))",
+            "arrival card (phiếu nhập cảnh)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "fill out / complete a declaration form: điền đầy đủ thông tin vào tờ khai",
+            "submit the declaration form: nộp tờ khai cho cán bộ",
+            "sign the declaration form: ký tên xác nhận vào tờ khai",
+            "declare currency on the form: khai báo số tiền mặt mang theo trên tờ khai"
+          ],
+          "exampleEn": "Please fill out the declaration form before landing.",
+          "exampleVi": "Vui lòng điền tờ khai hải quan trước khi máy bay hạ cánh."
+        },
+        {
+          "id": "vocab-9-3",
+          "word": "duty-free shop",
+          "partOfSpeech": "n",
+          "ipa": "/ˌdjuːti ˈfriː ʃɑːp/",
+          "meaningVi": "cửa hàng miễn thuế",
+          "synonyms": [
+            "tax-free shop (cửa hàng miễn thuế)",
+            "duty-free store (tiệm bán hàng miễn thuế)"
+          ],
+          "antonyms": [
+            "duty-paid shop / regular retail store (cửa hàng bán lẻ chịu thuế thông thường)"
+          ],
+          "collocations": [
+            "shop at the duty-free shop: mua sắm tại cửa hàng miễn thuế",
+            "duty-free allowance: hạn mức hàng hóa miễn thuế được phép mang về",
+            "duty-free goods / items: mặt hàng miễn thuế (nước hoa, rượu, thuốc lá)",
+            "airport duty-free zone: khu mua sắm miễn thuế sân bay"
+          ],
+          "exampleEn": "I bought perfume at the duty-free shop.",
+          "exampleVi": "Tôi đã mua một chai nước hoa tại cửa hàng miễn thuế."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Do you have anything to declare?",
+          "textVi": "Anh/chị có gì cần khai báo không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "I'm not sure. I have some souvenirs and a bottle of wine. Is that okay?",
+          "textVi": "Tôi không chắc. Tôi có vài món quà lưu niệm và một chai rượu vang. Có được không ạ?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "How much wine?",
+          "textVi": "Bao nhiêu rượu?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Just one bottle.",
+          "textVi": "Chỉ một chai."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "That's fine. One bottle is within the allowance. Do you have any food items — fruits, vegetables, or meat?",
+          "textVi": "Không sao. Một chai nằm trong giới hạn cho phép. Anh/chị có mang theo thực phẩm nào không — trái cây, rau, hay thịt?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "No, I don't.",
+          "textVi": "Không, tôi không có."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Any large amount of cash? Over $10,000?",
+          "textVi": "Có mang theo số tiền mặt lớn không? Trên $10.000?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "No, not at all.",
+          "textVi": "Không, hoàn toàn không."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Officer",
+          "textEn": "Alright, you're good to go. Please proceed to the exit.",
+          "textVi": "Được rồi, anh/chị có thể đi. Xin đi ra lối ra."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you.",
+          "textVi": "Cảm ơn."
+        }
+      ],
+      "suggestedHints": [
+        "I'm not sure. I have some souvenirs and a bottle of wine. Is that okay?",
+        "Just one bottle.",
+        "No, I don't.",
+        "No, not at all.",
+        "Thank you."
+      ]
+    },
+    {
+      "id": "airport-scenario-10",
+      "order": 10,
+      "section": "🛬 Ga đến (Arrival)",
+      "titleEn": "Baggage Claim & Information Desk",
+      "titleVi": "Nhận hành lý & Quầy thông tin",
+      "situation": "Hành khách đến ga đến, hỏi thông tin về nhận hành lý, đổi tiền, SIM card, và di chuyển.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Staff",
+          "titleEn": "Staff",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Welcome to Bangkok. How can I help you?",
+      "initialMessageVi": "Chào mừng đến Bangkok. Tôi có thể giúp gì cho anh/chị?",
+      "vocabulary": [
+        {
+          "id": "vocab-10-1",
+          "word": "baggage claim",
+          "partOfSpeech": "n",
+          "ipa": "/ˈbæɡɪdʒ kleɪm/",
+          "meaningVi": "khu vực nhận hành lý",
+          "synonyms": [
+            "baggage reclaim (khu nhận lại hành lý (chuẩn Anh-Anh))",
+            "luggage reclaim (nơi lấy lại hành lý)",
+            "baggage collection area (khu vực tập kết trả hành lý)"
+          ],
+          "antonyms": [
+            "baggage drop-off / check-in counter (quầy ký gửi hành lý ga đi)"
+          ],
+          "collocations": [
+            "baggage claim area / hall: khu vực / sảnh trả hành lý",
+            "baggage claim tag / check: phiếu / cuống vé đối chiếu nhận hành lý",
+            "proceed to baggage claim: di chuyển đến khu nhận hành lý",
+            "baggage claim belt: băng chuyền tại khu trả hành lý"
+          ],
+          "exampleEn": "The baggage claim area is on the first floor.",
+          "exampleVi": "Khu vực nhận hành lý nằm ở tầng một."
+        },
+        {
+          "id": "vocab-10-2",
+          "word": "exchange booth",
+          "partOfSpeech": "n",
+          "ipa": "/ɪksˈtʃeɪndʒ buːθ/",
+          "meaningVi": "quầy đổi tiền",
+          "synonyms": [
+            "currency exchange counter (quầy đổi tiền tệ)",
+            "money changer (quầy đổi ngoại tệ)",
+            "bureau de change (quầy đổi tiền (thuật ngữ mượn tiếng Pháp",
+            "phổ biến tại châu Âu))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "currency exchange booth: quầy đổi ngoại tệ sân bay",
+            "exchange rate at the booth: tỷ giá quy đổi tại quầy",
+            "exchange foreign currency: đổi tiền ngoại tệ sang nội tệ",
+            "foreign exchange (forex) booth: quầy giao dịch ngoại hối"
+          ],
+          "exampleEn": "There is an exchange booth near the exit.",
+          "exampleVi": "Có một quầy đổi tiền ở ngay gần lối ra."
+        },
+        {
+          "id": "vocab-10-3",
+          "word": "taxi",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtæksi/",
+          "meaningVi": "xe taxi",
+          "synonyms": [
+            "cab / taxicab (xe taxi (chuẩn tiếng Anh-Mỹ))",
+            "ride-hailing car (xe công nghệ đặt qua app (Grab",
+            "Uber",
+            "Gojek))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "take / catch / hail a taxi: bắt / gọi một chiếc taxi",
+            "taxi stand / taxi rank: bến đỗ đón taxi tại sân bay",
+            "taxi meter: đồng hồ tính cước taxi",
+            "taxi fare: giá cước taxi",
+            "licensed airport taxi: taxi sân bay chính hãng, được cấp phép"
+          ],
+          "exampleEn": "Let's take a taxi to the hotel.",
+          "exampleVi": "Chúng ta hãy bắt một chiếc taxi để về khách sạn nhé."
+        },
+        {
+          "id": "vocab-10-4",
+          "word": "subway",
+          "partOfSpeech": "n",
+          "ipa": "/ˈsʌbweɪ/",
+          "meaningVi": "tàu điện ngầm",
+          "synonyms": [
+            "underground (hệ thống tàu điện ngầm (chuẩn Anh-Anh))",
+            "tube (tàu điện ngầm (tiếng lóng quen thuộc tại London))",
+            "metro (tàu điện ngầm (phổ biến tại châu Âu và thế giới))",
+            "MRT / BTS (hệ thống đường sắt đô thị (tại Singapore",
+            "Bangkok))"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "take / ride the subway: đi lại bằng tàu điện ngầm",
+            "subway station: nhà ga tàu điện ngầm",
+            "subway line / route: tuyến đường tàu điện ngầm",
+            "subway ticket / smart card: vé tàu / thẻ từ đi tàu điện ngầm",
+            "airport express subway link: tuyến tàu điện ngầm tốc hành kết nối sân bay"
+          ],
+          "exampleEn": "The subway is cheaper than a taxi.",
+          "exampleVi": "Đi tàu điện ngầm thì tiết kiệm chi phí hơn nhiều so với đi taxi."
+        },
+        {
+          "id": "vocab-10-5",
+          "word": "shuttle bus",
+          "partOfSpeech": "n",
+          "ipa": "/ˈʃʌtl bʌs/",
+          "meaningVi": "xe buýt đưa đón",
+          "synonyms": [
+            "airport shuttle (xe buýt trung chuyển sân bay)",
+            "transfer bus (xe buýt đưa đón chặng ngắn)",
+            "feeder bus (xe buýt trung chuyển kết nối ga tàu/sân bay)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "free / complimentary shuttle bus: xe buýt đưa đón miễn phí",
+            "hotel shuttle bus: xe buýt đón tiễn khách của khách sạn",
+            "airport terminal shuttle bus: xe buýt di chuyển giữa các nhà ga sân bay",
+            "catch / board the shuttle bus: đón và lên xe shuttle bus",
+            "shuttle bus schedule / timetable: lịch trình chạy của xe shuttle bus"
+          ],
+          "exampleEn": "There is a free shuttle bus to the city center.",
+          "exampleVi": "Có một tuyến xe buýt đưa đón miễn phí chạy thẳng vào trung tâm thành phố."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Hello.",
+          "textVi": "Xin chào."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Welcome to Bangkok. How can I help you?",
+          "textVi": "Chào mừng đến Bangkok. Tôi có thể giúp gì cho anh/chị?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "I have a few questions. First, where can I exchange some cash?",
+          "textVi": "Tôi có vài câu hỏi. Đầu tiên, tôi có thể đổi tiền ở đâu?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "There's a currency exchange booth right by the baggage claim area.",
+          "textVi": "Có quầy đổi tiền ngay khu nhận hành lý."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Great. Next, where can I get a local SIM card?",
+          "textVi": "Tốt. Tiếp theo, tôi mua SIM điện thoại ở đâu?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "There are several booths over there where you can get a local SIM card. It's very convenient and they accept credit cards too.",
+          "textVi": "Có mấy quầy ở phía kia bán SIM điện thoại. Rất tiện lợi và họ cũng nhận thẻ tín dụng."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Awesome. Last question — I'm staying at this hotel. What's the best way for me to get there?",
+          "textVi": "Tuyệt. Câu hỏi cuối — tôi ở khách sạn này. Cách tốt nhất để đến đó là gì?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "The fastest way is to grab a taxi. But there's a lot of traffic right now. You could also take the airport shuttle or the subway — it's a bit crowded but definitely cheaper.",
+          "textVi": "Nhanh nhất là bắt taxi. Nhưng bây giờ đang kẹt xe. Anh/chị cũng có thể đi xe buýt sân bay hoặc tàu điện ngầm — hơi đông nhưng chắc chắn rẻ hơn."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Which way is the subway?",
+          "textVi": "Tàu điện ngầm đi lối nào?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Go straight and follow the signs. It's about a 5-minute walk.",
+          "textVi": "Đi thẳng rồi theo biển chỉ dẫn. Đi bộ khoảng 5 phút."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you so much, I really appreciate it!",
+          "textVi": "Cảm ơn rất nhiều, tôi rất trân trọng!"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "You're welcome. Enjoy your stay!",
+          "textVi": "Không có gì. Chúc anh/chị ở vui!"
+        }
+      ],
+      "suggestedHints": [
+        "Hello.",
+        "I have a few questions. First, where can I exchange some cash?",
+        "Great. Next, where can I get a local SIM card?",
+        "Awesome. Last question — I'm staying at this hotel. What's the best way for me to get there?",
+        "Which way is the subway?",
+        "Thank you so much, I really appreciate it!"
+      ]
+    },
+    {
+      "id": "airport-scenario-11",
+      "order": 11,
+      "section": "🛬 Ga đến (Arrival)",
+      "titleEn": "Lost Luggage",
+      "titleVi": "Mất hành lý",
+      "situation": "Hành khách không tìm thấy hành lý trên băng chuyền và đến quầy báo mất.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Staff",
+          "titleEn": "Staff",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "I'm sorry to hear that. Can I see your boarding pass and baggage claim tag?",
+      "initialMessageVi": "Tôi rất tiếc. Cho tôi xem thẻ lên máy bay và phiếu nhận hành lý được không?",
+      "vocabulary": [
+        {
+          "id": "vocab-11-1",
+          "word": "conveyor belt",
+          "partOfSpeech": "n",
+          "ipa": "/kənˈveɪər belt/",
+          "meaningVi": "băng chuyền",
+          "synonyms": [
+            "baggage carousel (băng chuyền tròn trả hành lý)",
+            "luggage belt (băng tải hành lý)",
+            "carousel (băng chuyền hành lý quay vòng)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "luggage conveyor belt: băng tải chuyển hành lý",
+            "wait at the conveyor belt: chờ đợi cạnh băng chuyền",
+            "come off the conveyor belt: được đẩy ra từ băng chuyền",
+            "grab a bag off the conveyor belt: nhấc vali ra khỏi băng chuyền"
+          ],
+          "exampleEn": "Wait for your luggage at the conveyor belt.",
+          "exampleVi": "Hãy chờ hành lý của bạn tại băng chuyền."
+        },
+        {
+          "id": "vocab-11-2",
+          "word": "rental car",
+          "partOfSpeech": "n",
+          "ipa": "/ˈrentl kɑːr/",
+          "meaningVi": "xe thuê",
+          "synonyms": [
+            "car rental (dịch vụ thuê ô tô)",
+            "hire car (xe thuê (chuẩn Anh-Anh))",
+            "rented vehicle (phương tiện đi thuê)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "reserve / book a rental car: đặt trước một chiếc xe tự lái",
+            "rental car counter / agency: quầy đại lý cho thuê xe tại sảnh sân bay",
+            "pick up / drop off a rental car: nhận xe / trả xe thuê",
+            "rental car insurance: bảo hiểm xe thuê",
+            "rental car agreement / contract: hợp đồng thuê xe"
+          ],
+          "exampleEn": "I reserved a rental car at the airport.",
+          "exampleVi": "Tôi đã đặt trước một chiếc xe ô tô tự lái tại sân bay."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Excuse me, I've been waiting at the conveyor belt for 30 minutes but my luggage hasn't appeared. I think it might be lost.",
+          "textVi": "Xin lỗi, tôi đã chờ ở băng chuyền 30 phút rồi mà hành lý vẫn chưa thấy. Tôi nghĩ có thể bị mất."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "I'm sorry to hear that. Can I see your boarding pass and baggage claim tag?",
+          "textVi": "Tôi rất tiếc. Cho tôi xem thẻ lên máy bay và phiếu nhận hành lý được không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Here you go. I had one large black suitcase.",
+          "textVi": "Đây ạ. Tôi có một vali lớn màu đen."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Let me check the system. It looks like your luggage was left behind in Singapore and will arrive on the next flight this evening.",
+          "textVi": "Để tôi kiểm tra hệ thống. Có vẻ hành lý của anh/chị bị để lại ở Singapore và sẽ đến trên chuyến bay tiếp theo tối nay."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Oh no. What should I do now?",
+          "textVi": "Ôi không. Giờ tôi phải làm sao?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "We can deliver it to your hotel once it arrives. Could you fill out this lost baggage form with your contact details and hotel address?",
+          "textVi": "Chúng tôi có thể giao đến khách sạn khi hành lý đến. Anh/chị điền mẫu đơn khai báo mất hành lý này với thông tin liên lạc và địa chỉ khách sạn được không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Sure. Will I get any compensation?",
+          "textVi": "Được. Tôi có được bồi thường gì không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Yes, we can offer you a basic toiletry kit and up to $50 for emergency purchases. Just keep your receipts.",
+          "textVi": "Có, chúng tôi cung cấp bộ đồ vệ sinh cá nhân cơ bản và tối đa $50 cho các mua sắm khẩn cấp. Chỉ cần giữ lại hóa đơn."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Okay, thank you. When can I expect my luggage?",
+          "textVi": "Vâng, cảm ơn. Khi nào tôi nhận được hành lý?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "It should be delivered to your hotel by tonight. We'll call you to confirm.",
+          "textVi": "Dự kiến sẽ giao đến khách sạn tối nay. Chúng tôi sẽ gọi để xác nhận."
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, I've been waiting at the conveyor belt for 30 minutes but my luggage hasn't appeared. I think it might be lost.",
+        "Here you go. I had one large black suitcase.",
+        "Oh no. What should I do now?",
+        "Sure. Will I get any compensation?",
+        "Okay, thank you. When can I expect my luggage?"
+      ]
+    },
+    {
+      "id": "airport-scenario-12",
+      "order": 12,
+      "section": "🛬 Ga đến (Arrival)",
+      "titleEn": "Asking for Directions in the Airport",
+      "titleVi": "Hỏi đường trong sân bay",
+      "situation": "Hành khách cần tìm các tiện ích trong sân bay.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Staff",
+          "titleEn": "Staff",
+          "titleVi": "Nhân viên / Cán bộ",
+          "avatar": "🛎️"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Yes, go straight ahead and turn left. It's right next to the elevator.",
+      "initialMessageVi": "Có, đi thẳng rồi rẽ trái. Ngay bên cạnh thang máy.",
+      "vocabulary": [
+        {
+          "id": "vocab-12-1",
+          "word": "runway",
+          "partOfSpeech": "n",
+          "ipa": "/ˈrʌnweɪ/",
+          "meaningVi": "đường băng",
+          "synonyms": [
+            "airstrip (đường băng dã chiến)",
+            "landing strip (dải đất hạ cánh)",
+            "tarmac (khu vực mặt sân phủ nhựa đường / bãi đỗ lăn)"
+          ],
+          "antonyms": [
+            "taxiway / apron (đường lăn / bãi đỗ máy bay)"
+          ],
+          "collocations": [
+            "take off from the runway: cất cánh từ đường băng",
+            "land on the runway: tiếp đất hạ cánh xuống đường băng",
+            "active runway: đường băng đang có máy bay hoạt động",
+            "runway lights: hệ thống đèn chiếu sáng đường băng",
+            "taxi to the runway: lăn bánh máy bay ra đầu đường băng"
+          ],
+          "exampleEn": "The plane is waiting on the runway.",
+          "exampleVi": "Chiếc máy bay hiện đang đứng chờ trên đường băng."
+        },
+        {
+          "id": "vocab-12-2",
+          "word": "landing",
+          "partOfSpeech": "n",
+          "ipa": "/ˈlændɪŋ/",
+          "meaningVi": "sự hạ cánh",
+          "synonyms": [
+            "touchdown (cú chạm bánh tiếp đất)",
+            "arrival (sự hạ cánh đến)",
+            "descent (quá trình hạ độ cao tiếp cận)"
+          ],
+          "antonyms": [
+            "takeoff / lift-off (sự cất cánh)"
+          ],
+          "collocations": [
+            "make a landing: thực hiện hạ cánh",
+            "smooth / rough landing: cú tiếp đất êm dịu / dằn xóc",
+            "emergency landing: hạ cánh khẩn cấp",
+            "landing gear: bộ phận càng đáp bánh xe",
+            "prepare the cabin for landing: chuẩn bị khoang hành khách hạ cánh"
+          ],
+          "exampleEn": "We had a very smooth landing.",
+          "exampleVi": "Máy bay của chúng tôi đã có một cú hạ cánh vô cùng êm ái."
+        },
+        {
+          "id": "vocab-12-3",
+          "word": "turbulence",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtɜːrbjələns/",
+          "meaningVi": "nhiễu động không khí",
+          "synonyms": [
+            "rough air (luồng không khí động dữ dội)",
+            "air pocket (túi khí làm máy bay rơi đột ngột)",
+            "atmospheric disturbance (nhiễu động khí quyển)",
+            "bumpiness (sự xóc nảy",
+            "chòng chành)"
+          ],
+          "antonyms": [
+            "smooth air / calm air (luồng không khí ổn định / êm dịu)"
+          ],
+          "collocations": [
+            "experience / hit / encounter turbulence: gặp phải vùng nhiễu động không khí",
+            "severe / moderate / light turbulence: nhiễu động dữ dội / vừa phải / nhẹ",
+            "clear-air turbulence (CAT): nhiễu động trời trong không nhìn thấy được trên radar",
+            "turbulence warning: cảnh báo máy bay sắp rung lắc"
+          ],
+          "exampleEn": "We are experiencing some turbulence.",
+          "exampleVi": "Chúng ta đang bay qua một vùng không khí bị nhiễu động nhẹ."
+        },
+        {
+          "id": "vocab-12-4",
+          "word": "pilot",
+          "partOfSpeech": "n",
+          "ipa": "/ˈpaɪlət/",
+          "meaningVi": "phi công",
+          "synonyms": [
+            "aviator (nhà hàng không / phi công)",
+            "flyer (người lái máy bay)",
+            "airman (phi công / quân nhân không quân)"
+          ],
+          "antonyms": [
+            "passenger (hành khách)"
+          ],
+          "collocations": [
+            "commercial pilot: phi công hàng không dân dụng",
+            "airline pilot: phi công hãng hàng không",
+            "pilot in command (PIC): phi công chỉ huy chuyến bay",
+            "automatic pilot / autopilot: chế độ lái tự động",
+            "pilot's announcement: thông báo của phi công qua loa"
+          ],
+          "exampleEn": "The pilot announced we would land in 20 minutes.",
+          "exampleVi": "Phi công thông báo chúng tôi sẽ hạ cánh trong 20 phút nữa."
+        },
+        {
+          "id": "vocab-12-5",
+          "word": "captain",
+          "partOfSpeech": "n",
+          "ipa": "/ˈkæptɪn/",
+          "meaningVi": "cơ trưởng",
+          "synonyms": [
+            "aircraft commander (chỉ huy trưởng tàu bay)",
+            "pilot-in-command (PIC) (cơ trưởng / phi công chỉ huy)",
+            "skipper (thuyền trưởng / cơ trưởng (tiếng lóng thân mật trong ngành))"
+          ],
+          "antonyms": [
+            "co-pilot / first officer (cơ phó / người chỉ huy thứ hai)"
+          ],
+          "collocations": [
+            "airline captain: cơ trưởng hãng hàng không",
+            "this is your captain speaking: đây là cơ trưởng đang nói (lời mở đầu phát thanh)",
+            "under the captain's command: dưới quyền điều hành của cơ trưởng",
+            "senior captain: cơ trưởng thâm niên / kỳ cựu"
+          ],
+          "exampleEn": "The captain welcomed all passengers on board.",
+          "exampleVi": "Cơ trưởng đã gửi lời chào mừng toàn thể hành khách lên máy bay."
+        },
+        {
+          "id": "vocab-12-6",
+          "word": "co-pilot",
+          "partOfSpeech": "n",
+          "ipa": "/ˌkoʊˈpaɪlət/",
+          "meaningVi": "cơ phó",
+          "synonyms": [
+            "first officer (FO) (cơ phó (thuật ngữ chính thức quốc tế))",
+            "second-in-command (SIC) (người chỉ huy thứ hai trong buồng lái)"
+          ],
+          "antonyms": [
+            "captain / pilot-in-command (cơ trưởng / phi công chỉ huy)"
+          ],
+          "collocations": [
+            "act as co-pilot: đảm nhận vị trí cơ phó",
+            "first officer / co-pilot duties: nhiệm vụ của cơ phó",
+            "assist the captain: hỗ trợ cơ trưởng vận hành máy bay",
+            "co-pilot controls: bộ cần điều khiển của cơ phó"
+          ],
+          "exampleEn": "The co-pilot assisted the captain during landing.",
+          "exampleVi": "Cơ phó đã hỗ trợ cơ trưởng trong suốt quá trình hạ cánh."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Excuse me, is there a restroom nearby?",
+          "textVi": "Xin lỗi, gần đây có nhà vệ sinh không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Yes, go straight ahead and turn left. It's right next to the elevator.",
+          "textVi": "Có, đi thẳng rồi rẽ trái. Ngay bên cạnh thang máy."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Thank you. And do you know where I can charge my phone? My battery is almost dead.",
+          "textVi": "Cảm ơn. Và bạn có biết chỗ nào sạc điện thoại không? Pin tôi sắp hết rồi."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "There's a charging station near gate 20. There are also some power outlets by the seating area over there.",
+          "textVi": "Có trạm sạc gần cổng 20. Ngoài ra còn có ổ cắm điện ở khu vực ghế ngồi phía kia."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "One more thing — is there a place to get something to eat?",
+          "textVi": "Thêm một điều nữa — có chỗ nào mua đồ ăn không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "Sure, there's a food court on the second floor. You can also find a coffee shop right around the corner.",
+          "textVi": "Có, có khu ẩm thực ở tầng hai. Ngoài ra cũng có quán cà phê ngay quanh góc."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Perfect. Thank you so much for your help!",
+          "textVi": "Hoàn hảo. Cảm ơn bạn rất nhiều!"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Staff",
+          "textEn": "No problem. Have a great day!",
+          "textVi": "Không có gì. Chúc bạn một ngày tốt lành!"
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, is there a restroom nearby?",
+        "Thank you. And do you know where I can charge my phone? My battery is almost dead.",
+        "One more thing — is there a place to get something to eat?",
+        "Perfect. Thank you so much for your help!"
+      ]
+    }
+  ]
+}
