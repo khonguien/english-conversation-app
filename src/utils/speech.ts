@@ -1,7 +1,18 @@
 "use client";
 
-// Active HTML5 Audio instance for Edge Neural TTS
-let currentAudio: HTMLAudioElement | null = null;
+// Persistent shared HTML5 Audio instance pre-blessed by user interaction to bypass Safari/Chrome autoplay lock
+let sharedAudio: HTMLAudioElement | null = null;
+let isAudioUnlocked = false;
+
+function getSharedAudio(): HTMLAudioElement | null {
+  if (typeof window === "undefined") return null;
+  if (!sharedAudio) {
+    sharedAudio = new Audio();
+    sharedAudio.setAttribute("playsinline", "true");
+    sharedAudio.preload = "auto";
+  }
+  return sharedAudio;
+}
 
 // Keep active Web Speech utterance in module scope as fallback to prevent Chromium GC bug
 let activeUtterance: SpeechSynthesisUtterance | null = null;
@@ -74,7 +85,8 @@ export function speakText(
   text: string,
   rate: number = 1.0,
   onEnd?: () => void,
-  onError?: (error: unknown) => void
+  onError?: (error: unknown) => void,
+  voice: string = "en-US-AvaNeural"
 ): () => void {
   if (typeof window === "undefined") {
     onEnd?.();
@@ -84,64 +96,65 @@ export function speakText(
   // Stop any currently playing audio
   stopSpeaking();
 
+  const audio = getSharedAudio();
+  if (!audio) {
+    return speakWebSpeech(text, rate, onEnd, onError);
+  }
+
   try {
-    const audioUrl = `/api/tts?text=${encodeURIComponent(text.trim())}&rate=${rate}`;
-    const audio = new Audio(audioUrl);
-    currentAudio = audio;
+    const audioUrl = `/api/tts?text=${encodeURIComponent(text.trim())}&rate=${rate}&voice=${encodeURIComponent(voice)}`;
 
     let hasEnded = false;
 
-    audio.onended = () => {
-      if (currentAudio === audio) {
-        currentAudio = null;
-      }
+    const handleEnded = () => {
+      cleanup();
       if (!hasEnded) {
         hasEnded = true;
         onEnd?.();
       }
     };
 
-    audio.onerror = () => {
-      console.warn("Edge TTS stream failed, falling back to Web Speech API.");
-      if (currentAudio === audio) {
-        currentAudio = null;
-      }
+    const handleError = (e: any) => {
+      cleanup();
+      console.warn("Edge TTS stream failed, falling back to Web Speech API:", e);
       speakWebSpeech(text, rate, onEnd, onError);
     };
+
+    const cleanup = () => {
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("error", handleError);
+    };
+
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("error", handleError);
+
+    audio.src = audioUrl;
+    audio.load();
 
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
-        // If autoplay policy blocked or stream failed, fallback gracefully
-        console.warn("HTML5 audio play blocked/failed, trying Web Speech fallback:", err);
-        if (currentAudio === audio) {
-          currentAudio = null;
-        }
+        console.warn("Audio play prevented, attempting Web Speech fallback:", err);
+        cleanup();
         speakWebSpeech(text, rate, onEnd, onError);
       });
     }
 
-    // Return cancel function
     return () => {
-      if (currentAudio === audio) {
-        audio.pause();
-        audio.currentTime = 0;
-        audio.src = "";
-        currentAudio = null;
-      }
+      cleanup();
+      audio.pause();
+      audio.currentTime = 0;
     };
   } catch (err) {
-    console.warn("Could not initialize HTML5 audio, falling back to Web Speech:", err);
+    console.warn("Could not play neural audio, falling back to Web Speech:", err);
     return speakWebSpeech(text, rate, onEnd, onError);
   }
 }
 
 export function stopSpeaking() {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    currentAudio.src = "";
-    currentAudio = null;
+  if (sharedAudio) {
+    sharedAudio.pause();
+    sharedAudio.currentTime = 0;
   }
   activeUtterance = null;
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -150,7 +163,7 @@ export function stopSpeaking() {
 }
 
 export function isSpeaking(): boolean {
-  if (currentAudio && !currentAudio.paused && !currentAudio.ended) {
+  if (sharedAudio && !sharedAudio.paused && !sharedAudio.ended) {
     return true;
   }
   if (typeof window !== "undefined" && window.speechSynthesis && window.speechSynthesis.speaking) {
@@ -159,21 +172,27 @@ export function isSpeaking(): boolean {
   return false;
 }
 
-// iOS Safari audio unlock for both Web Speech and HTML5 Audio
+// iOS Safari & Chrome audio unlock: pre-blesses the sharedAudio element so async play() succeeds
 export function unlockAudio() {
-  if (typeof window !== "undefined") {
-    // 1. Unlock Web Speech
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance("");
-      utterance.volume = 0;
-      window.speechSynthesis.speak(utterance);
-    }
-    // 2. Unlock HTML5 Audio
-    try {
-      const silentAudio = new Audio(
-        "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA"
-      );
-      silentAudio.play().catch(() => {});
-    } catch (e) {}
+  if (typeof window === "undefined") return;
+
+  const audio = getSharedAudio();
+  if (audio && !isAudioUnlocked) {
+    // Play a tiny 1-byte silent WAV to unlock audio playback for the session
+    audio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+    audio
+      .play()
+      .then(() => {
+        audio.pause();
+        isAudioUnlocked = true;
+      })
+      .catch(() => {});
+  }
+
+  // Backup: unlock Web Speech synthesis
+  if ("speechSynthesis" in window) {
+    const utterance = new SpeechSynthesisUtterance("");
+    utterance.volume = 0;
+    window.speechSynthesis.speak(utterance);
   }
 }
