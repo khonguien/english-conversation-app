@@ -56,30 +56,22 @@ export async function POST(req: NextRequest) {
       ? `THIS IS AN OPEN REAL-WORLD PRACTICE (FREE TALK) SESSION.
 There is NO fixed script. The student can ask or talk about anything!
 You have complete freedom to roleplay in character, answer any questions, and converse naturally. Keep replies punchy (1-2 sentences).`
-      : nextScriptedTurn
-      ? `
+      : `
 OFFICIAL LESSON SCRIPT FOR THIS SCENARIO:
 ${referenceScript}
 
-EXPECTED NEXT SCRIPTED LINE (Turn ${nextTurnIndex}):
-- English: "${nextScriptedTurn.textEn}"
-- Vietnamese: "${nextScriptedTurn.textVi}"
-(Expected learner response for previous Turn ${nextTurnIndex - 1}: "${
-          previousScriptedTurn ? previousScriptedTurn.textEn : ""
-        }")
-
-CRITICAL SCRIPT PRIORITIZATION RULE:
-1. Examine the learner's latest message carefully.
-2. If the learner's response reasonably answers the question, follows the lesson dialogue flow, or provides the expected information (even if they used different words, synonyms, shorter/longer phrasing, or had minor grammar mistakes):
-   -> YOU MUST RETURN THE EXACT EXPECTED SCRIPTED LINE:
-      {
-        "textEn": "${nextScriptedTurn.textEn.replace(/"/g, '\\"')}",
-        "textVi": "${nextScriptedTurn.textVi.replace(/"/g, '\\"')}"
-      }
-   DO NOT invent a new or paraphrased line when the learner followed the expected flow!
-3. ONLY IF the learner's message is fundamentally different, off-script, unexpected, asks a completely different question (e.g. asking about lost items, special rules, pet policies, directions, complaints, or expressing confusion):
-   -> THEN AND ONLY THEN: Generate a custom, natural in-character response (1-2 sentences).`
-      : `The student has completed all scripted dialogue turns for this lesson. Now continue the conversation freely and naturally in character. If the interaction has reached a natural conclusion, politely wrap up.`;
+INTELLIGENT SCRIPT MATCHING RULES:
+1. Examine the learner's latest message carefully to understand what they are ACTUALLY asking or saying.
+2. Search the OFFICIAL LESSON SCRIPT to find the exact topic/intent:
+   - If the learner's message corresponds to ANY step, question, or request in the script (even if they skipped an intermediate turn, asked out of order, or used different phrasing/slight grammar errors):
+     -> YOU MUST respond with the matching AI reply for THAT SPECIFIC question from the script!
+     * Crucial Example: If the learner asks "Where is the security check?", locate the security check step in the script and reply with "Right behind you to the right." (DO NOT give an irrelevant answer like "it will go straight through to Bangkok" just because it was an earlier unasked turn!).
+     * Example: If the learner asks about luggage layover / pickup, answer with the luggage layover line.
+     * Example: If the learner says their destination/flight, answer with the passport request.
+   - If the learner's message simply continues the natural sequential step:
+     -> Reply with the corresponding scripted line.
+3. ONLY IF the learner's message is fundamentally off-script and NOT found anywhere in the lesson script (e.g. asking about lost pets, buying gifts, emergency, special medical needs, or expressing confusion):
+   -> THEN AND ONLY THEN: Generate a custom, natural in-character response (1-2 sentences).`;
 
     // Build the system prompt
     const systemPrompt = `You are a native English speaker roleplaying as "${
