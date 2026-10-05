@@ -1,10 +1,13 @@
 "use client";
 
-// Keep active utterance in module scope to prevent Chromium garbage collection bug
+// Active HTML5 Audio instance for Edge Neural TTS
+let currentAudio: HTMLAudioElement | null = null;
+
+// Keep active Web Speech utterance in module scope as fallback to prevent Chromium GC bug
 let activeUtterance: SpeechSynthesisUtterance | null = null;
 
-// Helper for Text-to-Speech using Web Speech API
-export function speakText(
+// Helper to fallback to browser native Web Speech API if Edge TTS is unavailable
+function speakWebSpeech(
   text: string,
   rate: number = 1.0,
   onEnd?: () => void,
@@ -16,16 +19,14 @@ export function speakText(
     return () => {};
   }
 
-  // Cancel any ongoing speech
   window.speechSynthesis.cancel();
   activeUtterance = null;
 
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = "en-US";
-  utterance.rate = rate; // 0.8 (slow), 1.0 (normal), 1.2 (fast)
+  utterance.rate = rate;
   utterance.pitch = 1.0;
 
-  // Pick a natural English voice if available
   const voices = window.speechSynthesis.getVoices();
   const englishVoice =
     voices.find(
@@ -51,17 +52,15 @@ export function speakText(
 
   utterance.onerror = (e) => {
     activeUtterance = null;
-    // If canceled or interrupted, do NOT trigger onEnd or onError
     if (e.error === "canceled" || e.error === "interrupted") {
       return;
     }
-    console.warn("Speech synthesis error:", e);
+    console.warn("Web speech synthesis error:", e);
     onError?.(e);
   };
 
   window.speechSynthesis.speak(utterance);
 
-  // Return cancel function
   return () => {
     activeUtterance = null;
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -70,7 +69,80 @@ export function speakText(
   };
 }
 
+// Main Text-to-Speech function: Prioritizes Microsoft Edge Neural TTS (Natural human voice)
+export function speakText(
+  text: string,
+  rate: number = 1.0,
+  onEnd?: () => void,
+  onError?: (error: unknown) => void
+): () => void {
+  if (typeof window === "undefined") {
+    onEnd?.();
+    return () => {};
+  }
+
+  // Stop any currently playing audio
+  stopSpeaking();
+
+  try {
+    const audioUrl = `/api/tts?text=${encodeURIComponent(text.trim())}&rate=${rate}`;
+    const audio = new Audio(audioUrl);
+    currentAudio = audio;
+
+    let hasEnded = false;
+
+    audio.onended = () => {
+      if (currentAudio === audio) {
+        currentAudio = null;
+      }
+      if (!hasEnded) {
+        hasEnded = true;
+        onEnd?.();
+      }
+    };
+
+    audio.onerror = () => {
+      console.warn("Edge TTS stream failed, falling back to Web Speech API.");
+      if (currentAudio === audio) {
+        currentAudio = null;
+      }
+      speakWebSpeech(text, rate, onEnd, onError);
+    };
+
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((err) => {
+        // If autoplay policy blocked or stream failed, fallback gracefully
+        console.warn("HTML5 audio play blocked/failed, trying Web Speech fallback:", err);
+        if (currentAudio === audio) {
+          currentAudio = null;
+        }
+        speakWebSpeech(text, rate, onEnd, onError);
+      });
+    }
+
+    // Return cancel function
+    return () => {
+      if (currentAudio === audio) {
+        audio.pause();
+        audio.currentTime = 0;
+        audio.src = "";
+        currentAudio = null;
+      }
+    };
+  } catch (err) {
+    console.warn("Could not initialize HTML5 audio, falling back to Web Speech:", err);
+    return speakWebSpeech(text, rate, onEnd, onError);
+  }
+}
+
 export function stopSpeaking() {
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    currentAudio.src = "";
+    currentAudio = null;
+  }
   activeUtterance = null;
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
@@ -78,17 +150,30 @@ export function stopSpeaking() {
 }
 
 export function isSpeaking(): boolean {
-  if (typeof window !== "undefined" && "speechSynthesis" in window) {
-    return window.speechSynthesis.speaking;
+  if (currentAudio && !currentAudio.paused && !currentAudio.ended) {
+    return true;
+  }
+  if (typeof window !== "undefined" && window.speechSynthesis && window.speechSynthesis.speaking) {
+    return true;
   }
   return false;
 }
 
-// iOS Safari audio unlock
+// iOS Safari audio unlock for both Web Speech and HTML5 Audio
 export function unlockAudio() {
-  if (typeof window !== "undefined" && "speechSynthesis" in window) {
-    const utterance = new SpeechSynthesisUtterance("");
-    utterance.volume = 0;
-    window.speechSynthesis.speak(utterance);
+  if (typeof window !== "undefined") {
+    // 1. Unlock Web Speech
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance("");
+      utterance.volume = 0;
+      window.speechSynthesis.speak(utterance);
+    }
+    // 2. Unlock HTML5 Audio
+    try {
+      const silentAudio = new Audio(
+        "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA"
+      );
+      silentAudio.play().catch(() => {});
+    } catch (e) {}
   }
 }
