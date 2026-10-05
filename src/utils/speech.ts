@@ -110,7 +110,17 @@ export function speakText(
       cleanup();
       try {
         audio.pause();
+        audio.removeAttribute("src");
+        audio.load();
       } catch (e) {}
+
+      // Explicitly restore iOS Safari audio session to play-and-record so microphone hardware is released
+      if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
+        try {
+          (navigator as any).audioSession.type = "play-and-record";
+        } catch (e) {}
+      }
+
       if (!hasEnded) {
         hasEnded = true;
         onEnd?.();
@@ -157,7 +167,10 @@ export function speakText(
     return () => {
       cleanup();
       audio.pause();
-      audio.currentTime = 0;
+      audio.removeAttribute("src");
+      try {
+        audio.load();
+      } catch (e) {}
     };
   } catch (err) {
     console.warn("Could not play neural audio, falling back to Web Speech:", err);
@@ -167,12 +180,23 @@ export function speakText(
 
 export function stopSpeaking() {
   if (sharedAudio) {
-    sharedAudio.pause();
-    sharedAudio.currentTime = 0;
+    try {
+      sharedAudio.pause();
+      sharedAudio.currentTime = 0;
+      sharedAudio.removeAttribute("src");
+      sharedAudio.load();
+    } catch (e) {}
   }
   activeUtterance = null;
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
     window.speechSynthesis.cancel();
+  }
+
+  // Restore iOS Safari audio session to play-and-record
+  if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
+    try {
+      (navigator as any).audioSession.type = "play-and-record";
+    } catch (e) {}
   }
 }
 
@@ -190,6 +214,13 @@ export function isSpeaking(): boolean {
 export function unlockAudio() {
   if (typeof window === "undefined") return;
 
+  // Set iOS audioSession to play-and-record mode
+  if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
+    try {
+      (navigator as any).audioSession.type = "play-and-record";
+    } catch (e) {}
+  }
+
   const audio = getSharedAudio();
   if (audio && !isAudioUnlocked) {
     // Play a tiny 1-byte silent WAV to unlock audio playback for the session
@@ -198,6 +229,8 @@ export function unlockAudio() {
       .play()
       .then(() => {
         audio.pause();
+        audio.removeAttribute("src");
+        audio.load();
         isAudioUnlocked = true;
       })
       .catch(() => {});

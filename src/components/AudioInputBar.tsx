@@ -59,6 +59,13 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   const startListening = useCallback(() => {
     if (typeof window === "undefined") return;
 
+    // Force iOS Safari audio session to play-and-record mode
+    if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
+      try {
+        (navigator as any).audioSession.type = "play-and-record";
+      } catch (e) {}
+    }
+
     const SpeechRecognition =
       (window as any).SpeechRecognition ||
       (window as any).webkitSpeechRecognition;
@@ -98,10 +105,19 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     recognition.onerror = (event: any) => {
       console.warn("Speech recognition error:", event.error);
       setIsListening(false);
+      recognitionRef.current = null;
+
       if (event.error === "not-allowed") {
         alert(
           "Trình duyệt Safari chưa được cấp quyền Micro!\n\nCách bật: Vào Cài đặt (Settings) trên iPhone/iPad > Safari > Micro (Microphone) > Chọn 'Cho phép' (Allow) và tải lại trang nhé!"
         );
+      } else if (event.error === "audio-capture" || event.error === "aborted") {
+        // WebKit hardware lock recovery: retry once after settle window
+        setTimeout(() => {
+          if (!isSpeaking() && !isAiSpeaking) {
+            startListening();
+          }
+        }, 400);
       }
     };
 
@@ -119,7 +135,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       setIsListening(false);
       recognitionRef.current = null;
     }
-  }, []);
+  }, [isAiSpeaking]);
 
   // Stop mic immediately if AI starts speaking
   useEffect(() => {
@@ -136,11 +152,12 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
       // Only proceed if auto-mic is enabled, not disabled, and AI is not speaking
       if (autoMicEnabled && !disabled && !isAiSpeaking) {
+        // 900ms settle window gives iOS Safari CoreAudio time to transition from playback to recording
         const timer = setTimeout(() => {
           if (!isSpeaking() && !isAiSpeaking) {
             startListening();
           }
-        }, 500);
+        }, 900);
 
         return () => clearTimeout(timer);
       }
