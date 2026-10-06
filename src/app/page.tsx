@@ -8,9 +8,11 @@ import { ChatWindow } from "@/components/ChatWindow";
 import { AudioInputBar } from "@/components/AudioInputBar";
 import { VocabularyDrawer } from "@/components/VocabularyDrawer";
 import { ScenarioSelector } from "@/components/ScenarioSelector";
+import { HomeDashboard } from "@/components/HomeDashboard";
 import { speakText, stopSpeaking, unlockAudio } from "@/utils/speech";
 
 export default function Home() {
+  const [currentView, setCurrentView] = useState<"home" | "chat">("home");
   const [currentTopic, setCurrentTopic] = useState<Topic>(ALL_TOPICS[0]);
   const [currentScenario, setCurrentScenario] = useState<Scenario>(
     ALL_TOPICS[0].scenarios[0]
@@ -44,7 +46,6 @@ export default function Home() {
     };
   }, []);
 
-  // Initialize conversation when scenario changes
   // Initialize conversation when scenario changes or role toggles
   const initScenario = useCallback(
     (scenario: Scenario, role: "user" | "ai") => {
@@ -101,9 +102,26 @@ export default function Home() {
     []
   );
 
-  useEffect(() => {
-    initScenario(currentScenario, userRole);
-  }, [currentScenario.id, userRole, initScenario]);
+  // Transition from Home Dashboard to Chat Room
+  const handleStartScenario = (
+    topic: Topic,
+    scenario: Scenario,
+    role: "user" | "ai" = "user"
+  ) => {
+    unlockAudio();
+    setCurrentTopic(topic);
+    setCurrentScenario(scenario);
+    setUserRole(role);
+    setCurrentView("chat");
+    initScenario(scenario, role);
+  };
+
+  // Back from Chat Room to Home Dashboard
+  const handleBackToHome = () => {
+    stopSpeaking();
+    setActiveAudioId(null);
+    setCurrentView("home");
+  };
 
   // Audio Playback
   const handlePlayAudio = (msgId: string, text: string) => {
@@ -129,10 +147,11 @@ export default function Home() {
     });
   };
 
-  // Toggle role
+  // Toggle role in chat
   const handleToggleRole = () => {
     const nextRole = userRole === "user" ? "ai" : "user";
     setUserRole(nextRole);
+    initScenario(currentScenario, nextRole);
   };
 
   // Toggle global subtitles
@@ -154,10 +173,11 @@ export default function Home() {
     );
   };
 
-  // Select new scenario
+  // Select new scenario from in-chat modal
   const handleSelectScenario = (topic: Topic, scenario: Scenario) => {
     setCurrentTopic(topic);
     setCurrentScenario(scenario);
+    initScenario(scenario, userRole);
   };
 
   // Send message
@@ -264,6 +284,17 @@ export default function Home() {
     return currentScenario.suggestedHints;
   }, [currentScenario, learnerRoleInfo.name]);
 
+  if (currentView === "home") {
+    return (
+      <HomeDashboard
+        topics={ALL_TOPICS}
+        selectedTopic={currentTopic}
+        onSelectTopic={(t) => setCurrentTopic(t)}
+        onStartScenario={handleStartScenario}
+      />
+    );
+  }
+
   return (
     <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-slate-50">
       {/* Header */}
@@ -280,6 +311,7 @@ export default function Home() {
         onResetChat={() => initScenario(currentScenario, userRole)}
         userRole={userRole}
         onToggleRole={handleToggleRole}
+        onBackToHome={handleBackToHome}
       />
 
       {/* Main Chat Area */}
