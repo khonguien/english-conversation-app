@@ -1,17 +1,53 @@
 "use client";
 
-// Persistent shared HTML5 Audio instance pre-blessed by user interaction to bypass Safari/Chrome autoplay lock
-let sharedAudio: HTMLAudioElement | null = null;
-let isAudioUnlocked = false;
+// Persistent Web Audio API Context (Bypasses HTML5 <audio> OS playback deadlock)
+let sharedAudioCtx: AudioContext | null = null;
+let currentSourceNode: AudioBufferSourceNode | null = null;
+let isAudioContextUnlocked = false;
 
-function getSharedAudio(): HTMLAudioElement | null {
+function getSharedAudioContext(): AudioContext | null {
   if (typeof window === "undefined") return null;
-  if (!sharedAudio) {
-    sharedAudio = new Audio();
-    sharedAudio.setAttribute("playsinline", "true");
-    sharedAudio.preload = "auto";
+  if (!sharedAudioCtx) {
+    const AudioCtxClass =
+      window.AudioContext || (window as any).webkitAudioContext;
+    if (AudioCtxClass) {
+      sharedAudioCtx = new AudioCtxClass();
+    }
   }
-  return sharedAudio;
+  if (sharedAudioCtx && sharedAudioCtx.state === "suspended") {
+    sharedAudioCtx.resume().catch(() => {});
+  }
+  return sharedAudioCtx;
+}
+
+function decodeAudioDataSafe(
+  ctx: AudioContext,
+  arrayBuffer: ArrayBuffer
+): Promise<AudioBuffer> {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    const onResolve = (buffer: AudioBuffer) => {
+      if (!settled) {
+        settled = true;
+        resolve(buffer);
+      }
+    };
+    const onReject = (err: any) => {
+      if (!settled) {
+        settled = true;
+        reject(err);
+      }
+    };
+
+    try {
+      const res = ctx.decodeAudioData(arrayBuffer, onResolve, onReject);
+      if (res && typeof (res as any).then === "function") {
+        (res as any).then(onResolve).catch(onReject);
+      }
+    } catch (e) {
+      onReject(e);
+    }
+  });
 }
 
 // Keep active Web Speech utterance in module scope as fallback to prevent Chromium GC bug
@@ -80,7 +116,8 @@ function speakWebSpeech(
   };
 }
 
-// Main Text-to-Speech function: Prioritizes Microsoft Edge Neural TTS (Natural human voice)
+// Main Text-to-Speech function: Routes via Web Audio API (AudioContext)
+// This strictly avoids HTML5 <audio> elements which lock the OS audio session in Playback mode and deadlock SpeechRecognition!
 export function speakText(
   text: string,
   rate: number = 1.0,
@@ -96,99 +133,92 @@ export function speakText(
   // Stop any currently playing audio
   stopSpeaking();
 
-  const audio = getSharedAudio();
-  if (!audio) {
+  const ctx = getSharedAudioContext();
+  if (!ctx) {
     return speakWebSpeech(text, rate, onEnd, onError);
   }
 
-  try {
-    const audioUrl = `/api/tts?text=${encodeURIComponent(text.trim())}&rate=${rate}&voice=${encodeURIComponent(voice)}`;
+  let isCancelled = false;
+  let sourceNode: AudioBufferSourceNode | null = null;
 
-    let hasEnded = false;
+  const audioUrl = `/api/tts?text=${encodeURIComponent(text.trim())}&rate=${rate}&voice=${encodeURIComponent(voice)}`;
 
-    const handleEnded = () => {
-      cleanup();
-      try {
-        audio.pause();
-        audio.currentTime = 0;
-      } catch (e) {}
+  fetch(audioUrl)
+    .then((res) => {
+      if (!res.ok) throw new Error(`TTS HTTP error ${res.status}`);
+      return res.arrayBuffer();
+    })
+    .then((arrayBuffer) => {
+      if (isCancelled) return null;
+      return decodeAudioDataSafe(ctx, arrayBuffer);
+    })
+    .then((audioBuffer) => {
+      if (isCancelled || !audioBuffer) return;
 
-      // Ensure any native speech synthesis is cleared so microphone is not blocked
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        try {
-          window.speechSynthesis.cancel();
-        } catch (e) {}
-      }
+      const startPlayback = () => {
+        if (isCancelled) return;
 
-      // Explicitly restore iOS Safari audio session to play-and-record so microphone hardware is released
-      if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
-        try {
-          (navigator as any).audioSession.type = "play-and-record";
-        } catch (e) {}
-      }
+        sourceNode = ctx.createBufferSource();
+        sourceNode.buffer = audioBuffer;
+        sourceNode.connect(ctx.destination);
+        currentSourceNode = sourceNode;
 
-      if (!hasEnded) {
-        hasEnded = true;
-        onEnd?.();
-      }
-    };
-
-    const handleError = (e: any) => {
-      cleanup();
-      console.warn("Edge TTS stream failed, falling back to Web Speech API:", e);
-      speakWebSpeech(text, rate, onEnd, onError);
-    };
-
-    const cleanup = () => {
-      audio.removeEventListener("ended", handleEnded);
-      audio.removeEventListener("error", handleError);
-    };
-
-    audio.addEventListener("ended", handleEnded);
-    audio.addEventListener("error", handleError);
-
-    audio.src = audioUrl;
-    audio.load();
-
-    const playPromise = audio.play();
-    if (playPromise !== undefined) {
-      playPromise.catch((err) => {
-        cleanup();
-        console.warn("Audio play prevented/blocked:", err);
-
-        // If Safari/Chrome blocked autoplay (e.g. on initial page load without touch)
-        if (err.name === "NotAllowedError" || err.name === "AbortError") {
-          console.log("Autoplay was blocked by browser. Clearing active audio state.");
-          if (!hasEnded) {
-            hasEnded = true;
-            onEnd?.(); // Clears activeAudioId in parent so mic is NOT blocked!
+        sourceNode.onended = () => {
+          if (currentSourceNode === sourceNode) {
+            currentSourceNode = null;
           }
-          return;
-        }
+          // Suspend AudioContext when audio finishes to release audio session lock for microphone
+          if (ctx.state === "running") {
+            ctx.suspend().catch(() => {});
+          }
+          if (!isCancelled) {
+            onEnd?.();
+          }
+        };
 
+        sourceNode.start(0);
+      };
+
+      if (ctx.state === "suspended") {
+        ctx.resume().then(startPlayback).catch(startPlayback);
+      } else {
+        startPlayback();
+      }
+    })
+    .catch((err) => {
+      if (!isCancelled) {
+        console.warn("Web Audio TTS failed, falling back to Web Speech:", err);
         speakWebSpeech(text, rate, onEnd, onError);
-      });
-    }
+      }
+    });
 
-    return () => {
-      cleanup();
+  return () => {
+    isCancelled = true;
+    if (sourceNode) {
       try {
-        audio.pause();
-        audio.currentTime = 0;
+        sourceNode.stop();
+        sourceNode.disconnect();
       } catch (e) {}
-    };
-  } catch (err) {
-    console.warn("Could not play neural audio, falling back to Web Speech:", err);
-    return speakWebSpeech(text, rate, onEnd, onError);
-  }
+    }
+    if (currentSourceNode === sourceNode) {
+      currentSourceNode = null;
+    }
+    if (ctx && ctx.state === "running") {
+      ctx.suspend().catch(() => {});
+    }
+  };
 }
 
 export function stopSpeaking() {
-  if (sharedAudio) {
+  if (currentSourceNode) {
     try {
-      sharedAudio.pause();
-      sharedAudio.currentTime = 0;
+      currentSourceNode.stop();
+      currentSourceNode.disconnect();
     } catch (e) {}
+    currentSourceNode = null;
+  }
+  if (sharedAudioCtx && sharedAudioCtx.state === "running") {
+    sharedAudioCtx.suspend().catch(() => {});
   }
   activeUtterance = null;
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
@@ -196,47 +226,39 @@ export function stopSpeaking() {
       window.speechSynthesis.cancel();
     } catch (e) {}
   }
-
-  // Restore iOS Safari audio session to play-and-record
-  if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
-    try {
-      (navigator as any).audioSession.type = "play-and-record";
-    } catch (e) {}
-  }
 }
 
 export function isSpeaking(): boolean {
-  if (sharedAudio && !sharedAudio.paused && !sharedAudio.ended) {
+  if (currentSourceNode) {
     return true;
   }
-  if (typeof window !== "undefined" && window.speechSynthesis && window.speechSynthesis.speaking) {
+  if (
+    typeof window !== "undefined" &&
+    window.speechSynthesis &&
+    window.speechSynthesis.speaking
+  ) {
     return true;
   }
   return false;
 }
 
-// iOS Safari & Chrome audio unlock: pre-blesses the sharedAudio element so async play() succeeds
+// User-gesture blessing to unlock Web Audio API context for mobile browsers
 export function unlockAudio() {
-  if (typeof window === "undefined" || isAudioUnlocked) return;
+  if (typeof window === "undefined") return;
 
-  // Set iOS audioSession to play-and-record mode
-  if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
-    try {
-      (navigator as any).audioSession.type = "play-and-record";
-    } catch (e) {}
+  const ctx = getSharedAudioContext();
+  if (ctx && ctx.state === "suspended") {
+    ctx.resume().catch(() => {});
   }
 
-  const audio = getSharedAudio();
-  if (audio && !isAudioUnlocked) {
-    // Play a tiny 1-byte silent WAV to unlock audio playback for the session
-    audio.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-    audio
-      .play()
-      .then(() => {
-        audio.pause();
-        audio.currentTime = 0;
-        isAudioUnlocked = true;
-      })
-      .catch(() => {});
+  if (ctx && !isAudioContextUnlocked) {
+    try {
+      const buffer = ctx.createBuffer(1, 1, 22050);
+      const source = ctx.createBufferSource();
+      source.buffer = buffer;
+      source.connect(ctx.destination);
+      source.start(0);
+      isAudioContextUnlocked = true;
+    } catch (e) {}
   }
 }
