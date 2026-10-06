@@ -41,7 +41,10 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   const stopListening = useCallback(() => {
     if (recognitionRef.current) {
       try {
-        recognitionRef.current.stop();
+        recognitionRef.current.onresult = null;
+        recognitionRef.current.onerror = null;
+        recognitionRef.current.onend = null;
+        recognitionRef.current.abort();
       } catch (e) {}
       recognitionRef.current = null;
     }
@@ -51,6 +54,14 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   // Fresh start recognition instance for EVERY turn (crucial for iOS Safari & WebKit reuse)
   const startListening = useCallback(() => {
     if (typeof window === "undefined") return;
+
+    // Ensure TTS speech is stopped and synthesis queue is cancelled so microphone is not blocked
+    stopSpeaking();
+    if ("speechSynthesis" in window) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch (e) {}
+    }
 
     // Force iOS Safari audio session to play-and-record mode
     if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
@@ -73,13 +84,16 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     // Stop and discard any previous instance if lingering
     if (recognitionRef.current) {
       try {
+        recognitionRef.current.onresult = null;
+        recognitionRef.current.onerror = null;
+        recognitionRef.current.onend = null;
         recognitionRef.current.abort();
       } catch (e) {}
       recognitionRef.current = null;
     }
 
     const recognition = new SpeechRecognition();
-    recognition.continuous = false;
+    recognition.continuous = true;
     recognition.interimResults = true;
     recognition.lang = "en-US";
 
@@ -97,13 +111,15 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
     recognition.onerror = (event: any) => {
       console.warn("Speech recognition error:", event.error);
-      setIsListening(false);
-      recognitionRef.current = null;
-
       if (event.error === "not-allowed") {
+        setIsListening(false);
+        recognitionRef.current = null;
         alert(
-          "Trình duyệt Safari chưa được cấp quyền Micro!\n\nCách bật: Vào Cài đặt (Settings) trên iPhone/iPad > Safari > Micro (Microphone) > Chọn 'Cho phép' (Allow) và tải lại trang nhé!"
+          "Trình duyệt chưa được cấp quyền Micro!\n\nVui lòng cấp quyền Micro trong Cài đặt trình duyệt để tiếp tục luyện nói nhé!"
         );
+      } else if (event.error === "audio-capture" || event.error === "network") {
+        setIsListening(false);
+        recognitionRef.current = null;
       }
     };
 
@@ -121,7 +137,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
       setIsListening(false);
       recognitionRef.current = null;
     }
-  }, [isAiSpeaking]);
+  }, []);
 
   // Stop mic immediately if AI starts speaking
   useEffect(() => {

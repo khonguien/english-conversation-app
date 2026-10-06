@@ -110,9 +110,15 @@ export function speakText(
       cleanup();
       try {
         audio.pause();
-        audio.removeAttribute("src");
-        audio.load();
+        audio.currentTime = 0;
       } catch (e) {}
+
+      // Ensure any native speech synthesis is cleared so microphone is not blocked
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        try {
+          window.speechSynthesis.cancel();
+        } catch (e) {}
+      }
 
       // Explicitly restore iOS Safari audio session to play-and-record so microphone hardware is released
       if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
@@ -166,10 +172,9 @@ export function speakText(
 
     return () => {
       cleanup();
-      audio.pause();
-      audio.removeAttribute("src");
       try {
-        audio.load();
+        audio.pause();
+        audio.currentTime = 0;
       } catch (e) {}
     };
   } catch (err) {
@@ -183,13 +188,13 @@ export function stopSpeaking() {
     try {
       sharedAudio.pause();
       sharedAudio.currentTime = 0;
-      sharedAudio.removeAttribute("src");
-      sharedAudio.load();
     } catch (e) {}
   }
   activeUtterance = null;
   if (typeof window !== "undefined" && "speechSynthesis" in window) {
-    window.speechSynthesis.cancel();
+    try {
+      window.speechSynthesis.cancel();
+    } catch (e) {}
   }
 
   // Restore iOS Safari audio session to play-and-record
@@ -212,7 +217,7 @@ export function isSpeaking(): boolean {
 
 // iOS Safari & Chrome audio unlock: pre-blesses the sharedAudio element so async play() succeeds
 export function unlockAudio() {
-  if (typeof window === "undefined") return;
+  if (typeof window === "undefined" || isAudioUnlocked) return;
 
   // Set iOS audioSession to play-and-record mode
   if (typeof navigator !== "undefined" && (navigator as any).audioSession) {
@@ -229,17 +234,9 @@ export function unlockAudio() {
       .play()
       .then(() => {
         audio.pause();
-        audio.removeAttribute("src");
-        audio.load();
+        audio.currentTime = 0;
         isAudioUnlocked = true;
       })
       .catch(() => {});
-  }
-
-  // Backup: unlock Web Speech synthesis
-  if ("speechSynthesis" in window) {
-    const utterance = new SpeechSynthesisUtterance("");
-    utterance.volume = 0;
-    window.speechSynthesis.speak(utterance);
   }
 }
