@@ -111,11 +111,11 @@ export const Header: React.FC<HeaderProps> = ({
           {/* Role Swap Button */}
           <button
             onClick={onToggleRole}
-            className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 transition border border-slate-200"
+            className="flex items-center gap-1 px-2 sm:px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 transition border border-slate-200"
             title="Đổi vai đóng (Hành khách ⇄ Nhân viên)"
           >
             <RefreshCw className="w-3 h-3 text-slate-500" />
-            <span>Vai: {userRoleInfo.avatar} {userRoleInfo.name}</span>
+            <span><span className="hidden sm:inline">Vai: </span>{userRoleInfo.avatar} {userRoleInfo.name}</span>
           </button>
 
           {/* Vocabulary Drawer Toggle */}

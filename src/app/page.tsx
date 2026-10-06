@@ -45,6 +45,7 @@ export default function Home() {
   }, []);
 
   // Initialize conversation when scenario changes
+  // Initialize conversation when scenario changes or role toggles
   const initScenario = useCallback(
     (scenario: Scenario, role: "user" | "ai") => {
       stopSpeaking();
@@ -52,27 +53,50 @@ export default function Home() {
 
       const aiRoleInfo =
         role === "user" ? scenario.defaultRoles.ai : scenario.defaultRoles.user;
-      const initialId = `msg-init-${Date.now()}`;
 
-      const initialMessage: ChatMessage = {
-        id: initialId,
-        sender: "ai",
-        roleName: aiRoleInfo.name,
-        textEn: scenario.initialMessageEn,
-        textVi: scenario.initialMessageVi,
-        timestamp: Date.now(),
-        revealed: false,
-      };
+      // Determine who speaks first:
+      // In structured dialogues, check roleName of turn 0 in sampleDialogue
+      const firstTurn = scenario.sampleDialogue && scenario.sampleDialogue[0];
+      const isAiFirstSpeaker = scenario.isFreeTalk
+        ? role === "user" // In Free Talk: AI staff greets first if learner is guest/traveler
+        : firstTurn
+        ? firstTurn.roleName.toLowerCase() === aiRoleInfo.name.toLowerCase()
+        : role === "user";
 
-      setMessages([initialMessage]);
+      if (isAiFirstSpeaker) {
+        const openingEn =
+          firstTurn && firstTurn.roleName.toLowerCase() === aiRoleInfo.name.toLowerCase()
+            ? firstTurn.textEn
+            : scenario.initialMessageEn;
+        const openingVi =
+          firstTurn && firstTurn.roleName.toLowerCase() === aiRoleInfo.name.toLowerCase()
+            ? firstTurn.textVi
+            : scenario.initialMessageVi;
 
-      // Play initial line after slight delay
-      setTimeout(() => {
-        speakText(scenario.initialMessageEn, speechRateRef.current, () => {
-          setActiveAudioId(null);
-        });
-        setActiveAudioId(initialId);
-      }, 400);
+        const initialId = `msg-init-${Date.now()}`;
+        const initialMessage: ChatMessage = {
+          id: initialId,
+          sender: "ai",
+          roleName: aiRoleInfo.name,
+          textEn: openingEn,
+          textVi: openingVi,
+          timestamp: Date.now(),
+          revealed: false,
+        };
+
+        setMessages([initialMessage]);
+
+        // Play initial line after slight delay
+        setTimeout(() => {
+          speakText(openingEn, speechRateRef.current, () => {
+            setActiveAudioId(null);
+          });
+          setActiveAudioId(initialId);
+        }, 400);
+      } else {
+        // Learner speaks first! AI waits for learner to start the dialogue.
+        setMessages([]);
+      }
     },
     []
   );
@@ -218,6 +242,28 @@ export default function Home() {
     }
   };
 
+  // Dynamic suggested hints matching learner's active role
+  const learnerRoleInfo =
+    userRole === "user"
+      ? currentScenario.defaultRoles.user
+      : currentScenario.defaultRoles.ai;
+
+  const dynamicHints = React.useMemo(() => {
+    if (currentScenario.sampleDialogue && currentScenario.sampleDialogue.length > 0) {
+      const learnerTurns = currentScenario.sampleDialogue
+        .filter(
+          (t) => t.roleName.toLowerCase() === learnerRoleInfo.name.toLowerCase()
+        )
+        .map((t) => t.textEn);
+      if (learnerTurns.length > 0) {
+        return Array.from(
+          new Set([...learnerTurns, ...currentScenario.suggestedHints])
+        ).slice(0, 5);
+      }
+    }
+    return currentScenario.suggestedHints;
+  }, [currentScenario, learnerRoleInfo.name]);
+
   return (
     <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-slate-50">
       {/* Header */}
@@ -248,6 +294,7 @@ export default function Home() {
           onStopAudio={handleStopAudio}
           onToggleReveal={handleToggleReveal}
           scenario={currentScenario}
+          userRole={userRole}
         />
 
         {/* Vocabulary Drawer */}
@@ -263,7 +310,7 @@ export default function Home() {
       <AudioInputBar
         onSendMessage={handleSendMessage}
         disabled={isAiThinking}
-        suggestedHints={currentScenario.suggestedHints}
+        suggestedHints={dynamicHints}
         isAiSpeaking={activeAudioId !== null}
         onStopAudio={handleStopAudio}
       />

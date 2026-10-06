@@ -17,10 +17,33 @@ export async function POST(req: NextRequest) {
 
     const apiKey = process.env.GEMINI_API_KEY;
 
+    const activeAiRole = aiRole || scenario.defaultRoles.ai.name;
+    const activeUserRole = userRole || scenario.defaultRoles.user.name;
+
+    // Helper to get scripted fallback turn matching aiRole
+    const getScriptedFallback = () => {
+      if (!scenario.sampleDialogue || scenario.sampleDialogue.length === 0) {
+        return {
+          textEn: "Understood! Let me assist you with that.",
+          textVi: "Tôi hiểu rồi! Để tôi hỗ trợ bạn việc này.",
+        };
+      }
+      const aiTurns = scenario.sampleDialogue.filter(
+        (t: any) => t.roleName.toLowerCase() === activeAiRole.toLowerCase()
+      );
+      if (aiTurns.length > 0) {
+        const aiMessageCount = messages.filter(
+          (m: any) => m.roleName?.toLowerCase() === activeAiRole.toLowerCase()
+        ).length;
+        const turnIdx = Math.min(aiMessageCount, aiTurns.length - 1);
+        return aiTurns[turnIdx];
+      }
+      return scenario.sampleDialogue[Math.min(messages.length, scenario.sampleDialogue.length - 1)];
+    };
+
     // Fallback if API key is not configured yet
     if (!apiKey || apiKey === "YOUR_GEMINI_API_KEY_HERE") {
-      const nextTurnIndex = messages.length;
-      const scriptedTurn = scenario.sampleDialogue[nextTurnIndex] || scenario.sampleDialogue[scenario.sampleDialogue.length - 1];
+      const scriptedTurn = getScriptedFallback();
       return NextResponse.json({
         textEn: scriptedTurn ? scriptedTurn.textEn : "Thank you! Have a wonderful day!",
         textVi: scriptedTurn ? scriptedTurn.textVi : "Cảm ơn bạn! Chúc một ngày tuyệt vời!",
@@ -32,15 +55,14 @@ export async function POST(req: NextRequest) {
     const genAI = new GoogleGenerativeAI(apiKey);
     // Prioritize ultra-low latency models for lightning-fast responses (< 1s)
     const candidateModels = [
-      "gemini-3.5-flash-lite",
-      "gemini-flash-lite-latest",
-      "gemini-flash-latest",
       "gemini-3.8-flash",
+      "gemini-2.5-flash",
+      "gemini-1.5-flash",
     ];
 
     const isFreeTalk = Boolean(scenario.isFreeTalk);
 
-    // Calculate reference script and expected next turn
+    // Calculate reference script
     const referenceScript = scenario.sampleDialogue
       .map(
         (t, idx) =>
@@ -48,46 +70,36 @@ export async function POST(req: NextRequest) {
       )
       .join("\n");
 
-    const nextTurnIndex = messages.length;
-    const nextScriptedTurn = scenario.sampleDialogue[nextTurnIndex];
-    const previousScriptedTurn = scenario.sampleDialogue[nextTurnIndex - 1];
-
     const scriptGuideline = isFreeTalk
       ? `THIS IS AN OPEN REAL-WORLD PRACTICE (FREE TALK) SESSION.
-There is NO fixed script. The student can ask or talk about anything!
-You have complete freedom to roleplay in character, answer any questions, and converse naturally. Keep replies punchy (1-2 sentences).`
+There is NO fixed script. You are roleplaying as "${activeAiRole}". Converse naturally and stay in character. Keep replies punchy (1-2 sentences).`
       : `
 OFFICIAL LESSON SCRIPT FOR THIS SCENARIO:
 ${referenceScript}
 
 INTELLIGENT SCRIPT MATCHING RULES:
-1. Examine the learner's latest message carefully to understand what they are ACTUALLY asking or saying.
-2. Search the OFFICIAL LESSON SCRIPT to find the exact topic/intent:
-   - If the learner's message corresponds to ANY step, question, or request in the script (even if they skipped an intermediate turn, asked out of order, or used different phrasing/slight grammar errors):
-     -> YOU MUST respond with the matching AI reply for THAT SPECIFIC question from the script!
-     * Crucial Example: If the learner asks "Where is the security check?", locate the security check step in the script and reply with "Right behind you to the right." (DO NOT give an irrelevant answer like "it will go straight through to Bangkok" just because it was an earlier unasked turn!).
-     * Example: If the learner asks about luggage layover / pickup, answer with the luggage layover line.
-     * Example: If the learner says their destination/flight, answer with the passport request.
-   - If the learner's message simply continues the natural sequential step:
-     -> Reply with the corresponding scripted line.
-3. ONLY IF the learner's message is fundamentally off-script and NOT found anywhere in the lesson script (e.g. asking about lost pets, buying gifts, emergency, special medical needs, or expressing confusion):
-   -> THEN AND ONLY THEN: Generate a custom, natural in-character response (1-2 sentences).`;
+1. The user is playing as "${activeUserRole}". YOU ARE PLAYING AS "${activeAiRole}".
+2. Examine the learner's latest message carefully to understand what they are saying or asking.
+3. Find the turn in the lesson script that responds to the learner, and reply with the corresponding line for YOUR role ("${activeAiRole}"):
+   - If the learner's message corresponds to any step or question in the script: respond with the matching reply for "${activeAiRole}".
+   - If the learner simply continues the sequential conversation: reply with your next line as "${activeAiRole}".
+4. Only if the learner's message is fundamentally off-script: generate a custom, natural in-character response as "${activeAiRole}" (1-2 sentences).`;
 
     // Build the system prompt
-    const systemPrompt = `You are a native English speaker roleplaying as "${
-      aiRole || scenario.defaultRoles.ai.name
-    }" in a conversational English practice app for Vietnamese learners.
-The user is roleplaying as "${userRole || scenario.defaultRoles.user.name}".
+    const systemPrompt = `You are a native English speaker roleplaying as "${activeAiRole}" in a conversational English practice app for Vietnamese learners.
+The user is roleplaying as "${activeUserRole}".
 Context / Situation: "${scenario.situation}".
 Topic: "${scenario.titleEn}".
 
-IMPORTANT INSTRUCTIONS:
-1. Deeply stay in character as "${aiRole || scenario.defaultRoles.ai.name}".
+CRITICAL ROLEPLAY INSTRUCTIONS:
+1. Deeply stay in character as "${activeAiRole}". You MUST ALWAYS speak as "${activeAiRole}".
+   - NEVER speak as "${activeUserRole}".
+   - NEVER steal or repeat lines meant for "${activeUserRole}".
 2. Keep your response CONCISE: 1 to 2 sentences maximum. Real conversation flows back and forth quickly!
-3. Focus on communicative intent: If the learner makes minor grammar or phrasing mistakes, understand what they mean and respond naturally. DO NOT correct their grammar or lecture them.
+3. Focus on communicative intent: If the learner makes minor grammar or phrasing mistakes, understand what they mean and respond naturally in character. DO NOT correct their grammar or lecture them.
 4. ${scriptGuideline}
 5. Provide your response in valid JSON format with two fields:
-   - "textEn": Your spoken English response in character (1-2 sentences).
+   - "textEn": Your spoken English response in character as ${activeAiRole} (1-2 sentences).
    - "textVi": Accurate natural Vietnamese translation of your response (for learner subtitles).
 
 Return ONLY the JSON object, nothing else.`;
@@ -97,11 +109,11 @@ Return ONLY the JSON object, nothing else.`;
       .slice(-8) // last 8 messages for context
       .map(
         (m: { sender: string; roleName: string; textEn: string }) =>
-          `${m.roleName || (m.sender === "user" ? userRole : aiRole)}: ${m.textEn}`
+          `${m.roleName || (m.sender === "user" ? activeUserRole : activeAiRole)}: ${m.textEn}`
       )
       .join("\n");
 
-    const prompt = `${systemPrompt}\n\nRecent conversation history:\n${historyText}\n\nNow respond as ${aiRole} in JSON format:`;
+    const prompt = `${systemPrompt}\n\nRecent conversation history:\n${historyText}\n\nNow respond as ${activeAiRole} in JSON format:`;
 
     let responseText = "";
     let lastError: any = null;
@@ -125,9 +137,8 @@ Return ONLY the JSON object, nothing else.`;
     }
 
     if (!responseText) {
-      // Graceful fallback to scripted dialogue turn if all models are busy
-      const nextTurnIndex = messages.length;
-      const scriptedTurn = scenario.sampleDialogue[nextTurnIndex] || scenario.sampleDialogue[scenario.sampleDialogue.length - 1];
+      // Graceful fallback to scripted dialogue turn matching aiRole
+      const scriptedTurn = getScriptedFallback();
       return NextResponse.json({
         textEn: scriptedTurn ? scriptedTurn.textEn : "Understood! Let me assist you with that.",
         textVi: scriptedTurn ? scriptedTurn.textVi : "Tôi hiểu rồi! Để tôi hỗ trợ bạn việc này.",

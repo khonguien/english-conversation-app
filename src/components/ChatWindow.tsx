@@ -22,6 +22,7 @@ interface ChatWindowProps {
   onStopAudio: () => void;
   onToggleReveal: (msgId: string) => void;
   scenario: Scenario;
+  userRole?: "user" | "ai";
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -34,8 +35,17 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   onStopAudio,
   onToggleReveal,
   scenario,
+  userRole = "user",
 }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
+
+  const isPlayingAsAiRole = userRole === "ai";
+  const currentAiRole = isPlayingAsAiRole
+    ? scenario.defaultRoles.user
+    : scenario.defaultRoles.ai;
+  const currentLearnerRole = isPlayingAsAiRole
+    ? scenario.defaultRoles.ai
+    : scenario.defaultRoles.user;
 
   // Auto-scroll when messages or AI thinking status changes
   useEffect(() => {
@@ -58,7 +68,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           </span>
           <div className="space-y-1">
             <h3 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-              <span>{scenario.titleEn} – {scenario.titleVi}</span>
+              <span>{scenario.order}. {scenario.titleEn} – {scenario.titleVi}</span>
               {scenario.isFreeTalk && (
                 <span className="text-[10px] font-extrabold uppercase bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">
                   Tự do
@@ -69,11 +79,11 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
               {scenario.situation}
             </p>
             <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-slate-500">
-              <span className="bg-white/80 px-2 py-0.5 rounded-full border border-slate-200">
-                AI: {scenario.defaultRoles.ai.avatar} {scenario.defaultRoles.ai.name}
+              <span className="bg-white/80 px-2 py-0.5 rounded-full border border-slate-200 font-medium">
+                AI: {currentAiRole.avatar} {currentAiRole.name}
               </span>
-              <span className="bg-white/80 px-2 py-0.5 rounded-full border border-slate-200">
-                Bạn: {scenario.defaultRoles.user.avatar} {scenario.defaultRoles.user.name}
+              <span className="bg-white/80 px-2 py-0.5 rounded-full border border-indigo-200 text-indigo-700 font-semibold bg-indigo-50/50">
+                Bạn: {currentLearnerRole.avatar} {currentLearnerRole.name}
               </span>
               <span className={scenario.isFreeTalk ? "text-amber-800 font-bold" : "text-indigo-600 font-medium"}>
                 {scenario.isFreeTalk
@@ -84,6 +94,23 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Opening turn prompt when learner speaks first and no messages exist yet */}
+      {messages.length === 0 && (
+        <div className="bg-gradient-to-r from-indigo-50/90 via-sky-50/80 to-indigo-50/90 border border-indigo-200/90 rounded-2xl p-4 sm:p-5 text-center space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-200 shadow-2xs">
+          <div className="text-2xl sm:text-3xl">🎙️</div>
+          <h4 className="text-sm sm:text-base font-bold text-indigo-950">
+            Đến lượt bạn mở lời trước!
+          </h4>
+          <p className="text-xs sm:text-sm text-slate-700 max-w-md mx-auto leading-relaxed">
+            Trong tình huống này, bạn đang đóng vai{" "}
+            <span className="font-semibold text-indigo-700 bg-white px-2 py-0.5 rounded-md border border-indigo-200 shadow-2xs">
+              {currentLearnerRole.avatar} {currentLearnerRole.name}
+            </span>.
+            Hãy bấm nút Micro bên dưới hoặc chọn câu gợi ý để bắt đầu cuộc trò chuyện nhé!
+          </p>
+        </div>
+      )}
 
       {/* Messages Thread */}
       {messages.map((msg) => {
@@ -101,7 +128,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             {/* AI Avatar */}
             {isAi && (
               <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-indigo-100 border border-indigo-200 flex items-center justify-center text-base sm:text-lg flex-shrink-0 shadow-xs mb-1">
-                {scenario.defaultRoles.ai.avatar}
+                {currentAiRole.avatar}
               </div>
             )}
 
