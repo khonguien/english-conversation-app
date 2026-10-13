@@ -53,12 +53,12 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Prioritize ultra-low latency models for lightning-fast responses (~700ms)
+    // Prioritize ultra-low latency models for lightning-fast responses (~1.4s - 2.5s)
     const candidateModels = [
+      "gemini-3-flash-preview",
+      "gemini-3.6-flash",
+      "gemini-3.1-flash-lite-preview",
       "gemini-flash-lite-latest",
-      "gemini-3.5-flash-lite",
-      "gemini-3.5-flash",
-      "gemini-3.8-flash",
     ];
 
     const isFreeTalk = Boolean(scenario.isFreeTalk);
@@ -125,8 +125,10 @@ Return ONLY the JSON object, nothing else.`;
           model: modelName,
           generationConfig: {
             temperature: 0.3,
-            maxOutputTokens: 250,
+            maxOutputTokens: 1000,
             responseMimeType: "application/json",
+            // @ts-ignore - Disable internal thinking tokens for instant conversation response
+            thinkingConfig: { thinkingBudget: 0 },
           },
         });
         const result = await model.generateContent(prompt);

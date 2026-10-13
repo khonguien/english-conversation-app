@@ -6,7 +6,6 @@ import {
   VolumeX,
   Eye,
   EyeOff,
-  Sparkles,
 } from "lucide-react";
 import { ChatMessage, Scenario } from "@/types/conversation";
 
@@ -55,7 +54,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   const [isSituationExpanded, setIsSituationExpanded] = React.useState(false);
   const isAiSpeaking = activeAudioId !== null;
 
-  // Render 9 large fluid soundwave bars
+  // Render 9 large fluid soundwave bars (48px)
   const renderSoundwaveBars = () => {
     if (isAiSpeaking) {
       return (
@@ -148,7 +147,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
   return (
     <div className="flex-1 flex flex-col h-full overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/60">
-      {/* Voice Canvas Stage: Frameless Hero Header with Big Soundwave */}
+      {/* Voice Canvas Stage: Frameless Header with Big Soundwave */}
       <div className="pt-3 pb-2 px-4 flex flex-col items-center text-center space-y-1.5 flex-shrink-0">
         {/* Scenario & AI Persona Floating Pill */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/85 backdrop-blur-md rounded-full shadow-2xs border border-slate-200/70 text-xs text-slate-700">
@@ -197,8 +196,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         </div>
       </div>
 
-      {/* Cinematic Dialogue Stream */}
-      <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-2 space-y-3.5 max-w-2xl mx-auto w-full">
+      {/* Spacious Dialogue Stream - Expanded to fit screen comfortably */}
+      <div className="flex-1 overflow-y-auto px-3 sm:px-6 md:px-8 py-3 space-y-4 max-w-4xl sm:max-w-5xl mx-auto w-full">
         {/* Welcome turn when dialogue hasn't started */}
         {messages.length === 0 && (
           <div className="my-auto py-10 text-center space-y-3.5 max-w-md mx-auto animate-in fade-in slide-in-from-bottom-2 duration-200">
@@ -228,38 +227,39 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           const isRevealed = subtitlesEnabled || msg.revealed;
           const isLatest = index === messages.length - 1;
 
-          return (
-            <div
-              key={msg.id}
-              className={`flex flex-col space-y-1 animate-in fade-in duration-200 ${
-                isAi ? "items-start" : "items-end"
-              }`}
-            >
-              {/* Speaker Label */}
-              <div className="flex items-center gap-1.5 px-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
-                <span>{isAi ? `AI • ${msg.roleName}` : `BẠN • ${msg.roleName}`}</span>
-              </div>
-
-              {/* Speech Card - Modern Soft Card */}
+          if (isAi) {
+            return (
               <div
-                className={`w-full max-w-xl rounded-2xl p-4 sm:p-5 transition-all duration-200 ${
-                  isAi
-                    ? `bg-white/95 border border-slate-200/80 text-slate-900 shadow-2xs ${
-                        isLatest ? "ring-2 ring-slate-900/5 shadow-xs" : ""
-                      }`
-                    : "bg-slate-900 text-white shadow-xs"
-                }`}
+                key={msg.id}
+                className="flex items-start gap-2.5 sm:gap-3.5 max-w-3xl animate-in fade-in duration-200"
               >
-                {isAi ? (
-                  <div className="space-y-2">
-                    {/* Audio Play/Stop Control Header */}
-                    <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
-                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-                        <span className="w-2 h-2 rounded-full bg-slate-900" />
-                        <span>Lời thoại AI</span>
-                      </div>
+                {/* Small Round AI Avatar */}
+                <div
+                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900 border border-slate-200 flex items-center justify-center text-sm sm:text-base shadow-2xs flex-shrink-0 mt-1 select-none"
+                  title={msg.roleName}
+                >
+                  {currentAiRole.avatar || "☕"}
+                </div>
 
-                      <div className="flex items-center gap-1">
+                {/* AI Speech Card */}
+                <div className="flex-1 min-w-0 flex flex-col space-y-1">
+                  <div className="flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                    <span>AI • {msg.roleName}</span>
+                  </div>
+
+                  <div
+                    className={`w-full rounded-2xl p-3.5 sm:p-4 transition-all duration-200 bg-white/95 border border-slate-200/80 text-slate-900 shadow-2xs ${
+                      isLatest ? "ring-2 ring-slate-900/5 shadow-xs" : ""
+                    }`}
+                  >
+                    <div className="space-y-1.5">
+                      {/* Audio Control Row */}
+                      <div className="flex items-center justify-between pb-1.5 border-b border-slate-100">
+                        <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-slate-900" />
+                          <span>Lời thoại AI</span>
+                        </div>
+
                         <button
                           type="button"
                           onClick={() =>
@@ -287,66 +287,77 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                           )}
                         </button>
                       </div>
-                    </div>
 
-                    {/* Spoken Dialogue Text */}
-                    {isRevealed ? (
-                      <div className="space-y-1.5 pt-0.5">
-                        <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-900">
-                          {msg.textEn}
-                        </p>
-                        {msg.textVi && (
-                          <p className="text-xs sm:text-[13px] text-slate-500 leading-normal pt-1.5 border-t border-slate-100">
-                            {msg.textVi}
-                          </p>
-                        )}
-                        {!subtitlesEnabled && (
-                          <div className="pt-1">
-                            <button
-                              type="button"
-                              onClick={() => onToggleReveal(msg.id)}
-                              className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition cursor-pointer"
-                              title="Ẩn lại phụ đề câu này"
-                            >
-                              <EyeOff className="w-3 h-3" />
-                              <span>Ẩn lại phụ đề</span>
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      /* Listening Challenge: Blur to reveal */
-                      <button
-                        type="button"
-                        onClick={() => onToggleReveal(msg.id)}
-                        className="text-left w-full cursor-pointer group focus:outline-hidden pt-1"
-                        title="Chạm để mở phụ đề câu này"
-                      >
-                        <div className="filter blur-xs select-none transition duration-200 group-hover:blur-[2px] space-y-1">
-                          <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-700">
+                      {/* Spoken Dialogue Text - Refined Typography */}
+                      {isRevealed ? (
+                        <div className="space-y-1 pt-0.5">
+                          <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-900">
                             {msg.textEn}
                           </p>
                           {msg.textVi && (
-                            <p className="text-xs text-slate-400 pt-1 border-t border-slate-100">
+                            <p className="text-xs sm:text-[13px] text-slate-500 leading-normal pt-1 border-t border-slate-100">
                               {msg.textVi}
                             </p>
                           )}
+                          {!subtitlesEnabled && (
+                            <div className="pt-0.5">
+                              <button
+                                type="button"
+                                onClick={() => onToggleReveal(msg.id)}
+                                className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition cursor-pointer"
+                                title="Ẩn lại phụ đề câu này"
+                              >
+                                <EyeOff className="w-3 h-3" />
+                                <span>Ẩn lại phụ đề</span>
+                              </button>
+                            </div>
+                          )}
                         </div>
-                        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 group-hover:text-slate-900 transition mt-2 pt-2 border-t border-slate-100">
-                          <Eye className="w-3.5 h-3.5" />
-                          <span>Chạm để mở phụ đề</span>
-                        </div>
-                      </button>
-                    )}
+                      ) : (
+                        /* Listening Challenge: Blur to reveal */
+                        <button
+                          type="button"
+                          onClick={() => onToggleReveal(msg.id)}
+                          className="text-left w-full cursor-pointer group focus:outline-hidden pt-0.5"
+                          title="Chạm để mở phụ đề câu này"
+                        >
+                          <div className="filter blur-xs select-none transition duration-200 group-hover:blur-[2px] space-y-1">
+                            <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-700">
+                              {msg.textEn}
+                            </p>
+                            {msg.textVi && (
+                              <p className="text-xs text-slate-400 pt-1 border-t border-slate-100">
+                                {msg.textVi}
+                              </p>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 group-hover:text-slate-900 transition mt-1.5 pt-1.5 border-t border-slate-100">
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>Chạm để mở phụ đề</span>
+                          </div>
+                        </button>
+                      )}
+                    </div>
                   </div>
-                ) : (
-                  /* Learner Dialogue */
-                  <div className="space-y-1">
-                    <p className="text-base sm:text-lg font-medium leading-relaxed text-white">
-                      {msg.textEn}
-                    </p>
-                  </div>
-                )}
+                </div>
+              </div>
+            );
+          }
+
+          // Learner Dialogue Turn
+          return (
+            <div
+              key={msg.id}
+              className="flex flex-col items-end space-y-1 ml-auto max-w-2xl sm:max-w-3xl animate-in fade-in duration-200"
+            >
+              <div className="flex items-center gap-1.5 px-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                <span>BẠN • {msg.roleName}</span>
+              </div>
+
+              <div className="rounded-2xl p-3.5 sm:p-4 bg-slate-900 text-white shadow-xs">
+                <p className="text-sm sm:text-base font-medium leading-relaxed text-white">
+                  {msg.textEn}
+                </p>
               </div>
             </div>
           );

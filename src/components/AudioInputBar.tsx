@@ -196,8 +196,8 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   };
 
   return (
-    <div className="sticky bottom-0 z-20 w-full px-3 sm:px-4 pb-3 sm:pb-4 pt-1 safe-bottom-padding pointer-events-none">
-      <div className="max-w-xl mx-auto pointer-events-auto space-y-2">
+    <div className="sticky bottom-0 z-20 w-full px-3 sm:px-6 pb-3 sm:pb-4 pt-1 safe-bottom-padding pointer-events-none">
+      <div className="max-w-3xl sm:max-w-4xl mx-auto pointer-events-auto space-y-2">
         {/* Horizontal Quick Reply Chips Carousel */}
         {suggestedHints.length > 0 && (
           <div className="flex items-center gap-1.5 overflow-x-auto py-1 px-1 scrollbar-none">
