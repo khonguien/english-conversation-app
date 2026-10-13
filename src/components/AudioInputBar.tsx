@@ -183,21 +183,22 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   };
 
   return (
-    <div className="sticky bottom-0 z-20 bg-white/95 backdrop-blur-md border-t border-slate-200 shadow-lg safe-bottom-padding">
-      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2 space-y-2">
-        {/* Top bar: Hints & Auto-Mic Toggle / Status */}
+    <div className="sticky bottom-0 z-20 bg-white/95 backdrop-blur-md border-t border-slate-200/90 safe-bottom-padding">
+      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2.5 space-y-2">
+        {/* Top bar: Hints & Listening Status */}
         <div className="flex items-center justify-between gap-2">
           {suggestedHints.length > 0 ? (
             <button
+              type="button"
               onClick={() => setShowHints(!showHints)}
-              className="flex items-center gap-1.5 text-xs font-semibold text-indigo-600 hover:text-indigo-800 transition py-0.5"
+              className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 transition py-0.5 cursor-pointer"
             >
-              <Lightbulb className="w-3.5 h-3.5" />
+              <Lightbulb className="w-3.5 h-3.5 text-slate-500" />
               <span>Gợi ý cách trả lời ({suggestedHints.length})</span>
               {showHints ? (
-                <ChevronDown className="w-3.5 h-3.5" />
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
               ) : (
-                <ChevronUp className="w-3.5 h-3.5" />
+                <ChevronUp className="w-3.5 h-3.5 text-slate-400" />
               )}
             </button>
           ) : (
@@ -206,24 +207,24 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
           <div className="flex items-center gap-2">
             {isListening && (
-              <span className="flex items-center gap-1.5 text-xs text-red-600 font-medium animate-pulse">
-                <span className="w-2 h-2 rounded-full bg-red-600"></span>
+              <span className="flex items-center gap-1.5 text-xs text-red-600 font-medium">
+                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
                 <span className="hidden sm:inline">Đang thu âm tiếng Anh...</span>
                 <span className="sm:hidden">Đang thu...</span>
               </span>
             )}
-
           </div>
         </div>
 
         {/* Hints expandable */}
         {showHints && suggestedHints.length > 0 && (
           <div className="flex flex-wrap gap-1.5 pt-0.5 pb-1 animate-in fade-in slide-in-from-bottom-2 duration-150">
-            {suggestedHints.slice(0, 4).map((hint, idx) => (
+            {suggestedHints.slice(0, 5).map((hint, idx) => (
               <button
                 key={idx}
+                type="button"
                 onClick={() => handleSelectHint(hint)}
-                className="text-xs text-left bg-indigo-50/80 hover:bg-indigo-100 text-indigo-800 border border-indigo-200/80 px-2.5 py-1.5 rounded-xl transition shadow-2xs"
+                className="text-xs text-left bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 px-3 py-1.5 rounded-full transition shadow-2xs cursor-pointer"
               >
                 "{hint}"
               </button>
@@ -233,29 +234,31 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
         {/* Input Bar */}
         <div className="flex items-center gap-2">
-          {/* Big Mic Button */}
+          {/* Mic Button */}
           <div className="relative">
             {isListening && (
               <span className="absolute -inset-1 rounded-full bg-red-400 animate-pulse-ring pointer-events-none"></span>
             )}
             <button
+              type="button"
               onClick={toggleListening}
               disabled={disabled}
-              className={`relative z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition shadow-md ${
+              className={`relative z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition shadow-2xs cursor-pointer ${
                 isListening
                   ? "bg-red-600 text-white scale-105"
-                  : "bg-indigo-600 hover:bg-indigo-700 text-white"
-              } disabled:opacity-50`}
+                  : "bg-slate-900 hover:bg-slate-800 text-white"
+              } disabled:opacity-50 disabled:cursor-not-allowed`}
               title={
                 isListening
                   ? "Đang thu âm (Bấm để dừng)"
                   : "Bấm để nói tiếng Anh qua Micro"
               }
+              aria-label={isListening ? "Dừng thu âm" : "Nói qua micro"}
             >
               {isListening ? (
-                <MicOff className="w-5 h-5 sm:w-6 sm:h-6" />
+                <MicOff className="w-5 h-5" />
               ) : (
-                <Mic className="w-5 h-5 sm:w-6 sm:h-6" />
+                <Mic className="w-5 h-5" />
               )}
             </button>
           </div>
@@ -273,20 +276,22 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
                   ? "Đang lắng nghe bạn nói..."
                   : "Nói qua mic hoặc gõ câu trả lời..."
               }
-              className={`w-full text-sm sm:text-base px-3.5 py-2.5 bg-slate-100 border rounded-2xl focus:outline-hidden transition placeholder:text-slate-400 ${
+              className={`w-full text-sm sm:text-base px-4 py-2.5 bg-slate-100 border rounded-2xl focus:outline-hidden transition placeholder:text-slate-400 ${
                 isListening
-                  ? "border-red-400 bg-red-50/30 text-slate-900"
-                  : "border-slate-200 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-800"
+                  ? "border-red-400 bg-red-50/20 text-slate-900"
+                  : "border-slate-200 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-300 text-slate-900"
               }`}
             />
           </div>
 
           {/* Send Button */}
           <button
+            type="button"
             onClick={handleSend}
             disabled={!inputText.trim() || disabled}
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-200 disabled:text-slate-400 text-white flex items-center justify-center transition shadow-sm flex-shrink-0"
+            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-100 disabled:text-slate-400 text-white flex items-center justify-center transition shadow-2xs flex-shrink-0 cursor-pointer disabled:cursor-not-allowed"
             title="Gửi câu nói"
+            aria-label="Gửi tin nhắn"
           >
             <Send className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>

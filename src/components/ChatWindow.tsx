@@ -55,40 +55,36 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   return (
     <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 space-y-4 max-w-3xl mx-auto w-full">
       {/* Scenario Briefing Card */}
-      <div
-        className={`border rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-slate-700 shadow-2xs ${
-          scenario.isFreeTalk
-            ? "bg-gradient-to-r from-amber-50/90 via-orange-50/70 to-indigo-50/90 border-amber-200"
-            : "bg-gradient-to-r from-indigo-50/70 via-sky-50/70 to-emerald-50/70 border-indigo-100/80"
-        }`}
-      >
-        <div className="flex items-start gap-2.5">
-          <span className="text-xl sm:text-2xl mt-0.5">
-            {scenario.isFreeTalk ? "🌟" : "📌"}
-          </span>
-          <div className="space-y-1">
-            <h3 className="font-bold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-              <span>{scenario.order}. {scenario.titleEn} – {scenario.titleVi}</span>
-              {scenario.isFreeTalk && (
-                <span className="text-[10px] font-extrabold uppercase bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full">
-                  Tự do
-                </span>
-              )}
-            </h3>
-            <p className="text-slate-600 leading-relaxed">
+      <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-slate-700 shadow-xs">
+        <div className="flex items-start gap-3">
+          <div className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-base flex-shrink-0 mt-0.5">
+            {currentAiRole.avatar || "💬"}
+          </div>
+          <div className="space-y-1.5 flex-1 min-w-0">
+            <div className="flex items-center justify-between gap-2 flex-wrap">
+              <h3 className="font-semibold text-slate-900 text-sm sm:text-base flex items-center gap-2">
+                <span>{scenario.order}. {scenario.titleEn} – {scenario.titleVi}</span>
+                {scenario.isFreeTalk && (
+                  <span className="text-[10px] font-semibold uppercase tracking-wider bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200">
+                    Tự do
+                  </span>
+                )}
+              </h3>
+            </div>
+            <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
               {scenario.situation}
             </p>
-            <div className="flex flex-wrap items-center gap-2 pt-1 text-[11px] text-slate-500">
-              <span className="bg-white/80 px-2 py-0.5 rounded-full border border-slate-200 font-medium">
+            <div className="flex flex-wrap items-center gap-2 pt-0.5 text-xs">
+              <span className="bg-slate-100 px-2.5 py-1 rounded-full text-slate-700 font-medium border border-slate-200/80">
                 AI: {currentAiRole.avatar} {currentAiRole.name}
               </span>
-              <span className="bg-white/80 px-2 py-0.5 rounded-full border border-indigo-200 text-indigo-700 font-semibold bg-indigo-50/50">
+              <span className="bg-slate-900 px-2.5 py-1 rounded-full text-white font-medium">
                 Bạn: {currentLearnerRole.avatar} {currentLearnerRole.name}
               </span>
-              <span className={scenario.isFreeTalk ? "text-amber-800 font-bold" : "text-indigo-600 font-medium"}>
+              <span className="text-slate-500 font-normal">
                 {scenario.isFreeTalk
-                  ? "🎯 Tự do nói bất kỳ điều gì, không ràng buộc kịch bản"
-                  : "🎯 Mục tiêu: Trả lời tự nhiên, đúng kịch bản"}
+                  ? "• Trò chuyện tự do không ràng buộc"
+                  : "• Luyện đối thoại theo ngữ cảnh"}
               </span>
             </div>
           </div>
@@ -97,17 +93,19 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
       {/* Opening turn prompt when learner speaks first and no messages exist yet */}
       {messages.length === 0 && (
-        <div className="bg-gradient-to-r from-indigo-50/90 via-sky-50/80 to-indigo-50/90 border border-indigo-200/90 rounded-2xl p-4 sm:p-5 text-center space-y-2 animate-in fade-in slide-in-from-bottom-2 duration-200 shadow-2xs">
-          <div className="text-2xl sm:text-3xl">🎙️</div>
-          <h4 className="text-sm sm:text-base font-bold text-indigo-950">
+        <div className="bg-white border border-slate-200 rounded-2xl p-5 text-center space-y-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 shadow-xs">
+          <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 mx-auto flex items-center justify-center text-xl">
+            🎙️
+          </div>
+          <h4 className="text-sm sm:text-base font-semibold text-slate-900">
             Đến lượt bạn mở lời trước!
           </h4>
-          <p className="text-xs sm:text-sm text-slate-700 max-w-md mx-auto leading-relaxed">
-            Trong tình huống này, bạn đang đóng vai{" "}
-            <span className="font-semibold text-indigo-700 bg-white px-2 py-0.5 rounded-md border border-indigo-200 shadow-2xs">
+          <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+            Bạn đang đóng vai{" "}
+            <span className="font-semibold text-slate-900 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
               {currentLearnerRole.avatar} {currentLearnerRole.name}
             </span>.
-            Hãy bấm nút Micro bên dưới hoặc chọn câu gợi ý để bắt đầu cuộc trò chuyện nhé!
+            Bấm nút Micro bên dưới hoặc chọn câu gợi ý để bắt đầu cuộc trò chuyện.
           </p>
         </div>
       )}
@@ -116,7 +114,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       {messages.map((msg) => {
         const isAi = msg.sender === "ai";
         const isPlaying = activeAudioId === msg.id;
-        const showText = subtitlesEnabled || msg.revealed;
+        const isRevealed = subtitlesEnabled || msg.revealed;
 
         return (
           <div
@@ -127,24 +125,24 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           >
             {/* AI Avatar */}
             {isAi && (
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-indigo-100 border border-indigo-200 flex items-center justify-center text-base sm:text-lg flex-shrink-0 shadow-xs mb-1">
+              <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-sm flex-shrink-0 text-slate-700 shadow-2xs mb-0.5">
                 {currentAiRole.avatar}
               </div>
             )}
 
             {/* Bubble */}
             <div
-              className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-3.5 py-2.5 sm:px-4 sm:py-3 shadow-xs transition ${
+              className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-4 py-3 shadow-2xs transition ${
                 isAi
-                  ? "bg-white border border-slate-200 text-slate-900 rounded-bl-xs"
-                  : "bg-indigo-600 text-white rounded-br-xs"
+                  ? "bg-white border border-slate-200/90 text-slate-900 rounded-tl-sm"
+                  : "bg-slate-900 text-white rounded-tr-sm"
               }`}
             >
               {/* Header inside bubble */}
-              <div className="flex items-center justify-between gap-2 mb-1">
+              <div className="flex items-center justify-between gap-3 mb-1">
                 <span
-                  className={`text-[10px] font-semibold tracking-wide uppercase ${
-                    isAi ? "text-indigo-600" : "text-indigo-200"
+                  className={`text-[10px] font-semibold tracking-wider uppercase ${
+                    isAi ? "text-slate-500" : "text-slate-400"
                   }`}
                 >
                   {msg.roleName}
@@ -152,37 +150,22 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
                 {isAi && (
                   <div className="flex items-center gap-1">
-                    {/* Eye toggle if subtitles are globally disabled */}
-                    {!subtitlesEnabled && (
-                      <button
-                        type="button"
-                        onClick={() => onToggleReveal(msg.id)}
-                        className="p-1 rounded-full text-slate-400 hover:text-amber-600 hover:bg-slate-100 transition cursor-pointer"
-                        title={msg.revealed ? "Ẩn lại phụ đề câu này" : "Xem phụ đề câu này"}
-                      >
-                        {msg.revealed ? (
-                          <EyeOff className="w-3.5 h-3.5 text-amber-600" />
-                        ) : (
-                          <Eye className="w-3.5 h-3.5" />
-                        )}
-                      </button>
-                    )}
-
                     {/* First message prompt on Safari/iOS if autoplay was blocked */}
                     {messages.length === 1 && !isPlaying && (
                       <button
                         type="button"
                         onClick={() => onPlayAudio(msg.id, msg.textEn)}
-                        className="flex items-center gap-1 text-[10px] font-semibold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 px-2 py-0.5 rounded-full transition cursor-pointer"
-                        title="Bấm để nghe AI chào và kích hoạt giọng nói"
+                        className="flex items-center gap-1 text-[11px] font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-2 py-0.5 rounded-full transition cursor-pointer"
+                        title="Bấm để nghe AI nói"
                       >
-                        <Volume2 className="w-3 h-3 text-indigo-600 animate-pulse" />
-                        <span>Bấm nghe AI nói</span>
+                        <Volume2 className="w-3 h-3 text-slate-700" />
+                        <span>Nghe AI nói</span>
                       </button>
                     )}
 
                     {/* Audio Play/Stop Button */}
                     <button
+                      type="button"
                       onClick={() =>
                         isPlaying
                           ? onStopAudio()
@@ -190,10 +173,11 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                       }
                       className={`p-1 rounded-full transition cursor-pointer ${
                         isPlaying
-                          ? "bg-indigo-600 text-white animate-pulse"
-                          : "text-slate-400 hover:text-indigo-600 hover:bg-slate-100"
+                          ? "bg-slate-900 text-white animate-pulse"
+                          : "text-slate-400 hover:text-slate-700 hover:bg-slate-100"
                       }`}
-                      title={isPlaying ? "Dừng phát" : "Nghe lại câu này"}
+                      title={isPlaying ? "Dừng phát" : "Nghe phát âm"}
+                      aria-label={isPlaying ? "Dừng phát âm" : "Phát âm câu này"}
                     >
                       {isPlaying ? (
                         <VolumeX className="w-3.5 h-3.5" />
@@ -208,13 +192,13 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
               {/* Spoken Text Area */}
               {isAi ? (
                 <div>
-                  {showText ? (
+                  {isRevealed ? (
                     <div className="space-y-1">
-                      <p className="text-sm sm:text-base font-medium leading-relaxed text-slate-800">
+                      <p className="text-[15px] sm:text-base font-normal leading-relaxed text-slate-900">
                         {msg.textEn}
                       </p>
                       {msg.textVi && (
-                        <p className="text-xs sm:text-[13px] text-slate-500 italic pt-0.5 border-t border-slate-100">
+                        <p className="text-xs sm:text-[13px] text-slate-500 leading-normal pt-1 border-t border-slate-100">
                           {msg.textVi}
                         </p>
                       )}
@@ -223,35 +207,43 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                           <button
                             type="button"
                             onClick={() => onToggleReveal(msg.id)}
-                            className="inline-flex items-center gap-1.5 text-[11px] font-medium text-amber-700 bg-amber-50 hover:bg-amber-100 border border-amber-200/80 px-2 py-0.5 rounded-md transition cursor-pointer"
-                            title="Ẩn lại phụ đề câu này để luyện nghe"
+                            className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition cursor-pointer"
+                            title="Ẩn lại phụ đề câu này"
                           >
-                            <EyeOff className="w-3 h-3 text-amber-600" />
-                            <span>Ẩn lại phụ đề câu này</span>
+                            <EyeOff className="w-3 h-3" />
+                            <span>Ẩn lại phụ đề</span>
                           </button>
                         </div>
                       )}
                     </div>
                   ) : (
-                    /* Listening Challenge Mode: Masked text */
+                    /* Listening Challenge Mode: Elegant Blur-to-reveal */
                     <button
                       type="button"
                       onClick={() => onToggleReveal(msg.id)}
-                      className="text-left w-full py-1 text-slate-400 hover:text-slate-600 group cursor-pointer"
+                      className="text-left w-full cursor-pointer group focus:outline-hidden"
+                      title="Chạm để xem phụ đề câu này"
                     >
-                      <div className="font-mono text-sm tracking-widest text-slate-300 group-hover:text-slate-400 select-none">
-                        •••• ••••••• ••••••••
+                      <div className="filter blur-xs select-none transition duration-200 group-hover:blur-[2px] space-y-1">
+                        <p className="text-[15px] sm:text-base font-normal leading-relaxed text-slate-700">
+                          {msg.textEn}
+                        </p>
+                        {msg.textVi && (
+                          <p className="text-xs text-slate-400 pt-1 border-t border-slate-100">
+                            {msg.textVi}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1.5 text-[11px] font-medium text-amber-700 bg-amber-50/80 group-hover:bg-amber-100 px-2 py-0.5 rounded-md mt-1 transition border border-amber-200/60">
-                        <Eye className="w-3 h-3 text-amber-600" />
-                        <span>Chạm để xem phụ đề nếu nghe chưa kịp</span>
+                      <div className="flex items-center gap-1 text-[11px] font-medium text-slate-500 group-hover:text-slate-800 transition mt-1 pt-1 border-t border-slate-100">
+                        <Eye className="w-3 h-3" />
+                        <span>Chạm để mở phụ đề</span>
                       </div>
                     </button>
                   )}
                 </div>
               ) : (
                 /* User Message */
-                <p className="text-sm sm:text-base leading-relaxed text-white font-normal">
+                <p className="text-[15px] sm:text-base leading-relaxed text-white font-normal">
                   {msg.textEn}
                 </p>
               )}
@@ -259,7 +251,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
 
             {/* User Avatar */}
             {!isAi && (
-              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-indigo-700 flex items-center justify-center text-base sm:text-lg flex-shrink-0 text-white shadow-xs mb-1">
+              <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-sm flex-shrink-0 text-slate-200 shadow-2xs mb-0.5">
                 {scenario.defaultRoles.user.avatar}
               </div>
             )}
@@ -270,21 +262,21 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       {/* AI Thinking Animation */}
       {isAiThinking && (
         <div className="flex items-end gap-2.5 justify-start">
-          <div className="w-8 h-8 rounded-full bg-indigo-100 border border-indigo-200 flex items-center justify-center text-base flex-shrink-0">
+          <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-sm flex-shrink-0 text-slate-700 shadow-2xs">
             {scenario.defaultRoles.ai.avatar}
           </div>
-          <div className="bg-white border border-slate-200 rounded-2xl rounded-bl-xs px-4 py-3 shadow-xs">
+          <div className="bg-white border border-slate-200/90 rounded-2xl rounded-tl-sm px-4 py-3 shadow-2xs">
             <div className="flex items-center gap-1.5 text-xs text-slate-400">
-              <span className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></span>
+              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
               <span
-                className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"
+                className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
                 style={{ animationDelay: "0.2s" }}
               ></span>
               <span
-                className="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"
+                className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
                 style={{ animationDelay: "0.4s" }}
               ></span>
-              <span className="text-slate-400 text-[11px] ml-1">
+              <span className="text-slate-500 text-xs ml-1.5">
                 {scenario.defaultRoles.ai.name} đang suy nghĩ...
               </span>
             </div>

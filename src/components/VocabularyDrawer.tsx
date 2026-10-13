@@ -51,17 +51,18 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
       {/* Drawer Header */}
       <div className="px-4 py-3.5 border-b border-slate-200 flex items-center justify-between bg-slate-50 safe-top-padding">
         <div className="flex items-center gap-2">
-          <BookMarked className="w-5 h-5 text-emerald-600" />
+          <BookMarked className="w-5 h-5 text-slate-700" />
           <div>
-            <h3 className="text-sm font-bold text-slate-900">Từ vựng & Cụm từ</h3>
+            <h3 className="text-sm font-semibold text-slate-900">Từ vựng & Cụm từ</h3>
             <p className="text-[11px] text-slate-500 truncate max-w-[200px]">
               {scenarioTitle}
             </p>
           </div>
         </div>
         <button
+          type="button"
           onClick={onClose}
-          className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-full transition"
+          className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-full transition cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
@@ -76,7 +77,7 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
             placeholder="Tìm từ vựng hoặc nghĩa..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition"
+            className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:bg-white focus:ring-1 focus:ring-slate-300 focus:border-slate-400 transition"
           />
         </div>
       </div>
@@ -100,11 +101,11 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
                 <div className="flex items-start justify-between gap-2">
                   <div>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-bold text-slate-900 text-sm group-hover:text-emerald-700 transition">
+                      <span className="font-semibold text-slate-900 text-sm group-hover:text-slate-700 transition">
                         {item.word}
                       </span>
                       {item.partOfSpeech && (
-                        <span className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-mono">
+                        <span className="text-[10px] text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded font-mono border border-slate-200/80">
                           {item.partOfSpeech}
                         </span>
                       )}
@@ -112,15 +113,16 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
                         {item.ipa}
                       </span>
                     </div>
-                    <p className="text-xs font-medium text-emerald-700 mt-0.5">
+                    <p className="text-xs font-medium text-slate-600 mt-0.5">
                       {item.meaningVi}
                     </p>
                   </div>
 
                   <div className="flex items-center gap-1">
                     <button
+                      type="button"
                       onClick={(e) => handlePronounce(item.word, e)}
-                      className="p-1.5 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-lg transition"
+                      className="p-1.5 text-slate-400 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition cursor-pointer"
                       title="Phát âm từ này"
                     >
                       <Volume2 className="w-4 h-4" />
@@ -137,7 +139,7 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
 
                 {/* Collapsible Details */}
                 {isExpanded && (
-                  <div className="mt-2.5 space-y-2 pl-2 border-l-2 border-emerald-200 text-xs text-slate-600 bg-slate-50/60 p-2.5 rounded-r-lg">
+                  <div className="mt-2.5 space-y-2 pl-2.5 border-l-2 border-slate-300 text-xs text-slate-600 bg-slate-50 p-2.5 rounded-r-xl">
                     {/* Synonyms */}
                     {item.synonyms && item.synonyms.length > 0 && (
                       <div>
