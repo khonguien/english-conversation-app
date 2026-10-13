@@ -25,6 +25,7 @@ export default function Home() {
     useState<boolean>(false);
   const [activeAudioId, setActiveAudioId] = useState<string | null>(null);
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
+  const [isUserSpeaking, setIsUserSpeaking] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
 
   // Ref to hold the latest speech rate without causing re-renders or resetting conversations
@@ -51,6 +52,7 @@ export default function Home() {
     (scenario: Scenario, role: "user" | "ai") => {
       stopSpeaking();
       setActiveAudioId(null);
+      setIsUserSpeaking(false);
 
       const aiRoleInfo =
         role === "user" ? scenario.defaultRoles.ai : scenario.defaultRoles.user;
@@ -322,6 +324,7 @@ export default function Home() {
           speechRate={speechRate}
           isAiThinking={isAiThinking}
           activeAudioId={activeAudioId}
+          isUserSpeaking={isUserSpeaking}
           onPlayAudio={handlePlayAudio}
           onStopAudio={handleStopAudio}
           onToggleReveal={handleToggleReveal}
@@ -345,6 +348,7 @@ export default function Home() {
         suggestedHints={dynamicHints}
         isAiSpeaking={activeAudioId !== null}
         onStopAudio={handleStopAudio}
+        onListeningChange={setIsUserSpeaking}
       />
 
       {/* Scenario & Topic Selector Modal */}

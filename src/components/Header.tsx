@@ -51,7 +51,7 @@ export const Header: React.FC<HeaderProps> = ({
     : scenario.defaultRoles.user;
 
   return (
-    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90 safe-top-padding">
+    <header className="sticky top-0 z-30 bg-white/85 backdrop-blur-md border-b border-slate-200/70 safe-top-padding">
       <div className="max-w-5xl mx-auto px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2">
         {/* Left: Back to Home & Scenario Title Switcher */}
         <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
