@@ -54,20 +54,20 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   const [isSituationExpanded, setIsSituationExpanded] = React.useState(false);
   const isAiSpeaking = activeAudioId !== null;
 
-  // Render 9 large fluid soundwave bars (48px)
-  const renderSoundwaveBars = () => {
+  // Render 9 fluid soundwave bars oscillating INSIDE the AI Voice Orb
+  const renderOrbSoundwaveBars = () => {
     if (isAiSpeaking) {
       return (
         <div className="flex items-center justify-center gap-1.5 h-12">
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-1" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-2" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-3" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-4" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-5" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-6" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-7" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-8" />
-          <span className="w-1.5 bg-slate-900 rounded-full animate-soundwave-9" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-1" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-2" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-3" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-4" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-5" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-6" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-7" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-8" />
+          <span className="w-1.5 bg-white rounded-full animate-soundwave-9" />
         </div>
       );
     }
@@ -75,15 +75,15 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     if (isUserSpeaking) {
       return (
         <div className="flex items-center justify-center gap-1.5 h-12">
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-1" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-2" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-3" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-4" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-5" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-6" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-7" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-8" />
-          <span className="w-1.5 bg-rose-500 rounded-full animate-soundwave-9" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-1" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-2" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-3" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-4" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-5" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-6" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-7" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-8" />
+          <span className="w-1.5 bg-rose-400 rounded-full animate-soundwave-9" />
         </div>
       );
     }
@@ -91,85 +91,77 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     if (isAiThinking) {
       return (
         <div className="flex items-center justify-center gap-1.5 h-12">
-          <span className="w-2 h-2 bg-slate-500 rounded-full animate-bounce" />
-          <span className="w-2 h-2 bg-slate-500 rounded-full animate-bounce [animation-delay:0.2s]" />
-          <span className="w-2 h-2 bg-slate-500 rounded-full animate-bounce [animation-delay:0.4s]" />
+          <span className="w-2 h-2 bg-slate-300 rounded-full animate-bounce" />
+          <span className="w-2 h-2 bg-slate-300 rounded-full animate-bounce [animation-delay:0.2s]" />
+          <span className="w-2 h-2 bg-slate-300 rounded-full animate-bounce [animation-delay:0.4s]" />
         </div>
       );
     }
 
-    // Idle serene breath
+    // Idle serene breath inside orb
     return (
       <div className="flex items-center justify-center gap-1.5 h-12">
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-1" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-2" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-3" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-4" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-5" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-6" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-7" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-8" />
-        <span className="w-1.5 bg-slate-300 rounded-full animate-soundwave-idle-9" />
-      </div>
-    );
-  };
-
-  const renderStatusLabel = () => {
-    if (isAiSpeaking) {
-      return (
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-800">
-          <span className="w-2 h-2 rounded-full bg-slate-900 animate-ping" />
-          <span>{currentAiRole.name} đang nói...</span>
-        </div>
-      );
-    }
-    if (isUserSpeaking) {
-      return (
-        <div className="flex items-center gap-1.5 text-xs font-semibold text-rose-600">
-          <span className="w-2 h-2 rounded-full bg-rose-500 animate-ping" />
-          <span>Đang lắng nghe giọng bạn...</span>
-        </div>
-      );
-    }
-    if (isAiThinking) {
-      return (
-        <div className="text-xs font-medium text-slate-500">
-          Đang suy nghĩ câu trả lời...
-        </div>
-      );
-    }
-    return (
-      <div className="text-[11px] font-medium text-slate-400">
-        Sẵn sàng đối thoại • Chạm Micro để nói
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-1" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-2" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-3" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-4" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-5" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-6" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-7" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-8" />
+        <span className="w-1.5 bg-slate-500/80 rounded-full animate-soundwave-idle-9" />
       </div>
     );
   };
 
   return (
     <div className="flex-1 flex flex-col h-full overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-50/60">
-      {/* Voice Canvas Stage: Frameless Header with Big Soundwave */}
-      <div className="pt-3 pb-2 px-4 flex flex-col items-center text-center space-y-1.5 flex-shrink-0">
-        {/* Scenario & AI Persona Floating Pill */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/85 backdrop-blur-md rounded-full shadow-2xs border border-slate-200/70 text-xs text-slate-700">
-          <span className="text-base">{currentAiRole.avatar || "☕"}</span>
-          <span className="font-bold text-slate-900">{currentAiRole.name}</span>
-          <span className="text-slate-300">•</span>
-          <span className="text-slate-500 font-medium">
-            {currentAiRole.titleVi || currentAiRole.titleEn}
-          </span>
+      {/* Voice Canvas Stage: Big Circular AI Voice Orb (ChatGPT / Gemini style) */}
+      <div className="pt-3 pb-2 px-4 flex flex-col items-center text-center flex-shrink-0">
+        {/* The Big AI Voice Orb (No icon inside, fluid soundwave pulsating within) */}
+        <div
+          className={`w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-slate-900 border-2 border-slate-800 shadow-lg flex items-center justify-center relative overflow-hidden transition-all duration-300 ${
+            isAiSpeaking
+              ? "scale-105 ring-4 ring-slate-900/15 shadow-slate-900/30"
+              : isUserSpeaking
+              ? "scale-105 ring-4 ring-rose-500/20 shadow-rose-900/20"
+              : "hover:scale-102"
+          }`}
+          title={`${currentAiRole.name} Voice Orb`}
+        >
+          {renderOrbSoundwaveBars()}
+        </div>
+
+        {/* Concise caption below the orb */}
+        <div className="mt-2 text-center">
+          <p className="text-xs font-semibold text-slate-800 tracking-tight">
+            {currentAiRole.name}
+            <span className="font-normal text-slate-400 mx-1.5">•</span>
+            <span className="font-medium text-slate-500">
+              {isAiSpeaking
+                ? "Đang nói..."
+                : isUserSpeaking
+                ? "Đang lắng nghe bạn..."
+                : isAiThinking
+                ? "Đang suy nghĩ..."
+                : (currentAiRole.titleVi || currentAiRole.titleEn)}
+            </span>
+          </p>
+
           <button
             type="button"
             onClick={() => setIsSituationExpanded(!isSituationExpanded)}
-            className="ml-1 text-[11px] font-medium text-slate-400 hover:text-slate-700 transition cursor-pointer"
+            className="mt-0.5 inline-flex items-center gap-1 text-[11px] font-medium text-slate-400 hover:text-slate-700 transition cursor-pointer"
             title="Xem chi tiết ngữ cảnh"
           >
-            {isSituationExpanded ? "▲ Thu gọn" : "▼ Ngữ cảnh"}
+            <span>📍 {scenario.order}. {scenario.titleEn}</span>
+            <span>{isSituationExpanded ? "▲" : "▼"}</span>
           </button>
         </div>
 
         {/* Collapsible Situation Drawer */}
         {isSituationExpanded && (
-          <div className="w-full max-w-lg mx-auto p-3.5 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl text-xs text-slate-600 leading-relaxed text-left shadow-xs animate-in fade-in duration-150">
+          <div className="w-full max-w-lg mx-auto mt-2 p-3.5 bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-2xl text-xs text-slate-600 leading-relaxed text-left shadow-xs animate-in fade-in duration-150">
             <p className="font-semibold text-slate-800 mb-1">
               📍 {scenario.order}. {scenario.titleEn}
             </p>
@@ -186,18 +178,10 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             </div>
           </div>
         )}
-
-        {/* Big & Fluid Soundwave Visualizer (48px height) */}
-        <div className="pt-1.5 pb-0.5 flex flex-col items-center">
-          {renderSoundwaveBars()}
-          <div className="mt-1 h-5 flex items-center justify-center">
-            {renderStatusLabel()}
-          </div>
-        </div>
       </div>
 
-      {/* Spacious Dialogue Stream - Expanded to fit screen comfortably */}
-      <div className="flex-1 overflow-y-auto px-3 sm:px-6 md:px-8 py-3 space-y-4 max-w-4xl sm:max-w-5xl mx-auto w-full">
+      {/* Spacious Dialogue Stream - Expanded to max-w-7xl for laptops */}
+      <div className="flex-1 overflow-y-auto px-3 sm:px-6 md:px-8 lg:px-12 py-3 space-y-4 max-w-6xl sm:max-w-7xl mx-auto w-full">
         {/* Welcome turn when dialogue hasn't started */}
         {messages.length === 0 && (
           <div className="my-auto py-10 text-center space-y-3.5 max-w-md mx-auto animate-in fade-in slide-in-from-bottom-2 duration-200">
@@ -233,14 +217,6 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                 key={msg.id}
                 className="flex items-start gap-2.5 sm:gap-3.5 max-w-3xl animate-in fade-in duration-200"
               >
-                {/* Small Round AI Avatar */}
-                <div
-                  className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-slate-900 border border-slate-200 flex items-center justify-center text-sm sm:text-base shadow-2xs flex-shrink-0 mt-1 select-none"
-                  title={msg.roleName}
-                >
-                  {currentAiRole.avatar || "☕"}
-                </div>
-
                 {/* AI Speech Card */}
                 <div className="flex-1 min-w-0 flex flex-col space-y-1">
                   <div className="flex items-center gap-1.5 px-1 text-[10px] font-semibold uppercase tracking-wider text-slate-400">

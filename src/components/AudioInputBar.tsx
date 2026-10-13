@@ -197,7 +197,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
   return (
     <div className="sticky bottom-0 z-20 w-full px-3 sm:px-6 pb-3 sm:pb-4 pt-1 safe-bottom-padding pointer-events-none">
-      <div className="max-w-3xl sm:max-w-4xl mx-auto pointer-events-auto space-y-2">
+      <div className="max-w-4xl sm:max-w-5xl mx-auto pointer-events-auto space-y-2">
         {/* Horizontal Quick Reply Chips Carousel */}
         {suggestedHints.length > 0 && (
           <div className="flex items-center gap-1.5 overflow-x-auto py-1 px-1 scrollbar-none">
@@ -224,7 +224,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 
         {/* Transcription Preview Pill (Shown when text is spoken or selected) */}
         {inputText.trim() && (
-          <div className="flex items-center justify-between gap-2 px-3.5 py-2 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-sm animate-in fade-in duration-150">
+          <div className="flex items-center justify-between gap-2 px-3.5 py-2 max-w-xl mx-auto bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl shadow-sm animate-in fade-in duration-150">
             <p className="text-xs sm:text-sm font-medium text-slate-900 truncate pl-1 flex-1">
               "{inputText}"
             </p>
@@ -250,119 +250,117 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
           </div>
         )}
 
-        {/* Floating Voice Capsule Controls */}
-        <div className="bg-white/90 backdrop-blur-md border border-slate-200/80 rounded-3xl p-2.5 sm:p-3 shadow-md">
-          {!isKeyboardMode ? (
-            /* Voice-First Hero Dock */
-            <div className="flex flex-col items-center justify-center">
-              <div className="flex items-center justify-between w-full max-w-xs px-2">
-                {/* Keyboard Mode Switch */}
+        {/* Floating Minimal Controls - No Bulky Holder Box */}
+        {!isKeyboardMode ? (
+          /* Clean Voice Controls */
+          <div className="flex flex-col items-center justify-center pt-1 pb-1">
+            <div className="flex items-center justify-center gap-5 w-full max-w-xs">
+              {/* Keyboard Mode Switch */}
+              <button
+                type="button"
+                onClick={() => setIsKeyboardMode(true)}
+                className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-md border border-slate-200/90 hover:bg-white text-slate-600 hover:text-slate-900 flex items-center justify-center transition cursor-pointer shadow-2xs active:scale-95"
+                title="Gõ câu bằng bàn phím"
+                aria-label="Chuyển sang bàn phím"
+              >
+                <Keyboard className="w-4 h-4" />
+              </button>
+
+              {/* Central Hero Mic Button */}
+              <div className="relative">
+                {isListening && (
+                  <span className="absolute -inset-2.5 rounded-full bg-rose-400 animate-pulse-ring pointer-events-none" />
+                )}
                 <button
                   type="button"
-                  onClick={() => setIsKeyboardMode(true)}
-                  className="w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer shadow-2xs active:scale-95"
-                  title="Gõ câu bằng bàn phím"
-                  aria-label="Chuyển sang bàn phím"
-                >
-                  <Keyboard className="w-4 h-4" />
-                </button>
-
-                {/* Central Hero Mic Button */}
-                <div className="relative">
-                  {isListening && (
-                    <span className="absolute -inset-2.5 rounded-full bg-rose-400 animate-pulse-ring pointer-events-none" />
-                  )}
-                  <button
-                    type="button"
-                    onClick={toggleListening}
-                    disabled={disabled}
-                    className={`relative z-10 w-15 h-15 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-200 shadow-md active:scale-95 cursor-pointer ${
-                      isListening
-                        ? "bg-rose-600 text-white scale-105 ring-4 ring-rose-400/30"
-                        : "bg-slate-900 hover:bg-slate-800 text-white"
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
-                    title={
-                      isListening
-                        ? "Đang thu âm (Bấm để dừng & gửi)"
-                        : "Bấm Micro để nói tiếng Anh"
-                    }
-                    aria-label={isListening ? "Dừng thu âm" : "Nói qua micro"}
-                  >
-                    {isListening ? (
-                      <MicOff className="w-7 h-7" />
-                    ) : (
-                      <Mic className="w-7 h-7" />
-                    )}
-                  </button>
-                </div>
-
-                {/* Send or Balanced Spacer */}
-                {inputText.trim() ? (
-                  <button
-                    type="button"
-                    onClick={handleSend}
-                    disabled={disabled}
-                    className="w-10 h-10 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center transition cursor-pointer shadow-2xs active:scale-95"
-                    title="Gửi câu nói"
-                    aria-label="Gửi câu nói"
-                  >
-                    <Send className="w-4 h-4" />
-                  </button>
-                ) : (
-                  <div className="w-10 h-10" />
-                )}
-              </div>
-
-              {/* Status Label */}
-              <p className="text-[11px] font-medium text-slate-500 mt-1.5 text-center">
-                {isListening ? (
-                  <span className="text-rose-600 font-semibold animate-pulse">
-                    🔴 Đang thu âm... Chạm micro để dừng & gửi
-                  </span>
-                ) : isAiSpeaking ? (
-                  <span className="text-slate-700 font-medium">
-                    🔊 AI đang phát âm... Chạm mic để nói chen
-                  </span>
-                ) : (
-                  "Chạm Micro để luyện nói tiếng Anh"
-                )}
-              </p>
-            </div>
-          ) : (
-            /* Text Keyboard Input Mode */
-            <div className="flex items-center gap-2 animate-in fade-in duration-150">
-              <button
-                type="button"
-                onClick={() => setIsKeyboardMode(false)}
-                className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer flex-shrink-0"
-                title="Quay lại chế độ Mic"
-              >
-                <Mic className="w-4 h-4" />
-              </button>
-              <div className="flex-1 relative">
-                <input
-                  type="text"
-                  value={inputText}
-                  onChange={(e) => setInputText(e.target.value)}
-                  onKeyDown={handleKeyDown}
+                  onClick={toggleListening}
                   disabled={disabled}
-                  placeholder="Gõ câu trả lời bằng tiếng Anh..."
-                  className="w-full text-sm px-4 py-2 bg-slate-100 border border-slate-200 rounded-2xl focus:outline-hidden focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-300 text-slate-900"
-                  autoFocus
-                />
+                  className={`relative z-10 w-15 h-15 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-200 shadow-md active:scale-95 cursor-pointer ${
+                    isListening
+                      ? "bg-rose-600 text-white scale-105 ring-4 ring-rose-400/30"
+                      : "bg-slate-900 hover:bg-slate-800 text-white"
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  title={
+                    isListening
+                      ? "Đang thu âm (Bấm để dừng & gửi)"
+                      : "Bấm Micro để nói tiếng Anh"
+                  }
+                  aria-label={isListening ? "Dừng thu âm" : "Nói qua micro"}
+                >
+                  {isListening ? (
+                    <MicOff className="w-7 h-7" />
+                  ) : (
+                    <Mic className="w-7 h-7" />
+                  )}
+                </button>
               </div>
-              <button
-                type="button"
-                onClick={handleSend}
-                disabled={!inputText.trim() || disabled}
-                className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-100 disabled:text-slate-400 text-white flex items-center justify-center transition shadow-2xs cursor-pointer flex-shrink-0"
-                title="Gửi tin nhắn"
-              >
-                <Send className="w-3.5 h-3.5" />
-              </button>
+
+              {/* Send or Balanced Spacer */}
+              {inputText.trim() ? (
+                <button
+                  type="button"
+                  onClick={handleSend}
+                  disabled={disabled}
+                  className="w-10 h-10 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center transition cursor-pointer shadow-2xs active:scale-95"
+                  title="Gửi câu nói"
+                  aria-label="Gửi câu nói"
+                >
+                  <Send className="w-4 h-4" />
+                </button>
+              ) : (
+                <div className="w-10 h-10" />
+              )}
             </div>
-          )}
-        </div>
+
+            {/* Concise Status Label */}
+            <p className="text-[11px] font-medium text-slate-500 mt-2 text-center">
+              {isListening ? (
+                <span className="text-rose-600 font-semibold animate-pulse">
+                  🔴 Đang thu âm... Chạm micro để dừng & gửi
+                </span>
+              ) : isAiSpeaking ? (
+                <span className="text-slate-600 font-medium">
+                  🔊 AI đang phát âm... Chạm mic để nói chen
+                </span>
+              ) : (
+                "Chạm Micro để luyện nói tiếng Anh"
+              )}
+            </p>
+          </div>
+        ) : (
+          /* Text Keyboard Input Mode - Clean Floating Pill */
+          <div className="flex items-center gap-2 max-w-lg mx-auto w-full bg-white/95 backdrop-blur-md p-1.5 rounded-2xl border border-slate-200/80 shadow-sm animate-in fade-in duration-150">
+            <button
+              type="button"
+              onClick={() => setIsKeyboardMode(false)}
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer flex-shrink-0"
+              title="Quay lại chế độ Mic"
+            >
+              <Mic className="w-4 h-4" />
+            </button>
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyDown={handleKeyDown}
+                disabled={disabled}
+                placeholder="Gõ câu trả lời bằng tiếng Anh..."
+                className="w-full text-sm px-3.5 py-1.5 bg-slate-100/80 border border-slate-200 rounded-xl focus:outline-hidden focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-300 text-slate-900"
+                autoFocus
+              />
+            </div>
+            <button
+              type="button"
+              onClick={handleSend}
+              disabled={!inputText.trim() || disabled}
+              className="w-9 h-9 rounded-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-100 disabled:text-slate-400 text-white flex items-center justify-center transition shadow-2xs cursor-pointer flex-shrink-0"
+              title="Gửi tin nhắn"
+            >
+              <Send className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
