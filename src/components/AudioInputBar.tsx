@@ -1,7 +1,17 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { Mic, MicOff, Send, Lightbulb, ChevronUp, ChevronDown } from "lucide-react";
+import {
+  Mic,
+  MicOff,
+  Send,
+  Lightbulb,
+  ChevronUp,
+  ChevronDown,
+  Keyboard,
+  Sparkles,
+  X,
+} from "lucide-react";
 import { stopSpeaking, isSpeaking } from "@/utils/speech";
 
 interface AudioInputBarProps {
@@ -21,6 +31,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
 }) => {
   const [inputText, setInputText] = useState("");
   const [isListening, setIsListening] = useState(false);
+  const [isKeyboardMode, setIsKeyboardMode] = useState(false);
   const [showHints, setShowHints] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(true);
   const recognitionRef = useRef<any>(null);
@@ -183,48 +194,25 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   };
 
   return (
-    <div className="sticky bottom-0 z-20 bg-white/95 backdrop-blur-md border-t border-slate-200/90 safe-bottom-padding">
-      <div className="max-w-3xl mx-auto px-3 sm:px-4 py-2.5 space-y-2">
-        {/* Top bar: Hints & Listening Status */}
-        <div className="flex items-center justify-between gap-2">
-          {suggestedHints.length > 0 ? (
-            <button
-              type="button"
-              onClick={() => setShowHints(!showHints)}
-              className="flex items-center gap-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 transition py-0.5 cursor-pointer"
-            >
-              <Lightbulb className="w-3.5 h-3.5 text-slate-500" />
-              <span>Gợi ý cách trả lời ({suggestedHints.length})</span>
-              {showHints ? (
-                <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-              ) : (
-                <ChevronUp className="w-3.5 h-3.5 text-slate-400" />
-              )}
-            </button>
-          ) : (
-            <div />
-          )}
-
-          <div className="flex items-center gap-2">
-            {isListening && (
-              <span className="flex items-center gap-1.5 text-xs text-red-600 font-medium">
-                <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse"></span>
-                <span className="hidden sm:inline">Đang thu âm tiếng Anh...</span>
-                <span className="sm:hidden">Đang thu...</span>
-              </span>
-            )}
-          </div>
-        </div>
-
-        {/* Hints expandable */}
-        {showHints && suggestedHints.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 pt-0.5 pb-1 animate-in fade-in slide-in-from-bottom-2 duration-150">
-            {suggestedHints.slice(0, 5).map((hint, idx) => (
+    <div className="sticky bottom-0 z-20 bg-white/95 backdrop-blur-md border-t border-slate-200/90 safe-bottom-padding shadow-xs">
+      <div className="max-w-2xl mx-auto px-3 sm:px-4 py-2.5 space-y-2.5">
+        {/* Horizontal Quick Reply Chips Carousel */}
+        {suggestedHints.length > 0 && (
+          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+            <div className="flex items-center gap-1 text-[11px] font-semibold text-slate-400 whitespace-nowrap pl-1 pr-1">
+              <Sparkles className="w-3 h-3 text-amber-500" />
+              <span>Gợi ý:</span>
+            </div>
+            {suggestedHints.map((hint, idx) => (
               <button
                 key={idx}
                 type="button"
                 onClick={() => handleSelectHint(hint)}
-                className="text-xs text-left bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200/80 px-3 py-1.5 rounded-full transition shadow-2xs cursor-pointer"
+                className={`text-xs px-3.5 py-1.5 rounded-full font-medium transition cursor-pointer whitespace-nowrap flex-shrink-0 shadow-2xs border ${
+                  inputText === hint
+                    ? "bg-slate-900 text-white border-slate-900"
+                    : "bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-200/80 active:scale-95"
+                }`}
               >
                 "{hint}"
               </button>
@@ -232,70 +220,144 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
           </div>
         )}
 
-        {/* Input Bar */}
-        <div className="flex items-center gap-2">
-          {/* Mic Button */}
-          <div className="relative">
-            {isListening && (
-              <span className="absolute -inset-1 rounded-full bg-red-400 animate-pulse-ring pointer-events-none"></span>
-            )}
+        {/* Transcription Preview Pill (Shown when text is spoken or selected) */}
+        {inputText.trim() && (
+          <div className="flex items-center justify-between gap-2 px-3 py-2 bg-slate-100 border border-slate-200 rounded-2xl animate-in fade-in duration-150">
+            <p className="text-xs sm:text-sm font-medium text-slate-900 truncate pl-1 flex-1">
+              "{inputText}"
+            </p>
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              <button
+                type="button"
+                onClick={() => setInputText("")}
+                className="p-1 text-slate-400 hover:text-slate-600 rounded-full transition cursor-pointer"
+                title="Xóa câu này"
+              >
+                <X className="w-3.5 h-3.5" />
+              </button>
+              <button
+                type="button"
+                onClick={handleSend}
+                disabled={disabled}
+                className="flex items-center gap-1 px-3 py-1 bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold rounded-full shadow-2xs cursor-pointer transition active:scale-95"
+              >
+                <span>Gửi</span>
+                <Send className="w-3 h-3" />
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Controls Dock */}
+        {!isKeyboardMode ? (
+          /* Voice-First Hero Dock */
+          <div className="flex flex-col items-center justify-center pt-1 pb-1">
+            <div className="flex items-center justify-center gap-6 w-full max-w-xs">
+              {/* Keyboard Mode Switch */}
+              <button
+                type="button"
+                onClick={() => setIsKeyboardMode(true)}
+                className="w-11 h-11 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition cursor-pointer shadow-2xs active:scale-95"
+                title="Gõ câu bằng bàn phím"
+                aria-label="Chuyển sang bàn phím"
+              >
+                <Keyboard className="w-5 h-5" />
+              </button>
+
+              {/* Central Hero Mic Button */}
+              <div className="relative">
+                {isListening && (
+                  <span className="absolute -inset-2 rounded-full bg-red-400 animate-pulse-ring pointer-events-none" />
+                )}
+                <button
+                  type="button"
+                  onClick={toggleListening}
+                  disabled={disabled}
+                  className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full flex items-center justify-center transition-all duration-200 shadow-md active:scale-95 cursor-pointer ${
+                    isListening
+                      ? "bg-red-600 text-white scale-105 ring-4 ring-red-400/30"
+                      : "bg-slate-900 hover:bg-slate-800 text-white"
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  title={
+                    isListening
+                      ? "Đang thu âm (Bấm để kết thúc)"
+                      : "Bấm Micro để nói tiếng Anh"
+                  }
+                  aria-label={isListening ? "Dừng thu âm" : "Nói qua micro"}
+                >
+                  {isListening ? (
+                    <MicOff className="w-7 h-7 sm:w-8 sm:h-8" />
+                  ) : (
+                    <Mic className="w-7 h-7 sm:w-8 sm:h-8" />
+                  )}
+                </button>
+              </div>
+
+              {/* Send or Placeholder */}
+              {inputText.trim() ? (
+                <button
+                  type="button"
+                  onClick={handleSend}
+                  disabled={disabled}
+                  className="w-11 h-11 rounded-full bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center transition cursor-pointer shadow-2xs active:scale-95"
+                  title="Gửi câu nói"
+                  aria-label="Gửi câu nói"
+                >
+                  <Send className="w-5 h-5" />
+                </button>
+              ) : (
+                <div className="w-11 h-11" />
+              )}
+            </div>
+
+            {/* Status Label */}
+            <p className="text-[11px] font-medium text-slate-500 mt-2">
+              {isListening ? (
+                <span className="text-red-600 font-semibold animate-pulse">
+                  🔴 Đang thu âm... Chạm micro để kết thúc & gửi
+                </span>
+              ) : isAiSpeaking ? (
+                <span className="text-slate-700 font-medium">
+                  🔊 AI đang phát âm... Chạm mic để nói chen
+                </span>
+              ) : (
+                "Chạm Micro để luyện nói tiếng Anh"
+              )}
+            </p>
+          </div>
+        ) : (
+          /* Text Keyboard Input Mode */
+          <div className="flex items-center gap-2 pt-1 animate-in fade-in duration-150">
             <button
               type="button"
-              onClick={toggleListening}
-              disabled={disabled}
-              className={`relative z-10 w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition shadow-2xs cursor-pointer ${
-                isListening
-                  ? "bg-red-600 text-white scale-105"
-                  : "bg-slate-900 hover:bg-slate-800 text-white"
-              } disabled:opacity-50 disabled:cursor-not-allowed`}
-              title={
-                isListening
-                  ? "Đang thu âm (Bấm để dừng)"
-                  : "Bấm để nói tiếng Anh qua Micro"
-              }
-              aria-label={isListening ? "Dừng thu âm" : "Nói qua micro"}
+              onClick={() => setIsKeyboardMode(false)}
+              className="p-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 transition cursor-pointer"
+              title="Quay lại chế độ Mic"
             >
-              {isListening ? (
-                <MicOff className="w-5 h-5" />
-              ) : (
-                <Mic className="w-5 h-5" />
-              )}
+              <Mic className="w-4 h-4" />
+            </button>
+            <div className="flex-1 relative">
+              <input
+                type="text"
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyDown={handleKeyDown}
+                disabled={disabled}
+                placeholder="Gõ câu trả lời bằng tiếng Anh..."
+                className="w-full text-sm px-4 py-2.5 bg-slate-100 border border-slate-200 rounded-2xl focus:outline-hidden focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-300 text-slate-900"
+              />
+            </div>
+            <button
+              type="button"
+              onClick={handleSend}
+              disabled={!inputText.trim() || disabled}
+              className="w-10 h-10 rounded-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-100 disabled:text-slate-400 text-white flex items-center justify-center transition shadow-2xs cursor-pointer flex-shrink-0"
+              title="Gửi tin nhắn"
+            >
+              <Send className="w-4 h-4" />
             </button>
           </div>
-
-          {/* Text Input Field */}
-          <div className="flex-1 relative">
-            <input
-              type="text"
-              value={inputText}
-              onChange={(e) => setInputText(e.target.value)}
-              onKeyDown={handleKeyDown}
-              disabled={disabled}
-              placeholder={
-                isListening
-                  ? "Đang lắng nghe bạn nói..."
-                  : "Nói qua mic hoặc gõ câu trả lời..."
-              }
-              className={`w-full text-sm sm:text-base px-4 py-2.5 bg-slate-100 border rounded-2xl focus:outline-hidden transition placeholder:text-slate-400 ${
-                isListening
-                  ? "border-red-400 bg-red-50/20 text-slate-900"
-                  : "border-slate-200 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-300 text-slate-900"
-              }`}
-            />
-          </div>
-
-          {/* Send Button */}
-          <button
-            type="button"
-            onClick={handleSend}
-            disabled={!inputText.trim() || disabled}
-            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-slate-900 hover:bg-slate-800 disabled:bg-slate-100 disabled:text-slate-400 text-white flex items-center justify-center transition shadow-2xs flex-shrink-0 cursor-pointer disabled:cursor-not-allowed"
-            title="Gửi câu nói"
-            aria-label="Gửi tin nhắn"
-          >
-            <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-          </button>
-        </div>
+        )}
       </div>
     </div>
   );

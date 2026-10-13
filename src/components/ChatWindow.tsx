@@ -52,239 +52,262 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isAiThinking]);
 
+  const [isSituationExpanded, setIsSituationExpanded] = React.useState(false);
+  const isAiSpeaking = activeAudioId !== null;
+
   return (
-    <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 space-y-4 max-w-3xl mx-auto w-full">
-      {/* Scenario Briefing Card */}
-      <div className="bg-white border border-slate-200/90 rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm text-slate-700 shadow-xs">
-        <div className="flex items-start gap-3">
-          <div className="w-8 h-8 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-base flex-shrink-0 mt-0.5">
-            {currentAiRole.avatar || "💬"}
+    <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50/50">
+      {/* Top Half: AI Character Persona & Soundwave Stage */}
+      <div className="bg-white border-b border-slate-200/90 px-4 py-3 sm:py-4 shadow-2xs flex-shrink-0">
+        <div className="max-w-2xl mx-auto flex flex-col items-center text-center space-y-2">
+          {/* Avatar with Soundwave Glow */}
+          <div className="relative">
+            <div
+              className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-slate-900 border-2 border-slate-200 flex items-center justify-center text-2xl sm:text-3xl shadow-sm transition-transform duration-300 ${
+                isAiSpeaking ? "scale-105 ring-4 ring-slate-900/10" : ""
+              }`}
+            >
+              {currentAiRole.avatar || "☕"}
+            </div>
+
+            {/* Speaking Badge */}
+            {isAiSpeaking && (
+              <span className="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white rounded-full animate-pulse" />
+            )}
           </div>
-          <div className="space-y-1.5 flex-1 min-w-0">
-            <div className="flex items-center justify-between gap-2 flex-wrap">
-              <h3 className="font-semibold text-slate-900 text-sm sm:text-base flex items-center gap-2">
-                <span>{scenario.order}. {scenario.titleEn} – {scenario.titleVi}</span>
-                {scenario.isFreeTalk && (
-                  <span className="text-[10px] font-semibold uppercase tracking-wider bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200">
-                    Tự do
-                  </span>
-                )}
-              </h3>
+
+          {/* AI Character Name & Role */}
+          <div>
+            <div className="flex items-center justify-center gap-1.5">
+              <h2 className="font-bold text-slate-900 text-sm sm:text-base">
+                {currentAiRole.name}
+              </h2>
+              <span className="text-[10px] font-semibold uppercase tracking-wider bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200/80">
+                AI Partner
+              </span>
             </div>
-            <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
-              {scenario.situation}
+            <p className="text-xs text-slate-500 font-medium mt-0.5">
+              {currentAiRole.titleVi || currentAiRole.titleEn}
             </p>
-            <div className="flex flex-wrap items-center gap-2 pt-0.5 text-xs">
-              <span className="bg-slate-100 px-2.5 py-1 rounded-full text-slate-700 font-medium border border-slate-200/80">
-                AI: {currentAiRole.avatar} {currentAiRole.name}
+          </div>
+
+          {/* Soundwave Visualizer Bars */}
+          <div className="flex items-center gap-1.5 h-7">
+            {isAiSpeaking ? (
+              <div className="flex items-center gap-1 px-3 py-1 bg-slate-100 rounded-full border border-slate-200">
+                <span className="w-1 bg-slate-900 rounded-full animate-soundwave-1" />
+                <span className="w-1 bg-slate-900 rounded-full animate-soundwave-2" />
+                <span className="w-1 bg-slate-900 rounded-full animate-soundwave-3" />
+                <span className="w-1 bg-slate-900 rounded-full animate-soundwave-4" />
+                <span className="w-1 bg-slate-900 rounded-full animate-soundwave-5" />
+                <span className="text-[11px] font-semibold text-slate-800 ml-1.5">
+                  Đang nói...
+                </span>
+              </div>
+            ) : isAiThinking ? (
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 rounded-full border border-slate-200 text-[11px] text-slate-600 font-medium">
+                <span className="w-1.5 h-1.5 bg-slate-600 rounded-full animate-bounce" />
+                <span
+                  className="w-1.5 h-1.5 bg-slate-600 rounded-full animate-bounce"
+                  style={{ animationDelay: "0.2s" }}
+                />
+                <span
+                  className="w-1.5 h-1.5 bg-slate-600 rounded-full animate-bounce"
+                  style={{ animationDelay: "0.4s" }}
+                />
+                <span className="ml-1">Đang suy nghĩ...</span>
+              </div>
+            ) : (
+              <div className="flex items-center gap-1 px-3 py-1 text-slate-400 text-[11px] font-medium">
+                <span className="w-1 h-1.5 bg-slate-300 rounded-full" />
+                <span className="w-1 h-2 bg-slate-300 rounded-full" />
+                <span className="w-1 h-1.5 bg-slate-300 rounded-full" />
+                <span className="ml-1">Sẵn sàng lắng nghe</span>
+              </div>
+            )}
+          </div>
+
+          {/* Collapsible Situation Context Pill */}
+          <div className="pt-0.5">
+            <button
+              type="button"
+              onClick={() => setIsSituationExpanded(!isSituationExpanded)}
+              className="inline-flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200/80 border border-slate-200/80 px-3 py-1 rounded-full transition cursor-pointer"
+            >
+              <span>📍 {scenario.order}. {scenario.titleEn}</span>
+              <span className="text-slate-400 text-[11px]">
+                {isSituationExpanded ? "▲ Thu gọn" : "▼ Xem ngữ cảnh"}
               </span>
-              <span className="bg-slate-900 px-2.5 py-1 rounded-full text-white font-medium">
-                Bạn: {currentLearnerRole.avatar} {currentLearnerRole.name}
-              </span>
-              <span className="text-slate-500 font-normal">
-                {scenario.isFreeTalk
-                  ? "• Trò chuyện tự do không ràng buộc"
-                  : "• Luyện đối thoại theo ngữ cảnh"}
-              </span>
-            </div>
+            </button>
+
+            {isSituationExpanded && (
+              <div className="mt-2 p-3 bg-slate-50 border border-slate-200 rounded-2xl text-xs text-slate-600 leading-relaxed text-left max-w-lg mx-auto shadow-2xs animate-in fade-in duration-150">
+                <p className="font-medium text-slate-800 mb-1">
+                  Bối cảnh: {scenario.situation}
+                </p>
+                <div className="flex items-center gap-2 pt-1 text-[11px] text-slate-500 border-t border-slate-200/60">
+                  <span>Bạn đang đóng vai: <strong>{currentLearnerRole.avatar} {currentLearnerRole.name}</strong></span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Opening turn prompt when learner speaks first and no messages exist yet */}
-      {messages.length === 0 && (
-        <div className="bg-white border border-slate-200 rounded-2xl p-5 text-center space-y-2.5 animate-in fade-in slide-in-from-bottom-2 duration-200 shadow-xs">
-          <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 mx-auto flex items-center justify-center text-xl">
-            🎙️
+      {/* Bottom Half: Cinematic Dialogue Stream */}
+      <div className="flex-1 overflow-y-auto px-3 sm:px-4 py-4 space-y-4 max-w-2xl mx-auto w-full">
+        {/* Welcome turn when dialogue starts */}
+        {messages.length === 0 && (
+          <div className="bg-white border border-slate-200/90 rounded-2xl p-6 text-center space-y-3 shadow-2xs animate-in fade-in slide-in-from-bottom-2 duration-200 my-4">
+            <div className="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 mx-auto flex items-center justify-center text-2xl">
+              🎙️
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-base font-semibold text-slate-900">
+                Đến lượt bạn mở lời trước!
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                Bạn đang đóng vai{" "}
+                <span className="font-semibold text-slate-900 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
+                  {currentLearnerRole.avatar} {currentLearnerRole.name}
+                </span>.
+                Bấm nút Micro ở thanh dưới hoặc chọn một câu gợi ý để bắt đầu cuộc trò chuyện.
+              </p>
+            </div>
           </div>
-          <h4 className="text-sm sm:text-base font-semibold text-slate-900">
-            Đến lượt bạn mở lời trước!
-          </h4>
-          <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
-            Bạn đang đóng vai{" "}
-            <span className="font-semibold text-slate-900 bg-slate-100 px-2 py-0.5 rounded-md border border-slate-200">
-              {currentLearnerRole.avatar} {currentLearnerRole.name}
-            </span>.
-            Bấm nút Micro bên dưới hoặc chọn câu gợi ý để bắt đầu cuộc trò chuyện.
-          </p>
-        </div>
-      )}
+        )}
 
-      {/* Messages Thread */}
-      {messages.map((msg) => {
-        const isAi = msg.sender === "ai";
-        const isPlaying = activeAudioId === msg.id;
-        const isRevealed = subtitlesEnabled || msg.revealed;
+        {/* Message Stream */}
+        {messages.map((msg) => {
+          const isAi = msg.sender === "ai";
+          const isPlaying = activeAudioId === msg.id;
+          const isRevealed = subtitlesEnabled || msg.revealed;
 
-        return (
-          <div
-            key={msg.id}
-            className={`flex items-end gap-2 sm:gap-2.5 ${
-              isAi ? "justify-start" : "justify-end"
-            }`}
-          >
-            {/* AI Avatar */}
-            {isAi && (
-              <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-sm flex-shrink-0 text-slate-700 shadow-2xs mb-0.5">
-                {currentAiRole.avatar}
-              </div>
-            )}
-
-            {/* Bubble */}
+          return (
             <div
-              className={`max-w-[85%] sm:max-w-[78%] rounded-2xl px-4 py-3 shadow-2xs transition ${
-                isAi
-                  ? "bg-white border border-slate-200/90 text-slate-900 rounded-tl-sm"
-                  : "bg-slate-900 text-white rounded-tr-sm"
+              key={msg.id}
+              className={`flex flex-col space-y-1 animate-in fade-in duration-200 ${
+                isAi ? "items-start" : "items-end"
               }`}
             >
-              {/* Header inside bubble */}
-              <div className="flex items-center justify-between gap-3 mb-1">
-                <span
-                  className={`text-[10px] font-semibold tracking-wider uppercase ${
-                    isAi ? "text-slate-500" : "text-slate-400"
-                  }`}
-                >
-                  {msg.roleName}
-                </span>
-
-                {isAi && (
-                  <div className="flex items-center gap-1">
-                    {/* First message prompt on Safari/iOS if autoplay was blocked */}
-                    {messages.length === 1 && !isPlaying && (
-                      <button
-                        type="button"
-                        onClick={() => onPlayAudio(msg.id, msg.textEn)}
-                        className="flex items-center gap-1 text-[11px] font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 px-2 py-0.5 rounded-full transition cursor-pointer"
-                        title="Bấm để nghe AI nói"
-                      >
-                        <Volume2 className="w-3 h-3 text-slate-700" />
-                        <span>Nghe AI nói</span>
-                      </button>
-                    )}
-
-                    {/* Audio Play/Stop Button */}
-                    <button
-                      type="button"
-                      onClick={() =>
-                        isPlaying
-                          ? onStopAudio()
-                          : onPlayAudio(msg.id, msg.textEn)
-                      }
-                      className={`p-1 rounded-full transition cursor-pointer ${
-                        isPlaying
-                          ? "bg-slate-900 text-white animate-pulse"
-                          : "text-slate-400 hover:text-slate-700 hover:bg-slate-100"
-                      }`}
-                      title={isPlaying ? "Dừng phát" : "Nghe phát âm"}
-                      aria-label={isPlaying ? "Dừng phát âm" : "Phát âm câu này"}
-                    >
-                      {isPlaying ? (
-                        <VolumeX className="w-3.5 h-3.5" />
-                      ) : (
-                        <Volume2 className="w-3.5 h-3.5" />
-                      )}
-                    </button>
-                  </div>
-                )}
+              {/* Speaker Label */}
+              <div className="flex items-center gap-2 px-1 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
+                <span>{isAi ? `AI • ${msg.roleName}` : `BẠN • ${msg.roleName}`}</span>
               </div>
 
-              {/* Spoken Text Area */}
-              {isAi ? (
-                <div>
-                  {isRevealed ? (
-                    <div className="space-y-1">
-                      <p className="text-[15px] sm:text-base font-normal leading-relaxed text-slate-900">
-                        {msg.textEn}
-                      </p>
-                      {msg.textVi && (
-                        <p className="text-xs sm:text-[13px] text-slate-500 leading-normal pt-1 border-t border-slate-100">
-                          {msg.textVi}
-                        </p>
-                      )}
-                      {!subtitlesEnabled && (
-                        <div className="pt-1">
-                          <button
-                            type="button"
-                            onClick={() => onToggleReveal(msg.id)}
-                            className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition cursor-pointer"
-                            title="Ẩn lại phụ đề câu này"
-                          >
-                            <EyeOff className="w-3 h-3" />
-                            <span>Ẩn lại phụ đề</span>
-                          </button>
-                        </div>
-                      )}
+              {/* Speech Card */}
+              <div
+                className={`w-full max-w-xl rounded-2xl p-4 sm:p-5 shadow-2xs transition ${
+                  isAi
+                    ? "bg-white border border-slate-200/90 text-slate-900"
+                    : "bg-slate-900 text-white shadow-xs"
+                }`}
+              >
+                {isAi ? (
+                  <div className="space-y-2">
+                    {/* Audio Control Row */}
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-2">
+                      <div className="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
+                        <span className="w-2 h-2 rounded-full bg-slate-900" />
+                        <span>Lời thoại AI</span>
+                      </div>
+
+                      <div className="flex items-center gap-1">
+                        {/* Audio Play/Stop Button */}
+                        <button
+                          type="button"
+                          onClick={() =>
+                            isPlaying
+                              ? onStopAudio()
+                              : onPlayAudio(msg.id, msg.textEn)
+                          }
+                          className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition cursor-pointer ${
+                            isPlaying
+                              ? "bg-slate-900 text-white animate-pulse"
+                              : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                          }`}
+                          title={isPlaying ? "Dừng phát" : "Nghe lại câu này"}
+                        >
+                          {isPlaying ? (
+                            <>
+                              <VolumeX className="w-3.5 h-3.5" />
+                              <span>Dừng</span>
+                            </>
+                          ) : (
+                            <>
+                              <Volume2 className="w-3.5 h-3.5" />
+                              <span>Nghe</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
                     </div>
-                  ) : (
-                    /* Listening Challenge Mode: Elegant Blur-to-reveal */
-                    <button
-                      type="button"
-                      onClick={() => onToggleReveal(msg.id)}
-                      className="text-left w-full cursor-pointer group focus:outline-hidden"
-                      title="Chạm để xem phụ đề câu này"
-                    >
-                      <div className="filter blur-xs select-none transition duration-200 group-hover:blur-[2px] space-y-1">
-                        <p className="text-[15px] sm:text-base font-normal leading-relaxed text-slate-700">
+
+                    {/* Spoken Dialogue Text */}
+                    {isRevealed ? (
+                      <div className="space-y-1.5 pt-0.5">
+                        <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-900">
                           {msg.textEn}
                         </p>
                         {msg.textVi && (
-                          <p className="text-xs text-slate-400 pt-1 border-t border-slate-100">
+                          <p className="text-xs sm:text-[13px] text-slate-500 leading-normal pt-1.5 border-t border-slate-100">
                             {msg.textVi}
                           </p>
                         )}
+                        {!subtitlesEnabled && (
+                          <div className="pt-1">
+                            <button
+                              type="button"
+                              onClick={() => onToggleReveal(msg.id)}
+                              className="inline-flex items-center gap-1 text-[11px] text-slate-400 hover:text-slate-600 transition cursor-pointer"
+                              title="Ẩn lại phụ đề câu này"
+                            >
+                              <EyeOff className="w-3 h-3" />
+                              <span>Ẩn lại phụ đề</span>
+                            </button>
+                          </div>
+                        )}
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] font-medium text-slate-500 group-hover:text-slate-800 transition mt-1 pt-1 border-t border-slate-100">
-                        <Eye className="w-3 h-3" />
-                        <span>Chạm để mở phụ đề</span>
-                      </div>
-                    </button>
-                  )}
-                </div>
-              ) : (
-                /* User Message */
-                <p className="text-[15px] sm:text-base leading-relaxed text-white font-normal">
-                  {msg.textEn}
-                </p>
-              )}
-            </div>
-
-            {/* User Avatar */}
-            {!isAi && (
-              <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center text-sm flex-shrink-0 text-slate-200 shadow-2xs mb-0.5">
-                {scenario.defaultRoles.user.avatar}
+                    ) : (
+                      /* Listening Challenge: Blur to reveal */
+                      <button
+                        type="button"
+                        onClick={() => onToggleReveal(msg.id)}
+                        className="text-left w-full cursor-pointer group focus:outline-hidden pt-1"
+                        title="Chạm để mở phụ đề câu này"
+                      >
+                        <div className="filter blur-xs select-none transition duration-200 group-hover:blur-[2px] space-y-1">
+                          <p className="text-base sm:text-lg font-medium leading-relaxed text-slate-700">
+                            {msg.textEn}
+                          </p>
+                          {msg.textVi && (
+                            <p className="text-xs text-slate-400 pt-1 border-t border-slate-100">
+                              {msg.textVi}
+                            </p>
+                          )}
+                        </div>
+                        <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600 group-hover:text-slate-900 transition mt-2 pt-2 border-t border-slate-100">
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>Chạm để mở phụ đề</span>
+                        </div>
+                      </button>
+                    )}
+                  </div>
+                ) : (
+                  /* Learner Dialogue */
+                  <div className="space-y-1">
+                    <p className="text-base sm:text-lg font-medium leading-relaxed text-white">
+                      {msg.textEn}
+                    </p>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        );
-      })}
-
-      {/* AI Thinking Animation */}
-      {isAiThinking && (
-        <div className="flex items-end gap-2.5 justify-start">
-          <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-sm flex-shrink-0 text-slate-700 shadow-2xs">
-            {scenario.defaultRoles.ai.avatar}
-          </div>
-          <div className="bg-white border border-slate-200/90 rounded-2xl rounded-tl-sm px-4 py-3 shadow-2xs">
-            <div className="flex items-center gap-1.5 text-xs text-slate-400">
-              <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
-              <span
-                className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
-                style={{ animationDelay: "0.2s" }}
-              ></span>
-              <span
-                className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"
-                style={{ animationDelay: "0.4s" }}
-              ></span>
-              <span className="text-slate-500 text-xs ml-1.5">
-                {scenario.defaultRoles.ai.name} đang suy nghĩ...
-              </span>
             </div>
-          </div>
-        </div>
-      )}
+          );
+        })}
 
-      <div ref={bottomRef} className="h-2" />
+        <div ref={bottomRef} className="h-4" />
+      </div>
     </div>
   );
 };
