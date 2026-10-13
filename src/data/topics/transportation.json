@@ -1,0 +1,495 @@
+{
+  "id": "transportation",
+  "titleEn": "Getting Around & Transportation",
+  "titleVi": "Đi Lại & Giao Thông",
+  "icon": "🚕",
+  "description": "Luyện giao tiếp khi đi lại ở nước ngoài: bắt taxi/Grab, mua thẻ tàu điện ngầm, đi xe buýt và hỏi đường người qua đường.",
+  "scenarios": [
+    {
+      "id": "transportation-freetalk",
+      "order": 0,
+      "section": "🌟 THỰC CHIẾN TỰ DO (OPEN ROLEPLAY)",
+      "titleEn": "Transportation Free Talk (Không Giới Hạn)",
+      "titleVi": "Thực chiến giao thông tự do",
+      "situation": "Phòng thực chiến tự do: AI đóng vai Trợ lý điều phối giao thông & Hướng dẫn viên du lịch (Transit Navigator). Bạn có thể hỏi bất kỳ cách đi lại nào: bắt taxi, đi tàu MRT/Subway, đổi trạm xe buýt, mua vé ngày hoặc hỏi đường đến bất cứ địa điểm nào!",
+      "isFreeTalk": true,
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Transit Navigator",
+          "titleEn": "Transit Navigator",
+          "titleVi": "Người hướng dẫn giao thông",
+          "avatar": "🧭"
+        },
+        "user": {
+          "id": "user",
+          "name": "Commuter",
+          "titleEn": "Commuter / Traveler",
+          "titleVi": "Người đi lại (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Hello! I can guide you anywhere around the city by taxi, subway, bus, or on foot. Where would you like to go today?",
+      "initialMessageVi": "Xin chào! Tôi có thể chỉ đường cho bạn đến bất kỳ đâu trong thành phố bằng taxi, tàu điện ngầm, xe buýt hoặc đi bộ. Hôm nay bạn muốn đi đâu?",
+      "vocabulary": [
+        {
+          "id": "vocab-t0-1",
+          "word": "fare",
+          "partOfSpeech": "n",
+          "ipa": "/fer/",
+          "meaningVi": "tiền vé tàu xe",
+          "synonyms": [
+            "ticket price (giá vé)",
+            "transit fee (phí đi lại)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "taxi fare: cước taxi",
+            "bus fare: tiền vé xe buýt",
+            "flat fare: đồng giá cước",
+            "fare card / transit pass: thẻ đi lại trả trước"
+          ],
+          "exampleEn": "How much is the subway fare to the Central Station?",
+          "exampleVi": "Tiền vé tàu điện ngầm đến Ga Trung tâm là bao nhiêu?"
+        },
+        {
+          "id": "vocab-t0-2",
+          "word": "transfer",
+          "partOfSpeech": "v, n",
+          "ipa": "/trænsˈfɜːr/",
+          "meaningVi": "chuyển tuyến / đổi tàu xe",
+          "synonyms": [
+            "interchange (ga chuyển tuyến)",
+            "switch lines (đổi tuyến tàu)"
+          ],
+          "antonyms": [
+            "direct (đi thẳng không chuyển tuyến)"
+          ],
+          "collocations": [
+            "transfer to Line 2: đổi sang Tuyến số 2",
+            "transfer station: ga chuyển tuyến",
+            "free transfer: đổi tuyến miễn phí trong thời gian quy định"
+          ],
+          "exampleEn": "You need to transfer to the Blue Line at City Hall Station.",
+          "exampleVi": "Bạn cần đổi sang Tuyến Xanh Dương tại ga City Hall."
+        },
+        {
+          "id": "vocab-t0-3",
+          "word": "landmark",
+          "partOfSpeech": "n",
+          "ipa": "/ˈlændmɑːrk/",
+          "meaningVi": "mốc mốc định vị / địa danh dễ nhận biết",
+          "synonyms": [
+            "point of reference (điểm mốc tham chiếu)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "famous landmark: địa danh nổi tiếng",
+            "use it as a landmark: dùng làm mốc nhận diện đường"
+          ],
+          "exampleEn": "The museum is right across from the cathedral, which is a major landmark.",
+          "exampleVi": "Bảo tàng nằm ngay đối diện nhà thờ lớn, đó là một điểm mốc rất dễ nhận diện."
+        }
+      ],
+      "sampleDialogue": [],
+      "suggestedHints": [
+        "How do I get to the city center from here?",
+        "Which subway line goes to the national museum?",
+        "Is it faster to take a taxi or the express train?",
+        "How much does a 24-hour transit pass cost?"
+      ]
+    },
+    {
+      "id": "transportation-scenario-1",
+      "order": 1,
+      "section": "🚕 Taxi & Đặt xe (Taxi & Ride-Hailing)",
+      "titleEn": "Taking a Taxi or Grab",
+      "titleVi": "Bắt Taxi hoặc Đặt xe công nghệ",
+      "situation": "Hành khách vẫy taxi hoặc đón Grab/Uber trên phố, báo điểm đến, yêu cầu bật đồng hồ cước (meter), hướng dẫn tài xế vị trí thả khách và thanh toán.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Taxi Driver",
+          "titleEn": "Taxi Driver",
+          "titleVi": "Tài xế Taxi / Đặt xe",
+          "avatar": "🚕"
+        },
+        "user": {
+          "id": "user",
+          "name": "Passenger",
+          "titleEn": "Passenger",
+          "titleVi": "Hành khách (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Hello there! Where can I take you today?",
+      "initialMessageVi": "Chào bạn! Tôi có thể đưa bạn đi đâu hôm nay?",
+      "vocabulary": [
+        {
+          "id": "vocab-t1-1",
+          "word": "taximeter",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtæksimiːtər/",
+          "meaningVi": "đồng hồ tính cước taxi (meter)",
+          "synonyms": [
+            "meter (đồng hồ cước)"
+          ],
+          "antonyms": [
+            "fixed price / flat rate (giá khoán cố định)"
+          ],
+          "collocations": [
+            "turn on the meter: bật đồng hồ cước",
+            "metered fare: cước tính theo đồng hồ"
+          ],
+          "exampleEn": "Could you please turn on the meter?",
+          "exampleVi": "Bác tài có thể bật đồng hồ tính cước giúp tôi được không?"
+        },
+        {
+          "id": "vocab-t1-2",
+          "word": "drop off",
+          "partOfSpeech": "v phr",
+          "ipa": "/drɑːp ɔːf/",
+          "meaningVi": "thả khách xuống xe",
+          "synonyms": [
+            "let someone out (cho ai đó xuống xe)"
+          ],
+          "antonyms": [
+            "pick up (đón khách)"
+          ],
+          "collocations": [
+            "drop me off at the corner: thả tôi xuống ở góc đường",
+            "drop-off point: điểm trả khách"
+          ],
+          "exampleEn": "You can drop me off right in front of that hotel.",
+          "exampleVi": "Bác tài có thể thả tôi xuống ngay trước khách sạn đằng kia."
+        },
+        {
+          "id": "vocab-t1-3",
+          "word": "keep the change",
+          "partOfSpeech": "idiom",
+          "ipa": "/kiːp ðə tʃeɪndʒ/",
+          "meaningVi": "cứ giữ lấy tiền thừa (tiền tip cho tài xế)",
+          "synonyms": [
+            "no change needed (không cần thối lại)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "Here is 20 dollars, keep the change: Đây là 20 đô, bác cứ giữ tiền thừa nhé"
+          ],
+          "exampleEn": "The fare is $18. Here is a $20 bill, please keep the change.",
+          "exampleVi": "Cước là 18 đô. Đây là tờ 20 đô, bác cứ giữ lại tiền thối nhé."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Taxi Driver",
+          "textEn": "Hello there! Where can I take you today?",
+          "textVi": "Chào bạn! Tôi có thể đưa bạn đi đâu hôm nay?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Hi! Could you take me to the Marina Bay Sands, please? And could you turn on the meter?",
+          "textVi": "Chào bác tài! Bác chở tôi tới Marina Bay Sands nhé? Bác bật đồng hồ cước giúp tôi với."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Taxi Driver",
+          "textEn": "Sure thing, meter is running. Do you prefer taking the highway or the local route? The highway has a small toll.",
+          "textVi": "Chắc chắn rồi, đồng hồ đã bật. Bạn muốn đi đường cao tốc hay đường thường? Đi cao tốc thì có thêm chút phí cầu đường."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Please take the highway, I'm a bit in a rush. About how long will it take?",
+          "textVi": "Bác đi cao tốc giúp tôi nhé, tôi đang hơi vội. Mất khoảng bao lâu để tới nơi vậy?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Taxi Driver",
+          "textEn": "Traffic is light, so about 15 minutes. Here we are at the main entrance. That's $18.50 on the meter.",
+          "textVi": "Đường khá thoáng nên mất tầm 15 phút thôi. Tới cổng chính rồi đây bạn ơi. Trên đồng hồ là $18.50 nhé."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Passenger",
+          "textEn": "Here is $20. Keep the change! Thank you for the safe drive.",
+          "textVi": "Gửi bác 20 đô. Bác cứ giữ tiền thừa nhé! Cảm ơn bác tài đã lái xe an toàn."
+        }
+      ],
+      "suggestedHints": [
+        "Could you take me to the City Center, please?",
+        "Could you please turn on the meter?",
+        "Can you drop me off near the convenience store?",
+        "Do you accept credit card or contactless payment?"
+      ]
+    },
+    {
+      "id": "transportation-scenario-2",
+      "order": 2,
+      "section": "🚇 Tàu điện & Thẻ vé (Metro & Subway)",
+      "titleEn": "Metro Ticket Kiosk & Navigation",
+      "titleVi": "Mua vé tàu điện & Tìm đường đổi trạm",
+      "situation": "Khách dùng máy bán vé tự động tại ga tàu điện ngầm, hỏi nhân viên ga cách mua vé nạp tiền và tìm tuyến đổi tàu để đến đích.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Station Staff",
+          "titleEn": "Station Attendant",
+          "titleVi": "Nhân viên Ga tàu",
+          "avatar": "🚇"
+        },
+        "user": {
+          "id": "user",
+          "name": "Traveler",
+          "titleEn": "Traveler",
+          "titleVi": "Khách đi tàu (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Good day! Need any help with the ticketing machine or subway map?",
+      "initialMessageVi": "Chào bạn! Bạn có cần giúp gì với máy bán vé hay bản đồ tàu điện ngầm không?",
+      "vocabulary": [
+        {
+          "id": "vocab-t2-1",
+          "word": "turnstile",
+          "partOfSpeech": "n",
+          "ipa": "/ˈtɜːrnstaɪl/",
+          "meaningVi": "cổng xoay / cửa soát vé tự động",
+          "synonyms": [
+            "fare gate (cổng soát vé)",
+            "ticket barrier (hàng rào soát vé)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "tap your card at the turnstile: quẹt thẻ qua cổng soát vé"
+          ],
+          "exampleEn": "Tap your card on the sensor to open the turnstile.",
+          "exampleVi": "Quẹt thẻ của bạn vào cảm biến để mở cửa soát vé."
+        },
+        {
+          "id": "vocab-t2-2",
+          "word": "platform",
+          "partOfSpeech": "n",
+          "ipa": "/ˈplætfɔːrm/",
+          "meaningVi": "ke ga / sân ga đợi tàu",
+          "synonyms": [
+            "track (đường ray)",
+            "dock (bến tàu)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "Platform 1 / Platform 2: Sân ga số 1 / số 2",
+            "wait on the platform: đợi ở sân ga",
+            "stand behind the yellow line: đứng sau vạch màu vàng"
+          ],
+          "exampleEn": "The train towards the airport departs from Platform 3.",
+          "exampleVi": "Chuyến tàu hướng về sân bay khởi hành từ Sân ga số 3."
+        },
+        {
+          "id": "vocab-t2-3",
+          "word": "rechargeable card",
+          "partOfSpeech": "n",
+          "ipa": "/riːˈtʃɑːrdʒəbl kɑːrd/",
+          "meaningVi": "thẻ nạp tiền nhiều lần (thẻ giao thông IC)",
+          "synonyms": [
+            "smart card (thẻ thông minh)",
+            "contactless transit card (thẻ quẹt giao thông)"
+          ],
+          "antonyms": [
+            "single-journey token / ticket (vé 1 lượt)"
+          ],
+          "collocations": [
+            "top up / reload a card: nạp thêm tiền vào thẻ"
+          ],
+          "exampleEn": "Is it cheaper to buy a rechargeable card if I stay for 5 days?",
+          "exampleVi": "Mua thẻ nạp tiền có rẻ hơn không nếu tôi ở lại 5 ngày?"
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Station Staff",
+          "textEn": "Good day! Need any help with the ticketing machine or subway map?",
+          "textVi": "Chào bạn! Bạn có cần giúp gì với máy bán vé hay bản đồ tàu điện ngầm không?"
+        },
+        {
+          "speaker": "user",
+          "roleName": "Traveler",
+          "textEn": "Hi! Yes please. I want to buy a ticket to the National Art Gallery. Can I buy a single journey ticket here?",
+          "textVi": "Chào anh! Dạ có ạ. Tôi muốn mua vé tới Bảo tàng Nghệ thuật Quốc gia. Tôi có thể mua vé một lượt tại đây không?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Station Staff",
+          "textEn": "Yes, just tap 'English' on the screen, then choose the destination station. Or you can buy a rechargeable card for $10 with $7 preloaded credit.",
+          "textVi": "Được chứ, bạn chỉ cần bấm chọn 'English' trên màn hình, rồi chọn trạm đến. Hoặc bạn có thể mua thẻ nạp tiền giá $10 có sẵn $7 trong tài khoản."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Traveler",
+          "textEn": "I'll take the rechargeable card, please. Which platform should I go to for the Art Gallery?",
+          "textVi": "Tôi sẽ mua thẻ nạp tiền ạ. Tôi nên đến sân ga nào để đi tới Bảo tàng Nghệ thuật?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Station Staff",
+          "textEn": "Take Platform 2 on the Green Line for 4 stops, then get off at City Hall Station and take Exit B.",
+          "textVi": "Bạn sang Sân ga số 2 trên Tuyến Xanh Lá đi qua 4 trạm, sau đó xuống tại ga City Hall và đi ra Cổng B nhé."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Traveler",
+          "textEn": "Got it! Platform 2, get off at City Hall, Exit B. Thank you so much!",
+          "textVi": "Tôi hiểu rồi! Sân ga số 2, xuống ở City Hall, Cổng B. Cảm ơn anh rất nhiều!"
+        }
+      ],
+      "suggestedHints": [
+        "Which line goes to Central Station?",
+        "How do I buy a single journey token from this machine?",
+        "Which exit should I take for the shopping mall?",
+        "Do I need to transfer trains to get to the airport?"
+      ]
+    },
+    {
+      "id": "transportation-scenario-3",
+      "order": 3,
+      "section": "🗺️ Hỏi đường & Định vị (Wayfinding & Directions)",
+      "titleEn": "Asking for Directions on the Street",
+      "titleVi": "Hỏi đường người qua đường khi bị lạc",
+      "situation": "Bạn đang đi dạo trong thành phố thì điện thoại hết pin hoặc mất tín hiệu GPS. Bạn tiến tới một người dân địa phương trên phố để hỏi đường đến ga tàu hoặc địa điểm tham quan.",
+      "defaultRoles": {
+        "ai": {
+          "id": "ai",
+          "name": "Local Resident",
+          "titleEn": "Local Resident",
+          "titleVi": "Người dân địa phương",
+          "avatar": "🚶"
+        },
+        "user": {
+          "id": "user",
+          "name": "Lost Tourist",
+          "titleEn": "Lost Tourist",
+          "titleVi": "Du khách bị lạc (Bạn)",
+          "avatar": "👤"
+        }
+      },
+      "initialMessageEn": "Excuse me, are you looking for something? You look a bit lost.",
+      "initialMessageVi": "Xin lỗi, bạn đang tìm địa điểm nào à? Trông bạn có vẻ đang bị lạc đường.",
+      "vocabulary": [
+        {
+          "id": "vocab-t3-1",
+          "word": "intersection",
+          "partOfSpeech": "n",
+          "ipa": "/ˌɪntərˈsekʃn/",
+          "meaningVi": "ngã tư / nút giao lộ",
+          "synonyms": [
+            "crossroads (ngã tư)",
+            "junction (ngã ba/ngã tư)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "traffic light intersection: ngã tư có đèn giao thông",
+            "turn left at the intersection: rẽ trái ở ngã tư"
+          ],
+          "exampleEn": "Turn right at the second intersection.",
+          "exampleVi": "Hãy rẽ phải ở ngã tư thứ hai nhé."
+        },
+        {
+          "id": "vocab-t3-2",
+          "word": "within walking distance",
+          "partOfSpeech": "idiom",
+          "ipa": "/wɪˈðɪn ˈwɔːkɪŋ ˈdɪstəns/",
+          "meaningVi": "trong tầm đi bộ được (gần, không cần xe)",
+          "synonyms": [
+            "close by (gần đây)",
+            "a short walk away (cách vài bước đi bộ)"
+          ],
+          "antonyms": [
+            "far away (xa)",
+            "driving distance only (chỉ đi bằng xe hơi)"
+          ],
+          "collocations": [
+            "It's within walking distance: Chỗ đó đi bộ tới được ngay"
+          ],
+          "exampleEn": "Don't worry, the museum is easily within walking distance.",
+          "exampleVi": "Đừng lo, bảo tàng nằm rất gần và hoàn toàn đi bộ tới được."
+        },
+        {
+          "id": "vocab-t3-3",
+          "word": "blocks",
+          "partOfSpeech": "n",
+          "ipa": "/blɑːks/",
+          "meaningVi": "dãy nhà / dãy phố (đơn vị đo khoảng cách phố)",
+          "synonyms": [
+            "city blocks (các dãy phố)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "walk straight for two blocks: đi thẳng qua 2 dãy phố",
+            "around the block: ngay góc phố bên cạnh"
+          ],
+          "exampleEn": "Go straight for three blocks, then turn left at the bakery.",
+          "exampleVi": "Đi thẳng qua ba dãy phố, rồi rẽ trái ở tiệm bánh mì nhé."
+        }
+      ],
+      "sampleDialogue": [
+        {
+          "speaker": "ai",
+          "roleName": "Local Resident",
+          "textEn": "Excuse me, are you looking for something? You look a bit lost.",
+          "textVi": "Xin lỗi, bạn đang tìm địa điểm nào à? Trông bạn có vẻ đang bị lạc đường."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Lost Tourist",
+          "textEn": "Oh, thank you! Excuse me, could you tell me how to get to the Central Train Station? My phone battery just died.",
+          "textVi": "Ôi cảm ơn bạn! Cho tôi hỏi, bạn có thể chỉ đường giúp tôi đến Ga Tàu Trung Tâm được không? Điện thoại của tôi vừa hết sạch pin."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Local Resident",
+          "textEn": "No problem! You're actually quite close. Walk straight down this street for two blocks until you see a big pharmacy at the intersection.",
+          "textVi": "Không sao đâu! Thật ra bạn đang ở khá gần rồi đấy. Hãy đi thẳng con phố này qua hai dãy nhà cho tới khi thấy một hiệu thuốc lớn ở ngã tư."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Lost Tourist",
+          "textEn": "Straight for two blocks to the pharmacy... and then which way do I turn?",
+          "textVi": "Đi thẳng hai dãy nhà đến hiệu thuốc... rồi sau đó rẽ hướng nào bạn?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Local Resident",
+          "textEn": "Turn left at the pharmacy onto Elm Street. Keep walking for about 3 minutes and the station will be on your right-hand side. You can't miss the clock tower.",
+          "textVi": "Rẽ trái tại hiệu thuốc sang phố Elm. Cứ đi bộ tiếp khoảng 3 phút là ga tàu sẽ nằm ở ngay phía tay phải của bạn. Tháp đồng hồ lớn rất dễ nhận ra, không sợ nhầm đâu."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Lost Tourist",
+          "textEn": "Turn left at Elm Street, on the right with a clock tower. How long is the walk in total?",
+          "textVi": "Rẽ trái sang phố Elm, bên tay phải có tháp đồng hồ. Tổng cộng đi bộ mất tầm bao lâu bạn nhỉ?"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Local Resident",
+          "textEn": "About 7 to 8 minutes at most. It's totally within walking distance.",
+          "textVi": "Cùng lắm là 7 đến 8 phút thôi. Hoàn toàn đi bộ được, rất gần."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Lost Tourist",
+          "textEn": "You're a lifesaver! Have a wonderful day!",
+          "textVi": "Bạn đã cứu tôi một bàn thua trông thấy đấy! Chúc bạn một ngày tốt lành nhé!"
+        }
+      ],
+      "suggestedHints": [
+        "Excuse me, could you tell me how to get to the subway station?",
+        "Is it far from here, or within walking distance?",
+        "Could you point me in the direction of the city library?",
+        "Did you say turn left or turn right at the traffic lights?"
+      ]
+    }
+  ]
+}

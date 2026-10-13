@@ -1,0 +1,331 @@
+# -*- coding: utf-8 -*-
+"""Shopping topic definition."""
+
+SHOPPING_DATA = {
+    "id": "shopping",
+    "titleEn": "Shopping & Essentials",
+    "titleVi": "Mua Sắm & Cửa Hàng",
+    "icon": "🛍️",
+    "description": "Luyện giao tiếp mua sắm: chọn size quần áo, thử đồ, mua hàng tại cửa hàng tiện lợi 7-Eleven và xin hoàn thuế du lịch (Tax Refund).",
+    "scenarios": [
+        {
+            "id": "shopping-freetalk",
+            "order": 0,
+            "section": "🌟 THỰC CHIẾN TỰ DO (OPEN ROLEPLAY)",
+            "titleEn": "Shopping Free Talk (Không Giới Hạn)",
+            "titleVi": "Thực chiến mua sắm tự do",
+            "situation": "Phòng thực chiến tự do: AI đóng vai Trợ lý mua sắm cá nhân tại trung tâm thương mại quốc tế (Personal Shopping Consultant). Bạn có thể hỏi tìm gian hàng, tư vấn chọn size, hỏi giảm giá promotion, hỏi chính sách đổi trả hoặc thủ tục hoàn thuế!",
+            "isFreeTalk": True,
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Shopping Assistant",
+                    "titleEn": "Shopping Assistant",
+                    "titleVi": "Trợ lý Mua sắm",
+                    "avatar": "🛍️"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Shopper",
+                    "titleEn": "Shopper",
+                    "titleVi": "Khách mua sắm (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Hello! Welcome to Central Galleria. Are you looking for anything specific today?",
+            "initialMessageVi": "Xin chào! Chào mừng quý khách đến Central Galleria. Hôm nay bạn đang tìm kiếm món đồ cụ thể nào không ạ?",
+            "vocabulary": [
+                {
+                    "id": "vocab-s0-1",
+                    "word": "fitting room",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈfɪtɪŋ ruːm/",
+                    "meaningVi": "phòng thử đồ",
+                    "synonyms": ["dressing room (phòng thay đồ)", "changing room (phòng thử quần áo)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "try on in the fitting room: mặc thử trong phòng thử đồ",
+                        "Where are the fitting rooms?: Phòng thử đồ ở đâu vậy?"
+                    ],
+                    "exampleEn": "The fitting rooms are located at the back of the store.",
+                    "exampleVi": "Các phòng thử đồ nằm ở phía sau cửa hàng."
+                },
+                {
+                    "id": "vocab-s0-2",
+                    "word": "tax refund",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/tæks ˈriːfʌnd/",
+                    "meaningVi": "hoàn thuế giá trị gia tăng (cho du khách)",
+                    "synonyms": ["duty-free (miễn thuế)", "tax exemption (miễn giảm thuế)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "tax refund counter: quầy làm thủ tục hoàn thuế",
+                        "eligible for tax refund: đủ điều kiện được hoàn thuế"
+                    ],
+                    "exampleEn": "Foreign tourists spending over $100 are eligible for a tax refund.",
+                    "exampleVi": "Du khách nước ngoài chi tiêu trên 100 đô la sẽ đủ điều kiện được hoàn thuế."
+                },
+                {
+                    "id": "vocab-s0-3",
+                    "word": "in stock",
+                    "partOfSpeech": "adj phr",
+                    "ipa": "/ɪn stɑːk/",
+                    "meaningVi": "còn hàng trong kho",
+                    "synonyms": ["available (có sẵn)", "on hand (sẵn có)"],
+                    "antonyms": ["out of stock (hết hàng)"],
+                    "collocations": [
+                        "check if it's in stock: kiểm tra xem còn hàng trong kho không"
+                    ],
+                    "exampleEn": "Do you have this jacket in medium in stock?",
+                    "exampleVi": "Bạn có chiếc áo khoác này size M còn hàng trong kho không?"
+                }
+            ],
+            "sampleDialogue": [],
+            "suggestedHints": [
+                "Could I try this jacket on in the fitting room?",
+                "Do you have this in size Large or a different color?",
+                "Is there any discount or ongoing sale today?",
+                "How do I claim a tax refund for tourists?"
+            ]
+        },
+        {
+            "id": "shopping-scenario-1",
+            "order": 1,
+            "section": "👗 Cửa hàng thời trang (Clothing & Footwear)",
+            "titleEn": "Clothes Shopping & Trying on Sizes",
+            "titleVi": "Mua quần áo & Thử kích cỡ",
+            "situation": "Khách tìm mua áo khoác và quần jean, nhờ nhân viên tìm size phù hợp, thử đồ trong fitting room và xin giảm giá hoặc đổi màu sắc.",
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Sales Associate",
+                    "titleEn": "Sales Associate",
+                    "titleVi": "Nhân viên Bán hàng",
+                    "avatar": "👗"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Customer",
+                    "titleEn": "Customer",
+                    "titleVi": "Khách mua hàng (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Hi there! Let me know if you need a different size or style.",
+            "initialMessageVi": "Chào bạn! Cứ báo với tôi nếu bạn cần tìm size hoặc kiểu dáng khác nhé.",
+            "vocabulary": [
+                {
+                    "id": "vocab-s1-1",
+                    "word": "try on",
+                    "partOfSpeech": "v phr",
+                    "ipa": "/traɪ ɑːn/",
+                    "meaningVi": "mặc thử đồ",
+                    "synonyms": ["test fit (thử độ vừa vặn)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Can I try this on?: Tôi mặc thử cái này được không?",
+                        "try on a pair of shoes: thử một đôi giày"
+                    ],
+                    "exampleEn": "Can I try this sweater on to see if it fits?",
+                    "exampleVi": "Tôi có thể mặc thử chiếc áo len này xem có vừa không được không?"
+                },
+                {
+                    "id": "vocab-s1-2",
+                    "word": "a bit tight",
+                    "partOfSpeech": "adj phr",
+                    "ipa": "/ə bɪt taɪt/",
+                    "meaningVi": "hơi bị chật",
+                    "synonyms": ["snug (hơi bó sát)", "too small (quá nhỏ)"],
+                    "antonyms": ["loose / baggy (rộng thùng thình)", "a perfect fit (vừa khít như in)"],
+                    "collocations": [
+                        "It feels a bit tight around the shoulders: Nó hơi chật ở phần vai"
+                    ],
+                    "exampleEn": "This medium size is a bit tight on me. Could I try a Large?",
+                    "exampleVi": "Size M này hơi chật với tôi. Tôi thử size L được không?"
+                },
+                {
+                    "id": "vocab-s1-3",
+                    "word": "discount",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈdɪskaʊnt/",
+                    "meaningVi": "khoản giảm giá / ưu đãi",
+                    "synonyms": ["markdown (giảm giá)", "special offer (ưu đãi đặc biệt)"],
+                    "antonyms": ["full price (nguyên giá gốc)"],
+                    "collocations": [
+                        "20% discount: giảm giá 20%",
+                        "on sale: đang được hạ giá khuyến mãi"
+                    ],
+                    "exampleEn": "Is this item on sale or full price?",
+                    "exampleVi": "Mặt hàng này đang sale hay bán đúng giá gốc vậy?"
+                }
+            ],
+            "sampleDialogue": [
+                {
+                    "speaker": "ai",
+                    "roleName": "Sales Associate",
+                    "textEn": "Hi there! Let me know if you need a different size or style.",
+                    "textVi": "Chào bạn! Cứ báo với tôi nếu bạn cần tìm size hoặc kiểu dáng khác nhé."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Hi! I really like this navy jacket, but do you have it in size Medium?",
+                    "textVi": "Chào bạn! Tôi rất thích chiếc áo khoác xanh navy này, nhưng bạn có size M không?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Sales Associate",
+                    "textEn": "Let me check the rack... Here is a Medium in navy! Would you like to try it on? The fitting rooms are right over there.",
+                    "textVi": "Để tôi xem trên giá treo nhé... Đây là một chiếc size M màu xanh navy này! Bạn có muốn mặc thử không? Phòng thử đồ ở ngay đằng kia."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Yes, please. [After trying] It fits really well! Does this item have any promotional discount?",
+                    "textVi": "Có chứ. [Sau khi thử xong] Vừa in luôn! Mẫu này có đang được giảm giá khuyến mãi gì không bạn?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Sales Associate",
+                    "textEn": "Yes! All outerwear is 20% off today, so it comes down from $80 to $64. Plus, if you spend over $100, you get another 10% off at checkout.",
+                    "textVi": "Có đấy ạ! Toàn bộ áo khoác hôm nay đang được giảm 20%, từ $80 xuống còn $64. Thêm nữa nếu bạn mua trên $100 sẽ được giảm thêm 10% khi thanh toán."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "That's a great deal! I'll take it. Where is the cash register?",
+                    "textVi": "Ưu đãi hời quá! Tôi sẽ lấy chiếc này. Quầy thu ngân ở đâu vậy bạn?"
+                }
+            ],
+            "suggestedHints": [
+                "Could I try this on in a size Medium?",
+                "Do you have this shirt in black or white?",
+                "It's a bit tight around the shoulders, do you have one size up?",
+                "Is there any student or tourist discount available?"
+            ]
+        },
+        {
+            "id": "shopping-scenario-2",
+            "order": 2,
+            "section": "🏪 Cửa hàng tiện lợi (7-Eleven & Quick Mart)",
+            "titleEn": "Convenience Store Essentials",
+            "titleVi": "Mua đồ tại Cửa hàng tiện lợi",
+            "situation": "Khách ghé 7-Eleven mua cơm hộp bento, nước khoáng, nhờ thu ngân hâm nóng bằng lò vi sóng, mua sim du lịch và xin túi nilông.",
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Cashier",
+                    "titleEn": "Store Clerk",
+                    "titleVi": "Nhân viên Thu ngân",
+                    "avatar": "🏪"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Shopper",
+                    "titleEn": "Shopper",
+                    "titleVi": "Khách mua hàng (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Hello! Did you find everything you needed?",
+            "initialMessageVi": "Xin chào! Bạn đã chọn đủ đồ cần mua chưa ạ?",
+            "vocabulary": [
+                {
+                    "id": "vocab-s2-1",
+                    "word": "heat up",
+                    "partOfSpeech": "v phr",
+                    "ipa": "/hiːt ʌp/",
+                    "meaningVi": "hâm nóng đồ ăn (bằng lò vi sóng)",
+                    "synonyms": ["microwave (quay lò vi sóng)", "warm up (làm nóng lại)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "heat it up for me: hâm nóng hộ tôi",
+                        "microwave oven: lò vi sóng"
+                    ],
+                    "exampleEn": "Would you like me to heat this meal box up for you?",
+                    "exampleVi": "Bạn có muốn tôi hâm nóng hộp cơm này cho bạn không?"
+                },
+                {
+                    "id": "vocab-s2-2",
+                    "word": "plastic bag",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈplæstɪk bæɡ/",
+                    "meaningVi": "túi nilông đựng đồ",
+                    "synonyms": ["carrier bag (túi đựng đồ)"],
+                    "antonyms": ["reusable tote bag (túi vải tái sử dụng)"],
+                    "collocations": [
+                        "Do you need a bag?: Bạn có cần lấy túi không?",
+                        "bag charge: phí túi nilông (thường tính thêm phí)"
+                    ],
+                    "exampleEn": "Do you need a plastic bag? It's 10 cents extra.",
+                    "exampleVi": "Bạn có cần túi nilông không? Phí túi là 10 xu ạ."
+                },
+                {
+                    "id": "vocab-s2-3",
+                    "word": "contactless",
+                    "partOfSpeech": "adj",
+                    "ipa": "/ˈkɑːntæktləs/",
+                    "meaningVi": "thanh toán một chạm (Apple Pay / Thẻ quẹt chạm)",
+                    "synonyms": ["tap to pay (chạm để thanh toán)"],
+                    "antonyms": ["cash only (chỉ nhận tiền mặt)"],
+                    "collocations": [
+                        "pay via contactless: thanh toán qua chạm thẻ",
+                        "Apple Pay / Google Pay"
+                    ],
+                    "exampleEn": "Can I pay contactless with Apple Pay?",
+                    "exampleVi": "Tôi có thể thanh toán một chạm bằng Apple Pay được không?"
+                }
+            ],
+            "sampleDialogue": [
+                {
+                    "speaker": "ai",
+                    "roleName": "Cashier",
+                    "textEn": "Hello! Did you find everything you needed?",
+                    "textVi": "Xin chào! Bạn đã chọn đủ đồ cần mua chưa ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Shopper",
+                    "textEn": "Yes, just this lunch box, a bottle of green tea, and this adapter. Could you please heat up the lunch box for me?",
+                    "textVi": "Dạ đủ rồi, chỉ có hộp cơm này, một chai trà xanh và cái đầu cắm này thôi. Bạn hâm nóng hộp cơm giúp tôi được không?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Cashier",
+                    "textEn": "Sure, I'll pop it in the microwave right now. It takes about 45 seconds. Do you need a plastic bag?",
+                    "textVi": "Dạ được, tôi cho vào lò vi sóng quay ngay đây. Mất khoảng 45 giây. Bạn có cần lấy túi nilông không ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Shopper",
+                    "textEn": "Yes, please, I have quite a few items. Also, do you sell prepaid tourist SIM cards here?",
+                    "textVi": "Cho tôi xin một túi nhé, tôi cầm hơi nhiều đồ. À mà ở đây có bán thẻ SIM du lịch trả trước không bạn?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Cashier",
+                    "textEn": "Yes, we have 7-day unlimited data SIM cards behind the counter for $15. Would you like one?",
+                    "textVi": "Có ạ, chúng tôi có sim 4G không giới hạn dung lượng dùng trong 7 ngày ở sau quầy, giá $15. Bạn có muốn lấy một cái không?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Shopper",
+                    "textEn": "That would be perfect! Can I pay everything with Apple Pay?",
+                    "textVi": "Thế thì tốt quá! Tôi thanh toán tất cả bằng Apple Pay được không?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Cashier",
+                    "textEn": "Certainly! Just tap your phone on the terminal right here. Here is your warm lunch and receipt!",
+                    "textVi": "Chắc chắn rồi ạ! Bạn chỉ cần chạm điện thoại vào máy quẹt thẻ ngay đây. Cơm nóng và hóa đơn của bạn đây nhé!"
+                }
+            ],
+            "suggestedHints": [
+                "Could you heat up this meal for me, please?",
+                "Do you have a plastic bag?",
+                "Do you sell local SIM cards or phone top-up cards?",
+                "Can I tap my credit card to pay?"
+            ]
+        }
+    ]
+}

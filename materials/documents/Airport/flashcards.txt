@@ -1,0 +1,131 @@
+Good afternoon, where are you flying today?	Chào buổi chiều, hôm nay bạn bay đi đâu ạ?
+Hello, I'm flying to Bangkok at 3 PM.	Xin chào, tôi bay đi Bangkok lúc 3 giờ chiều.
+May I have your passport, please?	Cho tôi xem hộ chiếu của bạn được không?
+Of course, here you go.	Tất nhiên, đây ạ.
+Are you checking any bags?	Bạn có gửi hành lý không?
+Yes, just one piece of luggage.	Có, chỉ một kiện hành lý thôi.
+Please place your bag on the scale.	Vui lòng đặt túi lên cân.
+Okay.	Vâng.
+That's fine. Do you have a seat preference?	Được rồi. Bạn có muốn chọn chỗ ngồi không?
+Yes, do you have any aisle seat available?	Vâng, còn ghế phía lối đi không ạ?
+Let me check for you. Yes, we do. I'll put you in row 12, seat A — that's an aisle seat.	Để tôi kiểm tra. Có ạ. Tôi sẽ xếp bạn ở hàng 12, ghế A — ghế phía lối đi.
+Wonderful, thank you so much!	Tuyệt vời, cảm ơn rất nhiều!
+Here is your boarding pass. Your flight leaves from gate 15A and boarding begins at 2:30. Your seat number is 12A.	Đây là thẻ lên máy bay của bạn. Chuyến bay khởi hành từ cổng 15A và bắt đầu lên máy bay lúc 2:30. Số ghế của bạn là 12A.
+Perfect. And one more question — I have a layover in Singapore. Do I need to pick up my luggage there?	Hoàn hảo. Và một câu hỏi nữa — tôi có quá cảnh ở Singapore. Tôi có cần lấy hành lý ở đó không?
+No, it will go straight through to Bangkok.	Không, hành lý sẽ được chuyển thẳng đến Bangkok.
+Great. And which way is the security check?	Tuyệt. Và lối đi kiểm tra an ninh ở đâu ạ?
+Right behind you to the right.	Ngay phía sau bạn, rẽ phải.
+Thank you!	Cảm ơn!
+Staff: I'm sorry, sir. Your luggage is overweight.	Nhân viên: Xin lỗi anh. Hành lý của anh bị quá cân.
+Passenger: By how much?	Hành khách: Quá bao nhiêu ạ?
+Staff: About 5 kilograms.	Nhân viên: Khoảng 5 kg.
+Passenger: Okay, let me take something out.	Hành khách: Được rồi, để tôi bỏ bớt đồ ra.
+(Passenger takes some items out)	(Hành khách bỏ bớt đồ ra)
+Passenger: How about now?	Hành khách: Giờ thì sao ạ?
+Staff: It's just slightly overweight — about 0.5 kg. That should be fine. You're good to go.	Nhân viên: Chỉ hơi quá một chút — khoảng 0,5 kg. Không sao đâu. Anh có thể đi được rồi.
+Passenger: Great, thank you!	Hành khách: Tuyệt, cảm ơn!
+Officer: Next, please. Place your belongings in the tray — your bag, jacket, belt, and any electronics.	Nhân viên an ninh: Mời người tiếp theo. Vui lòng đặt đồ vào khay — túi, áo khoác, thắt lưng, và các thiết bị điện tử.
+Passenger: Do I need to take my laptop out of the bag?	Hành khách: Tôi có cần lấy laptop ra khỏi túi không?
+Officer: Yes, please. Laptops and tablets must be placed separately in the tray.	Nhân viên an ninh: Vâng. Laptop và máy tính bảng phải đặt riêng trong khay.
+Passenger: What about liquids? I have a small bottle of water.	Hành khách: Còn chất lỏng thì sao? Tôi có một chai nước nhỏ.
+Officer: Liquids over 100 ml are not allowed. You'll need to throw it away or drink it now.	Nhân viên an ninh: Chất lỏng trên 100 ml không được mang theo. Anh cần vứt đi hoặc uống hết ngay bây giờ.
+Passenger: Okay, I'll throw it away.	Hành khách: Vâng, tôi sẽ vứt đi.
+Officer: Please walk through the metal detector.	Nhân viên an ninh: Vui lòng đi qua máy dò kim loại.
+(Metal detector beeps)	(Máy kêu bíp)
+Officer: Sir, could you step aside, please? Do you have anything in your pockets?	Nhân viên an ninh: Anh ơi, vui lòng đứng sang một bên. Anh có gì trong túi không?
+Passenger: Oh, sorry! I forgot my keys.	Hành khách: Ô, xin lỗi! Tôi quên chìa khóa.
+Officer: No problem. Put them in the tray and walk through again.	Nhân viên an ninh: Không sao. Bỏ chúng vào khay rồi đi qua lại lần nữa.
+(No beep this time)	(Lần này không kêu)
+Officer: You're all clear. Have a nice flight.	Nhân viên an ninh: Anh qua rồi. Chúc chuyến bay vui vẻ.
+Passenger: Thank you!	Hành khách: Cảm ơn!
+Officer: Next, please. Place your belongings in the tray — your bag, jacket, belt, and any electronics.	Nhân viên an ninh: Mời người tiếp theo. Vui lòng đặt đồ vào khay — túi, áo khoác, thắt lưng, và các thiết bị điện tử.
+Passenger: Do I need to take my laptop out of the bag?	Hành khách: Tôi có cần lấy laptop ra khỏi túi không?
+Officer: Yes, please. Laptops and tablets must be placed separately in the tray.	Nhân viên an ninh: Vâng. Laptop và máy tính bảng phải đặt riêng trong khay.
+Passenger: What about liquids? I have a small bottle of water.	Hành khách: Còn chất lỏng thì sao? Tôi có một chai nước nhỏ.
+Officer: Liquids over 100 ml are not allowed. You'll need to throw it away or drink it now.	Nhân viên an ninh: Chất lỏng trên 100 ml không được mang theo. Anh cần vứt đi hoặc uống hết ngay bây giờ.
+Passenger: Okay, I'll throw it away.	Hành khách: Vâng, tôi sẽ vứt đi.
+Officer: Please walk through the metal detector.	Nhân viên an ninh: Vui lòng đi qua máy dò kim loại.
+(Metal detector beeps)	(Máy kêu bíp)
+Officer: Sir, could you step aside, please? Do you have anything in your pockets?	Nhân viên an ninh: Anh ơi, vui lòng đứng sang một bên. Anh có gì trong túi không?
+Passenger: Oh, sorry! I forgot my keys.	Hành khách: Ô, xin lỗi! Tôi quên chìa khóa.
+Officer: No problem. Put them in the tray and walk through again.	Nhân viên an ninh: Không sao. Bỏ chúng vào khay rồi đi qua lại lần nữa.
+(No beep this time)	(Lần này không kêu)
+Officer: You're all clear. Have a nice flight.	Nhân viên an ninh: Anh qua rồi. Chúc chuyến bay vui vẻ.
+Passenger: Thank you!	Hành khách: Cảm ơn!
+Excuse me, I noticed on the screen that flight VN123 to Bangkok has been delayed. Do you know how long the delay will be?	Xin lỗi, tôi thấy trên màn hình chuyến bay VN123 đi Bangkok bị hoãn. Bạn có biết hoãn bao lâu không?
+Yes, I'm sorry about that. The flight has been delayed by approximately two hours due to bad weather.	Vâng, rất tiếc về điều đó. Chuyến bay bị hoãn khoảng hai tiếng do thời tiết xấu.
+Two hours? Will I miss my connecting flight to Chiang Mai?	Hai tiếng? Liệu tôi có bị lỡ chuyến bay nối chuyến đi Chiang Mai không?
+Let me check that for you. What time is your connecting flight?	Để tôi kiểm tra giúp bạn. Chuyến bay nối chuyến của bạn lúc mấy giờ?
+It departs at 8 PM.	Nó khởi hành lúc 8 giờ tối.
+You should still make it. But just in case, I can rebook you on a later connection at no extra charge.	Bạn vẫn sẽ kịp thôi. Nhưng phòng trường hợp bất trắc, tôi có thể đổi cho bạn sang chuyến nối chuyến muộn hơn miễn phí.
+That would be great. Thank you. Is there anywhere I can wait comfortably?	Thế thì tốt quá. Cảm ơn bạn. Có chỗ nào tôi có thể ngồi chờ thoải mái không?
+Yes, there's a lounge on the second floor. You can also get free Wi-Fi — the password is on your boarding pass.	Có, có phòng chờ ở tầng hai. Bạn cũng có thể dùng Wi-Fi miễn phí — mật khẩu có trên thẻ lên máy bay.
+Thanks, I appreciate your help.	Cảm ơn, tôi rất cảm kích sự giúp đỡ của bạn.
+Excuse me, could you help me? I can't find my seat. My boarding pass says 18F.	Xin lỗi, bạn có thể giúp tôi không? Tôi không tìm thấy ghế của mình. Thẻ lên máy bay ghi 18F.
+Of course. Row 18 is further down the aisle, on your left. F is the window seat.	Tất nhiên rồi. Hàng 18 đi tiếp xuống dọc lối đi, ở phía bên trái. Ghế F là ghế cạnh cửa sổ.
+Thank you! And is there room in the overhead bin? My bag is a bit heavy.	Cảm ơn bạn! Và ngăn để hành lý phía trên còn chỗ không? Túi của tôi hơi nặng.
+Let me help you with that. Yes, there's space right above your seat.	Để tôi giúp bạn việc đó. Có, còn chỗ ngay phía trên ghế của bạn.
+Thank you so much.	Cảm ơn bạn rất nhiều.
+You're welcome. Please fasten your seatbelt and make sure your tray table is in the upright position. We'll be taking off shortly.	Không có chi. Xin vui lòng thắt dây an toàn và đảm bảo bàn ăn được gập thẳng đứng. Chúng ta sẽ cất cánh ngay bây giờ.
+Good afternoon, ladies and gentlemen. We will now begin our meal service.	Chào buổi chiều, quý ông quý bà. Bây giờ chúng tôi bắt đầu phục vụ bữa ăn.
+Today we have two options: chicken with rice or beef with noodles. What would you prefer?	Hôm nay có hai lựa chọn: gà với cơm hoặc bò với mì. Quý khách chọn gì ạ?
+I'll have the chicken with rice, please.	Cho tôi gà với cơm.
+Sure. And what would you like to drink? We have water, juice, coffee, tea, and soft drinks.	Vâng. Và anh/chị muốn uống gì? Chúng tôi có nước lọc, nước ép, cà phê, trà và nước ngọt.
+Can I have an orange juice, please?	Cho tôi một ly nước cam.
+Of course. Here you go.	Tất nhiên. Mời anh/chị.
+Are you finished with your tray?	Anh/chị dùng xong khay chưa ạ?
+Yes, thank you. Could I also get a cup of coffee?	Rồi, cảm ơn. Cho tôi xin thêm một tách cà phê được không?
+Of course. Would you like milk or sugar?	Tất nhiên. Anh/chị muốn thêm sữa hay đường không?
+Just black, please.	Cà phê đen thôi ạ.
+Here you are. Enjoy!	Mời anh/chị. Chúc ngon miệng!
+Excuse me, could I get a blanket? It's quite cold in here.	Xin lỗi, cho tôi xin một cái chăn được không? Ở đây khá lạnh.
+Would you also like a pillow?	Anh/chị có cần thêm gối không?
+Yes, please. That would be great.	Vâng, có thì tốt quá.
+Also, do you have any headphones? Mine stopped working.	Ngoài ra, bạn có tai nghe không? Tai nghe của tôi bị hỏng rồi.
+Sure, here's a new pair. Is there anything else I can help you with?	Có, đây là một đôi mới. Anh/chị cần gì nữa không?
+How do I connect to the in-flight Wi-Fi?	Làm sao để kết nối Wi-Fi trên máy bay?
+You can find the instructions on the screen in front of you. Just select "Wi-Fi" and enter your seat number.	Anh/chị xem hướng dẫn trên màn hình phía trước. Chỉ cần chọn "Wi-Fi" và nhập số ghế.
+Got it. Thank you so much!	Hiểu rồi. Cảm ơn rất nhiều!
+Just press the call button if you need anything else.	Nếu cần gì thêm, cứ bấm nút gọi nhé.
+Passport, please.	Hộ chiếu ạ.
+What is the purpose of your visit?	Mục đích chuyến đi của anh/chị là gì?
+I'm here on vacation.	Tôi đến du lịch.
+How long will you be staying?	Anh/chị ở lại bao lâu?
+About ten days.	Khoảng mười ngày.
+Where will you be staying?	Anh/chị ở đâu?
+At the Hilton Hotel in the city center.	Khách sạn Hilton ở trung tâm thành phố.
+Do you have a return ticket?	Anh/chị có vé khứ hồi không?
+Yes, here it is. I'm flying back on September 30th.	Có, đây ạ. Tôi bay về ngày 30 tháng 9.
+Everything looks good. Welcome and enjoy your stay.	Mọi thứ ổn. Chào mừng và chúc anh/chị có kỳ nghỉ vui vẻ.
+Do you have anything to declare?	Anh/chị có gì cần khai báo không?
+I'm not sure. I have some souvenirs and a bottle of wine. Is that okay?	Tôi không chắc. Tôi có vài món quà lưu niệm và một chai rượu vang. Có được không ạ?
+How much wine?	Bao nhiêu rượu?
+Just one bottle.	Chỉ một chai.
+That's fine. One bottle is within the allowance. Do you have any food items — fruits, vegetables, or meat?	Không sao. Một chai nằm trong giới hạn cho phép. Anh/chị có mang theo thực phẩm nào không — trái cây, rau, hay thịt?
+No, I don't.	Không, tôi không có.
+Any large amount of cash? Over $10,000?	Có mang theo số tiền mặt lớn không? Trên $10.000?
+No, not at all.	Không, hoàn toàn không.
+Alright, you're good to go. Please proceed to the exit.	Được rồi, anh/chị có thể đi. Xin đi ra lối ra.
+Thank you.	Cảm ơn.
+Hello.	Xin chào.
+Welcome to Bangkok. How can I help you?	Chào mừng đến Bangkok. Tôi có thể giúp gì cho anh/chị?
+I have a few questions. First, where can I exchange some cash?	Tôi có vài câu hỏi. Đầu tiên, tôi có thể đổi tiền ở đâu?
+There's a currency exchange booth right by the baggage claim area.	Có quầy đổi tiền ngay khu nhận hành lý.
+Great. Next, where can I get a local SIM card?	Tốt. Tiếp theo, tôi mua SIM điện thoại ở đâu?
+There are several booths over there where you can get a local SIM card. It's very convenient and they accept credit cards too.	Có mấy quầy ở phía kia bán SIM điện thoại. Rất tiện lợi và họ cũng nhận thẻ tín dụng.
+Awesome. Last question — I'm staying at this hotel. What's the best way for me to get there?	Tuyệt. Câu hỏi cuối — tôi ở khách sạn này. Cách tốt nhất để đến đó là gì?
+The fastest way is to grab a taxi. But there's a lot of traffic right now. You could also take the airport shuttle or the subway — it's a bit crowded but definitely cheaper.	Nhanh nhất là bắt taxi. Nhưng bây giờ đang kẹt xe. Anh/chị cũng có thể đi xe buýt sân bay hoặc tàu điện ngầm — hơi đông nhưng chắc chắn rẻ hơn.
+Which way is the subway?	Tàu điện ngầm đi lối nào?
+Go straight and follow the signs. It's about a 5-minute walk.	Đi thẳng rồi theo biển chỉ dẫn. Đi bộ khoảng 5 phút.
+Thank you so much, I really appreciate it!	Cảm ơn rất nhiều, tôi rất trân trọng!
+You're welcome. Enjoy your stay!	Không có gì. Chúc anh/chị ở vui!
+Excuse me, I've been waiting at the conveyor belt for 30 minutes but my luggage hasn't appeared. I think it might be lost.	Xin lỗi, tôi đã chờ ở băng chuyền 30 phút rồi mà hành lý vẫn chưa thấy. Tôi nghĩ có thể bị mất.
+I'm sorry to hear that. Can I see your boarding pass and baggage claim tag?	Tôi rất tiếc. Cho tôi xem thẻ lên máy bay và phiếu nhận hành lý được không?
+Here you go. I had one large black suitcase.	Đây ạ. Tôi có một vali lớn màu đen.
+Let me check the system. It looks like your luggage was left behind in Singapore and will arrive on the next flight this evening.	Để tôi kiểm tra hệ thống. Có vẻ hành lý của anh/chị bị để lại ở Singapore và sẽ đến trên chuyến bay tiếp theo tối nay.
+Oh no. What should I do now?	Ôi không. Giờ tôi phải làm sao?
+We can deliver it to your hotel once it arrives. Could you fill out this lost baggage form with your contact details and hotel address?	Chúng tôi có thể giao đến khách sạn khi hành lý đến. Anh/chị điền mẫu đơn khai báo mất hành lý này với thông tin liên lạc và địa chỉ khách sạn được không?
+Sure. Will I get any compensation?	Được. Tôi có được bồi thường gì không?
+Yes, we can offer you a basic toiletry kit and up to $50 for emergency purchases. Just keep your receipts.	Có, chúng tôi cung cấp bộ đồ vệ sinh cá nhân cơ bản và tối đa $50 cho các mua sắm khẩn cấp. Chỉ cần giữ lại hóa đơn.
+Okay, thank you. When can I expect my luggage?	Vâng, cảm ơn. Khi nào tôi nhận được hành lý?
+It should be delivered to your hotel by tonight. We'll call you to confirm.	Dự kiến sẽ giao đến khách sạn tối nay. Chúng tôi sẽ gọi để xác nhận.

@@ -1,0 +1,789 @@
+# -*- coding: utf-8 -*-
+"""Cafe topic definition with natural 3-part conversation flow and 43 core phrases."""
+
+CAFE_DATA = {
+    "id": "cafe",
+    "titleEn": "At the Cafe & Coffee Shop",
+    "titleVi": "Tại Quán Cà Phê",
+    "icon": "☕",
+    "description": "Luyện giao tiếp tại quán cà phê: gọi món, tùy chỉnh đá/đường, thêm topping, thanh toán QR, hỏi Wi-Fi, tìm chỗ ngồi và yêu cầu tiện ích.",
+    "scenarios": [
+        {
+            "id": "cafe-freetalk",
+            "order": 0,
+            "section": "🌟 THỰC CHIẾN TỰ DO (OPEN ROLEPLAY)",
+            "titleEn": "Cafe Free Talk (Không Giới Hạn)",
+            "titleVi": "Thực chiến quán cà phê tự do",
+            "situation": "Phòng thực chiến tự do: AI đóng vai Trưởng quầy pha chế (Head Barista). Bạn có thể gọi bất kỳ đồ uống phức tạp nào, hỏi về topping, tùy chỉnh khẩu vị, hỏi pass Wi-Fi, thanh toán QR hoặc trò chuyện về không gian làm việc!",
+            "isFreeTalk": True,
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Head Barista",
+                    "titleEn": "Head Barista",
+                    "titleVi": "Barista / Trưởng quầy pha chế",
+                    "avatar": "☕"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Coffee Lover",
+                    "titleEn": "Coffee Enthusiast",
+                    "titleVi": "Khách uống cà phê (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Welcome to Artisan Brews! Smells great in here today. What can I get for you today?",
+            "initialMessageVi": "Chào mừng bạn đến với Artisan Brews! Mùi cà phê hôm nay thơm nức mũi luôn. Em chào chị ạ, mình dùng gì hôm nay ạ?",
+            "vocabulary": [
+                {
+                    "id": "vocab-c0-1",
+                    "word": "dairy-free",
+                    "partOfSpeech": "adj",
+                    "ipa": "/ˌderi ˈfriː/",
+                    "meaningVi": "không chứa sữa động vật (sữa thực vật)",
+                    "synonyms": ["plant-based milk (sữa thực vật)", "non-dairy (không có sữa bò)"],
+                    "antonyms": ["dairy (chứa sữa bò thông thường)"],
+                    "collocations": [
+                        "dairy-free milk: sữa có nguồn gốc thực vật",
+                        "dairy-free alternative: phương án thay thế không sữa động vật"
+                    ],
+                    "exampleEn": "Do you have any dairy-free options like oat milk or almond milk?",
+                    "exampleVi": "Quán có lựa chọn không sữa động vật nào như sữa yến mạch hay sữa hạnh nhân không?"
+                },
+                {
+                    "id": "vocab-c0-2",
+                    "word": "decaf",
+                    "partOfSpeech": "n, adj",
+                    "ipa": "/ˈdiːkæf/",
+                    "meaningVi": "cà phê đã tách chất cafein",
+                    "synonyms": ["decaffeinated coffee (cà phê không caffein)"],
+                    "antonyms": ["regular / caffeinated (cà phê nguyên chất chứa cafein)"],
+                    "collocations": [
+                        "a cup of decaf: một tách cà phê khử cafein",
+                        "make it decaf: đổi sang loại không cafein"
+                    ],
+                    "exampleEn": "Can you make my latte decaf? I can't have caffeine in the afternoon.",
+                    "exampleVi": "Bạn pha ly latte của tôi bằng cà phê decaf được không? Chiều tối tôi không uống được cafein."
+                },
+                {
+                    "id": "vocab-c0-3",
+                    "word": "extra shot",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˈekstrə ʃɑːt/",
+                    "meaningVi": "thêm một shot espresso đậm đặc",
+                    "synonyms": ["double shot (gấp đôi lượng espresso)"],
+                    "antonyms": ["single shot (một shot tiêu chuẩn)"],
+                    "collocations": [
+                        "add an extra shot: thêm một shot cà phê nữa",
+                        "extra shot of espresso: thêm một lượng espresso"
+                    ],
+                    "exampleEn": "Can I get an extra shot of espresso in my latte?",
+                    "exampleVi": "Cho tôi thêm một shot espresso vào ly latte được không?"
+                }
+            ],
+            "sampleDialogue": [],
+            "suggestedHints": [
+                "Hello! What's your best-selling drink?",
+                "Can I get an iced coffee with milk, less ice, please?",
+                "Can I add boba and cheese foam?",
+                "Do you take bank transfer? Where do I scan the QR code?",
+                "What's the Wi-Fi password?"
+            ]
+        },
+        {
+            "id": "cafe-scenario-1",
+            "order": 1,
+            "section": "☕ Đặt đồ uống & Tùy chỉnh (Ordering & Customizing)",
+            "titleEn": "Ordering at the Counter & Customizing Options",
+            "titleVi": "Gọi món tại quầy & Tùy chỉnh khẩu vị",
+            "situation": "Khách đến quầy gọi món, hỏi món bán chạy nhất, chọn cỡ ly lớn, ít đá, không đường, mang đi, nhân viên hỏi thêm bánh và nhắc lại đơn hàng.",
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Barista",
+                    "titleEn": "Barista / Cashier",
+                    "titleVi": "Nhân viên quầy thu ngân",
+                    "avatar": "☕"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Customer",
+                    "titleEn": "Customer",
+                    "titleVi": "Khách hàng (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Hello! What can I get for you today?",
+            "initialMessageVi": "Em chào chị ạ! Mình dùng gì ạ?",
+            "vocabulary": [
+                {
+                    "id": "vocab-c1-1",
+                    "word": "iced coffee with milk",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˌaɪst ˈkɔːfi wɪð mɪlk/",
+                    "meaningVi": "cà phê sữa đá",
+                    "synonyms": ["Vietnamese iced milk coffee (cà phê sữa đá Việt Nam)", "iced latte (cà phê sữa latte đá)"],
+                    "antonyms": ["hot black coffee (cà phê đen nóng)"],
+                    "collocations": [
+                        "large iced coffee with milk: một ly cà phê sữa đá size lớn",
+                        "traditional iced coffee with milk: cà phê sữa đá truyền thống"
+                    ],
+                    "exampleEn": "Can I get a large iced coffee with milk, please?",
+                    "exampleVi": "Cho em một ly cà phê sữa đá size lớn với ạ."
+                },
+                {
+                    "id": "vocab-c1-2",
+                    "word": "best-selling drink",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˌbestˈselɪŋ drɪŋk/",
+                    "meaningVi": "đồ uống bán chạy nhất (món hot nhất)",
+                    "synonyms": ["signature drink (món đặc trưng)", "house special (món đặc sản của quán)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "What's your best-selling drink?: Món nào bán chạy nhất của quán vậy?",
+                        "order the best-selling drink: gọi món đồ uống hot nhất"
+                    ],
+                    "exampleEn": "What's your best-selling drink here?",
+                    "exampleVi": "Món nào hot nhất ở quán mình đấy chị?"
+                },
+                {
+                    "id": "vocab-c1-3",
+                    "word": "for here or to go",
+                    "partOfSpeech": "phrase",
+                    "ipa": "/fər hɪr ɔːr tə ɡoʊ/",
+                    "meaningVi": "dùng tại quán hay mang đi",
+                    "synonyms": ["have here or takeaway (dùng tại chỗ hay mang về)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Is that for here or to go?: Bạn dùng tại đây hay mang về ạ?",
+                        "To go, please: Cho em mang đi ạ"
+                    ],
+                    "exampleEn": "Will that drink be for here or to go?",
+                    "exampleVi": "Đồ uống đó mình dùng tại quán hay mang đi ạ?"
+                },
+                {
+                    "id": "vocab-c1-4",
+                    "word": "pastry",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈpeɪstri/",
+                    "meaningVi": "bánh ngọt / bánh nướng ăn kèm",
+                    "synonyms": ["baked goods (đồ nướng)", "croissant / muffin (các loại bánh ngọt)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Would you like a pastry with that?: Mình có muốn thêm bánh không ạ?",
+                        "fresh pastry: bánh nướng tươi trong ngày"
+                    ],
+                    "exampleEn": "Would you like a pastry with that?",
+                    "exampleVi": "Mình có muốn dùng thêm bánh kèm theo không ạ?"
+                }
+            ],
+            "sampleDialogue": [
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Hello! What can I get for you today?",
+                    "textVi": "Em chào chị ạ! Mình dùng gì ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "What's your best-selling drink?",
+                    "textVi": "Món nào hot nhất đấy chị?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Definitely our iced coffee with milk!",
+                    "textVi": "Cà phê sữa đá của quán em là hot nhất ạ!"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Awesome, I'll take that then!",
+                    "textVi": "Hay quá, cho em một ly đó nha!"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Medium or large?",
+                    "textVi": "Mình muốn size vừa hay size lớn ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Large, please. Less ice and no sugar, please.",
+                    "textVi": "Cho em size lớn nhé. Ít đá và không bỏ đường nha."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "For here or to go?",
+                    "textVi": "Mình muốn dùng tại quán hay mang đi ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "To go, please.",
+                    "textVi": "Cho em mang đi."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Would you like a pastry with that?",
+                    "textVi": "Mình có muốn thêm bánh ngọt không ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "No, thanks. That's all.",
+                    "textVi": "Dạ thôi, em cảm ơn ạ."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Let me repeat your order: one large iced coffee with milk, less ice, no sugar, to go, right?",
+                    "textVi": "Để em nhắc lại order của mình nhé: một cà phê sữa đá size lớn, ít đá, không đường, mang đi, đúng không ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Yes, that's right!",
+                    "textVi": "Dạ đúng rồi ạ!"
+                }
+            ],
+            "suggestedHints": [
+                "What's your best-selling drink?",
+                "Awesome, I'll take that then!",
+                "Large, please. Less ice and no sugar, please.",
+                "To go, please.",
+                "Can I get an iced coffee with milk?"
+            ]
+        },
+        {
+            "id": "cafe-scenario-2",
+            "order": 2,
+            "section": "🧋 Topping & Thanh toán QR (Toppings & Payment)",
+            "titleEn": "Toppings, QR Payment & Order Status",
+            "titleVi": "Thêm Topping, Thanh toán QR & Chờ lấy đồ",
+            "situation": "Khách chọn món theo ảnh trên menu, hỏi thêm trân châu và kem cheese, gọi thêm một phần giống vậy cho bạn, thanh toán chuyển khoản quét mã QR và hỏi chỗ chờ nhận đồ.",
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Barista",
+                    "titleEn": "Barista / Cashier",
+                    "titleVi": "Nhân viên quầy thu ngân",
+                    "avatar": "☕"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Customer",
+                    "titleEn": "Customer",
+                    "titleVi": "Khách hàng (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Have you decided yet?",
+            "initialMessageVi": "Mình đã chọn được món chưa?",
+            "vocabulary": [
+                {
+                    "id": "vocab-c2-1",
+                    "word": "topping",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈtɑːpɪŋ/",
+                    "meaningVi": "đồ ăn kèm thêm trên đồ uống (trân châu, thạch, kem)",
+                    "synonyms": ["add-on (món thêm vào)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "What toppings do you have?: Có topping gì đấy ạ?",
+                        "add extra toppings: thêm topping"
+                    ],
+                    "exampleEn": "What toppings do you have available today?",
+                    "exampleVi": "Hôm nay quán có những loại topping gì thế ạ?"
+                },
+                {
+                    "id": "vocab-c2-2",
+                    "word": "boba",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈboʊbə/",
+                    "meaningVi": "trân châu (làm từ bột sắn)",
+                    "synonyms": ["tapioca pearls (hạt trân châu sắn)", "bubbles (hạt bóng trân châu)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Can I add boba?: Cho em thêm trân châu nhá.",
+                        "chewy boba: trân châu dai ngon"
+                    ],
+                    "exampleEn": "Can I add boba to my milk tea?",
+                    "exampleVi": "Cho em thêm trân châu vào trà sữa được không ạ?"
+                },
+                {
+                    "id": "vocab-c2-3",
+                    "word": "cheese foam",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˈtʃiːz foʊm/",
+                    "meaningVi": "lớp kem bọt phô mai béo ngậy mặn nhẹ",
+                    "synonyms": ["cheese cream (kem phô mai)", "milk foam (lớp váng bọt sữa)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Can I add cheese foam?: Cho em thêm ít kem cheese được không ạ?",
+                        "layer of cheese foam: lớp kem cheese phủ trên mặt"
+                    ],
+                    "exampleEn": "Can I add cheese foam on top?",
+                    "exampleVi": "Cho em thêm ít kem cheese lên trên được không ạ?"
+                },
+                {
+                    "id": "vocab-c2-4",
+                    "word": "bank transfer",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˈbæŋk trænsfɜːr/",
+                    "meaningVi": "chuyển khoản ngân hàng",
+                    "synonyms": ["wire transfer (chuyển tiền điện tử)", "direct deposit (chuyển khoản trực tiếp)"],
+                    "antonyms": ["cash payment (thanh toán tiền mặt)"],
+                    "collocations": [
+                        "Do you take bank transfer?: Quán có nhận chuyển khoản không ạ?",
+                        "pay via bank transfer: thanh toán bằng chuyển khoản"
+                    ],
+                    "exampleEn": "Do you take bank transfer?",
+                    "exampleVi": "Quán mình có nhận chuyển khoản không ạ?"
+                },
+                {
+                    "id": "vocab-c2-5",
+                    "word": "receipt",
+                    "partOfSpeech": "n",
+                    "ipa": "/rɪˈsiːt/",
+                    "meaningVi": "hóa đơn thanh toán",
+                    "synonyms": ["bill (hóa đơn)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Here's your receipt: Hóa đơn của mình đây ạ.",
+                        "check the receipt: kiểm tra lại hóa đơn"
+                    ],
+                    "exampleEn": "Here's your receipt and your change.",
+                    "exampleVi": "Hóa đơn và tiền thừa của mình đây ạ."
+                }
+            ],
+            "sampleDialogue": [
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Have you decided yet?",
+                    "textVi": "Mình đã chọn được món chưa ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Can I get the one from the menu picture? Is this drink good?",
+                    "textVi": "Cho em một ly như trên hình menu này đi. Món này có ngon không chị?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "It's really good! Very refreshing.",
+                    "textVi": "Ngon lắm chị ơi, thanh mát dễ uống lắm!"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "What toppings do you have? Can I add boba?",
+                    "textVi": "Có topping gì đấy ạ? Cho em thêm trân châu nhá."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "We have boba and cheese foam!",
+                    "textVi": "Quán có trân châu và kem cheese ạ!"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Can I add cheese foam too? And I'll have the same as her for my friend.",
+                    "textVi": "Cho em thêm ít kem cheese được không ạ? Và cho em giống chị ấy cho bạn em nữa nha."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Got it, two drinks with toppings! Cash or card?",
+                    "textVi": "Dạ được ạ, hai ly thêm topping! Mình thanh toán tiền mặt hay chuyển khoản/thẻ ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Do you take bank transfer? I'll pay now.",
+                    "textVi": "Có nhận chuyển khoản không ạ? Cho em thanh toán luôn nhá."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Yes, we do! You can scan the QR code right here on the counter.",
+                    "textVi": "Dạ có ạ! Chị quét mã QR ngay trên quầy này nhé."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Done! Should I wait here or take a seat?",
+                    "textVi": "Em quét xong rồi ạ! Em đợi ở đây hay ra bàn ngồi ạ?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Here's your receipt. We're a bit busy right now, so there might be a short wait. Your drink will be ready in about five minutes.",
+                    "textVi": "Hóa đơn của mình đây ạ. Quán hôm nay hơi đông nên chị đợi em một xíu nhé, khoảng 5 phút là có đồ ạ."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Please, let me know when it's ready.",
+                    "textVi": "Khi nào xong thì gọi em nha!"
+                }
+            ],
+            "suggestedHints": [
+                "Can I get the one from the menu picture? Is this drink good?",
+                "What toppings do you have? Can I add boba?",
+                "Can I add cheese foam?",
+                "Do you take bank transfer? I'll pay now.",
+                "Should I wait here or take a seat?"
+            ]
+        },
+        {
+            "id": "cafe-scenario-3",
+            "order": 3,
+            "section": "🛋️ Nhận đồ, Tiện ích & Chăm sóc khách (Pick-up & Amenities)",
+            "titleEn": "Pick-up, Seating, Wi-Fi & Cafe Amenities",
+            "titleVi": "Nhận đồ, Chỗ ngồi, Wi-Fi & Tiện ích quán",
+            "situation": "Khách nhận đồ uống tại quầy, xin ống hút, thêm đá, hỏi chỗ ngồi tầng trên, hỏi pass Wi-Fi, phản ánh điều hòa hơi lạnh, nhân viên hỗ trợ lau bàn, lấy khăn giấy và cảm ơn.",
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Barista",
+                    "titleEn": "Barista / Floor Staff",
+                    "titleVi": "Nhân viên phục vụ quán",
+                    "avatar": "☕"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Customer",
+                    "titleEn": "Customer",
+                    "titleVi": "Khách hàng (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Here's your drink. Enjoy your drink!",
+            "initialMessageVi": "Em gửi chị đồ uống ạ. Chị dùng ngon miệng nha.",
+            "vocabulary": [
+                {
+                    "id": "vocab-c3-1",
+                    "word": "straw",
+                    "partOfSpeech": "n",
+                    "ipa": "/strɔː/",
+                    "meaningVi": "ống hút",
+                    "synonyms": ["drinking straw (ống hút đồ uống)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Can I have a straw, please?: Cho em xin cái ống hút được không ạ?",
+                        "paper straw / plastic straw: ống hút giấy / ống hút nhựa"
+                    ],
+                    "exampleEn": "Can I have a straw, please?",
+                    "exampleVi": "Cho em xin một cái ống hút được không ạ?"
+                },
+                {
+                    "id": "vocab-c3-2",
+                    "word": "upstairs",
+                    "partOfSpeech": "adv, adj, n",
+                    "ipa": "/ˌʌpˈsterz/",
+                    "meaningVi": "trên tầng, tầng trên",
+                    "synonyms": ["upper floor (tầng trên)", "second floor (tầng hai)"],
+                    "antonyms": ["downstairs (tầng dưới, tầng trệt)"],
+                    "collocations": [
+                        "Are there seats upstairs?: Có chỗ ngồi ở trên tầng không ạ?",
+                        "head upstairs: đi lên tầng trên"
+                    ],
+                    "exampleEn": "Are there seats upstairs near the window?",
+                    "exampleVi": "Có chỗ ngồi ở trên tầng gần cửa sổ không ạ?"
+                },
+                {
+                    "id": "vocab-c3-3",
+                    "word": "Wi-Fi password",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˈwaɪ faɪ ˈpæswɜːrd/",
+                    "meaningVi": "mật khẩu mạng Wi-Fi",
+                    "synonyms": ["Wi-Fi key / passcode (mã truy cập Wi-Fi)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "What's the Wi-Fi password?: Pass Wi-Fi ở đây là gì đấy ạ?",
+                        "The Wifi password is on the receipt: Pass Wi-Fi ở trên hóa đơn ấy ạ"
+                    ],
+                    "exampleEn": "The Wi-Fi password is printed on the receipt.",
+                    "exampleVi": "Mật khẩu Wi-Fi được in sẵn trên hóa đơn thanh toán."
+                },
+                {
+                    "id": "vocab-c3-4",
+                    "word": "air conditioner",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈer kəndɪʃənər/",
+                    "meaningVi": "máy điều hòa không khí (viết tắt là AC /ˌeɪ ˈsiː/)",
+                    "synonyms": ["AC unit (máy điều hòa)", "climate control (hệ thống kiểm soát nhiệt độ)"],
+                    "antonyms": ["heater (máy sưởi)"],
+                    "collocations": [
+                        "The AC is a bit cold: Điều hòa hơi lạnh chị ạ",
+                        "turn down / turn up the AC: giảm / tăng nhiệt độ điều hòa"
+                    ],
+                    "exampleEn": "Excuse me! The AC is a bit cold in this corner.",
+                    "exampleVi": "Xin lỗi, điều hòa ở góc này hơi lạnh chị ạ."
+                },
+                {
+                    "id": "vocab-c3-5",
+                    "word": "napkin",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈnæpkɪn/",
+                    "meaningVi": "khăn giấy ăn",
+                    "synonyms": ["tissue (khăn giấy)", "paper towel (khăn lau giấy)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "I'll get you some napkins: Để em lấy khăn giấy cho ạ",
+                        "extra napkins: thêm vài tờ khăn giấy"
+                    ],
+                    "exampleEn": "I'll get you some napkins right away.",
+                    "exampleVi": "Để em lấy ngay ít khăn giấy cho mình ạ."
+                },
+                {
+                    "id": "vocab-c3-6",
+                    "word": "wipe",
+                    "partOfSpeech": "v",
+                    "ipa": "/waɪp/",
+                    "meaningVi": "lau chùi, làm sạch bề mặt bàn",
+                    "synonyms": ["clean (làm sạch)", "sanitize (khử khuẩn, lau sạch)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "Let me wipe the table for you: Để em lau bàn cho mình nha",
+                        "wipe down the counter: lau sạch quầy pha chế"
+                    ],
+                    "exampleEn": "Let me wipe the table for you before you sit down.",
+                    "exampleVi": "Để em lau bàn cho mình trước khi ngồi nha."
+                }
+            ],
+            "sampleDialogue": [
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Here's your drink. Enjoy your drink!",
+                    "textVi": "Em gửi chị đồ uống ạ. Chị dùng ngon miệng nha!"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Thank you! Can I have a straw, please? And extra ice, please.",
+                    "textVi": "Cảm ơn em! Cho em xin cái ống hút và cho thêm tí đá nha."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Here's your straw and extra ice for you!",
+                    "textVi": "Ống hút và đá thêm của mình đây ạ!"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Are there seats upstairs?",
+                    "textVi": "Có chỗ ngồi ở trên tầng không ạ?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Yes, there are plenty of tables upstairs near the window!",
+                    "textVi": "Dạ có, trên tầng còn nhiều bàn gần cửa sổ lắm ạ!"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Great! What's the Wi-Fi password?",
+                    "textVi": "Tuyệt quá! Pass Wi-Fi ở đây là gì đấy ạ?"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "The Wifi password is on the receipt.",
+                    "textVi": "Pass Wi-Fi ở trên hóa đơn ấy ạ."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Excuse me! The AC up there is a bit cold.",
+                    "textVi": "Điều hòa trên đó hơi lạnh em ạ."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Let me turn up the AC for you! And let me wipe the table for you too. I'll get you some napkins.",
+                    "textVi": "Để em chỉnh điều hòa ấm lên một chút ạ! Và để em lau bàn cho mình nha, em lấy thêm khăn giấy cho ạ."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "Thank you so much!",
+                    "textVi": "Cảm ơn em nhiều nha!"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Do you need anything else?",
+                    "textVi": "Chị có cần gì nữa không ạ?"
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Customer",
+                    "textEn": "No, that's perfect. Thank you!",
+                    "textVi": "Dạ thế là tuyệt rồi, cảm ơn em!"
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Barista",
+                    "textEn": "Thank you! See you again.",
+                    "textVi": "Em cảm ơn nha! Lần sau lại ghé nha."
+                }
+            ],
+            "suggestedHints": [
+                "Can I have a straw, please? And extra ice, please.",
+                "Are there seats upstairs?",
+                "What's the Wi-Fi password?",
+                "Excuse me! The AC up there is a bit cold.",
+                "For here, please."
+            ]
+        }
+    ],
+    "appendix": """## 📋 BẢNG TRA CỨU MẪU CÂU GIAO TIẾP TẠI QUÁN CÀ PHÊ (ANH - VIỆT)
+
+--- PHẦN 1: MẪU CÂU CỦA NHÂN VIÊN (STAFF) ---
+
+1. Hello! What can I get for you today?
+   - Em chào chị ạ! Mình dùng gì ạ?
+
+2. What would you like to order?
+   - Chị muốn gọi món gì đây ạ?
+
+3. Have you decided yet?
+   - Mình đã chọn được món chưa?
+
+4. Medium or large?
+   - Mình muốn size vừa hay là size lớn ạ?
+
+5. How much sugar would you like?
+   - Bao nhiêu đường ạ?
+
+6. For here or to go?
+   - Mình muốn dùng tại quán hay là mang đi ạ?
+
+7. Would you like a pastry with that?
+   - Mình có muốn thêm bánh không ạ?
+
+8. Let me repeat your order.
+   - Để em nhắc lại order của mình nhé.
+
+9. One large iced coffee with milk, right?
+   - Một cà phê sữa đá size lớn, đúng không ạ?
+
+10. Cash or card?
+    - Mình thanh toán tiền mặt hay chuyển khoản ạ?
+
+11. Here's your receipt.
+    - Hóa đơn của mình đây ạ.
+
+12. We're a bit busy right now, so there might be a short wait.
+    - Quán hôm nay hơi đông nên là chị đợi em 1 xíu nhé.
+
+13. Your drink will be ready in about five minutes.
+    - Mình đợi đồ uống khoảng 5 phút nhé.
+
+14. Here's your drink.
+    - Em gửi chị đồ uống ạ.
+
+15. Careful! It's hot.
+    - Cẩn thận nóng nha.
+
+16. Enjoy your drink!
+    - Chị dùng ngon miệng nha.
+
+17. I'll get you some napkins.
+    - Để em lấy khăn giấy cho ạ.
+
+18. Let me wipe the table for you.
+    - Để em lau bàn cho mình nha.
+
+19. The Wifi password is on the receipt.
+    - Pass Wi-Fi ở trên hóa đơn ấy ạ.
+
+20. Do you need anything else?
+    - Chị có cần gì nữa không ạ?
+
+21. Thank you! See you again.
+    - Em cảm ơn nha! Lần sau lại ghé nha.
+
+
+--- PHẦN 2: MẪU CÂU CỦA KHÁCH HÀNG (CUSTOMER) ---
+
+1. Can I get an iced coffee with milk?
+   - Cho em một ly cà phê sữa đá.
+
+2. Less ice, please.
+   - Mà ít đá thôi ạ.
+
+3. Extra ice, please.
+   - Cho thêm tí đá nha.
+
+4. No sugar, please.
+   - Không bỏ đường ạ.
+
+5. To go, please.
+   - Cho em mang đi.
+
+6. For here, please.
+   - Em uống tại đây luôn ạ.
+
+7. Is this drink good?
+   - Chị ơi, món này có ngon không?
+
+8. I'll have the same as her.
+   - Cho em giống chị ấy nhá.
+
+9. What toppings do you have?
+   - Có topping gì đấy ạ?
+
+10. Can I add boba?
+    - Cho em thêm trân châu nhá.
+
+11. Can I get the one from the menu picture?
+    - Cho em một ly như trên hình menu này đi.
+
+12. What's your best-selling drink?
+    - Món nào hot nhất đấy chị?
+
+13. Can I add cheese foam?
+    - Cho em thêm ít kem cheese được không ạ?
+
+14. I'll pay now.
+    - Cho em thanh toán luôn nhá.
+
+15. Do you take bank transfer?
+    - Có nhận chuyển khoản không ạ?
+
+16. Where do I scan the QR code?
+    - Quét mã QR ở đâu ạ?
+
+17. Should I wait here or take a seat?
+    - Em đợi ở đây hay là ra bàn ngồi ạ?
+
+18. Please, let me know when it's ready.
+    - Khi nào xong thì gọi em nha!
+
+19. Can I have a straw, please?
+    - Cho em xin cái ống hút được không ạ?
+
+20. Are there seats upstairs?
+    - Có chỗ ngồi ở trên tầng không ạ?
+
+21. What's the Wi-Fi password?
+    - Pass Wi-Fi ở đây là gì đấy ạ?
+
+22. Excuse me! The AC is a bit cold.
+    - Điều hòa hơi lạnh chị ạ.
+"""
+}
+

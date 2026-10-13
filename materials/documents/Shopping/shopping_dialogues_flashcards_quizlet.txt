@@ -1,0 +1,13 @@
+[Nhân viên] Chào bạn! Cứ báo với tôi nếu bạn cần tìm size hoặc kiểu dáng khác nhé.	[Sales Associate] Hi there! Let me know if you need a different size or style.
+[Khách] Chào bạn! Tôi rất thích chiếc áo khoác xanh navy này, nhưng bạn có size M không?	[Customer] Hi! I really like this navy jacket, but do you have it in size Medium?
+[Nhân viên] Để tôi xem trên giá treo nhé... Đây là một chiếc size M màu xanh navy này! Bạn có muốn mặc thử không? Phòng thử đồ ở ngay đằng kia.	[Sales Associate] Let me check the rack... Here is a Medium in navy! Would you like to try it on? The fitting rooms are right over there.
+[Khách] Có chứ. [Sau khi thử xong] Vừa in luôn! Mẫu này có đang được giảm giá khuyến mãi gì không bạn?	[Customer] Yes, please. [After trying] It fits really well! Does this item have any promotional discount?
+[Nhân viên] Có đấy ạ! Toàn bộ áo khoác hôm nay đang được giảm 20%, từ $80 xuống còn $64. Thêm nữa nếu bạn mua trên $100 sẽ được giảm thêm 10% khi thanh toán.	[Sales Associate] Yes! All outerwear is 20% off today, so it comes down from $80 to $64. Plus, if you spend over $100, you get another 10% off at checkout.
+[Khách] Ưu đãi hời quá! Tôi sẽ lấy chiếc này. Quầy thu ngân ở đâu vậy bạn?	[Customer] That's a great deal! I'll take it. Where is the cash register?
+[Thu ngân] Xin chào! Bạn đã chọn đủ đồ cần mua chưa ạ?	[Cashier] Hello! Did you find everything you needed?
+[Khách] Dạ đủ rồi, chỉ có hộp cơm này, một chai trà xanh và cái đầu cắm này thôi. Bạn hâm nóng hộp cơm giúp tôi được không?	[Shopper] Yes, just this lunch box, a bottle of green tea, and this adapter. Could you please heat up the lunch box for me?
+[Thu ngân] Dạ được, tôi cho vào lò vi sóng quay ngay đây. Mất khoảng 45 giây. Bạn có cần lấy túi nilông không ạ?	[Cashier] Sure, I'll pop it in the microwave right now. It takes about 45 seconds. Do you need a plastic bag?
+[Khách] Cho tôi xin một túi nhé, tôi cầm hơi nhiều đồ. À mà ở đây có bán thẻ SIM du lịch trả trước không bạn?	[Shopper] Yes, please, I have quite a few items. Also, do you sell prepaid tourist SIM cards here?
+[Thu ngân] Có ạ, chúng tôi có sim 4G không giới hạn dung lượng dùng trong 7 ngày ở sau quầy, giá $15. Bạn có muốn lấy một cái không?	[Cashier] Yes, we have 7-day unlimited data SIM cards behind the counter for $15. Would you like one?
+[Khách] Thế thì tốt quá! Tôi thanh toán tất cả bằng Apple Pay được không?	[Shopper] That would be perfect! Can I pay everything with Apple Pay?
+[Thu ngân] Chắc chắn rồi ạ! Bạn chỉ cần chạm điện thoại vào máy quẹt thẻ ngay đây. Cơm nóng và hóa đơn của bạn đây nhé!	[Cashier] Certainly! Just tap your phone on the terminal right here. Here is your warm lunch and receipt!

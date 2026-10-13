@@ -1,0 +1,27 @@
+[Lễ tân] Chào buổi chiều, chào mừng quý khách đến Sunrise Hotel! Bạn làm thủ tục nhận phòng phải không ạ?	[Receptionist] Good afternoon, welcome to Sunrise Hotel! Are you checking in?
+[Khách] Vâng, tôi có đặt phòng trước dưới tên Nguyen.	[Guest] Yes, I have a reservation under the name of Nguyen.
+[Lễ tân] Để tôi kiểm tra... Vâng, phòng Deluxe King trong 3 đêm. Tôi xin phép mượn hộ chiếu và thẻ tín dụng để đặt cọc phòng ạ?	[Receptionist] Let me check... Yes, a Deluxe King Room for 3 nights. May I have your passport and credit card for the security deposit?
+[Khách] Được chứ, đây là hộ chiếu và thẻ của tôi. Bữa sáng có bao gồm không bạn?	[Guest] Sure, here is my passport and card. Is breakfast included?
+[Lễ tân] Có ạ, buffet sáng phục vụ tại tầng 2 từ 6:30 đến 10:00 sáng. Đây là thẻ phòng 804 của bạn.	[Receptionist] Yes, buffet breakfast is served on the 2nd floor from 6:30 to 10:00 AM. Here is your keycard for room 804.
+[Khách] Cảm ơn bạn! Mật khẩu Wi-Fi là gì vậy?	[Guest] Thank you! What is the Wi-Fi password?
+[Lễ tân] Mạng là 'Sunrise_Guest' và không cần mật khẩu. Thang máy nằm ngay góc rẽ bên phải nhé ạ.	[Receptionist] The network is 'Sunrise_Guest' and no password is required. The elevators are right around the corner.
+[Nhân viên] Bộ phận buồng phòng xin nghe, tôi có thể hỗ trợ gì cho quý khách ạ?	[Housekeeping] Front desk housekeeping, how may I assist you?
+[Khách] Chào bạn, tôi là Alex ở phòng 804. Chúng tôi có thể xin thêm hai khăn tắm lớn được không?	[Guest] Hi, this is Alex in room 804. Could we please have two extra bath towels?
+[Nhân viên] Dạ chắc chắn rồi thưa quý khách. Bạn có cần thêm gì nữa không, ví dụ như dầu gội hay dép đi trong phòng ạ?	[Housekeeping] Certainly, Mr. Alex. Would you need anything else, like shampoo or slippers?
+[Khách] À có đấy! Khách sạn có bàn ủi và cục chuyển chân cắm quốc tế cho tôi mượn được không?	[Guest] Actually, yes! Do you have an iron and an international travel adapter I could borrow?
+[Nhân viên] Dạ có ạ. Nhân viên của chúng tôi sẽ mang khăn, bàn ủi và đầu cắm lên tận phòng bạn trong vòng 10 phút.	[Housekeeping] Yes, we do. Our staff will bring the towels, iron, and adapter to your door within 10 minutes.
+[Khách] Tuyệt quá, cảm ơn bạn rất nhiều!	[Guest] That's wonderful, thank you so much!
+[Nhân viên] Chào buổi tối, quầy Lễ tân, tôi là David xin nghe. Tôi có thể giúp gì cho bạn ạ?	[Duty Manager] Good evening, Front Desk, this is David speaking. How can I help you?
+[Khách] Chào David, tôi gọi từ phòng 502. Máy lạnh dường như bị hỏng rồi, nó chỉ thổi ra gió nóng thôi.	[Guest] Hello David, I'm calling from room 502. The air conditioner seems to be broken. It's blowing warm air.
+[Nhân viên] Tôi rất lấy làm tiếc khi nghe điều đó. Bạn đã thử điều chỉnh bảng điều khiển nhiệt độ trên tường chưa ạ?	[Duty Manager] I am terribly sorry to hear that. Have you tried adjusting the thermostat on the wall?
+[Khách] Tôi đã chỉnh xuống 20 độ rồi nhưng phòng vẫn rất bí. Thêm nữa, phòng bên cạnh đang mở nhạc rất ồn.	[Guest] Yes, I set it to 20 degrees, but the room is still very stuffy. Also, the guests next door are playing loud music.
+[Nhân viên] Tôi thật sự xin lỗi vì sự bất tiện này. Do thợ kỹ thuật đã hết ca trực, tôi xin phép đổi bạn lên phòng Deluxe ở tầng 10 ngay bây giờ ạ.	[Duty Manager] I truly apologize for this inconvenience. Since our technician has gone off duty, I'd like to offer to move you to a Deluxe Room on the 10th floor right away.
+[Khách] Được thế thì tốt quá. Cảm ơn bạn vì đã xử lý nhanh chóng.	[Guest] That would be great. Thank you for handling it quickly.
+[Nhân viên] Tôi sẽ cử nhân viên hành lý lên ngay cùng thẻ phòng mới để giúp bạn chuyển hành lý sang ạ.	[Duty Manager] I'll send a bellboy up immediately with your new keycards to help you move your luggage.
+[Lễ tân] Chào buổi sáng! Quý khách trả phòng hôm nay phải không ạ?	[Receptionist] Good morning! Are you ready to check out today?
+[Khách] Vâng, tôi trả phòng 1004. Đây là các thẻ phòng ạ.	[Guest] Yes, I am checking out of room 1004. Here are the keycards.
+[Lễ tân] Cảm ơn bạn. Bạn có dùng đồ gì trong minibar hay gọi điện thoại bàn không ạ?	[Receptionist] Thank you. Did you take anything from the minibar or make any phone calls?
+[Khách] Chỉ có một lon Coca hôm qua thôi. Mọi thứ khác tôi không đụng vào.	[Guest] Just one can of Coke yesterday. Everything else is untouched.
+[Lễ tân] Dạ vâng. Phí nước uống là $3, và chúng tôi sẽ hoàn lại $47 tiền cọc còn lại vào thẻ. Kỳ nghỉ của quý khách thế nào ạ?	[Receptionist] Alright. That will be $3 for the drink, and we'll release the remaining $47 from your deposit. How was your stay?
+[Khách] Rất thoải mái, cảm ơn bạn. Bạn có thể giữ hành lý giúp chúng tôi đến 6 giờ tối được không? Chuyến bay của chúng tôi vào tối nay.	[Guest] It was very pleasant, thank you. Could you store our bags until 6 PM? Our flight is tonight.
+[Lễ tân] Rất sẵn lòng ạ. Đây là thẻ nhận hành lý số #42 của bạn. Khi quay lại bạn chỉ cần đưa thẻ này là được.	[Receptionist] With pleasure. Here is your luggage claim ticket #42. Just present this when you return.

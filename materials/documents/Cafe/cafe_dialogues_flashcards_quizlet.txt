@@ -1,0 +1,37 @@
+[Nhân viên] Em chào chị ạ! Mình dùng gì ạ?	[Barista] Hello! What can I get for you today?
+[Khách] Món nào hot nhất đấy chị?	[Customer] What's your best-selling drink?
+[Nhân viên] Cà phê sữa đá của quán em là hot nhất ạ!	[Barista] Definitely our iced coffee with milk!
+[Khách] Hay quá, cho em một ly đó nha!	[Customer] Awesome, I'll take that then!
+[Nhân viên] Mình muốn size vừa hay size lớn ạ?	[Barista] Medium or large?
+[Khách] Cho em size lớn nhé. Ít đá và không bỏ đường nha.	[Customer] Large, please. Less ice and no sugar, please.
+[Nhân viên] Mình muốn dùng tại quán hay mang đi ạ?	[Barista] For here or to go?
+[Khách] Cho em mang đi.	[Customer] To go, please.
+[Nhân viên] Mình có muốn thêm bánh ngọt không ạ?	[Barista] Would you like a pastry with that?
+[Khách] Dạ thôi, em cảm ơn ạ.	[Customer] No, thanks. That's all.
+[Nhân viên] Để em nhắc lại order của mình nhé: một cà phê sữa đá size lớn, ít đá, không đường, mang đi, đúng không ạ?	[Barista] Let me repeat your order: one large iced coffee with milk, less ice, no sugar, to go, right?
+[Khách] Dạ đúng rồi ạ!	[Customer] Yes, that's right!
+[Nhân viên] Mình đã chọn được món chưa ạ?	[Barista] Have you decided yet?
+[Khách] Cho em một ly như trên hình menu này đi. Món này có ngon không chị?	[Customer] Can I get the one from the menu picture? Is this drink good?
+[Nhân viên] Ngon lắm chị ơi, thanh mát dễ uống lắm!	[Barista] It's really good! Very refreshing.
+[Khách] Có topping gì đấy ạ? Cho em thêm trân châu nhá.	[Customer] What toppings do you have? Can I add boba?
+[Nhân viên] Quán có trân châu và kem cheese ạ!	[Barista] We have boba and cheese foam!
+[Khách] Cho em thêm ít kem cheese được không ạ? Và cho em giống chị ấy cho bạn em nữa nha.	[Customer] Can I add cheese foam too? And I'll have the same as her for my friend.
+[Nhân viên] Dạ được ạ, hai ly thêm topping! Mình thanh toán tiền mặt hay chuyển khoản/thẻ ạ?	[Barista] Got it, two drinks with toppings! Cash or card?
+[Khách] Có nhận chuyển khoản không ạ? Cho em thanh toán luôn nhá.	[Customer] Do you take bank transfer? I'll pay now.
+[Nhân viên] Dạ có ạ! Chị quét mã QR ngay trên quầy này nhé.	[Barista] Yes, we do! You can scan the QR code right here on the counter.
+[Khách] Em quét xong rồi ạ! Em đợi ở đây hay ra bàn ngồi ạ?	[Customer] Done! Should I wait here or take a seat?
+[Nhân viên] Hóa đơn của mình đây ạ. Quán hôm nay hơi đông nên chị đợi em một xíu nhé, khoảng 5 phút là có đồ ạ.	[Barista] Here's your receipt. We're a bit busy right now, so there might be a short wait. Your drink will be ready in about five minutes.
+[Khách] Khi nào xong thì gọi em nha!	[Customer] Please, let me know when it's ready.
+[Nhân viên] Em gửi chị đồ uống ạ. Chị dùng ngon miệng nha!	[Barista] Here's your drink. Enjoy your drink!
+[Khách] Cảm ơn em! Cho em xin cái ống hút và cho thêm tí đá nha.	[Customer] Thank you! Can I have a straw, please? And extra ice, please.
+[Nhân viên] Ống hút và đá thêm của mình đây ạ!	[Barista] Here's your straw and extra ice for you!
+[Khách] Có chỗ ngồi ở trên tầng không ạ?	[Customer] Are there seats upstairs?
+[Nhân viên] Dạ có, trên tầng còn nhiều bàn gần cửa sổ lắm ạ!	[Barista] Yes, there are plenty of tables upstairs near the window!
+[Khách] Tuyệt quá! Pass Wi-Fi ở đây là gì đấy ạ?	[Customer] Great! What's the Wi-Fi password?
+[Nhân viên] Pass Wi-Fi ở trên hóa đơn ấy ạ.	[Barista] The Wifi password is on the receipt.
+[Khách] Điều hòa trên đó hơi lạnh em ạ.	[Customer] Excuse me! The AC up there is a bit cold.
+[Nhân viên] Để em chỉnh điều hòa ấm lên một chút ạ! Và để em lau bàn cho mình nha, em lấy thêm khăn giấy cho ạ.	[Barista] Let me turn up the AC for you! And let me wipe the table for you too. I'll get you some napkins.
+[Khách] Cảm ơn em nhiều nha!	[Customer] Thank you so much!
+[Nhân viên] Chị có cần gì nữa không ạ?	[Barista] Do you need anything else?
+[Khách] Dạ thế là tuyệt rồi, cảm ơn em!	[Customer] No, that's perfect. Thank you!
+[Nhân viên] Em cảm ơn nha! Lần sau lại ghé nha.	[Barista] Thank you! See you again.
