@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { MsEdgeTTS, OUTPUT_FORMAT } from "msedge-tts";
+import { getEdgeSynthUrl } from "@/utils/edgeDrm";
 
 export const runtime = "nodejs";
+
+// Patch MsEdgeTTS.getSynthUrl with Sec-MS-GEC v2 token calculation to bypass Microsoft 403 Forbidden
+(MsEdgeTTS as any).getSynthUrl = async function () {
+  return getEdgeSynthUrl();
+};
 
 // Optional OpenAI TTS (real ChatGPT voice) if user configures OPENAI_API_KEY in .env.local
 async function tryOpenAITTS(text: string, voice: string, rate: number): Promise<Buffer | null> {
@@ -34,6 +40,27 @@ async function tryOpenAITTS(text: string, voice: string, rate: number): Promise<
   return null;
 }
 
+// Server-side fallback using Google TTS endpoint in case of Edge service glitches
+async function fetchGoogleTTS(text: string): Promise<Buffer | null> {
+  try {
+    const encoded = encodeURIComponent(text.trim());
+    const url = `https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=${encoded}`;
+    const res = await fetch(url, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36",
+        Referer: "https://translate.google.com/",
+      },
+    });
+    if (res.ok) {
+      const arrayBuf = await res.arrayBuffer();
+      return Buffer.from(arrayBuf);
+    }
+  } catch (e) {
+    console.warn("Google TTS fallback failed:", e);
+  }
+  return null;
+}
+
 // Microsoft Edge Neural TTS with high-quality expressive voices (Ava, Andrew, Emma, Brian)
 async function generateEdgeAudio(text: string, voice: string = "en-US-AvaNeural", rate: number = 1.0): Promise<Buffer> {
   const tts = new MsEdgeTTS();
@@ -55,13 +82,26 @@ async function generateEdgeAudio(text: string, voice: string = "en-US-AvaNeural"
 }
 
 async function getAudioBuffer(text: string, voice: string, rate: number): Promise<Buffer> {
-  // If OpenAI key is set, use real ChatGPT tts-1 voice
+  // 1. If OpenAI key is set, use real ChatGPT tts-1 voice
   const openAiBuffer = await tryOpenAITTS(text, voice, rate);
   if (openAiBuffer) {
     return openAiBuffer;
   }
-  // Otherwise use Microsoft Edge Neural TTS (en-US-AvaNeural / en-US-AndrewNeural)
-  return generateEdgeAudio(text, voice, rate);
+
+  // 2. Otherwise use Microsoft Edge Neural TTS (en-US-AvaNeural / en-US-AndrewNeural)
+  try {
+    return await generateEdgeAudio(text, voice, rate);
+  } catch (edgeErr) {
+    console.warn("Edge TTS failed, using server Google TTS fallback:", edgeErr);
+  }
+
+  // 3. Fallback to Google TTS to guarantee 100% audio availability
+  const googleBuffer = await fetchGoogleTTS(text);
+  if (googleBuffer) {
+    return googleBuffer;
+  }
+
+  throw new Error("All TTS backends failed to synthesize audio");
 }
 
 export async function GET(req: NextRequest) {

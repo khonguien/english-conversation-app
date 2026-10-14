@@ -9,6 +9,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { Topic, Scenario } from "@/types/conversation";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface HomeDashboardProps {
   topics: Topic[];
@@ -47,37 +48,38 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
   }, [topics]);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 flex flex-col transition-colors duration-200">
       {/* Top Navigation Bar */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-200/90">
+      <header className="sticky top-0 z-30 bg-white/95 dark:bg-slate-900/90 backdrop-blur-md border-b border-slate-200/90 dark:border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-9 h-9 rounded-xl bg-slate-900 flex items-center justify-center text-white shadow-2xs">
+            <div className="w-9 h-9 rounded-xl bg-slate-900 dark:bg-slate-800 flex items-center justify-center text-white dark:text-cyan-400 shadow-2xs border border-transparent dark:border-slate-700">
               <Mic className="w-4 h-4" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-slate-900 text-base sm:text-lg tracking-tight">
+                <span className="font-bold text-slate-900 dark:text-white text-base sm:text-lg tracking-tight">
                   English in Conversation
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-wider bg-slate-100 text-slate-700 border border-slate-200/80 px-2 py-0.5 rounded-full">
+                <span className="text-[10px] font-semibold uppercase tracking-wider bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700 px-2 py-0.5 rounded-full">
                   AI Roleplay
                 </span>
               </div>
-              <p className="text-xs text-slate-500 hidden sm:block">
+              <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
                 Luyện phản xạ giao tiếp tiếng Anh 2 chiều theo tình huống thực tế
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
+            <ThemeToggle />
             <button
               type="button"
               onClick={() => {
                 const first = selectedTopic.scenarios[0];
                 if (first) onStartScenario(selectedTopic, first, getLearnerRole(first));
               }}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 transition shadow-2xs cursor-pointer active:scale-95"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white dark:text-slate-900 bg-slate-900 dark:bg-slate-100 hover:bg-slate-800 dark:hover:bg-white transition shadow-2xs cursor-pointer active:scale-95"
             >
               <span>Vào bài đầu tiên</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -160,18 +162,18 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   }}
                   className={`text-left p-3 sm:p-3.5 rounded-2xl transition border flex items-center gap-3 relative overflow-hidden group cursor-pointer active:scale-95 ${
                     isSelected
-                      ? "bg-white border-slate-900 shadow-xs ring-2 ring-slate-900/10"
-                      : "bg-white/80 hover:bg-white border-slate-200/90 hover:border-slate-300 shadow-2xs"
+                      ? "bg-white dark:bg-slate-800 border-slate-900 dark:border-cyan-400 shadow-xs ring-2 ring-slate-900/10 dark:ring-cyan-500/30"
+                      : "bg-white/80 dark:bg-slate-900/80 hover:bg-white dark:hover:bg-slate-800/90 border-slate-200/90 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700 shadow-2xs"
                   }`}
                 >
-                  <span className="text-2xl p-2 bg-slate-100 rounded-xl group-hover:scale-105 transition flex-shrink-0">
+                  <span className="text-2xl p-2 bg-slate-100 dark:bg-slate-800/90 rounded-xl group-hover:scale-105 transition flex-shrink-0">
                     {topic.icon}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <h3 className="font-semibold text-slate-900 text-xs sm:text-sm truncate">
+                    <h3 className="font-semibold text-slate-900 dark:text-white text-xs sm:text-sm truncate">
                       {topic.titleEn}
                     </h3>
-                    <p className="text-[11px] text-slate-500 truncate">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">
                       {topic.scenarios.length} bài
                     </p>
                   </div>
@@ -186,11 +188,11 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
           <div className="flex items-center justify-between flex-wrap gap-2">
             <div className="flex items-center gap-2">
               <span className="text-xl">{selectedTopic.icon}</span>
-              <h3 className="font-bold text-slate-900 text-base sm:text-lg">
+              <h3 className="font-bold text-slate-900 dark:text-white text-base sm:text-lg">
                 Danh Sách Tình Huống: {selectedTopic.titleEn}
               </h3>
             </div>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-xs text-slate-500 dark:text-slate-400 font-medium">
               Đang hiển thị {filteredScenarios.length} / {selectedTopic.scenarios.length} bài
             </span>
           </div>
@@ -205,8 +207,8 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
                   onClick={() => setSelectedSection(sec)}
                   className={`text-xs px-3 py-1.5 rounded-xl font-medium transition whitespace-nowrap border cursor-pointer active:scale-95 ${
                     selectedSection === sec
-                      ? "bg-slate-900 text-white border-slate-900 shadow-2xs"
-                      : "bg-white hover:bg-slate-100 text-slate-600 border-slate-200"
+                      ? "bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 border-slate-900 dark:border-slate-100 shadow-2xs"
+                      : "bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300 border-slate-200 dark:border-slate-800"
                   }`}
                 >
                   {sec === "ALL" ? "Tất cả các phần" : sec}
@@ -225,34 +227,41 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
               <div
                 key={scenario.id}
                 onClick={() => onStartScenario(selectedTopic, scenario, learnerRole)}
-                className="bg-white hover:bg-slate-50/90 rounded-2xl border border-slate-200/90 hover:border-slate-400/80 p-4 shadow-2xs hover:shadow-xs transition cursor-pointer flex flex-col justify-between group active:scale-[0.99]"
+                className="bg-white dark:bg-slate-900 hover:bg-slate-50/90 dark:hover:bg-slate-800/80 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-slate-400/80 dark:hover:border-slate-600 p-4 shadow-2xs hover:shadow-xs transition cursor-pointer flex flex-col justify-between group active:scale-[0.99]"
               >
                 <div className="space-y-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 border border-slate-200/70">
-                      {scenario.isFreeTalk ? "✨ Tự do" : `Bài #${scenario.order}`}
+                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/70 dark:border-slate-700 flex items-center gap-1">
+                      {scenario.isFreeTalk ? (
+                        <>
+                          <Sparkles className="w-3 h-3 text-amber-500" />
+                          <span>Tự do</span>
+                        </>
+                      ) : (
+                        `Bài #${scenario.order}`
+                      )}
                     </span>
-                    <span className="text-[11px] font-medium text-slate-400 truncate max-w-[130px]">
+                    <span className="text-[11px] font-medium text-slate-400 dark:text-slate-500 truncate max-w-[130px]">
                       {scenario.section}
                     </span>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-slate-900 text-sm sm:text-base leading-snug group-hover:text-slate-700 transition line-clamp-1">
+                    <h4 className="font-semibold text-slate-900 dark:text-white text-sm sm:text-base leading-snug group-hover:text-slate-700 dark:group-hover:text-cyan-400 transition line-clamp-1">
                       {scenario.titleEn}
                     </h4>
-                    <p className="text-xs text-slate-500 font-medium mt-0.5 line-clamp-1">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 font-medium mt-0.5 line-clamp-1">
                       {scenario.titleVi}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between gap-2 text-xs">
-                  <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1">
+                <div className="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between gap-2 text-xs">
+                  <span className="text-[11px] text-slate-400 dark:text-slate-500 font-medium flex items-center gap-1">
                     <BookOpen className="w-3 h-3 text-slate-400" />
                     <span>{scenario.vocabulary.length} từ vựng</span>
                   </span>
-                  <span className="inline-flex items-center gap-1 font-semibold text-slate-900 group-hover:translate-x-0.5 transition-transform">
+                  <span className="inline-flex items-center gap-1 font-semibold text-slate-900 dark:text-white group-hover:translate-x-0.5 transition-transform">
                     <span>Bắt đầu</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </span>
@@ -264,12 +273,12 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500 mt-8">
+      <footer className="border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 text-center text-xs text-slate-500 dark:text-slate-400 mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span>
             © {new Date().getFullYear()} English in Conversation • Luyện Giao Tiếp Tiếng Anh Thực Chiến
           </span>
-          <span className="text-slate-400">
+          <span className="text-slate-400 dark:text-slate-500">
             Hỗ trợ tốt nhất trên trình duyệt Google Chrome, Microsoft Edge và Safari
           </span>
         </div>

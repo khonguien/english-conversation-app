@@ -34,16 +34,16 @@ export default function Home() {
     speechRateRef.current = speechRate;
   }, [speechRate]);
 
-  // One-time interaction listener to unlock audio on mobile Safari / iOS
+  // Continuous interaction listener to keep audio unlocked on mobile Safari / iOS
   useEffect(() => {
-    const handleFirstTouch = () => {
+    const handleTouch = () => {
       unlockAudio();
     };
-    window.addEventListener("touchstart", handleFirstTouch, { once: true, passive: true });
-    window.addEventListener("click", handleFirstTouch, { once: true, passive: true });
+    window.addEventListener("touchstart", handleTouch, { passive: true });
+    window.addEventListener("click", handleTouch, { passive: true });
     return () => {
-      window.removeEventListener("touchstart", handleFirstTouch);
-      window.removeEventListener("click", handleFirstTouch);
+      window.removeEventListener("touchstart", handleTouch);
+      window.removeEventListener("click", handleTouch);
     };
   }, []);
 
@@ -298,7 +298,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-slate-50">
+    <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
       {/* Header */}
       <Header
         topic={currentTopic}
