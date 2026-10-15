@@ -4,16 +4,16 @@
 
 :root {
   --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 248, 250, 252;
-  --background-end-rgb: 241, 245, 249;
-  --scrollbar-thumb: #cbd5e1;
-  --scrollbar-thumb-hover: #94a3b8;
+  --background-start-rgb: 250, 250, 249;
+  --background-end-rgb: 245, 245, 244;
+  --scrollbar-thumb: #d6d3d1;
+  --scrollbar-thumb-hover: #a8a29e;
 }
 
 .dark {
-  --foreground-rgb: 241, 245, 249;
-  --background-start-rgb: 11, 15, 25;
-  --background-end-rgb: 15, 23, 42;
+  --foreground-rgb: 248, 250, 252;
+  --background-start-rgb: 12, 14, 20;
+  --background-end-rgb: 17, 21, 30;
   --scrollbar-thumb: #334155;
   --scrollbar-thumb-hover: #475569;
 }
@@ -24,16 +24,11 @@ html {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(var(--background-start-rgb));
   min-height: 100vh;
-  /* Prevent pull-to-refresh on mobile Safari if desired, smooth touch */
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom scrollbars */
@@ -64,162 +59,44 @@ body {
   padding-top: max(12px, env(safe-area-inset-top));
 }
 
-/* Pulse animation for voice recording */
-@keyframes pulse-ring {
-  0% {
-    transform: scale(0.95);
-    opacity: 0.8;
+/* Micro animations for speech waves */
+@keyframes wave-bar {
+  0%, 100% {
+    height: 4px;
   }
   50% {
-    transform: scale(1.15);
-    opacity: 0.4;
-  }
-  100% {
-    transform: scale(0.95);
-    opacity: 0.8;
+    height: 18px;
   }
 }
 
-.animate-pulse-ring {
-  animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.animate-wave-1 {
+  animation: wave-bar 0.9s ease-in-out infinite;
+}
+.animate-wave-2 {
+  animation: wave-bar 1.1s ease-in-out infinite 0.15s;
+}
+.animate-wave-3 {
+  animation: wave-bar 0.8s ease-in-out infinite 0.3s;
+}
+.animate-wave-4 {
+  animation: wave-bar 1.2s ease-in-out infinite 0.1s;
+}
+.animate-wave-5 {
+  animation: wave-bar 0.95s ease-in-out infinite 0.25s;
 }
 
-/* Soundwave bars animation for AI voice and recording (9 fluid bars up to 48px) */
-@keyframes soundwave-fluid-1 {
-  0%, 100% { height: 8px; }
-  50% { height: 32px; }
-}
-@keyframes soundwave-fluid-2 {
-  0%, 100% { height: 10px; }
-  50% { height: 46px; }
-}
-@keyframes soundwave-fluid-3 {
-  0%, 100% { height: 8px; }
-  50% { height: 28px; }
-}
-@keyframes soundwave-fluid-4 {
-  0%, 100% { height: 12px; }
-  50% { height: 48px; }
-}
-@keyframes soundwave-fluid-5 {
-  0%, 100% { height: 14px; }
-  50% { height: 44px; }
-}
-@keyframes soundwave-fluid-6 {
-  0%, 100% { height: 12px; }
-  50% { height: 46px; }
-}
-@keyframes soundwave-fluid-7 {
-  0%, 100% { height: 8px; }
-  50% { height: 36px; }
-}
-@keyframes soundwave-fluid-8 {
-  0%, 100% { height: 10px; }
-  50% { height: 42px; }
-}
-@keyframes soundwave-fluid-9 {
-  0%, 100% { height: 8px; }
-  50% { height: 26px; }
-}
-
-.animate-soundwave-1 {
-  animation: soundwave-fluid-1 1.05s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-}
-.animate-soundwave-2 {
-  animation: soundwave-fluid-2 1.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.1s;
-}
-.animate-soundwave-3 {
-  animation: soundwave-fluid-3 0.95s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.25s;
-}
-.animate-soundwave-4 {
-  animation: soundwave-fluid-4 1.3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.15s;
-}
-.animate-soundwave-5 {
-  animation: soundwave-fluid-5 1.1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.3s;
-}
-.animate-soundwave-6 {
-  animation: soundwave-fluid-6 1.25s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.05s;
-}
-.animate-soundwave-7 {
-  animation: soundwave-fluid-7 1.0s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.2s;
-}
-.animate-soundwave-8 {
-  animation: soundwave-fluid-8 1.15s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.35s;
-}
-.animate-soundwave-9 {
-  animation: soundwave-fluid-9 0.9s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite 0.12s;
-}
-
-/* Idle gentle breath animation */
-@keyframes soundwave-idle {
-  0%, 100% { height: 6px; opacity: 0.35; }
-  50% { height: 14px; opacity: 0.7; }
-}
-.animate-soundwave-idle-1 { animation: soundwave-idle 2.4s ease-in-out infinite; }
-.animate-soundwave-idle-2 { animation: soundwave-idle 2.4s ease-in-out infinite 0.2s; }
-.animate-soundwave-idle-3 { animation: soundwave-idle 2.4s ease-in-out infinite 0.4s; }
-.animate-soundwave-idle-4 { animation: soundwave-idle 2.4s ease-in-out infinite 0.6s; }
-.animate-soundwave-idle-5 { animation: soundwave-idle 2.4s ease-in-out infinite 0.8s; }
-.animate-soundwave-idle-6 { animation: soundwave-idle 2.4s ease-in-out infinite 0.6s; }
-.animate-soundwave-idle-7 { animation: soundwave-idle 2.4s ease-in-out infinite 0.4s; }
-.animate-soundwave-idle-8 { animation: soundwave-idle 2.4s ease-in-out infinite 0.2s; }
-.animate-soundwave-idle-9 { animation: soundwave-idle 2.4s ease-in-out infinite; }
-
-/* Enhanced Living AI Orb aura animations */
-@keyframes orb-glow {
+/* Mic Recording Pulse Ring */
+@keyframes mic-breathe {
   0%, 100% {
     transform: scale(1);
-    opacity: 0.5;
+    opacity: 0.6;
   }
   50% {
-    transform: scale(1.08);
-    opacity: 0.85;
+    transform: scale(1.18);
+    opacity: 0.2;
   }
 }
 
-@keyframes orb-spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.animate-mic-pulse {
+  animation: mic-breathe 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
-
-.animate-orb-glow {
-  animation: orb-glow 4s ease-in-out infinite;
-}
-
-.animate-orb-spin {
-  animation: orb-spin-slow 25s linear infinite;
-}
-
-/* Multi-ring Radar ripples for Mic recording */
-@keyframes radar-ripple-1 {
-  0% { transform: scale(1); opacity: 0.85; }
-  100% { transform: scale(1.65); opacity: 0; }
-}
-@keyframes radar-ripple-2 {
-  0% { transform: scale(1); opacity: 0.85; }
-  100% { transform: scale(2.15); opacity: 0; }
-}
-
-.animate-radar-1 {
-  animation: radar-ripple-1 2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite;
-}
-.animate-radar-2 {
-  animation: radar-ripple-2 2s cubic-bezier(0.1, 0.8, 0.3, 1) infinite 0.65s;
-}
-
-/* Subtle ambient mesh gradients */
-.bg-mesh-dark {
-  background-image: radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.18) 0px, transparent 50%),
-                    radial-gradient(at 90% 15%, rgba(14, 165, 233, 0.18) 0px, transparent 50%),
-                    radial-gradient(at 50% 90%, rgba(168, 85, 247, 0.12) 0px, transparent 50%);
-}
-
-.bg-mesh-light {
-  background-image: radial-gradient(at 5% 5%, rgba(99, 102, 241, 0.07) 0px, transparent 50%),
-                    radial-gradient(at 95% 20%, rgba(14, 165, 233, 0.07) 0px, transparent 50%);
-}
-

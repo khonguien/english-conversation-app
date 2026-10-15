@@ -298,7 +298,7 @@ export default function Home() {
   }
 
   return (
-    <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100">
+    <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-[#fafaf9] dark:bg-[#0c0e14] text-slate-900 dark:text-slate-100">
       {/* Header */}
       <Header
         topic={currentTopic}
