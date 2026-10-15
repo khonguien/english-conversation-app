@@ -1,5 +1,12 @@
 import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ["latin", "vietnamese"],
+  display: "swap",
+  variable: "--font-sans",
+});
 
 export const metadata: Metadata = {
   title: "English in Conversation - AI Roleplay",
@@ -28,7 +35,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" className="h-full" suppressHydrationWarning>
+    <html
+      lang="vi"
+      className={`h-full ${plusJakartaSans.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -36,7 +47,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="h-full antialiased text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-slate-950 flex flex-col font-sans select-none transition-colors duration-200">
+      <body className="h-full antialiased text-slate-800 dark:text-slate-100 bg-[#f8fafc] dark:bg-[#070b14] flex flex-col font-sans select-none transition-colors duration-200">
         {children}
       </body>
     </html>

@@ -47,14 +47,18 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
   };
 
   return (
-    <div className="fixed inset-y-0 right-0 z-40 w-full sm:w-96 bg-white dark:bg-slate-900 shadow-2xl flex flex-col border-l border-slate-200 dark:border-slate-800 animate-in slide-in-from-right duration-250">
+    <div className="fixed inset-y-0 right-0 z-40 w-full sm:w-[420px] bg-white/95 dark:bg-[#070b14]/95 backdrop-blur-2xl shadow-2xl flex flex-col border-l border-slate-200/80 dark:border-slate-800/80 animate-in slide-in-from-right duration-250">
       {/* Drawer Header */}
-      <div className="px-4 py-3.5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-900/90 safe-top-padding">
-        <div className="flex items-center gap-2">
-          <BookMarked className="w-5 h-5 text-slate-700 dark:text-cyan-400" />
+      <div className="px-5 py-4 border-b border-slate-200/80 dark:border-slate-800/80 flex items-center justify-between bg-slate-50/70 dark:bg-slate-900/50 safe-top-padding">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-400 text-white flex items-center justify-center shadow-xs">
+            <BookMarked className="w-4 h-4" />
+          </div>
           <div>
-            <h3 className="text-sm font-semibold text-slate-900 dark:text-white">Từ vựng & Cụm từ</h3>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate max-w-[200px]">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+              Từ vựng & Mẫu câu
+            </h3>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate max-w-[220px]">
               {scenarioTitle}
             </p>
           </div>
@@ -62,31 +66,31 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
         <button
           type="button"
           onClick={onClose}
-          className="p-1.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition cursor-pointer"
+          className="p-2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200/70 dark:hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-95"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
       </div>
 
       {/* Search Input */}
-      <div className="p-3 border-b border-slate-100 dark:border-slate-800/80 bg-white dark:bg-slate-900">
+      <div className="p-3.5 border-b border-slate-100 dark:border-slate-800/80 bg-white/50 dark:bg-[#070b14]/50">
         <div className="relative">
-          <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3 top-2.5" />
+          <Search className="w-4 h-4 text-slate-400 dark:text-slate-500 absolute left-3.5 top-3" />
           <input
             type="text"
-            placeholder="Tìm từ vựng hoặc nghĩa..."
+            placeholder="Tìm từ vựng, phiên âm hoặc nghĩa..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-xl focus:outline-hidden focus:bg-white dark:focus:bg-slate-800 focus:ring-1 focus:ring-slate-300 dark:focus:ring-cyan-500/50 focus:border-slate-400 dark:focus:border-cyan-500/50 transition"
+            className="w-full pl-10 pr-3.5 py-2 text-xs sm:text-sm bg-slate-100/80 dark:bg-slate-850/70 border border-slate-200/90 dark:border-slate-700/80 text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 rounded-xl focus:outline-hidden focus:bg-white dark:focus:bg-slate-800 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 dark:focus:border-sky-400 transition-all"
           />
         </div>
       </div>
 
       {/* Vocabulary List */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-2.5 divide-y divide-slate-100 dark:divide-slate-800/60">
+      <div className="flex-1 overflow-y-auto p-3.5 space-y-3">
         {filtered.length === 0 ? (
-          <div className="text-center py-10 text-slate-400 dark:text-slate-500 text-xs">
-            Không tìm thấy từ vựng phù hợp
+          <div className="text-center py-12 text-slate-400 dark:text-slate-500 text-xs">
+            Không tìm thấy từ vựng phù hợp với từ khóa "{search}"
           </div>
         ) : (
           filtered.map((item) => {
@@ -96,16 +100,20 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
               <div
                 key={item.id}
                 onClick={() => toggleExpand(item.id)}
-                className="pt-2.5 first:pt-0 cursor-pointer group"
+                className={`p-3.5 rounded-2xl border transition-all duration-200 cursor-pointer ${
+                  isExpanded
+                    ? "bg-slate-50/90 dark:bg-slate-850/80 border-indigo-300 dark:border-sky-500/50 shadow-xs ring-1 ring-indigo-500/10"
+                    : "bg-white dark:bg-slate-900/60 hover:bg-slate-50/70 dark:hover:bg-slate-850/50 border-slate-200/80 dark:border-slate-800 shadow-2xs hover:border-slate-300"
+                }`}
               >
-                <div className="flex items-start justify-between gap-2">
-                  <div>
+                <div className="flex items-start justify-between gap-2.5">
+                  <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="font-semibold text-slate-900 dark:text-white text-sm group-hover:text-slate-700 dark:group-hover:text-cyan-300 transition">
+                      <span className="font-bold text-slate-900 dark:text-white text-sm sm:text-base">
                         {item.word}
                       </span>
                       {item.partOfSpeech && (
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-1.5 py-0.5 rounded font-mono border border-slate-200/80 dark:border-slate-700">
+                        <span className="text-[10px] font-bold text-indigo-700 dark:text-sky-300 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-md font-mono border border-indigo-200/60 dark:border-indigo-800/60">
                           {item.partOfSpeech}
                         </span>
                       )}
@@ -113,21 +121,21 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
                         {item.ipa}
                       </span>
                     </div>
-                    <p className="text-xs font-medium text-slate-600 dark:text-slate-300 mt-0.5">
+                    <p className="text-xs font-semibold text-slate-600 dark:text-slate-300 mt-1">
                       {item.meaningVi}
                     </p>
                   </div>
 
-                  <div className="flex items-center gap-1">
+                  <div className="flex items-center gap-1.5 flex-shrink-0">
                     <button
                       type="button"
                       onClick={(e) => handlePronounce(item.word, e)}
-                      className="p-1.5 text-slate-400 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition cursor-pointer"
+                      className="p-2 text-slate-400 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-sky-400 hover:bg-indigo-50 dark:hover:bg-slate-800 rounded-xl transition-all cursor-pointer active:scale-95"
                       title="Phát âm từ này"
                     >
                       <Volume2 className="w-4 h-4" />
                     </button>
-                    <span className="text-slate-300 dark:text-slate-600">
+                    <span className="text-slate-300 dark:text-slate-600 p-1">
                       {isExpanded ? (
                         <ChevronUp className="w-4 h-4" />
                       ) : (
@@ -139,23 +147,33 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
 
                 {/* Collapsible Details */}
                 {isExpanded && (
-                  <div className="mt-2.5 space-y-2 pl-2.5 border-l-2 border-slate-300 dark:border-cyan-500/50 text-xs text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-r-xl">
+                  <div className="mt-3 space-y-2.5 pt-2.5 border-t border-slate-200/70 dark:border-slate-750 text-xs text-slate-600 dark:text-slate-300 animate-in fade-in duration-150">
                     {/* Synonyms */}
                     {item.synonyms && item.synonyms.length > 0 && (
-                      <div>
-                        <span className="font-semibold text-slate-700 dark:text-slate-200">Đồng nghĩa: </span>
-                        <span>{item.synonyms.join(", ")}</span>
+                      <div className="flex items-baseline gap-1.5 flex-wrap">
+                        <span className="font-bold text-slate-700 dark:text-slate-200">Đồng nghĩa:</span>
+                        <div className="flex items-center gap-1 flex-wrap">
+                          {item.synonyms.map((s, idx) => (
+                            <span
+                              key={idx}
+                              className="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded-md text-[11px] text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700"
+                            >
+                              {s}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     )}
 
                     {/* Collocations */}
                     {item.collocations && item.collocations.length > 0 && (
-                      <div>
-                        <span className="font-semibold text-slate-700 dark:text-slate-200">Cụm từ hay gặp:</span>
-                        <ul className="list-disc list-inside mt-0.5 space-y-0.5 text-slate-600 dark:text-slate-300">
+                      <div className="space-y-1">
+                        <span className="font-bold text-slate-700 dark:text-slate-200">Cụm từ hay gặp:</span>
+                        <ul className="space-y-1 pl-1">
                           {item.collocations.map((c, i) => (
-                            <li key={i} className="text-[11px] leading-relaxed">
-                              {c}
+                            <li key={i} className="text-[11px] leading-relaxed flex items-center gap-1.5 text-slate-600 dark:text-slate-300">
+                              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-sky-400 flex-shrink-0" />
+                              <span>{c}</span>
                             </li>
                           ))}
                         </ul>
@@ -164,14 +182,13 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
 
                     {/* Example */}
                     {item.exampleEn && (
-                      <div className="pt-1 border-t border-slate-200/60 dark:border-slate-700/60">
-                        <p className="font-medium text-slate-800 dark:text-slate-100 italic">
+                      <div className="p-2.5 rounded-xl bg-slate-100/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-700/60 space-y-1">
+                        <p className="font-semibold text-slate-900 dark:text-slate-100 italic">
                           "{item.exampleEn}"
                         </p>
                         {item.exampleVi && (
-                          <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 flex items-baseline gap-1">
-                            <span className="text-cyan-500 font-semibold select-none">→</span>
-                            <span>{item.exampleVi}</span>
+                          <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                            → {item.exampleVi}
                           </p>
                         )}
                       </div>
@@ -185,9 +202,9 @@ export const VocabularyDrawer: React.FC<VocabularyDrawerProps> = ({
       </div>
 
       {/* Footer */}
-      <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/90 text-center safe-bottom-padding">
-        <p className="text-[11px] text-slate-500 dark:text-slate-400">
-          Chạm vào từng từ để xem ví dụ & cụm từ kết hợp
+      <div className="p-3.5 border-t border-slate-200/80 dark:border-slate-800/80 bg-slate-50/70 dark:bg-slate-900/60 text-center safe-bottom-padding">
+        <p className="text-[11px] font-medium text-slate-500 dark:text-slate-400">
+          Chạm vào từng từ để xem chi tiết ví dụ và cụm từ kết hợp
         </p>
       </div>
     </div>
