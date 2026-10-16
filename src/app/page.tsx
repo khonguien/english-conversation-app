@@ -27,12 +27,34 @@ export default function Home() {
   const [isAiThinking, setIsAiThinking] = useState<boolean>(false);
   const [isUserSpeaking, setIsUserSpeaking] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [completedScenarioIds, setCompletedScenarioIds] = useState<string[]>([]);
 
   // Ref to hold the latest speech rate without causing re-renders or resetting conversations
   const speechRateRef = useRef(speechRate);
   useEffect(() => {
     speechRateRef.current = speechRate;
   }, [speechRate]);
+
+  // Load completed scenarios from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("completed_scenarios");
+      if (saved) {
+        setCompletedScenarioIds(JSON.parse(saved));
+      }
+    } catch (e) {}
+  }, []);
+
+  const handleMarkCompleted = useCallback((scenarioId: string) => {
+    setCompletedScenarioIds((prev) => {
+      if (prev.includes(scenarioId)) return prev;
+      const updated = [...prev, scenarioId];
+      try {
+        localStorage.setItem("completed_scenarios", JSON.stringify(updated));
+      } catch (e) {}
+      return updated;
+    });
+  }, []);
 
   // Continuous interaction listener to keep audio unlocked on mobile Safari / iOS
   useEffect(() => {
@@ -57,11 +79,9 @@ export default function Home() {
       const aiRoleInfo =
         role === "user" ? scenario.defaultRoles.ai : scenario.defaultRoles.user;
 
-      // Determine who speaks first:
-      // In structured dialogues, check roleName of turn 0 in sampleDialogue
       const firstTurn = scenario.sampleDialogue && scenario.sampleDialogue[0];
       const isAiFirstSpeaker = scenario.isFreeTalk
-        ? role === "user" // In Free Talk: AI staff greets first if learner is guest/traveler
+        ? role === "user"
         : firstTurn
         ? firstTurn.roleName.toLowerCase() === aiRoleInfo.name.toLowerCase()
         : role === "user";
@@ -89,7 +109,6 @@ export default function Home() {
 
         setMessages([initialMessage]);
 
-        // Play initial line after slight delay
         setTimeout(() => {
           speakText(openingEn, speechRateRef.current, () => {
             setActiveAudioId(null);
@@ -97,38 +116,72 @@ export default function Home() {
           setActiveAudioId(initialId);
         }, 400);
       } else {
-        // Learner speaks first! AI waits for learner to start the dialogue.
         setMessages([]);
       }
     },
     []
   );
 
-  // Transition from Home Dashboard to Chat Room
-  const handleStartScenario = (
-    topic: Topic,
-    scenario: Scenario,
-    role: "user" | "ai" = "user"
-  ) => {
-    unlockAudio();
+  // Toggle roles
+  const handleToggleRole = () => {
+    const newRole = userRole === "user" ? "ai" : "user";
+    setUserRole(newRole);
+    initScenario(currentScenario, newRole);
+  };
+
+  // Select a new scenario from the modal selector
+  const handleSelectScenario = (topic: Topic, scenario: Scenario) => {
     setCurrentTopic(topic);
     setCurrentScenario(scenario);
-    setUserRole(role);
-    setCurrentView("chat");
-    initScenario(scenario, role);
+    setIsScenarioSelectorOpen(false);
+    initScenario(scenario, userRole);
   };
 
-  // Back from Chat Room to Home Dashboard
-  const handleBackToHome = () => {
-    stopSpeaking();
-    setActiveAudioId(null);
-    setCurrentView("home");
+  // Advance to next scenario seamlessly
+  const handleNextScenario = useCallback(() => {
+    const currentIndex = currentTopic.scenarios.findIndex(
+      (s) => s.id === currentScenario.id
+    );
+
+    if (currentIndex >= 0 && currentIndex < currentTopic.scenarios.length - 1) {
+      const nextSc = currentTopic.scenarios[currentIndex + 1];
+      setCurrentScenario(nextSc);
+      initScenario(nextSc, userRole);
+    } else {
+      // Advance to next topic
+      const topicIndex = ALL_TOPICS.findIndex((t) => t.id === currentTopic.id);
+      const nextTopicIndex = (topicIndex + 1) % ALL_TOPICS.length;
+      const nextTopic = ALL_TOPICS[nextTopicIndex];
+      const nextSc = nextTopic.scenarios[0];
+      setCurrentTopic(nextTopic);
+      setCurrentScenario(nextSc);
+      initScenario(nextSc, userRole);
+    }
+  }, [currentTopic, currentScenario, initScenario, userRole]);
+
+  // Toggle subtitles / Listening Challenge Mode
+  const handleToggleSubtitles = () => {
+    setSubtitlesEnabled((prev) => !prev);
   };
 
-  // Audio Playback
+  // Change speech speed: 0.8x -> 1.0x -> 1.2x -> 0.8x
+  const handleChangeSpeechRate = () => {
+    const rates = [0.8, 1.0, 1.2];
+    const currentIndex = rates.indexOf(speechRate);
+    const nextRate = rates[(currentIndex + 1) % rates.length];
+    setSpeechRate(nextRate);
+  };
+
+  // Play audio for a specific message
   const handlePlayAudio = (msgId: string, text: string) => {
     unlockAudio();
     stopSpeaking();
+
+    if (activeAudioId === msgId) {
+      setActiveAudioId(null);
+      return;
+    }
+
     setActiveAudioId(msgId);
     speakText(text, speechRateRef.current, () => {
       setActiveAudioId(null);
@@ -140,46 +193,31 @@ export default function Home() {
     setActiveAudioId(null);
   };
 
-  // Toggle speech rate: 1.0 -> 0.8 -> 1.2 -> 1.0
-  const handleChangeSpeechRate = () => {
-    setSpeechRate((prev) => {
-      if (prev === 1.0) return 0.8;
-      if (prev === 0.8) return 1.2;
-      return 1.0;
-    });
-  };
-
-  // Toggle role in chat
-  const handleToggleRole = () => {
-    const nextRole = userRole === "user" ? "ai" : "user";
-    setUserRole(nextRole);
-    initScenario(currentScenario, nextRole);
-  };
-
-  // Toggle global subtitles
-  const handleToggleSubtitles = () => {
-    setSubtitlesEnabled((prev) => {
-      const next = !prev;
-      if (!next) {
-        // When entering challenge mode (hiding subtitles), re-mask all AI messages
-        setMessages((msgs) => msgs.map((m) => ({ ...m, revealed: false })));
-      }
-      return next;
-    });
-  };
-
-  // Toggle reveal for individual masked message in challenge mode
   const handleToggleReveal = (msgId: string) => {
     setMessages((prev) =>
-      prev.map((m) => (m.id === msgId ? { ...m, revealed: !m.revealed } : m))
+      prev.map((msg) =>
+        msg.id === msgId ? { ...msg, revealed: !msg.revealed } : msg
+      )
     );
   };
 
-  // Select new scenario from in-chat modal
-  const handleSelectScenario = (topic: Topic, scenario: Scenario) => {
+  const handleStartScenario = (
+    topic: Topic,
+    scenario: Scenario,
+    role: "user" | "ai"
+  ) => {
+    unlockAudio();
     setCurrentTopic(topic);
     setCurrentScenario(scenario);
-    initScenario(scenario, userRole);
+    setUserRole(role);
+    setCurrentView("chat");
+    initScenario(scenario, role);
+  };
+
+  const handleBackToHome = () => {
+    stopSpeaking();
+    setActiveAudioId(null);
+    setCurrentView("home");
   };
 
   // Send message
@@ -240,7 +278,6 @@ export default function Home() {
 
       setMessages((prev) => [...prev, aiMessage]);
 
-      // Speak AI response automatically
       speakText(data.textEn, speechRateRef.current, () => {
         setActiveAudioId(null);
       });
@@ -264,7 +301,6 @@ export default function Home() {
     }
   };
 
-  // Dynamic suggested hints matching learner's active role
   const learnerRoleInfo =
     userRole === "user"
       ? currentScenario.defaultRoles.user
@@ -293,12 +329,13 @@ export default function Home() {
         selectedTopic={currentTopic}
         onSelectTopic={(t) => setCurrentTopic(t)}
         onStartScenario={handleStartScenario}
+        completedScenarioIds={completedScenarioIds}
       />
     );
   }
 
   return (
-    <main className="flex flex-col h-screen max-h-screen overflow-hidden bg-[#fafaf9] dark:bg-[#0c0e14] text-slate-900 dark:text-slate-100">
+    <main className="flex flex-col h-[100dvh] max-h-[100dvh] overflow-hidden bg-[#fafaf9] dark:bg-[#0c0e14] text-slate-900 dark:text-slate-100">
       {/* Header */}
       <Header
         topic={currentTopic}
@@ -330,6 +367,9 @@ export default function Home() {
           onToggleReveal={handleToggleReveal}
           scenario={currentScenario}
           userRole={userRole}
+          onNextScenario={handleNextScenario}
+          onResetChat={() => initScenario(currentScenario, userRole)}
+          onMarkCompleted={handleMarkCompleted}
         />
 
         {/* Vocabulary Drawer */}

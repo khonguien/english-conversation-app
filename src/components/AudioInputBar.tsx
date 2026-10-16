@@ -10,7 +10,7 @@ import {
   X,
   Volume2,
 } from "lucide-react";
-import { stopSpeaking, unlockAudio } from "@/utils/speech";
+import { speakText, stopSpeaking, unlockAudio } from "@/utils/speech";
 
 interface AudioInputBarProps {
   onSendMessage: (text: string) => void;
@@ -33,6 +33,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   const [isListening, setIsListening] = useState(false);
   const [isKeyboardMode, setIsKeyboardMode] = useState(false);
   const [isSpeechSupported, setIsSpeechSupported] = useState(true);
+  const [playingHintIndex, setPlayingHintIndex] = useState<number | null>(null);
   const recognitionRef = useRef<any>(null);
 
   // Notify parent of listening state changes
@@ -197,30 +198,57 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     setInputText(hint);
   };
 
+  // Play audio pronunciation of a suggested hint
+  const handlePlayHintAudio = (hint: string, idx: number, e: React.MouseEvent) => {
+    e.stopPropagation();
+    unlockAudio();
+    stopSpeaking();
+    setPlayingHintIndex(idx);
+    speakText(hint, 0.9, () => {
+      setPlayingHintIndex(null);
+    });
+  };
+
   return (
     <div className="sticky bottom-0 z-30 w-full px-3 sm:px-6 pb-3 sm:pb-5 pt-1 safe-bottom-padding pointer-events-none">
       <div className="max-w-2xl mx-auto pointer-events-auto p-3 sm:p-4 bg-white/95 dark:bg-[#111520]/95 backdrop-blur-md rounded-2xl border border-stone-200/90 dark:border-white/10 shadow-lg space-y-3">
-        {/* Suggestion Chips */}
+        {/* Suggestion Chips with Audio Listen Button */}
         {suggestedHints.length > 0 && (
           <div className="flex items-center gap-1.5 overflow-x-auto py-0.5 px-0.5 scrollbar-none">
             <div className="flex items-center gap-1 text-[11px] font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-lg border border-emerald-200/60 dark:border-emerald-800/60 whitespace-nowrap flex-shrink-0">
               <Sparkles className="w-3 h-3" />
               <span>Gợi ý đáp:</span>
             </div>
-            {suggestedHints.map((hint, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => handleSelectHint(hint)}
-                className={`text-xs px-3 py-1 rounded-lg font-medium transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 border active:scale-95 ${
-                  inputText === hint
-                    ? "bg-emerald-700 text-white border-emerald-700 font-semibold"
-                    : "bg-stone-50 dark:bg-white/5 hover:bg-stone-100 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 border-stone-200/80 dark:border-white/10"
-                }`}
-              >
-                "{hint}"
-              </button>
-            ))}
+            {suggestedHints.map((hint, idx) => {
+              const isPlayingThis = playingHintIndex === idx;
+
+              return (
+                <div
+                  key={idx}
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-medium transition-colors border whitespace-nowrap flex-shrink-0 cursor-pointer active:scale-95 press-spring ${
+                    inputText === hint
+                      ? "bg-emerald-700 text-white border-emerald-700 font-semibold"
+                      : "bg-stone-50 dark:bg-white/5 hover:bg-stone-100 dark:hover:bg-white/10 text-slate-700 dark:text-slate-300 border-stone-200/80 dark:border-white/10"
+                  }`}
+                  onClick={() => handleSelectHint(hint)}
+                >
+                  <span>"{hint}"</span>
+                  <button
+                    type="button"
+                    onClick={(e) => handlePlayHintAudio(hint, idx, e)}
+                    className={`p-1 rounded-md transition-colors cursor-pointer ${
+                      inputText === hint
+                        ? "text-white/80 hover:text-white hover:bg-emerald-800"
+                        : "text-slate-400 hover:text-emerald-700 dark:hover:text-emerald-400 hover:bg-stone-200 dark:hover:bg-white/10"
+                    }`}
+                    title="Nghe mẫu câu gợi ý này"
+                    aria-label={`Nghe phát âm: ${hint}`}
+                  >
+                    <Volume2 className={`w-3.5 h-3.5 ${isPlayingThis ? "animate-pulse text-emerald-300" : ""}`} />
+                  </button>
+                </div>
+              );
+            })}
           </div>
         )}
 
@@ -234,7 +262,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
               <button
                 type="button"
                 onClick={() => setInputText("")}
-                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-lg transition-colors cursor-pointer"
+                className="p-1 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 rounded-lg transition-colors cursor-pointer press-spring"
                 title="Xóa câu này"
                 aria-label="Xóa câu này"
               >
@@ -244,7 +272,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
                 type="button"
                 onClick={handleSend}
                 disabled={disabled}
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold rounded-lg shadow-xs cursor-pointer transition-colors active:scale-95"
+                className="flex items-center gap-1.5 px-3 py-1.5 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold rounded-lg shadow-xs cursor-pointer transition-colors active:scale-95 press-spring"
                 aria-label="Gửi câu nói"
               >
                 <span>Gửi</span>
@@ -262,32 +290,37 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
               <button
                 type="button"
                 onClick={() => setIsKeyboardMode(true)}
-                className="w-11 h-11 rounded-xl bg-stone-100 dark:bg-white/5 hover:bg-stone-200 dark:hover:bg-white/10 border border-stone-200/80 dark:border-white/10 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors cursor-pointer active:scale-95"
+                className="w-11 h-11 rounded-xl bg-stone-100 dark:bg-white/5 hover:bg-stone-200 dark:hover:bg-white/10 border border-stone-200/80 dark:border-white/10 text-slate-600 dark:text-slate-300 flex items-center justify-center transition-colors cursor-pointer active:scale-95 press-spring"
                 title="Gõ câu bằng bàn phím"
                 aria-label="Chuyển sang bàn phím"
               >
                 <Keyboard className="w-5 h-5" />
               </button>
 
-              {/* Central Mic Button */}
-              <button
-                type="button"
-                onClick={toggleListening}
-                disabled={disabled}
-                className={`w-16 h-16 sm:w-18 sm:h-18 rounded-2xl flex items-center justify-center transition-all duration-200 shadow-sm active:scale-95 cursor-pointer ${
-                  isListening
-                    ? "bg-rose-600 text-white ring-4 ring-rose-500/30 animate-pulse"
-                    : "bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white"
-                } disabled:opacity-50 disabled:cursor-not-allowed`}
-                title={isListening ? "Đang thu âm (Bấm để gửi)" : "Bấm Micro để nói tiếng Anh"}
-                aria-label={isListening ? "Dừng thu âm và gửi" : "Bắt đầu thu âm"}
-              >
-                {isListening ? (
-                  <MicOff className="w-7 h-7" />
-                ) : (
-                  <Mic className="w-7 h-7" />
+              {/* Central Mic Button with Organic Pulse Wave */}
+              <div className="relative flex items-center justify-center">
+                {isListening && (
+                  <span className="absolute -inset-3 rounded-2xl bg-rose-500/20 animate-mic-pulse pointer-events-none" />
                 )}
-              </button>
+                <button
+                  type="button"
+                  onClick={toggleListening}
+                  disabled={disabled}
+                  className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-2xl flex items-center justify-center transition-all duration-200 shadow-sm active:scale-95 cursor-pointer press-spring ${
+                    isListening
+                      ? "bg-rose-600 text-white ring-4 ring-rose-500/30 animate-pulse"
+                      : "bg-emerald-700 hover:bg-emerald-800 dark:bg-emerald-600 dark:hover:bg-emerald-500 text-white"
+                  } disabled:opacity-50 disabled:cursor-not-allowed`}
+                  title={isListening ? "Đang thu âm (Bấm để gửi)" : "Bấm Micro để nói tiếng Anh"}
+                  aria-label={isListening ? "Dừng thu âm và gửi" : "Bắt đầu thu âm"}
+                >
+                  {isListening ? (
+                    <MicOff className="w-7 h-7" />
+                  ) : (
+                    <Mic className="w-7 h-7" />
+                  )}
+                </button>
+              </div>
 
               {/* Send or Balanced Spacer */}
               {inputText.trim() ? (
@@ -295,7 +328,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
                   type="button"
                   onClick={handleSend}
                   disabled={disabled}
-                  className="w-11 h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white flex items-center justify-center transition-colors cursor-pointer active:scale-95 shadow-xs"
+                  className="w-11 h-11 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white flex items-center justify-center transition-colors cursor-pointer active:scale-95 shadow-xs press-spring"
                   title="Gửi câu nói"
                   aria-label="Gửi câu nói"
                 >
@@ -329,7 +362,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
             <button
               type="button"
               onClick={() => setIsKeyboardMode(false)}
-              className="p-2 rounded-lg bg-white dark:bg-white/10 hover:bg-stone-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer flex-shrink-0"
+              className="p-2 rounded-lg bg-white dark:bg-white/10 hover:bg-stone-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-200 transition-colors cursor-pointer flex-shrink-0 press-spring"
               title="Quay lại chế độ Mic"
               aria-label="Quay lại chế độ Mic"
             >
@@ -351,7 +384,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
               type="button"
               onClick={handleSend}
               disabled={!inputText.trim() || disabled}
-              className="w-9 h-9 rounded-lg bg-emerald-700 hover:bg-emerald-800 disabled:opacity-40 text-white flex items-center justify-center transition-colors cursor-pointer flex-shrink-0"
+              className="w-9 h-9 rounded-lg bg-emerald-700 hover:bg-emerald-800 disabled:opacity-40 text-white flex items-center justify-center transition-colors cursor-pointer flex-shrink-0 press-spring"
               title="Gửi tin nhắn"
               aria-label="Gửi tin nhắn"
             >

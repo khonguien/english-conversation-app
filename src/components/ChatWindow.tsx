@@ -11,6 +11,10 @@ import {
   ChevronUp,
   Sparkles,
   Info,
+  CheckCircle2,
+  RotateCcw,
+  ArrowRight,
+  BookMarked,
 } from "lucide-react";
 import { ChatMessage, Scenario } from "@/types/conversation";
 import { RoleIcon } from "./TopicIcons";
@@ -27,6 +31,9 @@ interface ChatWindowProps {
   onToggleReveal: (msgId: string) => void;
   scenario: Scenario;
   userRole?: "user" | "ai";
+  onNextScenario?: () => void;
+  onResetChat?: () => void;
+  onMarkCompleted?: (scenarioId: string) => void;
 }
 
 export const ChatWindow: React.FC<ChatWindowProps> = ({
@@ -41,6 +48,9 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
   onToggleReveal,
   scenario,
   userRole = "user",
+  onNextScenario,
+  onResetChat,
+  onMarkCompleted,
 }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const [isSituationExpanded, setIsSituationExpanded] = useState(false);
@@ -58,12 +68,22 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isAiThinking]);
 
+  // Mark completed when user has exchanged at least 4 messages
+  const userMessageCount = messages.filter((m) => m.sender === "user").length;
+  const isMilestoneReached = userMessageCount >= 2 && messages.length >= 4;
+
+  useEffect(() => {
+    if (isMilestoneReached && onMarkCompleted) {
+      onMarkCompleted(scenario.id);
+    }
+  }, [isMilestoneReached, onMarkCompleted, scenario.id]);
+
   const isAiSpeaking = activeAudioId !== null;
 
   return (
     <div className="flex-1 flex flex-col h-full overflow-hidden bg-[#fafaf9] dark:bg-[#0c0e14] relative transition-colors duration-200">
       {/* Top Acoustic Status & Briefing Bar */}
-      <div className="py-3 px-4 border-b border-stone-200/80 dark:border-white/10 bg-white/70 dark:bg-[#111520]/70 backdrop-blur-md flex-shrink-0 z-10">
+      <div className="py-2.5 px-4 border-b border-stone-200/80 dark:border-white/10 bg-white/70 dark:bg-[#111520]/70 backdrop-blur-md flex-shrink-0 z-10">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
           {/* Situation title & toggle */}
           <div className="min-w-0">
@@ -87,35 +107,41 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
             </button>
           </div>
 
-          {/* Active Voice Equalizer / Status Pill */}
-          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 dark:bg-white/5 border border-stone-200/80 dark:border-white/10 text-xs flex-shrink-0">
-            {isAiSpeaking ? (
-              <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-semibold">
-                <div className="flex items-end gap-0.5 h-3.5">
-                  <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-1" />
-                  <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-2" />
-                  <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-3" />
-                  <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-4" />
-                  <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-5" />
+          {/* Turn Counter & Voice Status */}
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <div className="hidden sm:flex items-center gap-1 text-[11px] font-medium text-slate-400 dark:text-slate-500 mr-1">
+              <span>{messages.length} lượt thoại</span>
+            </div>
+
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-stone-100 dark:bg-white/5 border border-stone-200/80 dark:border-white/10 text-xs">
+              {isAiSpeaking ? (
+                <div className="flex items-center gap-1.5 text-emerald-700 dark:text-emerald-400 font-semibold">
+                  <div className="flex items-end gap-0.5 h-3.5">
+                    <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-1" />
+                    <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-2" />
+                    <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-3" />
+                    <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-4" />
+                    <span className="w-0.5 bg-emerald-600 dark:bg-emerald-400 rounded-full animate-wave-5" />
+                  </div>
+                  <span>{currentAiRole.name} đang nói...</span>
                 </div>
-                <span>{currentAiRole.name} đang nói...</span>
-              </div>
-            ) : isUserSpeaking ? (
-              <div className="flex items-center gap-1.5 text-rose-600 dark:text-rose-400 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
-                <span>Đang nghe bạn nói...</span>
-              </div>
-            ) : isAiThinking ? (
-              <div className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-semibold">
-                <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
-                <span>AI đang chuẩn bị câu trả lời...</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-                <span>Đối tác: {currentAiRole.name}</span>
-              </div>
-            )}
+              ) : isUserSpeaking ? (
+                <div className="flex items-center gap-1.5 text-rose-600 dark:text-rose-400 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                  <span>Đang nghe bạn nói...</span>
+                </div>
+              ) : isAiThinking ? (
+                <div className="flex items-center gap-1.5 text-amber-600 dark:text-amber-400 font-semibold">
+                  <span className="w-2 h-2 rounded-full bg-amber-500 animate-ping" />
+                  <span>AI đang chuẩn bị câu trả lời...</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
+                  <span>Đối tác: {currentAiRole.name}</span>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
@@ -141,8 +167,8 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
       <div className="flex-1 overflow-y-auto px-4 sm:px-6 md:px-8 py-5 space-y-5 max-w-4xl mx-auto w-full">
         {/* Empty state when learner speaks first */}
         {messages.length === 0 && (
-          <div className="my-auto py-12 text-center space-y-3 max-w-md mx-auto">
-            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mx-auto">
+          <div className="my-auto py-12 text-center space-y-3 max-w-md mx-auto animate-in fade-in duration-200">
+            <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 flex items-center justify-center mx-auto shadow-2xs">
               <Mic className="w-6 h-6 animate-pulse" />
             </div>
             <div className="space-y-1">
@@ -157,7 +183,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
         )}
 
         {/* Message Bubble List */}
-        {messages.map((msg, index) => {
+        {messages.map((msg) => {
           const isAi = msg.sender === "ai";
           const isPlaying = activeAudioId === msg.id;
           const isRevealed = subtitlesEnabled || msg.revealed;
@@ -183,7 +209,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
                         onClick={() =>
                           isPlaying ? onStopAudio() : onPlayAudio(msg.id, msg.textEn)
                         }
-                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer active:scale-95 ${
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-semibold transition-colors cursor-pointer active:scale-95 press-spring ${
                           isPlaying
                             ? "bg-emerald-600 text-white"
                             : "bg-stone-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:bg-stone-200 dark:hover:bg-white/15"
@@ -296,6 +322,41 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
           <div className="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 p-2.5 bg-white dark:bg-[#131722] rounded-xl border border-stone-200/80 dark:border-white/10 w-fit animate-pulse">
             <span className="w-2 h-2 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-ping" />
             <span>{currentAiRole.name} đang phản hồi...</span>
+          </div>
+        )}
+
+        {/* Milestone / Lesson Completion Card */}
+        {isMilestoneReached && (
+          <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/80 dark:border-emerald-800/60 text-slate-900 dark:text-slate-100 space-y-3 animate-in fade-in duration-300">
+            <div className="flex items-center gap-2 text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+              <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <span>Tuyệt vời! Bạn đã hoàn thành tình huống đối thoại này!</span>
+            </div>
+            <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Bạn đã luyện tập đối đáp phản xạ thành công. Bạn có thể bấm để luyện tập lại từ đầu hoặc tiếp tục sang bài học kế tiếp.
+            </p>
+            <div className="flex flex-wrap items-center gap-2 pt-1">
+              {onResetChat && (
+                <button
+                  type="button"
+                  onClick={onResetChat}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-white/10 hover:bg-stone-100 dark:hover:bg-white/15 text-slate-700 dark:text-slate-200 border border-stone-200/80 dark:border-white/10 cursor-pointer active:scale-95 transition-colors press-spring"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  <span>Luyện tập lại</span>
+                </button>
+              )}
+              {onNextScenario && (
+                <button
+                  type="button"
+                  onClick={onNextScenario}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-emerald-700 hover:bg-emerald-800 text-white cursor-pointer active:scale-95 transition-colors press-spring shadow-xs"
+                >
+                  <span>Sang bài tiếp theo</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
           </div>
         )}
 
