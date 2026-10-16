@@ -26,7 +26,7 @@ export const viewport: Viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: "cover",
-  themeColor: "#4f46e5",
+  themeColor: "#059669",
 };
 
 export default function RootLayout({
@@ -47,7 +47,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="h-full antialiased text-slate-800 dark:text-slate-100 bg-[#f8fafc] dark:bg-[#070b14] flex flex-col font-sans select-none transition-colors duration-200">
+      <body className="h-full antialiased text-slate-800 dark:text-slate-100 bg-[#fafaf9] dark:bg-[#0c0e14] flex flex-col font-sans select-none transition-colors duration-200">
         {children}
       </body>
     </html>
