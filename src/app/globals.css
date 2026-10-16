@@ -3,35 +3,72 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 250, 250, 249;
-  --background-end-rgb: 245, 245, 244;
+  /* ===== LUCXAR PREMIUM DESIGN TOKENS ===== */
+  /* Colors - Light (Warm Luxury / Apple-tier) */
+  --color-bg-base: #faf9f6;
+  --color-bg-surface: #ffffff;
+  --color-bg-subtle: #f4f2ee;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-hover: rgba(0, 0, 0, 0.16);
+  --color-text-primary: #121316;
+  --color-text-secondary: #5c6068;
+  --color-text-muted: #8c9099;
+  --color-accent: #059669;
+  --color-accent-hover: #047857;
+  --color-accent-subtle: rgba(5, 150, 105, 0.08);
+
+  /* Layered Shadows (Never harsh black) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.06), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  --shadow-dreamy: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 16px rgba(0, 0, 0, 0.04), 0 24px 48px rgba(0, 0, 0, 0.05);
+
+  /* Easing Curves */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+
   --scrollbar-thumb: #d6d3d1;
   --scrollbar-thumb-hover: #a8a29e;
 }
 
 .dark {
-  --foreground-rgb: 248, 250, 252;
-  --background-start-rgb: 12, 14, 20;
-  --background-end-rgb: 17, 21, 30;
-  --scrollbar-thumb: #334155;
-  --scrollbar-thumb-hover: #475569;
+  /* Colors - Dark (Linear / Apple Dark Mode) */
+  --color-bg-base: #0b0c10;
+  --color-bg-surface: #13151b;
+  --color-bg-subtle: #1a1d26;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.16);
+  --color-text-primary: #f4f5f8;
+  --color-text-secondary: #9da3af;
+  --color-text-muted: #646a78;
+  --color-accent: #10b981;
+  --color-accent-hover: #34d399;
+  --color-accent-subtle: rgba(16, 185, 129, 0.12);
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.5);
+  --shadow-dreamy: 0 4px 20px rgba(0, 0, 0, 0.6), 0 16px 40px rgba(0, 0, 0, 0.4);
+
+  --scrollbar-thumb: #2c303c;
+  --scrollbar-thumb-hover: #3e4454;
 }
 
 html {
-  transition: background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
   height: 100%;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-start-rgb));
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-base);
   min-height: 100vh;
   min-height: 100dvh;
   overscroll-behavior-y: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  letter-spacing: -0.011em;
+  letter-spacing: -0.014em;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 
 /* Custom scrollbars */
@@ -53,7 +90,7 @@ body {
   background: var(--scrollbar-thumb-hover);
 }
 
-/* Mobile Safari & PWA Viewport Optimization */
+/* Mobile Safari & PWA Inset Padding */
 .safe-bottom-padding {
   padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
@@ -62,64 +99,37 @@ body {
   padding-top: max(12px, env(safe-area-inset-top));
 }
 
-/* Fluid Organic Wave Equalizer */
-@keyframes wave-bar-fluid-1 {
-  0%, 100% { height: 4px; }
-  50% { height: 16px; }
-}
-@keyframes wave-bar-fluid-2 {
-  0%, 100% { height: 6px; }
-  50% { height: 22px; }
-}
-@keyframes wave-bar-fluid-3 {
-  0%, 100% { height: 3px; }
-  50% { height: 18px; }
-}
-@keyframes wave-bar-fluid-4 {
-  0%, 100% { height: 7px; }
-  50% { height: 24px; }
-}
-@keyframes wave-bar-fluid-5 {
-  0%, 100% { height: 4px; }
-  50% { height: 15px; }
-}
+/* Waveform Equalizer Keyframes */
+@keyframes wave-bar-fluid-1 { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+@keyframes wave-bar-fluid-2 { 0%, 100% { height: 6px; } 50% { height: 22px; } }
+@keyframes wave-bar-fluid-3 { 0%, 100% { height: 3px; } 50% { height: 18px; } }
+@keyframes wave-bar-fluid-4 { 0%, 100% { height: 7px; } 50% { height: 24px; } }
+@keyframes wave-bar-fluid-5 { 0%, 100% { height: 4px; } 50% { height: 15px; } }
 
-.animate-wave-1 {
-  animation: wave-bar-fluid-1 0.85s ease-in-out infinite;
-}
-.animate-wave-2 {
-  animation: wave-bar-fluid-2 1.05s ease-in-out infinite 0.12s;
-}
-.animate-wave-3 {
-  animation: wave-bar-fluid-3 0.75s ease-in-out infinite 0.24s;
-}
-.animate-wave-4 {
-  animation: wave-bar-fluid-4 1.15s ease-in-out infinite 0.08s;
-}
-.animate-wave-5 {
-  animation: wave-bar-fluid-5 0.9s ease-in-out infinite 0.2s;
-}
+.animate-wave-1 { animation: wave-bar-fluid-1 0.85s ease-in-out infinite; }
+.animate-wave-2 { animation: wave-bar-fluid-2 1.05s ease-in-out infinite 0.12s; }
+.animate-wave-3 { animation: wave-bar-fluid-3 0.75s ease-in-out infinite 0.24s; }
+.animate-wave-4 { animation: wave-bar-fluid-4 1.15s ease-in-out infinite 0.08s; }
+.animate-wave-5 { animation: wave-bar-fluid-5 0.9s ease-in-out infinite 0.2s; }
 
-/* Mic Recording Pulse Ring */
+/* Gentle Mic Pulse */
 @keyframes mic-breathe {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.65;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.15;
-  }
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.18); opacity: 0.15; }
 }
 
 .animate-mic-pulse {
-  animation: mic-breathe 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation: mic-breathe 2s var(--ease-out-expo) infinite;
 }
 
-/* Tactile Spring Press */
+/* Tactile Spring Press from Lucxar Animation Cookbook */
 .press-spring {
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.15s ease;
+  transition: transform 180ms var(--ease-out-expo), box-shadow 180ms ease, background-color 150ms ease;
+}
+.press-spring:hover {
+  transform: translateY(-1px);
 }
 .press-spring:active {
-  transform: scale(0.96);
+  transform: translateY(0) scale(0.98);
+  transition-duration: 80ms;
 }
