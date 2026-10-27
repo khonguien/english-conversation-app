@@ -109,9 +109,9 @@
       "id": "hotel-scenario-1",
       "order": 1,
       "section": "🛎️ Tiếp tân & Nhận phòng (Reception)",
-      "titleEn": "Check-in & Room Key",
-      "titleVi": "Làm thủ tục nhận phòng & Nhận thẻ từ",
-      "situation": "Khách đến quầy lễ tân khách sạn để làm thủ tục nhận phòng, xuất trình hộ chiếu, đặt cọc và nhận thẻ phòng.",
+      "titleEn": "Check-in & Sea View Room",
+      "titleVi": "Làm thủ tục nhận phòng & Phòng view biển",
+      "situation": "Khách đến quầy lễ tân để làm thủ tục nhận phòng theo tên đã đặt, xuất trình căn cước/hộ chiếu, xin phòng view biển, nhận thẻ phòng lầu 3 và hỏi thông tin ăn sáng, Wi-Fi.",
       "defaultRoles": {
         "ai": {
           "id": "ai",
@@ -123,38 +123,39 @@
         "user": {
           "id": "user",
           "name": "Guest",
-          "titleEn": "Guest",
-          "titleVi": "Khách lưu trú (Bạn)",
+          "titleEn": "Guest (Vân)",
+          "titleVi": "Khách lưu trú (Vân)",
           "avatar": "👤"
         }
       },
-      "initialMessageEn": "Good afternoon, welcome to Sunrise Hotel! Are you checking in?",
-      "initialMessageVi": "Chào buổi chiều, chào mừng quý khách đến Sunrise Hotel! Bạn làm thủ tục nhận phòng phải không ạ?",
+      "initialMessageEn": "Hello! Welcome to our hotel. How can I help you today?",
+      "initialMessageVi": "Em chào chị ạ! Chào mừng đến với khách sạn bên em. Em có thể giúp gì được cho chị ạ?",
       "vocabulary": [
         {
           "id": "vocab-h1-1",
-          "word": "check-in",
-          "partOfSpeech": "v, n",
-          "ipa": "/ˈtʃek ɪn/",
-          "meaningVi": "làm thủ tục nhận phòng",
+          "word": "reservation",
+          "partOfSpeech": "n",
+          "ipa": "/ˌrezərˈveɪʃn/",
+          "meaningVi": "sự đặt phòng trước",
           "synonyms": [
-            "register (đăng ký lưu trú)"
+            "booking (đặt chỗ)",
+            "advance reservation (đặt phòng trước)"
           ],
           "antonyms": [
-            "check-out (trả phòng)"
+            "walk-in (khách vãng lai không đặt trước)"
           ],
           "collocations": [
-            "standard check-in time: giờ nhận phòng tiêu chuẩn (thường là 2:00 PM)",
-            "early check-in: nhận phòng sớm hơn giờ quy định"
+            "have a reservation under the name...: có đặt phòng dưới tên...",
+            "make a reservation: tiến hành đặt phòng"
           ],
-          "exampleEn": "What time is standard check-in?",
-          "exampleVi": "Giờ nhận phòng tiêu chuẩn là mấy giờ vậy?"
+          "exampleEn": "I have a reservation under the name Vân.",
+          "exampleVi": "Em mới đặt phòng dưới tên Vân ạ."
         },
         {
           "id": "vocab-h1-2",
-          "word": "keycard",
+          "word": "key card",
           "partOfSpeech": "n",
-          "ipa": "/ˈkiːkɑːrd/",
+          "ipa": "/ˈkiː kɑːrd/",
           "meaningVi": "thẻ từ mở khóa phòng",
           "synonyms": [
             "room key (chìa khóa phòng)",
@@ -162,349 +163,373 @@
           ],
           "antonyms": [],
           "collocations": [
-            "tap the keycard: quẹt thẻ từ",
-            "spare keycard: thẻ từ dự phòng / thẻ thứ hai"
+            "tap the key card: quẹt thẻ từ",
+            "here is your key card: đây là thẻ phòng của bạn"
           ],
-          "exampleEn": "Here is your keycard for room 804 on the 8th floor.",
-          "exampleVi": "Đây là thẻ từ cho phòng 804 ở tầng 8 của bạn."
+          "exampleEn": "Here's your key card for room 304 on the 3rd floor.",
+          "exampleVi": "Đây là thẻ phòng của bạn ở lầu 3."
         },
         {
           "id": "vocab-h1-3",
-          "word": "amenities",
-          "partOfSpeech": "n",
-          "ipa": "/əˈmenətiz/",
-          "meaningVi": "tiện nghi, dịch vụ tiện ích của khách sạn",
+          "word": "sea view",
+          "partOfSpeech": "n phr",
+          "ipa": "/ˈsiː vjuː/",
+          "meaningVi": "tầm nhìn hướng ra biển",
           "synonyms": [
-            "facilities (cơ sở vật chất)",
-            "services (dịch vụ)"
+            "ocean view (hướng biển)"
           ],
-          "antonyms": [],
+          "antonyms": [
+            "city view (hướng thành phố)"
+          ],
           "collocations": [
-            "hotel amenities: tiện ích khách sạn",
-            "complimentary amenities: tiện ích đi kèm miễn phí"
+            "room with a sea view: phòng có ban công/cửa sổ nhìn ra biển"
           ],
-          "exampleEn": "The fitness center and swimming pool are on the 3rd floor.",
-          "exampleVi": "Phòng gym và hồ bơi nằm ở tầng 3."
+          "exampleEn": "Could I have a room with a sea view?",
+          "exampleVi": "Em có thể nhận phòng view biển được không ạ?"
         }
       ],
       "sampleDialogue": [
         {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "Good afternoon, welcome to Sunrise Hotel! Are you checking in?",
-          "textVi": "Chào buổi chiều, chào mừng quý khách đến Sunrise Hotel! Bạn làm thủ tục nhận phòng phải không ạ?"
+          "textEn": "Hello! Welcome to our hotel. How can I help you today?",
+          "textVi": "Em chào chị ạ! Chào mừng đến với khách sạn bên em. Em có thể giúp gì được cho chị ạ?"
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Yes, I have a reservation under the name of Nguyen.",
-          "textVi": "Vâng, tôi có đặt phòng trước dưới tên Nguyen."
+          "textEn": "Hi! I have a reservation under the name Vân. I'd like to check in, please!",
+          "textVi": "Dạ em mới đặt phòng dưới tên Vân ạ. Em muốn làm thủ tục nhận phòng ạ!"
         },
         {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "Let me check... Yes, a Deluxe King Room for 3 nights. May I have your passport and credit card for the security deposit?",
-          "textVi": "Để tôi kiểm tra... Vâng, phòng Deluxe King trong 3 đêm. Tôi xin phép mượn hộ chiếu và thẻ tín dụng để đặt cọc phòng ạ?"
+          "textEn": "Have you made a reservation online? May I see your ID, please? Please wait a moment.",
+          "textVi": "Chị đã đặt phòng trước chưa ạ? Cho em xin tên và em có thể xem căn cước của chị được không ạ? Đợi em một chút nha."
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Sure, here is my passport and card. Is breakfast included?",
-          "textVi": "Được chứ, đây là hộ chiếu và thẻ của tôi. Bữa sáng có bao gồm không bạn?"
+          "textEn": "Sure, here is my ID. Could I have a room with a sea view? And is breakfast included?",
+          "textVi": "Dạ đây là căn cước của em. Em có thể nhận phòng view biển được không ạ? Giá này đã bao gồm bữa sáng chưa ạ?"
         },
         {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "Yes, buffet breakfast is served on the 2nd floor from 6:30 to 10:00 AM. Here is your keycard for room 804.",
-          "textVi": "Có ạ, buffet sáng phục vụ tại tầng 2 từ 6:30 đến 10:00 sáng. Đây là thẻ phòng 804 của bạn."
+          "textEn": "Yes, breakfast is served from 6 to 9 am! Your room is ready. Your room is on the 3rd floor.",
+          "textVi": "Dạ có, bữa sáng được phục vụ từ 6 đến 9 giờ ạ! Phòng của mình được rồi đấy ạ, phòng ở trên lầu 3 nha."
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Thank you! What is the Wi-Fi password?",
-          "textVi": "Cảm ơn bạn! Mật khẩu Wi-Fi là gì vậy?"
+          "textEn": "Awesome! What time is check out? Does the room have Wi-Fi?",
+          "textVi": "Tuyệt quá! Cho em hỏi mấy giờ trả phòng ạ? Phòng có Wi-Fi miễn phí không ạ?"
         },
         {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "The network is 'Sunrise_Guest' and no password is required. The elevators are right around the corner.",
-          "textVi": "Mạng là 'Sunrise_Guest' và không cần mật khẩu. Thang máy nằm ngay góc rẽ bên phải nhé ạ."
+          "textEn": "Check out is at 12:00 noon. Here's your key card. The Wi-Fi password is on this card. If you need any assistance, please call the reception.",
+          "textVi": "Giờ trả phòng là 12h trưa ạ. Đây là thẻ phòng ạ. Mật khẩu Wi-Fi được ghi trên thẻ này ạ. Nếu mà cần hỗ trợ gì, anh chị cứ gọi bên lễ tân nha."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Guest",
+          "textEn": "Thank you so much for your help!",
+          "textVi": "Dạ em cảm ơn chị nhiều ạ!"
         }
       ],
       "suggestedHints": [
-        "Yes, I have a reservation under the name of Nguyen.",
-        "Here is my passport and credit card.",
-        "Is breakfast included in my booking?",
-        "Could I have an extra keycard, please?"
+        "I have a reservation under the name Vân.",
+        "I'd like to check in, please!",
+        "Could I have a room with a sea view?",
+        "What time is check out, and is breakfast included?"
       ]
     },
     {
       "id": "hotel-scenario-2",
       "order": 2,
-      "section": "🛏️ Tiện ích & Buồng phòng (Amenities & Housekeeping)",
-      "titleEn": "Housekeeping & Extra Amenities",
-      "titleVi": "Yêu cầu dọn phòng & Mượn đồ dùng",
-      "situation": "Khách gọi quầy lễ tân hoặc bộ phận Housekeeping để xin thêm khăn tắm, mượn bàn ủi và cục sạc chuyển đổi (adapter).",
+      "section": "🛏️ Buồng phòng & Dịch vụ phòng (Housekeeping & Room Service)",
+      "titleEn": "Housekeeping & Room Service",
+      "titleVi": "Dọn dẹp buồng phòng & Giao đồ ăn tận phòng",
+      "situation": "Nhân viên buồng phòng gõ cửa xin phép dọn phòng, thay ga giường, tiếp tế khăn và nước; sau đó nhân viên room service mang đồ ăn lên phục vụ.",
       "defaultRoles": {
         "ai": {
           "id": "ai",
-          "name": "Housekeeping",
-          "titleEn": "Housekeeping Operator",
-          "titleVi": "Nhân viên Buồng phòng",
+          "name": "Housekeeping & Room Service",
+          "titleEn": "Housekeeping Staff",
+          "titleVi": "Nhân viên Phục vụ",
           "avatar": "🧹"
         },
         "user": {
           "id": "user",
           "name": "Guest",
-          "titleEn": "Guest (Room 804)",
-          "titleVi": "Khách phòng 804 (Bạn)",
+          "titleEn": "Guest (Room 304)",
+          "titleVi": "Khách phòng 304 (Vân)",
           "avatar": "👤"
         }
       },
-      "initialMessageEn": "Front desk housekeeping, how may I assist you?",
-      "initialMessageVi": "Bộ phận buồng phòng xin nghe, tôi có thể hỗ trợ gì cho quý khách ạ?",
+      "initialMessageEn": "Housekeeping, may I come in? I'm here to clean your room.",
+      "initialMessageVi": "Bộ phận buồng phòng, em có thể vào được không ạ? Em đến để dọn phòng cho mình ạ.",
       "vocabulary": [
         {
           "id": "vocab-h2-1",
-          "word": "iron and ironing board",
+          "word": "housekeeping",
           "partOfSpeech": "n",
-          "ipa": "/ˈaɪərn ənd ˈaɪərnɪŋ bɔːrd/",
-          "meaningVi": "bàn ủi và cầu là quần áo",
+          "ipa": "/ˈhaʊskiːpɪŋ/",
+          "meaningVi": "bộ phận phục vụ buồng phòng",
           "synonyms": [
-            "clothes steamer (bàn là hơi nước)"
+            "room attendant (nhân viên buồng phòng)"
           ],
           "antonyms": [],
           "collocations": [
-            "request an iron: mượn bàn ủi",
-            "ironing service: dịch vụ giặt ủi"
+            "call housekeeping: gọi bộ phận dọn phòng"
           ],
-          "exampleEn": "Could you please send an iron and an ironing board to room 804?",
-          "exampleVi": "Bạn có thể gửi bàn ủi và cầu là lên phòng 804 giúp tôi được không?"
+          "exampleEn": "Housekeeping, how can I help you?",
+          "exampleVi": "Bộ phận buồng phòng, em có thể giúp gì được cho chị ạ?"
         },
         {
           "id": "vocab-h2-2",
-          "word": "travel adapter",
-          "partOfSpeech": "n",
-          "ipa": "/ˈtrævl əˈdæptər/",
-          "meaningVi": "đầu chuyển đổi chân cắm điện",
+          "word": "bed sheets",
+          "partOfSpeech": "n phr",
+          "ipa": "/ˈbed ʃiːts/",
+          "meaningVi": "ga trải giường",
           "synonyms": [
-            "plug adapter (cục chuyển chân sạc)"
+            "linen (đồ vải trải giường)"
           ],
           "antonyms": [],
           "collocations": [
-            "universal adapter: cục chuyển nguồn đa năng"
+            "change the bed sheets: thay ga trải giường"
           ],
-          "exampleEn": "My charger doesn't fit the wall socket. Do you have a travel adapter?",
-          "exampleVi": "Sạc của tôi không vừa ổ cắm. Bạn có đầu chuyển đổi không?"
+          "exampleEn": "I'll change the bed sheets for you.",
+          "exampleVi": "Em sẽ thay ga giường cho mình nha."
         },
         {
           "id": "vocab-h2-3",
-          "word": "fresh towels",
-          "partOfSpeech": "n",
-          "ipa": "/freʃ ˈtaʊəlz/",
-          "meaningVi": "khăn tắm sạch mới",
+          "word": "room service",
+          "partOfSpeech": "n phr",
+          "ipa": "/ˈruːm sɜːrvɪs/",
+          "meaningVi": "dịch vụ phục vụ ăn uống tận phòng",
           "synonyms": [
-            "clean towels (khăn sạch)"
+            "in-room dining (ăn uống tại phòng)"
           ],
-          "antonyms": [
-            "used towels (khăn đã dùng)"
-          ],
+          "antonyms": [],
           "collocations": [
-            "bath towel: khăn tắm to",
-            "hand towel: khăn lau tay"
+            "order room service: gọi món lên phòng"
           ],
-          "exampleEn": "Could we get two extra fresh towels?",
-          "exampleVi": "Chúng tôi có thể xin thêm 2 khăn tắm sạch được không?"
+          "exampleEn": "Room service, I've brought your order.",
+          "exampleVi": "Em mang đồ ăn lên cho anh chị đây ạ."
         }
       ],
       "sampleDialogue": [
         {
           "speaker": "ai",
           "roleName": "Housekeeping",
-          "textEn": "Front desk housekeeping, how may I assist you?",
-          "textVi": "Bộ phận buồng phòng xin nghe, tôi có thể hỗ trợ gì cho quý khách ạ?"
+          "textEn": "Housekeeping, how can I help you? May I come in? I'm here to clean your room.",
+          "textVi": "Bộ phận buồng phòng, em có thể giúp gì được cho chị ạ? Em có thể vào được không ạ? Em đến để dọn phòng cho mình ạ."
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Hi, this is Alex in room 804. Could we please have two extra bath towels?",
-          "textVi": "Chào bạn, tôi là Alex ở phòng 804. Chúng tôi có thể xin thêm hai khăn tắm lớn được không?"
+          "textEn": "Yes, please come in! Could I get an extra towel, please?",
+          "textVi": "Dạ được, em vào đi! Cho em xin thêm khăn tắm được không ạ?"
         },
         {
           "speaker": "ai",
           "roleName": "Housekeeping",
-          "textEn": "Certainly, Mr. Alex. Would you need anything else, like shampoo or slippers?",
-          "textVi": "Dạ chắc chắn rồi thưa quý khách. Bạn có cần thêm gì nữa không, ví dụ như dầu gội hay dép đi trong phòng ạ?"
+          "textEn": "Certainly! Do you need fresh towels? I'll change the bed sheets and replenish the amenities right away. Do you need more drinking water or toilet paper?",
+          "textVi": "Dạ được ạ! Mình có cần thay khăn tắm không ạ? Em sẽ thay ga giường cho mình nha, để em bổ sung đồ dùng trong phòng ngay ạ. Chị có cần thêm nước uống hay thêm giấy vệ sinh không ạ?"
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Actually, yes! Do you have an iron and an international travel adapter I could borrow?",
-          "textVi": "À có đấy! Khách sạn có bàn ủi và cục chuyển chân cắm quốc tế cho tôi mượn được không?"
+          "textEn": "Yes, two extra bottles of drinking water and some toilet paper would be great. Thank you!",
+          "textVi": "Dạ cho em xin thêm hai chai nước uống và ít giấy vệ sinh nữa là tuyệt ạ. Em cảm ơn!"
         },
         {
           "speaker": "ai",
           "roleName": "Housekeeping",
-          "textEn": "Yes, we do. Our staff will bring the towels, iron, and adapter to your door within 10 minutes.",
-          "textVi": "Dạ có ạ. Nhân viên của chúng tôi sẽ mang khăn, bàn ủi và đầu cắm lên tận phòng bạn trong vòng 10 phút."
+          "textEn": "I'll bring it right up! Is everything alright with your room? Is there anything else I can help you with?",
+          "textVi": "Em sẽ mang ngay lên ạ! Mọi thứ trong phòng ổn chứ ạ? Anh chị có cần thêm hỗ trợ gì nữa không ạ?"
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "That's wonderful, thank you so much!",
-          "textVi": "Tuyệt quá, cảm ơn bạn rất nhiều!"
+          "textEn": "Everything is good so far, thanks!",
+          "textVi": "Mọi thứ hiện tại đều ổn ạ, cảm ơn em!"
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Room Service",
+          "textEn": "Room service, I've brought your order. Please check your order.",
+          "textVi": "Em mang đồ ăn lên cho anh chị đây ạ. Chị kiểm tra lại giùm em nha."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Guest",
+          "textEn": "Looks delicious! Thank you.",
+          "textVi": "Trông ngon quá! Cảm ơn bạn nha."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Room Service",
+          "textEn": "Enjoy your meal! Please call reception when you're finished so we can collect the tray.",
+          "textVi": "Chúc chị ngon miệng ạ! Khi dùng xong, mình gọi lễ tân nha để bên em lên dọn khay ạ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Guest",
+          "textEn": "Sure thing, I will. Thanks again!",
+          "textVi": "Được chứ, lát ăn xong chị gọi. Cảm ơn em nhiều nha!"
         }
       ],
       "suggestedHints": [
-        "Could we please have two extra bath towels?",
-        "Do you have an iron and an ironing board I can borrow?",
-        "My charger doesn't fit the wall socket. Do you have a travel adapter?",
-        "Could someone come to make up the room now?"
+        "Could I get an extra towel, please?",
+        "Do you need to clean the room now?",
+        "Please bring two bottles of drinking water.",
+        "Thank you, enjoy your meal!"
       ]
     },
     {
       "id": "hotel-scenario-3",
       "order": 3,
-      "section": "⚠️ Xử lý sự cố (Room Issues & Complaints)",
-      "titleEn": "Reporting Room Issues & Changing Rooms",
-      "titleVi": "Báo sự cố phòng & Yêu cầu đổi phòng",
-      "situation": "Máy lạnh trong phòng không lạnh và phòng bên cạnh gây ồn ào lúc nửa đêm. Khách gọi lễ tân yêu cầu sửa hoặc đổi sang phòng khác.",
+      "section": "⚠️ Sự cố phòng tắm & Kỹ thuật (Bathroom Issues & Maintenance)",
+      "titleEn": "Bathroom Plumbing Issues",
+      "titleVi": "Báo sự cố phòng tắm & Hỗ trợ kỹ thuật khẩn cấp",
+      "situation": "Khách gọi quầy lễ tân để phản ánh hàng loạt sự cố nghiêm trọng trong phòng tắm: bồn cầu tắc, nước rò rỉ, vòi nước hỏng, không có nước nóng và yêu cầu thợ sửa gấp.",
       "defaultRoles": {
         "ai": {
           "id": "ai",
-          "name": "Duty Manager",
-          "titleEn": "Duty Manager",
-          "titleVi": "Quản lý Ca trực",
-          "avatar": "👔"
+          "name": "Front Desk / Duty Manager",
+          "titleEn": "Front Desk Staff",
+          "titleVi": "Nhân viên Lễ tân",
+          "avatar": "🛎️"
         },
         "user": {
           "id": "user",
           "name": "Guest",
-          "titleEn": "Guest",
-          "titleVi": "Khách lưu trú (Bạn)",
+          "titleEn": "Guest (Vân - Room 304)",
+          "titleVi": "Khách lưu trú (Vân)",
           "avatar": "👤"
         }
       },
-      "initialMessageEn": "Good evening, Front Desk, this is David speaking. How can I help you?",
-      "initialMessageVi": "Chào buổi tối, quầy Lễ tân, tôi là David xin nghe. Tôi có thể giúp gì cho bạn ạ?",
+      "initialMessageEn": "Front desk, how can I help you today?",
+      "initialMessageVi": "Lễ tân xin nghe, em có thể giúp gì được cho chị ạ?",
       "vocabulary": [
         {
           "id": "vocab-h3-1",
-          "word": "air conditioner",
-          "partOfSpeech": "n",
-          "ipa": "/ˈer kəndɪʃənər/",
-          "meaningVi": "máy điều hòa nhiệt độ (A/C)",
+          "word": "clogged",
+          "partOfSpeech": "adj",
+          "ipa": "/klɑːɡd/",
+          "meaningVi": "bị tắc, bị nghẹt",
           "synonyms": [
-            "A/C unit (cục điều hòa)",
-            "cooling system (hệ thống làm mát)"
+            "blocked (bị nghẽn)"
           ],
           "antonyms": [
-            "heater (máy sưởi)"
+            "clear (thông thoáng)"
           ],
           "collocations": [
-            "the A/C is not working: máy lạnh bị hỏng",
-            "turn down the A/C: giảm nhiệt độ máy lạnh"
+            "clogged toilet: bồn cầu bị tắc"
           ],
-          "exampleEn": "The air conditioner in my room is blowing warm air.",
-          "exampleVi": "Máy lạnh trong phòng tôi chỉ phả ra hơi ấm."
+          "exampleEn": "Even the toilet is clogged.",
+          "exampleVi": "Nhà vệ sinh lại còn bị tắc nữa."
         },
         {
           "id": "vocab-h3-2",
-          "word": "unacceptable",
-          "partOfSpeech": "adj",
-          "ipa": "/ˌʌnəkˈseptəbl/",
-          "meaningVi": "không thể chấp nhận được",
+          "word": "leak",
+          "partOfSpeech": "v, n",
+          "ipa": "/liːk/",
+          "meaningVi": "rò rỉ nước",
           "synonyms": [
-            "intolerable (không chịu nổi)",
-            "unsatisfactory (không thỏa đáng)"
+            "drip (nhỏ giọt)"
           ],
           "antonyms": [
-            "acceptable (chấp nhận được)"
+            "sealed (kín miệng)"
           ],
           "collocations": [
-            "unacceptable noise: tiếng ồn không thể chịu nổi"
+            "water leaking onto the floor: nước rò rỉ tràn ra sàn"
           ],
-          "exampleEn": "The noise next door is quite loud and unacceptable at this hour.",
-          "exampleVi": "Tiếng ồn phòng bên cạnh rất to và không thể chấp nhận được vào giờ này."
+          "exampleEn": "There's water leaking onto the floor.",
+          "exampleVi": "Nước cứ rò rỉ trên mặt sàn ấy ạ."
         },
         {
           "id": "vocab-h3-3",
-          "word": "switch rooms",
-          "partOfSpeech": "v phr",
-          "ipa": "/swɪtʃ ruːmz/",
-          "meaningVi": "đổi sang phòng khác",
-          "synonyms": [
-            "change rooms (đổi phòng)",
-            "relocate to another room (chuyển sang phòng khác)"
-          ],
-          "antonyms": [
-            "stay in the same room (ở lại cùng phòng)"
-          ],
+          "word": "water pressure",
+          "partOfSpeech": "n phr",
+          "ipa": "/ˈwɔːtər ˈpreʃər/",
+          "meaningVi": "lực nước, áp lực nước",
+          "synonyms": [],
+          "antonyms": [],
           "collocations": [
-            "request to switch rooms: yêu cầu đổi phòng"
+            "low water pressure: áp lực nước rất yếu"
           ],
-          "exampleEn": "Would it be possible to switch to a quieter room?",
-          "exampleVi": "Tôi có thể đổi sang một phòng yên tĩnh hơn được không?"
+          "exampleEn": "The water pressure is very low.",
+          "exampleVi": "Lực nước yếu lắm ạ."
         }
       ],
       "sampleDialogue": [
         {
           "speaker": "ai",
-          "roleName": "Duty Manager",
-          "textEn": "Good evening, Front Desk, this is David speaking. How can I help you?",
-          "textVi": "Chào buổi tối, quầy Lễ tân, tôi là David xin nghe. Tôi có thể giúp gì cho bạn ạ?"
+          "roleName": "Receptionist",
+          "textEn": "Front desk, how can I help you today?",
+          "textVi": "Lễ tân xin nghe, em có thể giúp gì được cho chị ạ?"
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Hello David, I'm calling from room 502. The air conditioner seems to be broken. It's blowing warm air.",
-          "textVi": "Chào David, tôi gọi từ phòng 502. Máy lạnh dường như bị hỏng rồi, nó chỉ thổi ra gió nóng thôi."
+          "textEn": "Hello! There seems to be a problem with the bathroom in room 304. The bathroom is not very clean, and even the toilet is clogged!",
+          "textVi": "Alo em ơi! Phòng tắm có vấn đề anh ạ. Phòng tắm không sạch sẽ cho lắm ạ, nhà vệ sinh lại còn bị tắc nữa."
         },
         {
           "speaker": "ai",
-          "roleName": "Duty Manager",
-          "textEn": "I am terribly sorry to hear that. Have you tried adjusting the thermostat on the wall?",
-          "textVi": "Tôi rất lấy làm tiếc khi nghe điều đó. Bạn đã thử điều chỉnh bảng điều khiển nhiệt độ trên tường chưa ạ?"
+          "roleName": "Receptionist",
+          "textEn": "Oh, I am terribly sorry to hear that! What else is happening in there?",
+          "textVi": "Ôi em thật sự xin lỗi chị ạ! Còn vấn đề gì nữa không chị?"
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Yes, I set it to 20 degrees, but the room is still very stuffy. Also, the guests next door are playing loud music.",
-          "textVi": "Tôi đã chỉnh xuống 20 độ rồi nhưng phòng vẫn rất bí. Thêm nữa, phòng bên cạnh đang mở nhạc rất ồn."
+          "textEn": "The toilet keeps running, the faucet isn't working, and there's no hot water. The water pressure is very low, there's water leaking onto the floor, and the bathroom has an unpleasant smell. This is quite inconvenient for me!",
+          "textVi": "Nước cứ rò mãi thôi, vòi nước có hoạt động đâu cơ chứ, không có cả nước nóng nữa. Lực nước yếu lắm ạ, nước cứ rò rỉ trên mặt sàn ấy, mà mùi nhà vệ sinh khó chịu lắm ạ. Em thấy hơi bất tiện đấy ạ!"
         },
         {
           "speaker": "ai",
-          "roleName": "Duty Manager",
-          "textEn": "I truly apologize for this inconvenience. Since our technician has gone off duty, I'd like to offer to move you to a Deluxe Room on the 10th floor right away.",
-          "textVi": "Tôi thật sự xin lỗi vì sự bất tiện này. Do thợ kỹ thuật đã hết ca trực, tôi xin phép đổi bạn lên phòng Deluxe ở tầng 10 ngay bây giờ ạ."
+          "roleName": "Receptionist",
+          "textEn": "I truly apologize for this terrible experience! Could you please stay in the room? I'll send our technician up right away.",
+          "textVi": "Em thật sự xin lỗi chị vì trải nghiệm tồi tệ này ạ! Chị đợi trong phòng giúp em nha, em sẽ cử thợ kỹ thuật lên ngay ạ."
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "That would be great. Thank you for handling it quickly.",
-          "textVi": "Được thế thì tốt quá. Cảm ơn bạn vì đã xử lý nhanh chóng."
+          "textEn": "Could you have it fixed as soon as possible?",
+          "textVi": "Anh có thể cho người sửa càng sớm càng tốt không ạ?"
         },
         {
           "speaker": "ai",
-          "roleName": "Duty Manager",
-          "textEn": "I'll send a bellboy up immediately with your new keycards to help you move your luggage.",
-          "textVi": "Tôi sẽ cử nhân viên hành lý lên ngay cùng thẻ phòng mới để giúp bạn chuyển hành lý sang ạ."
+          "roleName": "Receptionist",
+          "textEn": "I'll be there in about 5 minutes with our maintenance team. If it cannot be fixed immediately, we will switch you to another room right away.",
+          "textVi": "Em sẽ có mặt trong vòng 5 phút cùng đội bảo trì ạ. Nếu không sửa được ngay thì bên em sẽ đổi phòng khác cho mình ngay lập tức ạ."
+        },
+        {
+          "speaker": "user",
+          "roleName": "Guest",
+          "textEn": "I appreciate your help, your prompt assistance. Thank you!",
+          "textVi": "Bên anh giúp đỡ và hỗ trợ nhiệt tình quá, em cảm ơn nhé!"
         }
       ],
       "suggestedHints": [
-        "The air conditioning is not working properly, it's blowing warm air.",
-        "There is no hot water in the shower.",
-        "The neighbors next door are being very noisy.",
-        "Would it be possible to switch to another room?"
+        "There seems to be a problem with the bathroom.",
+        "Even the toilet is clogged, and there's no hot water.",
+        "Could you have it fixed as soon as possible?",
+        "I appreciate your help, your prompt assistance."
       ]
     },
     {
       "id": "hotel-scenario-4",
       "order": 4,
-      "section": "🧳 Trả phòng & Rời đi (Check-out & Departure)",
-      "titleEn": "Check-out & Luggage Storage",
-      "titleVi": "Làm thủ tục trả phòng & Gửi lại hành lý",
-      "situation": "Khách làm thủ tục trả phòng, kiểm tra hóa đơn minibar, nhận lại cọc và gửi hành lý tại quầy lễ tân để đi dạo trước chuyến bay tối.",
+      "section": "🧳 Tiện ích lân cận & Trả phòng (Concierge & Check-out)",
+      "titleEn": "Local Recommendations & Check-out",
+      "titleVi": "Hỏi đường bãi biển, nhà hàng & Làm thủ tục trả phòng",
+      "situation": "Khách hỏi lễ tân về bãi biển và nhờ gợi ý nhà hàng ngon; sau đó tiến hành làm thủ tục trả phòng, thanh toán hóa đơn $20 bằng thẻ và nhận biên lai.",
       "defaultRoles": {
         "ai": {
           "id": "ai",
@@ -516,117 +541,121 @@
         "user": {
           "id": "user",
           "name": "Guest",
-          "titleEn": "Guest",
-          "titleVi": "Khách lưu trú (Bạn)",
+          "titleEn": "Guest (Vân)",
+          "titleVi": "Khách lưu trú (Vân)",
           "avatar": "👤"
         }
       },
-      "initialMessageEn": "Good morning! Are you ready to check out today?",
-      "initialMessageVi": "Chào buổi sáng! Quý khách trả phòng hôm nay phải không ạ?",
+      "initialMessageEn": "Good morning! How may I assist you today?",
+      "initialMessageVi": "Chào buổi sáng chị ạ! Em có thể giúp gì được cho chị hôm nay ạ?",
       "vocabulary": [
         {
           "id": "vocab-h4-1",
-          "word": "check-out",
-          "partOfSpeech": "v, n",
+          "word": "recommend",
+          "partOfSpeech": "v",
+          "ipa": "/ˌrekəˈmend/",
+          "meaningVi": "giới thiệu, gợi ý",
+          "synonyms": [
+            "suggest (đề xuất)"
+          ],
+          "antonyms": [],
+          "collocations": [
+            "recommend a good restaurant: gợi ý một quán ăn ngon"
+          ],
+          "exampleEn": "Could you recommend a good restaurant nearby?",
+          "exampleVi": "Anh có thể giới thiệu cho em một cái nhà hàng ngon gần đây không ạ?"
+        },
+        {
+          "id": "vocab-h4-2",
+          "word": "check out",
+          "partOfSpeech": "v phr, n",
           "ipa": "/ˈtʃek aʊt/",
-          "meaningVi": "thủ tục trả phòng",
+          "meaningVi": "làm thủ tục trả phòng",
           "synonyms": [
             "settle the bill (thanh toán hóa đơn phòng)"
           ],
           "antonyms": [
-            "check-in (nhận phòng)"
+            "check in (nhận phòng)"
           ],
           "collocations": [
-            "check-out time: giờ trả phòng (thường là 12:00 PM)",
-            "late check-out: trả phòng muộn"
+            "I'd like to check out: tôi muốn làm thủ tục trả phòng"
           ],
-          "exampleEn": "Can I get a late check-out until 2 PM?",
-          "exampleVi": "Tôi có thể xin trả phòng muộn đến 2 giờ chiều được không?"
-        },
-        {
-          "id": "vocab-h4-2",
-          "word": "luggage storage",
-          "partOfSpeech": "n",
-          "ipa": "/ˈlʌɡɪdʒ ˈstɔːrɪdʒ/",
-          "meaningVi": "nơi gửi / giữ hành lý tạm thời",
-          "synonyms": [
-            "baggage drop (nơi gửi đồ)",
-            "cloakroom (phòng gửi đồ)"
-          ],
-          "antonyms": [],
-          "collocations": [
-            "store luggage: gửi hành lý",
-            "luggage tag: thẻ gửi đồ"
-          ],
-          "exampleEn": "Can we leave our luggage here until this evening?",
-          "exampleVi": "Chúng tôi có thể gửi lại hành lý ở đây cho tới tối nay được không?"
+          "exampleEn": "I'd like to check out, please!",
+          "exampleVi": "Em muốn làm thủ tục trả phòng ạ."
         },
         {
           "id": "vocab-h4-3",
-          "word": "minibar",
+          "word": "receipt",
           "partOfSpeech": "n",
-          "ipa": "/ˈmɪnibɑːr/",
-          "meaningVi": "tủ lạnh mini chứa đồ uống có tính phí trong phòng",
+          "ipa": "/rɪˈsiːt/",
+          "meaningVi": "hóa đơn, biên lai thanh toán",
           "synonyms": [
-            "in-room fridge (tủ lạnh trong phòng)"
+            "invoice (hóa đơn chi tiết)",
+            "bill (phiếu tính tiền)"
           ],
           "antonyms": [],
           "collocations": [
-            "consume items from the minibar: dùng đồ trong minibar"
+            "have the receipt: lấy hóa đơn"
           ],
-          "exampleEn": "Did you consume anything from the minibar?",
-          "exampleVi": "Quý khách có dùng món gì trong minibar không ạ?"
+          "exampleEn": "Could I have the receipt, please?",
+          "exampleVi": "Cho em xin hóa đơn với ạ."
         }
       ],
       "sampleDialogue": [
         {
+          "speaker": "user",
+          "roleName": "Guest",
+          "textEn": "Excuse me! Where's the restaurant? And how far is the beach from here? Could you recommend a good restaurant nearby?",
+          "textVi": "Cho em hỏi nhà hàng ở đâu ạ? Bãi biển có gần đây không ạ? Anh có thể giới thiệu cho em một cái nhà hàng ngon gần đây không ạ?"
+        },
+        {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "Good morning! Are you ready to check out today?",
-          "textVi": "Chào buổi sáng! Quý khách trả phòng hôm nay phải không ạ?"
+          "textEn": "Our restaurant is on the 2nd floor, and the beach is just a 5-minute walk from here! There's also a great local seafood place right down the street.",
+          "textVi": "Dạ nhà hàng bên em ở tầng 2, và bãi biển chỉ cách đây 5 phút đi bộ thôi ạ! Gần đây cũng có một quán hải sản rất ngon ở ngay góc phố ạ."
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Yes, I am checking out of room 1004. Here are the keycards.",
-          "textVi": "Vâng, tôi trả phòng 1004. Đây là các thẻ phòng ạ."
+          "textEn": "Sounds great! Also, I'd like to check out, please! Here are my key cards.",
+          "textVi": "Nghe tuyệt quá! Với lại em muốn làm thủ tục trả phòng ạ! Đây là thẻ phòng của em."
         },
         {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "Thank you. Did you take anything from the minibar or make any phone calls?",
-          "textVi": "Cảm ơn bạn. Bạn có dùng đồ gì trong minibar hay gọi điện thoại bàn không ạ?"
+          "textEn": "Would you like to extend your stay for one more night? If not, please check your information. Your total bill is $20.",
+          "textVi": "Anh chị có muốn gia hạn thêm 1 đêm nữa không ạ? Nếu không thì mình kiểm tra lại thông tin giúp em nha. Tổng bill của anh chị là 20 đô la ạ."
+        },
+        {
+          "speaker": "ai",
+          "roleName": "Receptionist",
+          "textEn": "Would you like to pay with cash or by card?",
+          "textVi": "Chị muốn thanh toán bằng tiền mặt hay thẻ ạ?"
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "Just one can of Coke yesterday. Everything else is untouched.",
-          "textVi": "Chỉ có một lon Coca hôm qua thôi. Mọi thứ khác tôi không đụng vào."
+          "textEn": "Can I pay by credit card? Could I have the receipt, please?",
+          "textVi": "Em có thể thanh toán bằng thẻ được không ạ? Cho em xin hóa đơn với ạ."
         },
         {
           "speaker": "ai",
           "roleName": "Receptionist",
-          "textEn": "Alright. That will be $3 for the drink, and we'll release the remaining $47 from your deposit. How was your stay?",
-          "textVi": "Dạ vâng. Phí nước uống là $3, và chúng tôi sẽ hoàn lại $47 tiền cọc còn lại vào thẻ. Kỳ nghỉ của quý khách thế nào ạ?"
+          "textEn": "Certainly! Here is your card and receipt. Thank you for staying with us. Have a nice trip!",
+          "textVi": "Dạ được chứ ạ! Em gửi lại thẻ và hóa đơn cho mình. Cảm ơn anh chị đã lưu trú tại khách sạn của chúng em nha. Chúc anh chị có một chuyến đi vui vẻ ạ."
         },
         {
           "speaker": "user",
           "roleName": "Guest",
-          "textEn": "It was very pleasant, thank you. Could you store our bags until 6 PM? Our flight is tonight.",
-          "textVi": "Rất thoải mái, cảm ơn bạn. Bạn có thể giữ hành lý giúp chúng tôi đến 6 giờ tối được không? Chuyến bay của chúng tôi vào tối nay."
-        },
-        {
-          "speaker": "ai",
-          "roleName": "Receptionist",
-          "textEn": "With pleasure. Here is your luggage claim ticket #42. Just present this when you return.",
-          "textVi": "Rất sẵn lòng ạ. Đây là thẻ nhận hành lý số #42 của bạn. Khi quay lại bạn chỉ cần đưa thẻ này là được."
+          "textEn": "Thank you for everything. Goodbye!",
+          "textVi": "Cảm ơn vì tất cả nha. Tạm biệt em!"
         }
       ],
       "suggestedHints": [
-        "I'd like to check out, please. Room 1004.",
-        "I didn't use anything from the minibar.",
-        "Could you store my luggage until 5 PM?",
-        "Could you help me call a taxi to the airport?"
+        "Could you recommend a good restaurant nearby?",
+        "How far is the beach from here?",
+        "I'd like to check out, please!",
+        "Can I pay by credit card, and could I have the receipt?"
       ]
     }
   ]

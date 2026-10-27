@@ -1,450 +1,560 @@
 # -*- coding: utf-8 -*-
-"""Workplace topic definition."""
+"""Work & Career topic definition (tailored for corporate Logistics specialists)."""
 
 WORKPLACE_DATA = {
     "id": "workplace",
-    "titleEn": "Tech & Workplace Communication",
-    "titleVi": "Giao Tiếp Công Sở & Kỹ Thuật",
-    "icon": "💻",
-    "description": "Luyện giao tiếp môi trường công nghệ & quốc tế: Daily Standup, nhờ review code/debug, đàm phán dời deadline và làm rõ yêu cầu spec.",
+    "titleEn": "Work & Career",
+    "titleVi": "Công Việc & Sự Nghiệp",
+    "icon": "💼",
+    "description": "Luyện giao tiếp về công việc & phát triển sự nghiệp trong ngành Logistics: giới thiệu nghề nghiệp tại công ty, xử lý áp lực deadline giờ tàu, định hướng mục tiêu 5 năm và chuyện đồng nghiệp nghỉ việc.",
     "scenarios": [
         {
             "id": "workplace-freetalk",
             "order": 0,
             "section": "🌟 THỰC CHIẾN TỰ DO (OPEN ROLEPLAY)",
-            "titleEn": "Workplace Free Talk (Không Giới Hạn)",
-            "titleVi": "Thực chiến công sở & IT tự do",
-            "situation": "Phòng thực chiến tự do: AI đóng vai Kỹ sư trưởng & Trưởng nhóm kỹ thuật (Engineering Lead). Bạn có thể thảo luận bất kỳ vấn đề công việc nào: kiến trúc hệ thống, báo cáo tiến độ sprint, thảo luận giải pháp kỹ thuật, phỏng vấn thử hoặc giải quyết mâu thuẫn trong dự án!",
+            "titleEn": "Work & Career Free Talk (Không Giới Hạn)",
+            "titleVi": "Thực chiến công sở & logistics tự do",
+            "situation": "Phòng thực chiến tự do: AI đóng vai Đàn anh dày dạn kinh nghiệm trong nghề Logistics & Bạn tri kỷ (Senior Logistics Lead & Career Buddy). Bạn có thể tâm sự, chém gió hoặc xin lời khuyên về bất kỳ chuyện gì: sự cố hàng kẹt cảng, rượt deadline giờ cắt máng, cách nhậu networking giữ chỗ hãng tàu, đàm phán lương thưởng hay chuyện nhảy việc!",
             "isFreeTalk": True,
             "defaultRoles": {
                 "ai": {
                     "id": "ai",
-                    "name": "Engineering Lead",
-                    "titleEn": "Tech Lead / Manager",
-                    "titleVi": "Trưởng nhóm Kỹ thuật",
-                    "avatar": "💻"
+                    "name": "Senior Logistics Lead",
+                    "titleEn": "Senior Logistics Lead / Career Buddy",
+                    "titleVi": "Đàn anh trong nghề Logistics",
+                    "avatar": "💼"
                 },
                 "user": {
                     "id": "user",
-                    "name": "Developer",
-                    "titleEn": "Software Engineer",
-                    "titleVi": "Kỹ sư phần mềm (Bạn)",
+                    "name": "Logistics Coordinator",
+                    "titleEn": "Logistics Coordinator",
+                    "titleVi": "Điều phối viên Logistics (Bạn)",
                     "avatar": "👤"
                 }
             },
-            "initialMessageEn": "Morning team! Ready to sync up on our current sprint goals and roadmap?",
-            "initialMessageVi": "Chào buổi sáng cả đội! Mọi người đã sẵn sàng đồng bộ tiến độ mục tiêu sprint và lộ trình dự án chưa?",
+            "initialMessageEn": "Hey! Good to see you. How's work going at the logistics office today? Are the shipments moving smoothly, or are you drowning in customs paperwork?",
+            "initialMessageVi": "Ê mày! Việc ở công ty dạo này thế nào rồi? Các lô hàng chạy mượt không, hay đang ngập đầu trong đống chứng từ hải quan rồi?",
             "vocabulary": [
                 {
                     "id": "vocab-w0-1",
-                    "word": "blocker",
-                    "partOfSpeech": "n",
-                    "ipa": "/ˈblɑːkər/",
-                    "meaningVi": "vướng mắc lớn khiến công việc bị ách tắc không thể tiếp tục",
-                    "synonyms": ["impediment (trở ngại)", "roadblock (rào cản tiến độ)"],
-                    "antonyms": ["smooth progress (tiến độ thuận lợi)"],
+                    "word": "freight forwarding",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/freɪt ˈfɔːrwərdɪŋ/",
+                    "meaningVi": "dịch vụ giao nhận vận tải hàng hóa quốc tế",
+                    "synonyms": ["freight logistics (hậu cần vận tải)", "cargo transport (vận chuyển hàng hóa)"],
+                    "antonyms": [],
                     "collocations": [
-                        "hit a blocker: vấp phải điểm nghẽn",
-                        "unblock someone: tháo gỡ vướng mắc cho ai đó"
+                        "international freight forwarding: giao nhận vận tải quốc tế",
+                        "freight forwarding company: công ty giao nhận vận tải (forwarder)",
+                        "air and ocean freight forwarding: giao nhận hàng không và đường biển"
                     ],
-                    "exampleEn": "Do you have any blockers that might jeopardize the sprint release?",
-                    "exampleVi": "Bạn có vướng mắc nào có thể gây ảnh hưởng xấu tới đợt bàn giao sprint không?"
+                    "exampleEn": "I work for an international freight forwarding company in the city center.",
+                    "exampleVi": "Tao làm việc cho một công ty giao nhận vận tải quốc tế ở trung tâm thành phố."
                 },
                 {
                     "id": "vocab-w0-2",
-                    "word": "pull request",
+                    "word": "cut-off time",
                     "partOfSpeech": "n phr",
-                    "ipa": "/pʊl rɪˈkwest/",
-                    "meaningVi": "yêu cầu hợp nhất mã nguồn (PR)",
-                    "synonyms": ["merge request (yêu cầu gộp code)"],
+                    "ipa": "/ˈkʌt ɔːf taɪm/",
+                    "meaningVi": "thời hạn chót giao hàng / nộp chứng từ cho hãng tàu (giờ cắt máng)",
+                    "synonyms": ["closing time (giờ chốt sổ)", "deadline (hạn chót)"],
                     "antonyms": [],
                     "collocations": [
-                        "open a pull request: mở một PR mới",
-                        "review a pull request: đánh giá duyệt code PR",
-                        "merge into main: gộp code vào nhánh chính"
+                        "vessel cut-off time: giờ cắt máng xuất tàu",
+                        "shipping instruction cut-off: hạn chót nộp thông tin vận đơn SI",
+                        "miss the cut-off: bị trễ giờ cắt máng khiến hàng rớt lại"
                     ],
-                    "exampleEn": "I just submitted the pull request for the authentication module.",
-                    "exampleVi": "Tôi vừa tạo yêu cầu pull request cho mô-đun xác thực người dùng."
-                },
-                {
-                    "id": "vocab-w0-3",
-                    "word": "trade-off",
-                    "partOfSpeech": "n",
-                    "ipa": "/ˈtreɪd ɔːf/",
-                    "meaningVi": "sự đánh đổi (giữa tốc độ, chi phí và chất lượng)",
-                    "synonyms": ["compromise (sự thỏa hiệp)", "pros and cons (ưu và nhược điểm)"],
-                    "antonyms": [],
-                    "collocations": [
-                        "engineering trade-off: sự đánh đổi về mặt kỹ thuật",
-                        "weigh the trade-offs: cân nhắc các yếu tố được mất"
-                    ],
-                    "exampleEn": "There is a performance trade-off between caching in memory and querying the database directly.",
-                    "exampleVi": "Có sự đánh đổi về mặt hiệu năng giữa việc lưu bộ nhớ đệm và truy vấn trực tiếp cơ sở dữ liệu."
+                    "exampleEn": "If we miss the 5 PM cut-off time, the container won't get loaded onto the vessel.",
+                    "exampleVi": "Nếu tụi mình trễ giờ cắt máng lúc 5 giờ chiều thì container sẽ không kịp xếp lên tàu."
                 }
             ],
             "sampleDialogue": [],
             "suggestedHints": [
-                "Yesterday I completed the API integration, today I'm writing tests.",
-                "I have a blocker related to third-party authentication credentials.",
-                "Could someone help me review my pull request before the end of the day?",
-                "We might need to adjust the deadline due to an unexpected database migration issue."
+                "We've got two export containers stuck at the terminal, and cut-off is 5 PM!",
+                "Do you think it's better to stay for a promotion or switch to a major shipping line?",
+                "How do you maintain a decent work-life balance during peak shipping season?",
+                "Any tips on how to network effectively with shipping lines so they don't roll our containers?"
             ]
         },
         {
             "id": "workplace-scenario-1",
             "order": 1,
-            "section": "📋 Họp nhanh hàng ngày (Daily Standup)",
-            "titleEn": "Daily Standup & Status Update",
-            "titleVi": "Báo cáo họp Standup hàng ngày",
-            "situation": "Bạn tham gia buổi họp Scrum 15 phút hàng ngày với team quốc tế. Bạn báo cáo: Hôm qua làm gì, hôm nay làm gì, và có vướng mắc (blocker) gì cần hỗ trợ hay không.",
+            "section": "🏢 Nghề nghiệp & Môi trường làm việc (Job & Work Setup)",
+            "titleEn": "What Do You Do for a Living?",
+            "titleVi": "Nghề nghiệp & Môi trường làm việc tại công ty",
+            "situation": "Hai đứa bạn gặp nhau, hỏi thăm tình hình công việc dạo này. A làm tự do/ở nhà, B làm việc tại văn phòng công ty Logistics.",
             "defaultRoles": {
                 "ai": {
                     "id": "ai",
-                    "name": "Scrum Master",
-                    "titleEn": "Scrum Master",
-                    "titleVi": "Điều phối viên Scrum",
-                    "avatar": "⏱️"
+                    "name": "Friend A",
+                    "titleEn": "Friend (Freelance Designer)",
+                    "titleVi": "Bạn thân (Thiết kế tự do)",
+                    "avatar": "🎨"
                 },
                 "user": {
                     "id": "user",
-                    "name": "Developer",
-                    "titleEn": "Software Engineer",
-                    "titleVi": "Kỹ sư phần mềm (Bạn)",
+                    "name": "Friend B",
+                    "titleEn": "Logistics Coordinator",
+                    "titleVi": "Điều phối viên Logistics (Bạn)",
                     "avatar": "👤"
                 }
             },
-            "initialMessageEn": "Good morning everyone! Let's kick off our daily standup. Alex, do you want to start?",
-            "initialMessageVi": "Chào buổi sáng mọi người! Bắt đầu buổi standup hàng ngày nhé. Alex, bạn có muốn bắt đầu trước không?",
+            "initialMessageEn": "Hi! What do you do for a living?",
+            "initialMessageVi": "Ê! Dạo này mày đang làm nghề ngỗng gì thế?",
             "vocabulary": [
                 {
                     "id": "vocab-w1-1",
-                    "word": "on track",
-                    "partOfSpeech": "idiom phr",
-                    "ipa": "/ɑːn træk/",
-                    "meaningVi": "đang đúng tiến độ dự kiến",
-                    "synonyms": ["on schedule (đúng lịch trình)"],
-                    "antonyms": ["behind schedule (chậm tiến độ)", "off track (lệch hướng)"],
+                    "word": "freelance",
+                    "partOfSpeech": "v, adj, n",
+                    "ipa": "/ˈfriːlæns/",
+                    "meaningVi": "làm nghề tự do, không chịu sự ràng buộc cố định của một công ty",
+                    "synonyms": ["self-employed (tự làm chủ)", "independent contractor (nhà thầu độc lập)"],
+                    "antonyms": ["full-time employee (nhân viên toàn thời gian)", "in-house staff (nhân viên nội bộ)"],
                     "collocations": [
-                        "everything is on track: mọi thứ đều đang đúng tiến độ",
-                        "keep things on track: giữ cho công việc đi đúng hướng"
+                        "work freelance: làm công việc tự do",
+                        "freelance freight broker: người môi giới cước tự do",
+                        "freelance designer: người thiết kế tự do"
                     ],
-                    "exampleEn": "The payment gateway integration is currently on track.",
-                    "exampleVi": "Tích hợp cổng thanh toán hiện đang đi đúng tiến độ."
+                    "exampleEn": "A lot of my friends do freelance work, but I prefer a stable company job.",
+                    "exampleVi": "Nhiều đứa bạn tao làm nghề tự do, nhưng tao thích công việc công ty ổn định hơn."
                 },
                 {
                     "id": "vocab-w1-2",
-                    "word": "wrap up",
-                    "partOfSpeech": "v phr",
-                    "ipa": "/ræp ʌp/",
-                    "meaningVi": "hoàn thành dứt điểm / chốt xong việc gì đó",
-                    "synonyms": ["finish up (kết thúc)", "finalize (chốt xong)", "complete (hoàn thành)"],
-                    "antonyms": ["kick off (bắt đầu triển khai)"],
+                    "word": "remote work",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/rɪˈmoʊt wɜːrk/",
+                    "meaningVi": "hình thức làm việc từ xa (làm tại nhà, không cần đến trụ sở văn phòng)",
+                    "synonyms": ["working from home (làm tại nhà - WFH)", "telecommuting (làm việc từ xa qua mạng)"],
+                    "antonyms": ["on-site work (làm trực tiếp tại cơ sở)", "office-based work (làm tại văn phòng)"],
                     "collocations": [
-                        "wrap up the task: giải quyết xong xuôi công việc",
-                        "wrap up the meeting: kết thúc cuộc họp"
+                        "do remote work: làm việc từ xa",
+                        "fully remote position: vị trí làm việc từ xa hoàn toàn",
+                        "switch to remote work: chuyển sang làm việc từ xa"
                     ],
-                    "exampleEn": "I expect to wrap up the unit tests by early afternoon.",
-                    "exampleVi": "Tôi dự kiến sẽ hoàn thành dứt điểm phần unit test vào đầu giờ chiều."
+                    "exampleEn": "Remote work is great for developers, but logistics usually requires working in the office.",
+                    "exampleVi": "Làm từ xa thì rất hợp với dân lập trình, nhưng ngành logistics thường đòi hỏi phải lên văn phòng."
                 },
                 {
                     "id": "vocab-w1-3",
-                    "word": "dependency",
+                    "word": "colleague",
                     "partOfSpeech": "n",
-                    "ipa": "/dɪˈpendənsi/",
-                    "meaningVi": "sự phụ thuộc / điều kiện phụ thuộc vào team khác",
-                    "synonyms": ["prerequisite (điều kiện tiên quyết)"],
-                    "antonyms": ["independent (độc lập)"],
+                    "ipa": "/ˈkɑːliːɡ/",
+                    "meaningVi": "đồng nghiệp cùng cơ quan / công ty",
+                    "synonyms": ["coworker (đồng nghiệp)", "teammate (đồng đội cùng nhóm)"],
+                    "antonyms": [],
                     "collocations": [
-                        "waiting on a dependency: đang chờ phần việc phụ thuộc từ bên khác",
-                        "external dependency: phụ thuộc từ đối tác bên ngoài"
+                        "supportive colleagues: những đồng nghiệp luôn tương trợ nhau",
+                        "work closely with colleagues: hợp tác chặt chẽ với các đồng nghiệp",
+                        "former colleague: đồng nghiệp cũ"
                     ],
-                    "exampleEn": "My task has a dependency on the backend endpoint being deployed first.",
-                    "exampleVi": "Công việc của tôi bị phụ thuộc vào việc API đầu cuối của backend phải được deploy trước."
+                    "exampleEn": "I work closely with my colleagues every day to clear shipments on schedule.",
+                    "exampleVi": "Tao làm việc sát sao với mấy anh chị em đồng nghiệp mỗi ngày để thông quan hàng đúng lịch."
                 }
             ],
             "sampleDialogue": [
                 {
                     "speaker": "ai",
-                    "roleName": "Scrum Master",
-                    "textEn": "Good morning everyone! Let's kick off our daily standup. Alex, do you want to start?",
-                    "textVi": "Chào buổi sáng mọi người! Bắt đầu buổi standup hàng ngày nhé. Alex, bạn có muốn bắt đầu trước không?"
+                    "roleName": "Friend A",
+                    "textEn": "Hi! What do you do for a living?",
+                    "textVi": "Ê! Dạo này mày đang làm nghề ngỗng gì thế?"
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Sure! Yesterday, I finished implementing the search filter component and submitted the pull request for review.",
-                    "textVi": "Được chứ! Hôm qua tôi đã làm xong component bộ lọc tìm kiếm và đã gửi pull request để mọi người review."
+                    "roleName": "Friend B",
+                    "textEn": "I'm a logistics coordinator at an international freight forwarding company. How about you?",
+                    "textVi": "Tao làm điều phối viên logistics ở một công ty giao nhận vận tải quốc tế. Còn mày dạo này làm gì?"
                 },
                 {
                     "speaker": "ai",
-                    "roleName": "Scrum Master",
-                    "textEn": "Nice work. And what's on your plate for today?",
-                    "textVi": "Làm tốt lắm. Thế hôm nay kế hoạch của bạn là gì?"
+                    "roleName": "Friend A",
+                    "textEn": "Nice! I'm actually a web designer. I do freelance and mostly remote work from home.",
+                    "textVi": "Ngon nhờ! Tao thì làm thiết kế web. Tao làm tự do, chủ yếu nhận việc làm ở nhà thôi."
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Today, I'll be working on writing unit tests for the speech recognition module, and I plan to wrap that up by 3 PM.",
-                    "textVi": "Hôm nay tôi sẽ viết unit test cho mô-đun nhận diện giọng nói, và dự kiến sẽ xong trước 3 giờ chiều."
+                    "roleName": "Friend B",
+                    "textEn": "Oh, that must be nice and flexible! My job is completely the opposite — our office is always buzzing, and I work closely with my colleagues every day to track shipments and clear customs.",
+                    "textVi": "Ồ, thế thì sướng, tự do thoải mái quá! Việc của tao thì ngược lại hoàn toàn — văn phòng lúc nào cũng nhộn nhịp như cái chợ, ngày nào tao cũng phải ngồi sát sàn sạt với mấy anh chị em đồng nghiệp để rà từng lô hàng với xử lý thông quan."
                 },
                 {
                     "speaker": "ai",
-                    "roleName": "Scrum Master",
-                    "textEn": "Sounds like a solid plan. Any blockers or dependencies slowing you down?",
-                    "textVi": "Kế hoạch rất rõ ràng. Có blocker hay phụ thuộc nào đang làm chậm tiến độ của bạn không?"
+                    "roleName": "Friend A",
+                    "textEn": "Sounds fast-paced! Do you enjoy it?",
+                    "textVi": "Nghe nhịp độ dồn dập ghê mày! Đi làm thế có thấy vui không?"
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "No major blockers. I just need someone from the backend team to review my PR when they have 10 minutes free.",
-                    "textVi": "Không có vướng mắc gì lớn. Tôi chỉ cần một bạn bên team backend tranh thủ xem giúp tôi cái PR khi có 10 phút rảnh thôi."
-                },
-                {
-                    "speaker": "ai",
-                    "roleName": "Scrum Master",
-                    "textEn": "I'll take a look at your PR right after this call. Thanks Alex!",
-                    "textVi": "Tôi sẽ xem qua PR của bạn ngay sau cuộc gọi này nhé. Cảm ơn Alex!"
+                    "roleName": "Friend B",
+                    "textEn": "Yeah, it can get stressful with all the shipping deadlines, but our team gets along really well, so that helps a lot.",
+                    "textVi": "Có chứ, nhiều lúc cũng đau đầu vì mấy cái hạn chót giờ tàu chạy, nhưng bù lại cả team tao chơi với nhau rất ăn ý nên cũng đỡ áp lực nhiều."
                 }
             ],
             "suggestedHints": [
-                "Yesterday I finished the user authentication flow.",
-                "Today I'm planning to work on the UI components and bug fixes.",
-                "I'm blocked by the missing API documentation from the DevOps team.",
-                "Everything is on track for tomorrow's demo."
+                "I'm a logistics coordinator at an international freight forwarding company.",
+                "My job is completely the opposite — our office is always buzzing!",
+                "I work closely with my colleagues every day to track shipments and clear customs.",
+                "Yeah, it can get stressful with all the shipping deadlines, but our team gets along well."
             ]
         },
         {
             "id": "workplace-scenario-2",
             "order": 2,
-            "section": "🤝 Hỗ trợ & Review code (Collaboration & Code Review)",
-            "titleEn": "Asking for Code Review & Pairing",
-            "titleVi": "Nhờ Review Code & Hỗ trợ kỹ thuật",
-            "situation": "Bạn gặp một bug hóc búa liên quan đến bộ nhớ hoặc bất đồng bộ. Bạn nhắn tin cho Senior Engineer nhờ họ xem qua Pull Request và pair programming cùng bạn 15 phút.",
+            "section": "⏰ Áp lực & Cân bằng cuộc sống (Deadlines & Work-Life Balance)",
+            "titleEn": "Daily Challenges & Deadlines",
+            "titleVi": "Áp lực giờ tàu chạy & Cân bằng cuộc sống",
+            "situation": "Giờ nghỉ trưa hoặc cafe sau giờ làm việc, tâm sự về khó khăn lớn nhất của nghề giao nhận.",
             "defaultRoles": {
                 "ai": {
                     "id": "ai",
-                    "name": "Senior Engineer",
-                    "titleEn": "Senior Software Engineer",
-                    "titleVi": "Kỹ sư thâm niên (David)",
-                    "avatar": "👨‍💻"
+                    "name": "Friend A",
+                    "titleEn": "Friend / Peer",
+                    "titleVi": "Bạn thân",
+                    "avatar": "☕"
                 },
                 "user": {
                     "id": "user",
-                    "name": "Developer",
-                    "titleEn": "Developer",
-                    "titleVi": "Kỹ sư phần mềm (Bạn)",
+                    "name": "Friend B",
+                    "titleEn": "Logistics Coordinator",
+                    "titleVi": "Điều phối viên Logistics (Bạn)",
                     "avatar": "👤"
                 }
             },
-            "initialMessageEn": "Hey Alex! Do you have a minute? You pinged me on Slack earlier.",
-            "initialMessageVi": "Chào Alex! Bạn có rảnh một lát không? Lúc nãy bạn có nhắn cho tôi trên Slack.",
+            "initialMessageEn": "You look a bit drained today. Is everything okay at the company?",
+            "initialMessageVi": "Hôm nay trông mặt mày bơ phờ thế. Việc ở công ty có biến gì à?",
             "vocabulary": [
                 {
                     "id": "vocab-w2-1",
-                    "word": "pair programming",
-                    "partOfSpeech": "n phr",
-                    "ipa": "/per ˈproʊɡræmɪŋ/",
-                    "meaningVi": "lập trình đôi (hai lập trình viên cùng ngồi soi code)",
-                    "synonyms": ["pairing session (buổi làm việc đôi)"],
-                    "antonyms": ["solo coding (tự làm một mình)"],
+                    "word": "deadline",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈdedlaɪn/",
+                    "meaningVi": "hạn chót nộp công việc, chứng từ hoặc giờ cắt máng giao hàng",
+                    "synonyms": ["due date (ngày đáo hạn)", "cut-off (thời điểm chốt số liệu)"],
+                    "antonyms": [],
                     "collocations": [
-                        "hop on a quick pair programming call: vào một cuộc gọi lập trình đôi nhanh"
+                        "meet a deadline: hoàn thành kịp thời hạn chót",
+                        "tight deadline: hạn chót rất gấp gáp",
+                        "race against the deadline: chạy đua nước rút với hạn chót",
+                        "miss a deadline: bị trễ hạn chót"
                     ],
-                    "exampleEn": "Would you mind hopping on a 15-minute pairing session to look at this bug?",
-                    "exampleVi": "Bạn có phiền vào cuộc gọi đôi 15 phút để cùng xem con bug này được không?"
+                    "exampleEn": "Two export containers got held up, and the vessel cut-off deadline is 5 PM today!",
+                    "exampleVi": "Hai cái container xuất bị giữ lại, mà hạn chót giờ tàu cắt máng là 5 giờ chiều nay!"
                 },
                 {
                     "id": "vocab-w2-2",
-                    "word": "reproduce",
-                    "partOfSpeech": "v",
-                    "ipa": "/ˌriːprəˈduːs/",
-                    "meaningVi": "tái hiện lại lỗi (bug)",
-                    "synonyms": ["replicate (tái lập lại hiện tượng)"],
-                    "antonyms": [],
+                    "word": "work-life balance",
+                    "partOfSpeech": "n phr",
+                    "ipa": "/ˌwɜːrk laɪf ˈbæləns/",
+                    "meaningVi": "sự cân bằng giữa thời gian làm việc và đời sống cá nhân",
+                    "synonyms": ["healthy lifestyle (lối sống lành mạnh)"],
+                    "antonyms": ["burnout (sự kiệt sức do quá tải công việc)", "workaholism (nghiện công việc bỏ quên cuộc sống)"],
                     "collocations": [
-                        "steps to reproduce: các bước để tái hiện lỗi",
-                        "hard to reproduce: lỗi chập chờn khó tái hiện"
+                        "maintain a healthy work-life balance: duy trì sự cân bằng công việc - cuộc sống tốt",
+                        "struggle with work-life balance: chật vật giữ cân bằng giữa công việc và đời sống riêng",
+                        "disrupt work-life balance: làm đảo lộn cân bằng cuộc sống"
                     ],
-                    "exampleEn": "I was able to reproduce the crash consistently on mobile Safari.",
-                    "exampleVi": "Tôi đã tái hiện được lỗi crash một cách ổn định trên trình duyệt Safari điện thoại."
-                },
-                {
-                    "id": "vocab-w2-3",
-                    "word": "edge case",
-                    "partOfSpeech": "n",
-                    "ipa": "/edʒ keɪs/",
-                    "meaningVi": "trường hợp biên / ngoại lệ hiếm khi xảy ra nhưng vẫn gây lỗi",
-                    "synonyms": ["corner case (trường hợp góc hiểm)", "boundary condition (điều kiện biên)"],
-                    "antonyms": ["happy path (luồng chuẩn thuận lợi)"],
-                    "collocations": [
-                        "handle edge cases: xử lý các trường hợp ngoại lệ",
-                        "uncovered edge case: trường hợp biên chưa được kiểm thử"
-                    ],
-                    "exampleEn": "Make sure your function handles edge cases like empty strings or null inputs.",
-                    "exampleVi": "Hãy đảm bảo hàm của bạn xử lý được các trường hợp biên như chuỗi rỗng hay giá trị null."
+                    "exampleEn": "Foreign agents keep emailing at midnight, so it's super tough to maintain a healthy work-life balance.",
+                    "exampleVi": "Đại lý nước ngoài toàn nhắn tin lúc nửa đêm, nên tao muốn giữ cân bằng giữa công việc với cuộc sống khó kinh khủng."
                 }
             ],
             "sampleDialogue": [
                 {
                     "speaker": "ai",
-                    "roleName": "Senior Engineer",
-                    "textEn": "Hey Alex! Do you have a minute? You pinged me on Slack earlier.",
-                    "textVi": "Chào Alex! Bạn có rảnh một lát không? Lúc nãy bạn có nhắn cho tôi trên Slack."
+                    "roleName": "Friend A",
+                    "textEn": "You look a bit drained today. Is everything okay at the company?",
+                    "textVi": "Hôm nay trông mặt mày bơ phờ thế. Việc ở công ty có biến gì à?"
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Hey David, thanks for getting back to me! I opened PR #142 for the audio recording feature, and I'm running into a strange race condition on mobile.",
-                    "textVi": "Chào David, cảm ơn bạn đã phản hồi! Tôi vừa mở PR số 142 cho tính năng ghi âm giọng nói, và đang gặp hiện tượng race condition khá lạ trên mobile."
+                    "roleName": "Friend B",
+                    "textEn": "It's our peak shipping season, so we're constantly racing against tight deadlines. Two export containers got held up at the port, and the vessel cut-off is 5 PM today!",
+                    "textVi": "Đang vào đợt cao điểm giao hàng mà, cả phòng tao lúc nào cũng phải chạy đua rượt deadline trối chết. Có hai cái cont xuất đang bị kẹt ngoài cảng, mà 5 giờ chiều nay hãng tàu nó chốt giờ cắt máng rồi!"
                 },
                 {
                     "speaker": "ai",
-                    "roleName": "Senior Engineer",
-                    "textEn": "Interesting. Were you able to reproduce it consistently in local development?",
-                    "textVi": "Thú vị đấy. Bạn có tái hiện được lỗi một cách ổn định ở môi trường dev local không?"
+                    "roleName": "Friend A",
+                    "textEn": "Oof, that sounds stressful! Is that usually the hardest part of working in logistics?",
+                    "textVi": "Ui căng nhờ! Đấy có phải là cái ải khoai nhất của mày khi làm logistics không?"
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Yes, it happens whenever a user taps the mic button twice in rapid succession before the stream initializes.",
-                    "textVi": "Có, nó xảy ra bất cứ khi nào người dùng bấm nút mic 2 lần liên tiếp thật nhanh trước khi luồng âm thanh kịp khởi tạo."
+                    "roleName": "Friend B",
+                    "textEn": "Definitely. Logistics never really sleeps because of international time zones. Foreign agents keep emailing at midnight, so it's super tough to maintain a healthy work-life balance.",
+                    "textVi": "Chắc chắn rồi mày. Cái ngành này có ngủ bao giờ đâu vì lệch múi giờ quốc tế mà. Đại lý nước ngoài toàn nhắn tin nửa đêm nửa hôm, nên tao muốn giữ cân bằng giữa công việc với cuộc sống khó kinh khủng."
                 },
                 {
                     "speaker": "ai",
-                    "roleName": "Senior Engineer",
-                    "textEn": "Classic edge case! It sounds like the state cleanup isn't canceling the previous audio stream promise. Want to share your screen?",
-                    "textVi": "Đúng ca edge case kinh điển rồi! Nghe có vẻ như hàm cleanup state chưa hủy promise của luồng audio trước đó. Bạn chia sẻ màn hình đi?"
-                },
-                {
-                    "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Sure, sharing my screen now! Look at lines 45 to 60 in speech.ts.",
-                    "textVi": "Vâng, tôi chia sẻ màn hình ngay đây! Bạn nhìn dòng 45 đến 60 trong file speech.ts nhé."
+                    "roleName": "Friend A",
+                    "textEn": "Hang in there! Make sure you unplug and get some rest this weekend once the cargo is loaded.",
+                    "textVi": "Cố lên nhé mày! Hàng lên tàu xong xuôi thì cuối tuần nhớ tắt thông báo mà ngủ một giấc cho đã đời vào."
                 }
             ],
             "suggestedHints": [
-                "Could you take a quick look at my pull request when you have time?",
-                "I'm running into an unexpected issue with this API endpoint.",
-                "Would you mind hopping on a quick 10-minute call to pair on this bug?",
-                "Could you give me your thoughts on this architecture decision?"
+                "It's our peak shipping season, so we're constantly racing against tight deadlines.",
+                "Two export containers got held up at the port, and the vessel cut-off is 5 PM today!",
+                "Logistics never really sleeps because of international time zones.",
+                "Foreign agents keep emailing at midnight, so it's super tough to maintain a healthy work-life balance."
             ]
         },
         {
             "id": "workplace-scenario-3",
             "order": 3,
-            "section": "⏳ Tiến độ & Đàm phán Deadline (Deadlines & Scoping)",
-            "titleEn": "Discussing Deadlines & Pushing Back",
-            "titleVi": "Báo trễ tiến độ & Đàm phán dời Deadline",
-            "situation": "Do phát sinh vấn đề bảo mật phức tạp từ bên thứ ba, bạn nhận thấy không thể bàn giao tính năng đúng hạn thứ Sáu này. Bạn trao đổi với Project Manager một cách chuyên nghiệp, đưa ra phương án giải quyết và đề xuất dời deadline.",
+            "section": "📈 Mục tiêu 5 năm & Thăng tiến (Career Goals, Salary & Networking)",
+            "titleEn": "Five-Year Vision & Promotion (Banter)",
+            "titleVi": "Mục tiêu 5 năm & Cà khịa thăng tiến, lương bổng",
+            "situation": "Hai đứa bạn ngồi cà phê/trà đá sau giờ làm, A cà khịa hỏi câu phỏng vấn mẫu mực, B trả lời vừa bựa vừa thật.",
             "defaultRoles": {
                 "ai": {
                     "id": "ai",
-                    "name": "Project Manager",
-                    "titleEn": "Project Manager",
-                    "titleVi": "Quản lý Dự án (Emily)",
-                    "avatar": "📊"
+                    "name": "Friend A",
+                    "titleEn": "Close Friend (Teasing)",
+                    "titleVi": "Bạn thân (Cà khịa)",
+                    "avatar": "😏"
                 },
                 "user": {
                     "id": "user",
-                    "name": "Developer",
-                    "titleEn": "Developer",
-                    "titleVi": "Kỹ sư phần mềm (Bạn)",
+                    "name": "Friend B",
+                    "titleEn": "Logistics Coordinator",
+                    "titleVi": "Điều phối viên Logistics (Bạn)",
                     "avatar": "👤"
                 }
             },
-            "initialMessageEn": "Hi Alex, just checking in regarding Friday's release. Are we still on track to deploy the user export feature?",
-            "initialMessageVi": "Chào Alex, tôi muốn kiểm tra chút về đợt phát hành thứ Sáu này. Tính năng xuất dữ liệu người dùng có còn đúng tiến độ để deploy không bạn?",
+            "initialMessageEn": "So, my ambitious friend... where do you see yourself in five years? Still stuck at the office staring at Excel sheets of containers?",
+            "initialMessageVi": "Thế nào người bạn đầy tham vọng của tao... 5 năm nữa mày thấy mày ở đâu rồi? Vẫn cắm mặt ở văn phòng dán mắt vào mấy cái file Excel cont à?",
             "vocabulary": [
                 {
                     "id": "vocab-w3-1",
-                    "word": "push back",
-                    "partOfSpeech": "v phr",
-                    "ipa": "/pʊʃ bæk/",
-                    "meaningVi": "lùi lại / hoãn lại (thời hạn, deadline)",
-                    "synonyms": ["postpone (hoãn lại)", "extend the deadline (gia hạn deadline)", "delay (làm chậm)"],
-                    "antonyms": ["move up (đẩy sớm lịch)", "expedite (đẩy nhanh tiến độ)"],
+                    "word": "promotion",
+                    "partOfSpeech": "n",
+                    "ipa": "/prəˈmoʊʃn/",
+                    "meaningVi": "sự thăng chức, đề bạt lên cấp bậc cao hơn",
+                    "synonyms": ["advancement (sự thăng tiến)", "career progression (lộ trình phát triển cấp bậc)"],
+                    "antonyms": ["demotion (sự giáng chức)"],
                     "collocations": [
-                        "push back the release date: lùi ngày phát hành",
-                        "push back on requirements: thương lượng giảm bớt yêu cầu"
+                        "earn a promotion: đạt được sự thăng chức xứng đáng",
+                        "get a promotion to supervisor: được thăng chức lên giám sát",
+                        "be up for promotion: đang trong danh sách xem xét đề bạt"
                     ],
-                    "exampleEn": "I recommend pushing back the deployment by two days to ensure proper security testing.",
-                    "exampleVi": "Tôi đề xuất lùi ngày triển khai lại hai ngày để đảm bảo kiểm thử bảo mật kỹ càng."
+                    "exampleEn": "They'd better give me a promotion by next year, or I'll lose my mind!",
+                    "exampleVi": "Công ty liệu đường mà thăng chức cho tao sang năm đi, không là tao phát điên mất!"
                 },
                 {
                     "id": "vocab-w3-2",
-                    "word": "scope",
+                    "word": "salary",
                     "partOfSpeech": "n",
-                    "ipa": "/skoʊp/",
-                    "meaningVi": "phạm vi công việc / tính năng của dự án",
-                    "synonyms": ["project boundaries (ranh giới dự án)"],
+                    "ipa": "/ˈsæləri/",
+                    "meaningVi": "tiền lương định kỳ hằng tháng",
+                    "synonyms": ["pay (tiền thù lao)", "compensation (khoản đãi ngộ)", "wages (tiền công)"],
                     "antonyms": [],
                     "collocations": [
-                        "scope creep: tình trạng phạm vi dự án phình to mất kiểm soát",
-                        "reduce the scope: cắt giảm bớt phạm vi tính năng"
+                        "competitive salary: mức lương cạnh tranh trên thị trường",
+                        "salary raise / bump: sự tăng lương",
+                        "double my salary: tăng gấp đôi lương của tao"
                     ],
-                    "exampleEn": "We could reduce the scope for this release and ship the advanced filters in phase 2.",
-                    "exampleVi": "Chúng ta có thể cắt giảm phạm vi cho đợt release này và dời tính năng lọc nâng cao sang giai đoạn 2."
+                    "exampleEn": "I hope they double my salary so I can afford rent and therapy.",
+                    "exampleVi": "Tao mong công ty tăng gấp đôi lương cho tao để còn có tiền trả tiền nhà với đi chữa lành."
                 },
                 {
                     "id": "vocab-w3-3",
-                    "word": "unforeseen",
-                    "partOfSpeech": "adj",
-                    "ipa": "/ˌʌnfɔːrˈsiːn/",
-                    "meaningVi": "không lường trước được / bất ngờ phát sinh",
-                    "synonyms": ["unexpected (bất ngờ)", "unanticipated (chưa tính tới)"],
-                    "antonyms": ["foreseen (đã dự tính trước)", "anticipated (trong dự liệu)"],
+                    "word": "networking",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈnetwɜːrkɪŋ/",
+                    "meaningVi": "hoạt động giao lưu kết nối mạng lưới quan hệ công việc",
+                    "synonyms": ["building connections (xây dựng mối quan hệ)", "socializing for business (giao lưu vì công việc)"],
+                    "antonyms": [],
                     "collocations": [
-                        "unforeseen technical complication: trục trặc kỹ thuật phát sinh ngoài dự kiến",
-                        "unforeseen bug: lỗi bất ngờ"
+                        "professional networking: kết nối quan hệ nghề nghiệp",
+                        "industry networking: giao lưu trong giới chuyên ngành",
+                        "master at networking: bậc thầy ngoại giao kết nối quan hệ"
                     ],
-                    "exampleEn": "Due to some unforeseen complications with the legacy database, we need more testing time.",
-                    "exampleVi": "Do một số trục trặc kỹ thuật phát sinh ngoài dự kiến với cơ sở dữ liệu cũ, chúng tôi cần thêm thời gian để kiểm thử."
+                    "exampleEn": "Going for beers with shipping line reps on Friday nights is my favorite kind of networking!",
+                    "exampleVi": "Tối thứ Sáu đi nhậu bia bọt với mấy đứa bên hãng tàu là kiểu networking tao khoái nhất!"
                 }
             ],
             "sampleDialogue": [
                 {
                     "speaker": "ai",
-                    "roleName": "Project Manager",
-                    "textEn": "Hi Alex, just checking in regarding Friday's release. Are we still on track to deploy the user export feature?",
-                    "textVi": "Chào Alex, tôi muốn kiểm tra chút về đợt phát hành thứ Sáu này. Tính năng xuất dữ liệu người dùng có còn đúng tiến độ để deploy không bạn?"
+                    "roleName": "Friend A",
+                    "textEn": "So, my ambitious friend... where do you see yourself in five years? Still stuck at the office staring at Excel sheets of containers?",
+                    "textVi": "Thế nào người bạn đầy tham vọng của tao... 5 năm nữa mày thấy mày ở đâu rồi? Vẫn cắm mặt ở văn phòng dán mắt vào mấy cái file Excel cont à?"
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Hi Emily, thanks for checking in. To be transparent, we hit an unforeseen technical complication with data privacy compliance yesterday.",
-                    "textVi": "Chào Emily, cảm ơn bạn đã quan tâm. Để thẳng thắn và minh bạch thì hôm qua chúng tôi vấp phải một trục trặc kỹ thuật phát sinh ngoài dự kiến liên quan đến bảo mật quyền riêng tư dữ liệu."
+                    "roleName": "Friend B",
+                    "textEn": "Five years? Honestly, I just hope I'm still alive and haven't lost all my hair! But seriously, they'd better give me a promotion by then, or at least double my salary so I can afford therapy.",
+                    "textVi": "5 năm nữa á? Thề, tao chỉ mong lúc đấy còn sống và chưa rụng hết tóc vì stress thôi! Nhưng mà nói nghiêm túc thì công ty liệu đường mà thăng chức cho tao, hoặc ít nhất phải tăng gấp đôi lương để tao còn có tiền đi chữa lành tâm lý."
                 },
                 {
                     "speaker": "ai",
-                    "roleName": "Project Manager",
-                    "textEn": "Oh, that sounds critical. What does this mean for our Friday delivery timeline?",
-                    "textVi": "Ôi, nghe có vẻ nghiêm trọng đấy. Thế điều này ảnh hưởng thế nào đến mốc bàn giao thứ Sáu của chúng ta?"
+                    "roleName": "Friend A",
+                    "textEn": "Haha, fair enough! What about all that fancy professional networking people keep bragging about on LinkedIn? You doing any of that?",
+                    "textVi": "Haha chí lý! Thế còn cái món \"networking\" quan hệ kết nối thượng lưu mà dân tình hay khoe mẽ trên LinkedIn thì sao? Mày có làm màu vụ đấy không?"
                 },
                 {
                     "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "If we rush it for Friday, there is a high risk of leaking sensitive fields. I strongly recommend either pushing back the release to Tuesday, or reducing the scope to export public profiles only for now.",
-                    "textVi": "Nếu cố ép phát hành vào thứ Sáu, nguy cơ rò rỉ các trường dữ liệu nhạy cảm là rất cao. Tôi tha thiết đề xuất hoặc là lùi ngày phát hành sang thứ Ba, hoặc giảm phạm vi chỉ cho xuất dữ liệu hồ sơ công khai trước."
+                    "roleName": "Friend B",
+                    "textEn": "Oh, totally! If you mean going for beers and hotpot with the shipping line reps on Friday nights so they stop rolling my containers... then yes, I'm an absolute master at networking!",
+                    "textVi": "Ối dồi ôi, có chứ! Nếu ý mày là tối thứ Sáu đi nhậu lẩu bia bọt với mấy đứa bên hãng tàu để tụi nó đừng có đá rớt cont của tao nữa... thì vâng, tao là bậc thầy ngoại giao \"networking\" luôn nhé!"
                 },
                 {
                     "speaker": "ai",
-                    "roleName": "Project Manager",
-                    "textEn": "I appreciate you flagging this early. Quality and security always come first. Let's push back the release to Tuesday next week so you have enough breathing room to test.",
-                    "textVi": "Tôi rất cảm kích vì bạn đã báo sớm vấn đề này. Chất lượng và bảo mật luôn luôn là ưu tiên hàng đầu. Chúng ta sẽ lùi lịch sang thứ Ba tuần sau để các bạn có đủ thời gian kiểm thử an tâm nhé."
-                },
-                {
-                    "speaker": "user",
-                    "roleName": "Developer",
-                    "textEn": "Thank you Emily! I'll update the Jira ticket status and share a detailed test plan by tomorrow morning.",
-                    "textVi": "Cảm ơn Emily! Tôi sẽ cập nhật trạng thái trên Jira và gửi kế hoạch kiểm thử chi tiết trước sáng mai nhé."
+                    "roleName": "Friend A",
+                    "textEn": "Hahaha! The best kind of business strategy. Cheers to that!",
+                    "textVi": "Hahaha! Đúng chuẩn bài sinh tồn luôn. Nâng ly nào!"
                 }
             ],
             "suggestedHints": [
-                "To be transparent, we ran into an unforeseen complication with the legacy code.",
-                "I recommend pushing back the deployment date by two days.",
-                "Alternatively, we could descope the complex filtering for this sprint.",
-                "I appreciate your understanding. I will keep you posted on our progress."
+                "Honestly, I just hope I'm still alive and haven't lost all my hair!",
+                "They'd better give me a promotion by then, or at least double my salary so I can afford therapy.",
+                "Haha, what about that fancy professional networking on LinkedIn?",
+                "Going for beers and hotpot with shipping line reps is the ultimate networking!"
+            ]
+        },
+        {
+            "id": "workplace-scenario-4",
+            "order": 4,
+            "section": "🚪 Bước ngoặt sự nghiệp & Nghỉ việc (Transition & Resignation)",
+            "titleEn": "Taking the Leap & Resignation",
+            "titleVi": "Chuyện nghề: Đồng nghiệp xin nghỉ việc",
+            "situation": "Giờ giải lao tại văn phòng, bàn luận về việc một đồng nghiệp lâu năm vừa nộp đơn xin nghỉ việc.",
+            "defaultRoles": {
+                "ai": {
+                    "id": "ai",
+                    "name": "Colleague A",
+                    "titleEn": "Colleague A",
+                    "titleVi": "Đồng nghiệp A",
+                    "avatar": "🗣️"
+                },
+                "user": {
+                    "id": "user",
+                    "name": "Colleague B",
+                    "titleEn": "Logistics Coordinator",
+                    "titleVi": "Điều phối viên Logistics (Bạn)",
+                    "avatar": "👤"
+                }
+            },
+            "initialMessageEn": "Did you hear the news? Michael from customer service decided to resign yesterday.",
+            "initialMessageVi": "Mày nghe tin gì chưa? Anh Michael bên chăm sóc khách hàng hôm qua vừa nộp đơn xin nghỉ việc đấy.",
+            "vocabulary": [
+                {
+                    "id": "vocab-w4-1",
+                    "word": "internship",
+                    "partOfSpeech": "n",
+                    "ipa": "/ˈɪntɜːrnʃɪp/",
+                    "meaningVi": "kỳ thực tập để lấy kinh nghiệm thực tế của sinh viên hoặc người mới vào nghề",
+                    "synonyms": ["practicum (kỳ thực hành)", "training period (thời gian đào tạo thực tế)"],
+                    "antonyms": [],
+                    "collocations": [
+                        "do an internship: trải qua một kỳ thực tập",
+                        "summer internship: kỳ thực tập mùa hè",
+                        "internship student / intern: thực tập sinh"
+                    ],
+                    "exampleEn": "Michael has been with our logistics firm ever since his university internship.",
+                    "exampleVi": "Anh Michael gắn bó với công ty logistics của tụi tao từ hồi còn là thực tập sinh thời đại học."
+                },
+                {
+                    "id": "vocab-w4-2",
+                    "word": "resign",
+                    "partOfSpeech": "v",
+                    "ipa": "/rɪˈzaɪn/",
+                    "meaningVi": "từ chức, nộp đơn xin nghỉ việc",
+                    "synonyms": ["quit (nghỉ việc)", "tender one's resignation (nộp đơn từ chức)", "hand in one's notice (nộp thông báo nghỉ việc)"],
+                    "antonyms": ["hire (tuyển dụng)", "join a company (gia nhập công ty)"],
+                    "collocations": [
+                        "resign from a position: từ chức khỏi một vị trí",
+                        "decide to resign: quyết định nộp đơn thôi việc",
+                        "resign to pursue new challenges: nghỉ việc để theo đuổi các thử thách mới"
+                    ],
+                    "exampleEn": "He decided to resign to join a major shipping line with higher pay.",
+                    "exampleVi": "Ổng quyết định nộp đơn xin nghỉ việc để nhảy sang một hãng tàu lớn với mức lương cao hơn."
+                }
+            ],
+            "sampleDialogue": [
+                {
+                    "speaker": "ai",
+                    "roleName": "Colleague A",
+                    "textEn": "Did you hear the news? Michael from customer service decided to resign yesterday.",
+                    "textVi": "Mày nghe tin gì chưa? Anh Michael bên chăm sóc khách hàng hôm qua vừa nộp đơn xin nghỉ việc đấy."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Colleague B",
+                    "textEn": "Really? Wow, he's been with our company since his university internship! That's almost five years of hard work.",
+                    "textVi": "Thật á? Uầy, ổng gắn bó với công ty tao từ hồi còn là thực tập sinh thời đại học cơ mà! Tính ra cũng cày cuốc ngót nghét 5 năm rồi đấy."
+                },
+                {
+                    "speaker": "ai",
+                    "roleName": "Colleague A",
+                    "textEn": "Yeah, he received an offer from a major shipping line with higher pay and international relocation opportunities.",
+                    "textVi": "Ừ, ổng nhận được lời mời từ một hãng tàu lớn, lương cao hơn lại còn có cơ hội được cử đi làm ở nước ngoài nữa mày ạ."
+                },
+                {
+                    "speaker": "user",
+                    "roleName": "Colleague B",
+                    "textEn": "I'll miss working with him as a colleague, but it's a fantastic career step. We should throw him a farewell dinner this Friday!",
+                    "textVi": "Tao sẽ nhớ ổng phết vì làm đồng nghiệp với nhau bao năm, nhưng mà đúng là bước tiến ngon nghẻ cho sự nghiệp của ổng. Thứ Sáu này phòng tao phải làm bữa tiệc chia tay ra trò mới được!"
+                }
+            ],
+            "suggestedHints": [
+                "Really? Wow, he's been with our company since his university internship!",
+                "That's almost five years of hard work.",
+                "He received an offer from a major shipping line with higher pay.",
+                "I'll miss working with him as a colleague, but we should throw him a farewell dinner!"
             ]
         }
-    ]
+    ],
+    "appendix": """## 📋 BẢNG TRA CỨU CÂU HỎI KHỞI ĐỘNG & MẪU CÂU GIAO TIẾP CÔNG SỞ (ANH - VIỆT)
+
+--- PHẦN 1: 4 CÂU HỎI KHỞI ĐỘNG (STARTER QUESTIONS) - BẢN CHUẨN DÂN LOGISTICS ---
+
+1. **What do you do for a living? (Mày đang làm nghề ngỗng gì thế?)**
+   - **EN:** "I'm a logistics coordinator at an international freight forwarding company. I handle import-export documentation, coordinate with shipping lines, and make sure containers clear customs without delays."
+   - **VI:** "Tao làm điều phối viên logistics ở một công ty giao nhận vận tải quốc tế. Công việc chính của tao là xử lý bộ chứng từ xuất nhập khẩu, làm việc với các hãng tàu, và đảm bảo container thông quan đúng tiến độ."
+
+2. **What's the most challenging part of your job? (Phần khó khăn nhất trong công việc của mày là gì?)**
+   - **EN:** "Definitely racing against strict shipping deadlines and managing unexpected customs delays. Because of international time differences, foreign agents often email at night, which makes keeping a healthy work-life balance pretty tough."
+   - **VI:** "Khó nhất với tao chắc chắn là rượt đuổi với mấy cái deadline giờ tàu chạy và xử lý sự cố hàng kẹt ở hải quan. Đã thế vì lệch múi giờ quốc tế nên đại lý nước ngoài toàn nhắn tin ban đêm, thành ra tao muốn giữ cân bằng giữa công việc với cuộc sống riêng khoai lắm."
+
+3. **Where do you see yourself professionally in five years? (5 năm nữa mày thấy mày ở đâu rồi?)**
+   - **EN:** "Hopefully not losing my mind over delayed shipments! In five years, I just want a promotion with a much better salary, and solid networking connections with carriers so my cargo never gets bumped again."
+   - **VI:** "Hy vọng lúc đấy tao chưa phát điên vì hàng chậm trễ! 5 năm nữa tao chỉ mong được thăng chức với mức lương ngon hơn, và có mạng lưới quan hệ đủ thân thiết với các hãng tàu để hàng không bao giờ bị đá rớt cont nữa."
+
+4. **Would you rather work from home or in an office? (Mày thích làm ở nhà hay lên văn phòng hơn?)**
+   - **EN:** "I definitely prefer working in an office. In logistics, things happen fast and shipments can get delayed at any moment. Being right next to my colleagues makes it so much easier to brainstorm and solve cargo problems on the spot."
+   - **VI:** "Tao chắc chắn chọn làm ở văn phòng. Trong ngành logistics, mọi việc diễn ra cực nhanh và hàng có thể gặp trục trặc bất cứ lúc nào. Ngồi ngay cạnh anh em đồng nghiệp giúp tao bàn bạc và xử lý sự cố tại chỗ nhanh hơn rất nhiều."
+
+--- PHẦN 2: 25 MẪU CÂU PHẢN XẠ NGHỀ NGHIỆP & CÔNG SỞ THỰC CHIẾN ---
+
+[Hỏi & Trả lời về nghề nghiệp, môi trường làm việc]
+1. What do you do for a living? (Mày đang làm công việc gì thế?)
+2. I work in the logistics and supply chain sector. (Tao làm trong mảng logistics và chuỗi cung ứng.)
+3. I'm a logistics coordinator for a freight forwarder. (Tao là điều phối viên logistics cho công ty giao nhận.)
+4. Does your company allow remote work? (Công ty mày có cho làm việc từ xa không?)
+5. We work 100% on-site at the office. (Bên tao làm việc 100% trực tiếp tại văn phòng.)
+6. I prefer working in the office with my colleagues. (Tao thích làm việc tại văn phòng cùng đồng nghiệp hơn.)
+7. We need to handle original shipping papers on the spot. (Bọn tao phải xử lý giấy tờ chứng từ gốc ngay tại chỗ.)
+
+[Thảo luận về áp lực, Deadline & Cân bằng cuộc sống]
+8. We are racing against a tight vessel cut-off deadline. (Bọn tao đang phải chạy đua với giờ cắt máng của tàu rất gấp.)
+9. Two export containers got held up at customs. (Hai container hàng xuất khẩu đang bị nghẽn ở hải quan.)
+10. The shipping line moved up the cut-off time to 5 PM. (Hãng tàu đẩy giờ cắt máng lên sớm lúc 5 giờ chiều.)
+11. What's the most challenging part of your daily routine? (Phần khó nhằn nhất trong ngày làm việc của mày là gì?)
+12. It's really hard to maintain a healthy work-life balance. (Muốn giữ cân bằng giữa công việc và đời sống riêng khó lắm.)
+13. Foreign partners keep calling me at midnight. (Đối tác nước ngoài toàn gọi cho tao lúc nửa đêm.)
+14. Don't let yourself burn out during peak season. (Đừng để bị kiệt sức trong mùa cao điểm này nhé.)
+
+[Mục tiêu nghề nghiệp, Thăng tiến & Mức lương]
+15. Where do you see yourself professionally in five years? (5 năm nữa mày thấy mày sẽ ở vị trí nào?)
+16. I'm aiming for a promotion to Logistics Team Leader. (Tao đang nhắm tới việc được thăng chức lên Trưởng nhóm.)
+17. I hope to earn a more competitive salary next year. (Tao mong sang năm sẽ kiếm được mức lương cạnh tranh hơn.)
+18. Hard work should be rewarded with a decent salary raise. (Làm việc chăm chỉ thì phải được đền đáp bằng mức tăng lương xứng đáng.)
+19. We should do more industry networking to build connections. (Tụi mình nên tích cực đi kết nối quan hệ trong ngành nhiều hơn.)
+20. Building good rapport with carrier reps saves your containers. (Tạo quan hệ tốt với đại diện hãng tàu sẽ cứu được cont của mày đấy.)
+
+[Thực tập, Chuyển việc & Quyết định nghỉ việc]
+21. He started at our company as an intern five years ago. (Ổng bắt đầu ở công ty tao từ hồi còn là thực tập sinh 5 năm trước.)
+22. Did you hear that he decided to resign yesterday? (Mày nghe tin ổng quyết định nộp đơn xin thôi việc hôm qua chưa?)
+23. She received a great offer from an international shipping line. (Bả nhận được lời mời hấp dẫn từ một hãng tàu quốc tế.)
+24. It takes courage to resign and step out of your comfort zone. (Cần nhiều can đảm để nộp đơn nghỉ việc và bước ra khỏi vùng an toàn.)
+25. Let's organize a warm farewell dinner for him this weekend! (Tụi mình cùng tổ chức một bữa tiệc chia tay thật ấm cúng cho ổng cuối tuần này nhé!)
+"""
 }

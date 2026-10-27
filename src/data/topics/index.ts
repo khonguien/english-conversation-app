@@ -9,11 +9,11 @@ import socializingTopic from "./socializing.json";
 import workplaceTopic from "./workplace.json";
 
 export const ALL_TOPICS: Topic[] = [
-  cafeTopic as unknown as Topic,
   airportTopic as unknown as Topic,
   restaurantTopic as unknown as Topic,
   hotelTopic as unknown as Topic,
   transportationTopic as unknown as Topic,
+  cafeTopic as unknown as Topic,
   shoppingTopic as unknown as Topic,
   socializingTopic as unknown as Topic,
   workplaceTopic as unknown as Topic,
