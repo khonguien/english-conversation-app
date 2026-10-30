@@ -13,6 +13,8 @@ interface WoodenCassetteRackProps {
   completedScenarioIds?: string[];
   pullingScenarioId?: string | null;
   returningScenarioId?: string | null;
+  isCollapsed?: boolean;
+  onToggleCollapse?: () => void;
 }
 
 // Vintage cassette spine color palette inspired by authentic 70s-80s tape collections
@@ -36,16 +38,21 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
   completedScenarioIds = [],
   pullingScenarioId = null,
   returningScenarioId = null,
+  isCollapsed = false,
+  onToggleCollapse,
 }) => {
   // We display 3 topic columns side-by-side in the wooden rack (like the 3-4 column rack in Image 1)
   const [columnOffset, setColumnOffset] = useState<number>(() => {
     const idx = topics.findIndex((t) => t.id === selectedTopic.id);
-    return Math.max(0, Math.min(idx, topics.length - 3));
+    return Math.max(0, Math.min(idx, Math.max(0, topics.length - 3)));
   });
 
   const visibleTopics = useMemo(() => {
+    if (isCollapsed) {
+      return [selectedTopic];
+    }
     return topics.slice(columnOffset, columnOffset + 3);
-  }, [topics, columnOffset]);
+  }, [topics, columnOffset, isCollapsed, selectedTopic]);
 
   // Max 7 tapes per bay viewport (User directive: "tối đa là 7 băng, nếu nhiều hơn thì cuộn")
   const MAX_VISIBLE_TAPES = 7;
@@ -93,40 +100,53 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
             <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase text-amber-300">
-              CASSETTE ARCHIVE RACK
+              {isCollapsed ? "ACTIVE RACK" : "CASSETTE ARCHIVE RACK"}
             </span>
           </div>
 
-          <div className="flex items-center gap-2 text-xs">
+          {isCollapsed ? (
             <button
               type="button"
-              onClick={handlePrevColumns}
-              disabled={columnOffset === 0}
-              className="p-1 sm:px-2 sm:py-1 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 disabled:opacity-30 disabled:cursor-not-allowed border border-amber-900/40 transition-colors flex items-center gap-1 cursor-pointer"
-              title="Previous categories"
+              onClick={onToggleCollapse}
+              className="p-1 px-2.5 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 hover:text-amber-200 border border-amber-900/40 text-[10px] font-mono flex items-center gap-1.5 cursor-pointer transition-colors shadow-xs"
+              title="Expand shelf to browse all bays"
             >
-              <ChevronLeft className="w-3.5 h-3.5" />
-              <span className="hidden sm:inline font-mono text-[10px]">PREV</span>
+              <span>⤢ ALL BAYS</span>
             </button>
-            <span className="font-mono text-[10px] sm:text-xs text-amber-400/80">
-              {columnOffset + 1}–{Math.min(topics.length, columnOffset + 3)} / {topics.length}
-            </span>
-            <button
-              type="button"
-              onClick={handleNextColumns}
-              disabled={columnOffset >= topics.length - 3}
-              className="p-1 sm:px-2 sm:py-1 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 disabled:opacity-30 disabled:cursor-not-allowed border border-amber-900/40 transition-colors flex items-center gap-1 cursor-pointer"
-              title="Next categories"
-            >
-              <span className="hidden sm:inline font-mono text-[10px]">NEXT</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
+          ) : (
+            <div className="flex items-center gap-2 text-xs">
+              <button
+                type="button"
+                onClick={handlePrevColumns}
+                disabled={columnOffset === 0}
+                className="p-1 sm:px-2 sm:py-1 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 disabled:opacity-30 disabled:cursor-not-allowed border border-amber-900/40 transition-colors flex items-center gap-1 cursor-pointer"
+                title="Previous categories"
+              >
+                <ChevronLeft className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline font-mono text-[10px]">PREV</span>
+              </button>
+              <span className="font-mono text-[10px] sm:text-xs text-amber-400/80">
+                {columnOffset + 1}–{Math.min(topics.length, columnOffset + 3)} / {topics.length}
+              </span>
+              <button
+                type="button"
+                onClick={handleNextColumns}
+                disabled={columnOffset >= topics.length - 3}
+                className="p-1 sm:px-2 sm:py-1 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 disabled:opacity-30 disabled:cursor-not-allowed border border-amber-900/40 transition-colors flex items-center gap-1 cursor-pointer"
+                title="Next categories"
+              >
+                <span className="hidden sm:inline font-mono text-[10px]">NEXT</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Multi-Column Wooden Compartment Grid (As in Reference Image 1) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 items-stretch">
+        <div className={`grid gap-3 sm:gap-4 items-stretch ${isCollapsed ? "grid-cols-1" : "grid-cols-1 md:grid-cols-3"}`}>
           {visibleTopics.map((topic, colIdx) => {
+            const actualTopicIndex = topics.findIndex((t) => t.id === topic.id);
+            const bayNumber = actualTopicIndex >= 0 ? actualTopicIndex + 1 : colIdx + 1;
             const isTopicActive = selectedTopic.id === topic.id;
             const bayOffset = bayOffsets[topic.id] || 0;
             const visibleScenarios = topic.scenarios.slice(bayOffset, bayOffset + MAX_VISIBLE_TAPES);
@@ -163,7 +183,7 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                   <div className="flex-1 min-w-0 pr-2 flex flex-col justify-between h-full">
                     <div className="flex items-center gap-1.5">
                       <span className="text-[10px] font-mono tracking-wider text-amber-400 font-bold uppercase whitespace-nowrap">
-                        BAY 0{columnOffset + colIdx + 1}
+                        BAY {String(bayNumber).padStart(2, "0")}
                       </span>
                       <span className="text-[8px] font-mono font-bold text-amber-400/90 bg-[#140803] px-1.5 py-0.5 rounded border border-amber-950 whitespace-nowrap">
                         {topic.scenarios.length} TAPES
@@ -326,16 +346,20 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
 
         {/* Ambient Cassette Resting on the Table (Authentic Detail from Image 1) */}
         <div className="mt-4 pt-3 border-t border-amber-950/60 flex items-center justify-between text-xs text-amber-300/70">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-[10px] text-amber-400 uppercase tracking-wider">
-              ✦ Click any cassette on the shelf to extract & load into radio
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="font-mono text-[10px] text-amber-400 uppercase tracking-wider truncate">
+              {isCollapsed
+                ? `✦ ACTIVE BAY ${String(selectedTopic ? topics.findIndex((t) => t.id === selectedTopic.id) + 1 : 1).padStart(2, "0")} • LOADED INTO RADIO`
+                : "✦ Click any cassette on the shelf to extract & load into radio"}
             </span>
           </div>
-          <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] text-amber-400/60">
-            <span>TABLETOP ARCHIVE</span>
-            <span>•</span>
-            <span>1984 VINTAGE SERIES</span>
-          </div>
+          {!isCollapsed && (
+            <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] text-amber-400/60 flex-shrink-0">
+              <span>TABLETOP ARCHIVE</span>
+              <span>•</span>
+              <span>1984 VINTAGE SERIES</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

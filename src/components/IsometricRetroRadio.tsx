@@ -17,7 +17,6 @@ import {
   Sliders,
 } from "lucide-react";
 import { Scenario, Topic, ChatMessage } from "@/types/conversation";
-import { AudioInputBar } from "./AudioInputBar";
 
 interface IsometricRetroRadioProps {
   topic: Topic;
@@ -45,6 +44,7 @@ interface IsometricRetroRadioProps {
   onToggleUserRole: () => void;
   onResetChat: () => void;
   doorState?: "closed" | "opening" | "inserting" | "closing";
+  isDialoguePanelActive?: boolean;
 }
 
 export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
@@ -73,6 +73,7 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
   onToggleUserRole,
   onResetChat,
   doorState = "closed",
+  isDialoguePanelActive = false,
 }) => {
   // Get latest AI message to float from the speaker grille
   const latestAiMessage = [...messages].reverse().find((m) => m.sender === "ai");
@@ -132,88 +133,30 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
   return (
     <div className="relative w-full flex flex-col items-center">
       {/* =========================================================================
-          ACOUSTIC DIALOGUE BUBBLE (Floats up from Radio Speaker Grille)
+          RADIO DECK STATUS DISPLAY: Clean Retro Amber LED Status Bar
          ========================================================================= */}
-      <div className="w-full max-w-xl min-h-[90px] mb-4 flex flex-col justify-end">
-        {latestAiMessage && scenario ? (
-          <div
-            className="relative self-end w-full sm:w-[92%] p-4 rounded-2xl bg-[#ffffff]/95 dark:bg-[#1f1a16]/95 border-2 border-amber-800/30 dark:border-amber-500/30 shadow-2xl backdrop-blur-md transition-all duration-300 animate-in fade-in slide-in-from-bottom-3"
-            style={{
-              boxShadow: "0 10px 25px -5px rgba(0,0,0,0.25), 0 0 15px rgba(245, 158, 11, 0.1)",
-            }}
-          >
-            {/* Audio Wave Sound Tag */}
-            <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-stone-200 dark:border-stone-800">
-              <div className="flex items-center gap-2">
-                <span className="relative flex h-2 w-2">
-                  {isPlaying && (
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-                  )}
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500" />
-                </span>
-                <span className="text-[11px] font-mono font-bold tracking-wider uppercase text-amber-700 dark:text-amber-400">
-                  {scenario.defaultRoles[userRole === "user" ? "ai" : "user"].titleEn} (AI)
-                </span>
-              </div>
-
-              <div className="flex items-center gap-1.5">
-                <button
-                  type="button"
-                  onClick={() => onPlayAudio(latestAiMessage.id, latestAiMessage.textEn)}
-                  className="p-1 rounded-md hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-600 dark:text-stone-300 transition-colors cursor-pointer"
-                  title="Replay phrase"
-                >
-                  <Volume2 className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => onToggleReveal(latestAiMessage.id)}
-                  className="p-1 rounded-md hover:bg-stone-100 dark:hover:bg-stone-800 text-stone-500 dark:text-stone-400 transition-colors cursor-pointer"
-                  title="Toggle translation"
-                >
-                  {latestAiMessage.revealed ? (
-                    <EyeOff className="w-3.5 h-3.5" />
-                  ) : (
-                    <Eye className="w-3.5 h-3.5" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Spoken Text (English & Optional Vietnamese) */}
-            <div className="text-sm sm:text-base font-medium text-stone-900 dark:text-stone-100 leading-snug">
-              {subtitlesEnabled || latestAiMessage.revealed ? (
-                <span>{latestAiMessage.textEn}</span>
-              ) : (
-                <span className="italic text-stone-400 dark:text-stone-500 text-xs">
-                  [Ear-First Mode: Listen to the audio or click eye icon to view text]
-                </span>
-              )}
-            </div>
-
-            {(latestAiMessage.revealed || subtitlesEnabled) && latestAiMessage.textVi && (
-              <div className="text-xs text-stone-500 dark:text-stone-400 mt-1 italic">
-                {latestAiMessage.textVi}
-              </div>
-            )}
-
-            {/* Pointer triangle connecting bubble to radio speaker grille */}
-            <div className="absolute -bottom-2.5 right-16 w-5 h-5 bg-[#ffffff] dark:bg-[#1f1a16] border-r-2 border-b-2 border-amber-800/30 dark:border-amber-500/30 transform rotate-45" />
-          </div>
-        ) : (
-          <div className="w-full text-center py-3 px-5 rounded-2xl bg-[#180e07] border-2 border-amber-950 text-amber-300/90 text-xs font-mono shadow-inner flex items-center justify-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
-            {scenario ? (
-              <span>
-                TAPE LOADED • Press orange <strong className="text-orange-400 font-bold uppercase">PLAY</strong> to start live dialogue
-              </span>
-            ) : (
-              <span className="text-stone-400">
-                DECK EMPTY • Select any cassette from the rack to insert into radio
-              </span>
-            )}
-          </div>
-        )}
+      <div className="w-full max-w-xl mb-3 flex items-center justify-between px-3.5 py-2 rounded-xl bg-[#140a04] border border-amber-950/80 font-mono text-xs shadow-inner">
+        <div className="flex items-center gap-2 min-w-0">
+          <span
+            className={`w-2 h-2 rounded-full flex-shrink-0 ${
+              isPlaying
+                ? "bg-amber-400 animate-pulse shadow-[0_0_8px_rgba(251,191,36,0.8)]"
+                : scenario
+                ? "bg-amber-500"
+                : "bg-stone-700"
+            }`}
+          />
+          <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider truncate">
+            {isPlaying
+              ? "RADIO BROADCAST • REELS ACTIVE"
+              : scenario
+              ? `TAPE LOADED: ${scenario.titleEn}`
+              : "DECK CAVITY EMPTY • SELECT CASSETTE"}
+          </span>
+        </div>
+        <span className="text-[10px] text-amber-500/70 uppercase font-bold flex-shrink-0 ml-2">
+          FM 98.4 MHZ
+        </span>
       </div>
 
       {/* =========================================================================
@@ -459,45 +402,52 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
               BOTTOM ROW: 4 Mechanical Hardware Push Buttons (Image 2)
              =================================================================== */}
           <div className="mt-5 pt-4 border-t-2 border-stone-300/80 dark:border-stone-700/80 grid grid-cols-4 gap-2 sm:gap-3">
-            {/* Button 1: EJECT */}
+            {/* Button 1: EJECT - Appears dim/sunken on idle, surface illuminates on hover without text brightening */}
             <button
               type="button"
               onClick={onEject}
               disabled={!scenario}
-              className="py-2.5 sm:py-3 px-2 rounded-xl font-mono text-xs font-bold text-stone-700 dark:text-stone-300 bg-gradient-to-b from-[#f2efea] to-[#dad6cc] hover:from-[#e8e4dc] hover:to-[#cecac0] disabled:opacity-40 disabled:cursor-not-allowed active:translate-y-0.5 border-t border-l border-white border-b-3 border-r-2 border-stone-400 shadow-md transition-all cursor-pointer flex flex-col items-center justify-center gap-1 group"
+              className="py-2.5 sm:py-3 px-2 rounded-xl font-mono text-xs font-bold active:translate-y-0.5 border-t border-l border-white/40 border-b-2 border-r border-stone-400/40 bg-[#dedad0]/65 dark:bg-[#1a1714] hover:bg-gradient-to-b hover:from-[#ffffff] hover:to-[#ede9df] dark:hover:from-[#2a2621] dark:hover:to-[#1e1b18] hover:border-white hover:border-b-stone-400 hover:shadow-md transition-all cursor-pointer flex flex-col items-center justify-center gap-1 group disabled:opacity-30 disabled:cursor-not-allowed select-none"
               title="Eject tape back to shelf"
             >
-              <Eject className="w-3.5 h-3.5 group-hover:text-stone-900" />
-              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase">EJECT</span>
+              <Eject className="w-3.5 h-3.5 text-stone-400/80 group-hover:text-stone-500 dark:text-stone-500 dark:group-hover:text-stone-400 transition-colors" />
+              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase text-stone-400/80 group-hover:text-stone-500 dark:text-stone-500 dark:group-hover:text-stone-400 transition-colors">
+                EJECT
+              </span>
             </button>
 
-            {/* Button 2: CC / SUBTITLES */}
+            {/* Button 2: CC / SUBTITLES - Appears dim/sunken on idle, surface illuminates on hover without text brightening */}
             <button
               type="button"
               onClick={onToggleSubtitles}
-              className={`py-2.5 sm:py-3 px-2 rounded-xl font-mono text-xs font-bold active:translate-y-0.5 border-t border-l border-white border-b-3 border-r-2 border-stone-400 shadow-md transition-all cursor-pointer flex flex-col items-center justify-center gap-1 ${
-                subtitlesEnabled
-                  ? "bg-gradient-to-b from-amber-100 to-amber-200 text-amber-900"
-                  : "bg-gradient-to-b from-[#f2efea] to-[#dad6cc] text-stone-700 dark:text-stone-300"
+              className={`py-2.5 sm:py-3 px-2 rounded-xl font-mono text-xs font-bold active:translate-y-0.5 border-t border-l border-white/40 border-b-2 border-r border-stone-400/40 bg-[#dedad0]/65 dark:bg-[#1a1714] hover:bg-gradient-to-b hover:from-[#ffffff] hover:to-[#ede9df] dark:hover:from-[#2a2621] dark:hover:to-[#1e1b18] hover:border-white hover:border-b-stone-400 hover:shadow-md transition-all cursor-pointer flex flex-col items-center justify-center gap-1 group select-none ${
+                subtitlesEnabled ? "ring-1 ring-amber-500/50" : ""
               }`}
               title="Toggle subtitles"
             >
-              <Eye className="w-3.5 h-3.5" />
-              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase">
+              <div className="flex items-center gap-1">
+                <Eye className="w-3.5 h-3.5 text-stone-400/80 group-hover:text-stone-500 dark:text-stone-500 dark:group-hover:text-stone-400 transition-colors" />
+                {subtitlesEnabled && (
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500/80 inline-block" />
+                )}
+              </div>
+              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase text-stone-400/80 group-hover:text-stone-500 dark:text-stone-500 dark:group-hover:text-stone-400 transition-colors">
                 {subtitlesEnabled ? "CC ON" : "CC OFF"}
               </span>
             </button>
 
-            {/* Button 3: STOP */}
+            {/* Button 3: STOP - Appears dim/sunken on idle, surface illuminates on hover without text brightening */}
             <button
               type="button"
               onClick={onStop}
               disabled={!scenario}
-              className="py-2.5 sm:py-3 px-2 rounded-xl font-mono text-xs font-bold text-stone-700 dark:text-stone-300 bg-gradient-to-b from-[#f2efea] to-[#dad6cc] hover:from-[#e8e4dc] hover:to-[#cecac0] disabled:opacity-40 disabled:cursor-not-allowed active:translate-y-0.5 border-t border-l border-white border-b-3 border-r-2 border-stone-400 shadow-md transition-all cursor-pointer flex flex-col items-center justify-center gap-1 group"
+              className="py-2.5 sm:py-3 px-2 rounded-xl font-mono text-xs font-bold active:translate-y-0.5 border-t border-l border-white/40 border-b-2 border-r border-stone-400/40 bg-[#dedad0]/65 dark:bg-[#1a1714] hover:bg-gradient-to-b hover:from-[#ffffff] hover:to-[#ede9df] dark:hover:from-[#2a2621] dark:hover:to-[#1e1b18] hover:border-white hover:border-b-stone-400 hover:shadow-md transition-all cursor-pointer flex flex-col items-center justify-center gap-1 group disabled:opacity-30 disabled:cursor-not-allowed select-none"
               title="Stop audio & pause"
             >
-              <Square className="w-3.5 h-3.5 fill-current text-stone-600 group-hover:text-red-600 transition-colors" />
-              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase">STOP</span>
+              <Square className="w-3.5 h-3.5 fill-current text-stone-400/80 group-hover:text-stone-500 dark:text-stone-500 dark:group-hover:text-stone-400 transition-colors" />
+              <span className="text-[9px] sm:text-[10px] tracking-wider uppercase text-stone-400/80 group-hover:text-stone-500 dark:text-stone-500 dark:group-hover:text-stone-400 transition-colors">
+                STOP
+              </span>
             </button>
 
             {/* Button 4: PLAY / TALK (VIBRANT ORANGE ACCENT BUTTON AS IN IMAGE 2) */}
@@ -519,23 +469,6 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
             </button>
           </div>
         </div>
-      </div>
-
-      {/* =========================================================================
-          USER VOICE DOCK (Situated Directly Below the Radio on the Wooden Desk)
-         ========================================================================= */}
-      <div className="w-full max-w-xl mt-4">
-        {scenario && (
-          <AudioInputBar
-            onSendMessage={onSendMessage}
-            disabled={isAiThinking}
-            suggestedHints={suggestedHints}
-            isAiSpeaking={isPlaying || activeAudioId !== null}
-            onStopAudio={onStopAudio}
-            onListeningChange={onListeningChange}
-            isInline={true}
-          />
-        )}
       </div>
     </div>
   );

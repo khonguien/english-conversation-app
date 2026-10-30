@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef, useMemo } from "react"
 import { ALL_TOPICS } from "@/data/topics";
 import { ChatMessage, Scenario, Topic } from "@/types/conversation";
 import { WoodenCassetteRack } from "@/components/WoodenCassetteRack";
+import { DialogueWorkbenchPanel } from "@/components/DialogueWorkbenchPanel";
 import { IsometricRetroRadio } from "@/components/IsometricRetroRadio";
 import { VocabularyDrawer } from "@/components/VocabularyDrawer";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -26,6 +27,7 @@ export default function Home() {
   const [isUserSpeaking, setIsUserSpeaking] = useState<boolean>(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [completedScenarioIds, setCompletedScenarioIds] = useState<string[]>([]);
+  const [isRackCollapsed, setIsRackCollapsed] = useState<boolean>(false);
   
   // Mechanical animation states
   const [pullingScenarioId, setPullingScenarioId] = useState<string | null>(null);
@@ -177,6 +179,9 @@ export default function Home() {
     unlockAudio();
     if (!currentScenario || isPlaying) return;
 
+    // User directive: khi đã chọn được băng + ĐÃ BẤM PLAY, kệ băng đĩa thụt qua bên trái thu gọn lại
+    setIsRackCollapsed(true);
+
     if (messages.length === 0) {
       initScenario(currentScenario, userRole, true);
     } else {
@@ -204,6 +209,7 @@ export default function Home() {
     stopSpeaking();
     setIsPlaying(false);
     setActiveAudioId(null);
+    setIsRackCollapsed(false);
 
     const ejectedScenario = currentScenario;
     setDoorState("opening");
@@ -527,12 +533,16 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tabletop Workbench Grid: Left = Wooden Rack (Image 1) | Right = 3D Radio (Image 2) */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative z-10">
+          {/* Tabletop Workbench Grid: Left = Wooden Rack | Middle = Dialogue (when playing) | Right = 3D Radio */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-8 items-start relative z-10 transition-all duration-500">
             {/* ===================================================================
-                LEFT: Wooden Multi-Compartment Cassette Rack (Image 1)
+                LEFT: Wooden Multi-Compartment Cassette Rack (Collapses to single active bay on PLAY)
                =================================================================== */}
-            <div className="lg:col-span-7 xl:col-span-7 flex flex-col">
+            <div
+              className={`${
+                isRackCollapsed ? "lg:col-span-3 xl:col-span-3" : "lg:col-span-7 xl:col-span-7"
+              } flex flex-col transition-all duration-500`}
+            >
               <WoodenCassetteRack
                 topics={ALL_TOPICS}
                 selectedTopic={currentTopic}
@@ -542,13 +552,48 @@ export default function Home() {
                 completedScenarioIds={completedScenarioIds}
                 pullingScenarioId={pullingScenarioId}
                 returningScenarioId={returningScenarioId}
+                isCollapsed={isRackCollapsed}
+                onToggleCollapse={() => setIsRackCollapsed(false)}
               />
             </div>
 
             {/* ===================================================================
-                RIGHT: 3D Isometric Retro Cassette Radio (Image 2)
+                MIDDLE: Amber Phosphor CRT Radar & Comms Terminal
                =================================================================== */}
-            <div className="lg:col-span-5 xl:col-span-5 flex flex-col items-center">
+            {isRackCollapsed && (
+              <div className="lg:col-span-5 xl:col-span-5 flex flex-col transition-all duration-500 animate-in fade-in slide-in-from-left-4">
+                <DialogueWorkbenchPanel
+                  scenario={currentScenario}
+                  topic={currentTopic}
+                  messages={messages}
+                  isAiThinking={isAiThinking}
+                  activeAudioId={activeAudioId}
+                  onPlayAudio={handlePlayAudio}
+                  onStopAudio={handleStopAudio}
+                  onToggleReveal={handleToggleReveal}
+                  subtitlesEnabled={subtitlesEnabled}
+                  userRole={userRole}
+                  onResetChat={() => {
+                    if (currentScenario) {
+                      initScenario(currentScenario, userRole, false);
+                    }
+                  }}
+                  suggestedHints={dynamicHints}
+                  onSendMessage={handleSendMessage}
+                  isUserSpeaking={isUserSpeaking}
+                  onListeningChange={setIsUserSpeaking}
+                />
+              </div>
+            )}
+
+            {/* ===================================================================
+                RIGHT: 3D Isometric Retro Cassette Radio (Pure Hardware Deck)
+               =================================================================== */}
+            <div
+              className={`${
+                isRackCollapsed ? "lg:col-span-4 xl:col-span-4" : "lg:col-span-5 xl:col-span-5"
+              } flex flex-col items-center transition-all duration-500`}
+            >
               <IsometricRetroRadio
                 topic={currentTopic}
                 scenario={currentScenario}
@@ -579,6 +624,7 @@ export default function Home() {
                   }
                 }}
                 doorState={doorState}
+                isDialoguePanelActive={isRackCollapsed}
               />
             </div>
           </div>

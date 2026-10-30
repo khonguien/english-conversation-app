@@ -20,6 +20,7 @@ interface AudioInputBarProps {
   onStopAudio?: () => void;
   onListeningChange?: (isListening: boolean) => void;
   isInline?: boolean;
+  hideSuggestions?: boolean;
 }
 
 export const AudioInputBar: React.FC<AudioInputBarProps> = ({
@@ -30,6 +31,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
   onStopAudio,
   onListeningChange,
   isInline = false,
+  hideSuggestions = false,
 }) => {
   const [inputText, setInputText] = useState("");
   const [isListening, setIsListening] = useState(false);
@@ -220,7 +222,7 @@ export const AudioInputBar: React.FC<AudioInputBarProps> = ({
     >
       <div className={isInline ? "w-full space-y-2.5" : "max-w-xl mx-auto pointer-events-auto space-y-2.5"}>
         {/* Suggestion Chips with Audio Listen Button */}
-        {suggestedHints.length > 0 && (
+        {!hideSuggestions && suggestedHints.length > 0 && (
           <div className="flex items-center gap-2 overflow-x-auto py-1 px-1 scrollbar-none">
             <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 bg-emerald-500/[0.1] px-3 py-1.5 rounded-full border border-emerald-500/20 whitespace-nowrap flex-shrink-0">
               <Sparkles className="w-3.5 h-3.5" />
