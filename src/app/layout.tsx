@@ -9,14 +9,14 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "English in Conversation - AI Roleplay",
+  title: "TapeTalk - AI Roleplay",
   description:
     "Luyện phản xạ giao tiếp tiếng Anh tương tác AI trên iPhone, iPad và Laptop theo chủ đề thực tế.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "EngConversation",
+    title: "TapeTalk",
   },
 };
 

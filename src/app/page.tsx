@@ -9,6 +9,13 @@ import { IsometricRetroRadio } from "@/components/IsometricRetroRadio";
 import { VocabularyDrawer } from "@/components/VocabularyDrawer";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { speakText, stopSpeaking, unlockAudio } from "@/utils/speech";
+import {
+  playTapePullSound,
+  playTapeInsertSound,
+  playTapeSlideInSound,
+  playRadioEjectSound,
+  playRadioClickSound,
+} from "@/utils/retroAudioFx";
 import { Headphones, Trophy, BookMarked, Sparkles } from "lucide-react";
 
 const SPEEDS = [0.8, 1.0, 1.2, 1.5];
@@ -33,6 +40,7 @@ export default function Home() {
   const [pullingScenarioId, setPullingScenarioId] = useState<string | null>(null);
   const [returningScenarioId, setReturningScenarioId] = useState<string | null>(null);
   const [doorState, setDoorState] = useState<"closed" | "opening" | "inserting" | "closing">("closed");
+  const isAnimatingRef = useRef<boolean>(false);
 
   // Speech rate ref for persistent value in speech synthesis callbacks
   const speechRateRef = useRef(speechRate);
@@ -135,41 +143,46 @@ export default function Home() {
     []
   );
 
-  // Mechanical Sequence: Pull tape from shelf -> Open Radio Door -> Insert Tape -> Close Radio Door
+  // Mechanical Sequence (Butter-smooth 60 FPS): Pull tape from shelf -> Open Radio Door -> Insert Tape -> Close Radio Door
   const handleSelectScenario = useCallback(
     (scenario: Scenario) => {
-      if (currentScenario?.id === scenario.id) return;
+      if (isAnimatingRef.current || currentScenario?.id === scenario.id) return;
+      isAnimatingRef.current = true;
       stopSpeaking();
       setIsPlaying(false);
       setActiveAudioId(null);
 
       const prevScenario = currentScenario;
 
-      // Phase 1: Tape pull-out from shelf + return old tape + open door
+      // Phase 1 (0ms): Tape pull-out from shelf + return old tape + radio door begins opening
+      playTapePullSound();
       setPullingScenarioId(scenario.id);
       if (prevScenario) {
         setReturningScenarioId(prevScenario.id);
       }
       setDoorState("opening");
 
-      // Phase 2 (300ms): Tape inserts into open radio bay
+      // Phase 2 (300ms): Tape pull-out reaches 0 opacity, enters open radio bay with mechanical drop
       setTimeout(() => {
+        playTapeInsertSound();
         setPullingScenarioId(null);
         setCurrentScenario(scenario);
         setDoorState("inserting");
       }, 300);
 
-      // Phase 3 (600ms): Radio bay snaps closed
+      // Phase 3 (600ms): Tape seated securely onto spindles, radio door begins closing with latch snap
       setTimeout(() => {
+        playRadioClickSound();
         setDoorState("closing");
         setReturningScenarioId(null);
       }, 600);
 
-      // Phase 4 (900ms): Steady closed state, ready for PLAY
+      // Phase 4 (920ms): Door fully seated closed, ready for PLAY
       setTimeout(() => {
         setDoorState("closed");
         initScenario(scenario, userRole, false);
-      }, 900);
+        isAnimatingRef.current = false;
+      }, 920);
     },
     [currentScenario, userRole, initScenario]
   );
@@ -203,9 +216,11 @@ export default function Home() {
     setActiveAudioId(null);
   };
 
-  // Eject button on radio: Radio bay opens and returns tape back to shelf slot
+  // Eject button on radio: Radio bay opens smoothly, tape returns to shelf slot, door latches closed
   const handleRadioEject = () => {
-    if (!currentScenario) return;
+    if (!currentScenario || isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    playRadioEjectSound();
     stopSpeaking();
     setIsPlaying(false);
     setActiveAudioId(null);
@@ -214,23 +229,30 @@ export default function Home() {
     const ejectedScenario = currentScenario;
     setDoorState("opening");
 
+    // Phase 1 (300ms): Door opened, tape leaves deck, rack begins sliding tape back into shelf slot
     setTimeout(() => {
+      playTapeSlideInSound();
       setReturningScenarioId(ejectedScenario.id);
       setCurrentScenario(null);
       setMessages([]);
-    }, 280);
+    }, 300);
 
+    // Phase 2 (520ms): Tape is returning smoothly into shelf rails, radio door begins smooth closing animation
+    setTimeout(() => {
+      setDoorState("closing");
+    }, 520);
+
+    // Phase 3 (840ms): Door closed firmly, returning animation completed, steady idle state
     setTimeout(() => {
       setDoorState("closed");
-    }, 550);
-
-    setTimeout(() => {
       setReturningScenarioId(null);
-    }, 850);
+      isAnimatingRef.current = false;
+    }, 840);
   };
 
   // Toggle roles
   const handleToggleRole = () => {
+    playRadioClickSound();
     const newRole = userRole === "user" ? "ai" : "user";
     setUserRole(newRole);
     if (currentScenario) {
@@ -240,6 +262,7 @@ export default function Home() {
 
   // Toggle subtitles / Ear-First Masking
   const handleToggleSubtitles = () => {
+    playRadioClickSound();
     setSubtitlesEnabled((prev) => !prev);
   };
 
@@ -445,10 +468,7 @@ export default function Home() {
             </div>
             <div>
               <span className="font-bold text-base sm:text-lg tracking-tight">
-                English in Conservation
-              </span>
-              <span className="hidden sm:inline-block text-xs text-stone-600 dark:text-stone-400 ml-2 font-medium">
-                • 2D Cassette Studio & Spoken Practice
+                TapeTalk
               </span>
             </div>
           </div>
@@ -516,6 +536,16 @@ export default function Home() {
                   ? `TAPE #${String(currentScenario.order || 1).padStart(2, "0")} LOADED`
                   : "RADIO DECK EMPTY"}
               </span>
+              {currentScenario && !isRackCollapsed && (
+                <button
+                  type="button"
+                  onClick={() => setIsRackCollapsed(true)}
+                  className="px-2.5 py-1 rounded bg-amber-950/90 hover:bg-amber-900 border border-amber-600/80 text-amber-300 hover:text-amber-100 text-[10px] font-mono font-bold flex items-center gap-1 cursor-pointer transition-all shadow-xs active:scale-95 animate-pulse"
+                  title="Return to active dialogue session"
+                >
+                  <span>⤡ RESUME CHAT</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={handleToggleRole}
@@ -553,7 +583,7 @@ export default function Home() {
                 pullingScenarioId={pullingScenarioId}
                 returningScenarioId={returningScenarioId}
                 isCollapsed={isRackCollapsed}
-                onToggleCollapse={() => setIsRackCollapsed(false)}
+                onToggleCollapse={() => setIsRackCollapsed((prev) => !prev)}
               />
             </div>
 
@@ -561,7 +591,7 @@ export default function Home() {
                 MIDDLE: Amber Phosphor CRT Radar & Comms Terminal
                =================================================================== */}
             {isRackCollapsed && (
-              <div className="lg:col-span-5 xl:col-span-5 flex flex-col transition-all duration-500 animate-in fade-in slide-in-from-left-4">
+              <div className="lg:col-span-4 xl:col-span-4 flex flex-col transition-all duration-500 animate-in fade-in slide-in-from-left-4">
                 <DialogueWorkbenchPanel
                   scenario={currentScenario}
                   topic={currentTopic}
@@ -590,9 +620,7 @@ export default function Home() {
                 RIGHT: 3D Isometric Retro Cassette Radio (Pure Hardware Deck)
                =================================================================== */}
             <div
-              className={`${
-                isRackCollapsed ? "lg:col-span-4 xl:col-span-4" : "lg:col-span-5 xl:col-span-5"
-              } flex flex-col items-center transition-all duration-500`}
+              className="lg:col-span-5 xl:col-span-5 flex flex-col items-center transition-all duration-500"
             >
               <IsometricRetroRadio
                 topic={currentTopic}

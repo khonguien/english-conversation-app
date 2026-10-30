@@ -3,6 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { Check, ChevronLeft, ChevronRight, Disc, Layers, Sparkles } from "lucide-react";
 import { Topic, Scenario } from "@/types/conversation";
+import { playTapePullSound, playRadioClickSound } from "@/utils/retroAudioFx";
 
 interface WoodenCassetteRackProps {
   topics: Topic[];
@@ -73,10 +74,12 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
   };
 
   const handlePrevColumns = () => {
+    playRadioClickSound();
     setColumnOffset((prev) => Math.max(0, prev - 3));
   };
 
   const handleNextColumns = () => {
+    playRadioClickSound();
     setColumnOffset((prev) => Math.min(topics.length - 3, prev + 3));
   };
 
@@ -115,6 +118,16 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
             </button>
           ) : (
             <div className="flex items-center gap-2 text-xs">
+              {activeScenario && (
+                <button
+                  type="button"
+                  onClick={onToggleCollapse}
+                  className="p-1 px-2.5 rounded bg-amber-950/90 hover:bg-amber-900 border border-amber-600/80 text-amber-300 hover:text-amber-100 text-[10px] font-mono font-bold flex items-center gap-1.5 cursor-pointer transition-all shadow-xs active:scale-95 animate-pulse"
+                  title="Return to active dialogue session"
+                >
+                  <span>⤡ RESUME CHAT</span>
+                </button>
+              )}
               <button
                 type="button"
                 onClick={handlePrevColumns}
@@ -268,18 +281,21 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                           <div
                             onClick={() => {
                               if (isPulling) return;
+                              playTapePullSound();
                               onSelectTopic(topic);
                               onSelectScenario(scenario);
                             }}
-                            className={`relative z-10 w-full flex items-center justify-between px-2 sm:px-2.5 py-1.5 sm:py-2 rounded border cursor-pointer transition-all duration-200 ${
+                            className={`relative z-10 w-full flex items-center justify-between px-2 sm:px-2.5 py-1.5 sm:py-2 rounded border cursor-pointer select-none ${
                               isPulling
                                 ? "animate-tape-pull-out pointer-events-none"
                                 : isReturning
-                                ? "animate-tape-slide-in"
-                                : "hover:translate-x-2.5 hover:shadow-lg"
+                                ? "animate-tape-slide-in pointer-events-none"
+                                : "transition-transform duration-200 hover:translate-x-2.5 hover:shadow-lg"
                             } ${theme.bg} ${theme.border}`}
                             style={{
                               boxShadow: "0 3px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                              willChange: isPulling || isReturning ? "transform, opacity" : undefined,
+                              backfaceVisibility: "hidden",
                             }}
                           >
                             {/* Cassette Code Pill */}
@@ -350,14 +366,28 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
             <span className="font-mono text-[10px] text-amber-400 uppercase tracking-wider truncate">
               {isCollapsed
                 ? `✦ ACTIVE BAY ${String(selectedTopic ? topics.findIndex((t) => t.id === selectedTopic.id) + 1 : 1).padStart(2, "0")} • LOADED INTO RADIO`
+                : activeScenario
+                ? `✦ TAPE #${String(activeScenario.order || 1).padStart(2, "0")} ACTIVE • Click [RESUME CHAT] to return to conversation`
                 : "✦ Click any cassette on the shelf to extract & load into radio"}
             </span>
           </div>
           {!isCollapsed && (
             <div className="hidden sm:flex items-center gap-2 font-mono text-[10px] text-amber-400/60 flex-shrink-0">
-              <span>TABLETOP ARCHIVE</span>
-              <span>•</span>
-              <span>1984 VINTAGE SERIES</span>
+              {activeScenario && onToggleCollapse ? (
+                <button
+                  type="button"
+                  onClick={onToggleCollapse}
+                  className="hover:underline text-amber-300 cursor-pointer"
+                >
+                  RETURN TO CHAT ↗
+                </button>
+              ) : (
+                <>
+                  <span>TABLETOP ARCHIVE</span>
+                  <span>•</span>
+                  <span>1984 VINTAGE SERIES</span>
+                </>
+              )}
             </div>
           )}
         </div>

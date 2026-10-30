@@ -136,7 +136,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
             </div>
             <div>
               <span className="font-bold text-base sm:text-lg tracking-tight text-[var(--color-text-primary)]">
-                English in Conversation
+                TapeTalk
               </span>
             </div>
           </div>
@@ -545,7 +545,7 @@ export const HomeDashboard: React.FC<HomeDashboardProps> = ({
       <footer className="border-t border-[var(--color-border)] py-10 text-center text-xs text-[var(--color-text-muted)] safe-bottom-padding">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>
-            English in Conversation • Acoustic Reflex & Spoken English Experience.
+            TapeTalk • Acoustic Reflex & Spoken English Experience.
           </p>
           <p>
             Designed with Apple & Linear Design Architecture
