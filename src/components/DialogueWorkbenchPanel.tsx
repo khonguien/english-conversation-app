@@ -236,7 +236,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
 
   return (
     <div
-      className="relative w-full rounded-2xl flex flex-col h-[580px] select-none shadow-2xl transition-all overflow-hidden"
+      className="relative w-full rounded-2xl flex flex-col h-[210px] sm:h-[260px] lg:h-[580px] select-none shadow-2xl transition-all overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #241e19 0%, #171310 100%)",
         border: "3px solid #3d3228",
@@ -247,27 +247,27 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
       {/* =========================================================================
           TOP BEZEL: Teleprinter Machine Badge & Serrated Tear-Off Bar
          ========================================================================= */}
-      <div className="relative px-3 sm:px-4 py-2 border-b-2 border-[#120e0b] bg-gradient-to-r from-[#2c241e] via-[#211a14] to-[#2c241e] flex items-center justify-between text-stone-300">
+      <div className="relative px-2 sm:px-4 py-1 sm:py-2 border-b-2 border-[#120e0b] bg-gradient-to-r from-[#2c241e] via-[#211a14] to-[#2c241e] flex items-center justify-between text-stone-300">
         {/* Machine Model Badge */}
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-stone-700 border border-stone-900 shadow-inner flex items-center justify-center">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-stone-700 border border-stone-900 shadow-inner flex items-center justify-center">
             <div className="w-1 h-0.5 bg-stone-400 rounded-xs" />
           </div>
-          <div className="flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-amber-300 font-bold uppercase">
-            <FileText className="w-3.5 h-3.5 text-amber-500" />
+          <div className="flex items-center gap-1 sm:gap-1.5 font-mono text-[9px] sm:text-[10px] tracking-wider text-amber-300 font-bold uppercase truncate">
+            <FileText className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-amber-500" />
             <span className="hidden sm:inline">TELEX MODEL T-84</span>
-            <span className="text-amber-600/70">•</span>
-            <span className="text-amber-400">TRACTOR PRINTHEAD</span>
+            <span className="text-amber-600/70 hidden sm:inline">•</span>
+            <span className="text-amber-400 truncate">PRINTHEAD</span>
           </div>
         </div>
 
         {/* Action Controls: Form Feed & Mute FX */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Mute FX Toggle Button */}
           <button
             type="button"
             onClick={handleToggleMute}
-            className={`p-1 px-2 rounded border text-[9px] font-mono font-bold uppercase transition-all flex items-center gap-1 cursor-pointer active:scale-95 ${
+            className={`p-0.5 sm:p-1 px-1.5 sm:px-2 rounded border text-[8px] sm:text-[9px] font-mono font-bold uppercase transition-all flex items-center gap-1 cursor-pointer active:scale-95 ${
               isFxMuted
                 ? "bg-red-950/80 border-red-800 text-red-300"
                 : "bg-[#18110a] hover:bg-[#2c1d12] border-amber-900/60 text-amber-400"
@@ -277,12 +277,12 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
             {isFxMuted ? (
               <>
                 <VolumeX className="w-2.5 h-2.5" />
-                <span>FX MUTED</span>
+                <span className="hidden sm:inline">FX MUTED</span>
               </>
             ) : (
               <>
                 <Volume1 className="w-2.5 h-2.5 text-amber-400" />
-                <span>FX SOUND</span>
+                <span className="hidden sm:inline">FX SOUND</span>
               </>
             )}
           </button>
@@ -294,48 +294,46 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
               playPunchCardFeedSound();
               onResetChat();
             }}
-            className="px-2 py-0.5 rounded bg-[#1c1209] hover:bg-[#342010] border border-amber-800/80 text-amber-300 text-[9px] font-mono font-bold tracking-wider uppercase transition-colors flex items-center gap-1 cursor-pointer active:scale-95 shadow-xs"
+            className="px-1.5 sm:px-2 py-0.5 rounded bg-[#1c1209] hover:bg-[#342010] border border-amber-800/80 text-amber-300 text-[8px] sm:text-[9px] font-mono font-bold tracking-wider uppercase transition-colors flex items-center gap-1 cursor-pointer active:scale-95 shadow-xs"
             title="Form Feed / Clear and reset telex paper"
           >
             <RotateCcw className="w-2.5 h-2.5" />
-            <span>FORM FEED</span>
+            <span className="hidden sm:inline">FORM FEED</span>
           </button>
 
-          <div className="w-2.5 h-2.5 rounded-full bg-stone-700 border border-stone-900 shadow-inner flex items-center justify-center">
+          <div className="w-2 sm:w-2.5 h-2 sm:h-2.5 rounded-full bg-stone-700 border border-stone-900 shadow-inner flex items-center justify-center">
             <div className="w-1 h-0.5 bg-stone-400 rounded-xs" />
           </div>
         </div>
       </div>
 
       {/* Serrated Acrylic / Steel Tear-off Guide Rail */}
-      <div className="h-1.5 w-full bg-gradient-to-r from-stone-500 via-stone-300 to-stone-500 border-b border-black/80 opacity-90 relative">
+      <div className="h-1 sm:h-1.5 w-full bg-gradient-to-r from-stone-500 via-stone-300 to-stone-500 border-b border-black/80 opacity-90 relative">
         <div className="absolute inset-0 bg-[radial-gradient(#000_1px,transparent_1px)] [background-size:6px_6px] opacity-40" />
       </div>
 
       {/* =========================================================================
           CONTINUOUS TRACTOR-FEED PAPER (Ivory / Aged Cream Roll feeding upward)
          ========================================================================= */}
-      <div className="relative flex-1 flex flex-row overflow-hidden m-2 sm:m-2.5 rounded-lg teleprinter-paper border-2 border-[#b8ae9c]">
+      <div className="relative flex-1 flex flex-row overflow-hidden m-1.5 sm:m-2.5 rounded-lg teleprinter-paper border-2 border-[#b8ae9c]">
         {/* Left Tractor Feed Margin with Round Sprocket Holes */}
-        <div className="w-5 sm:w-6 border-r border-[#d4c9b6] flex flex-col justify-around py-3 items-center select-none bg-[#f1ebd8]/70">
-          {Array.from({ length: 14 }).map((_, idx) => (
-            <div key={`lh-${idx}`} className="tractor-sprocket-hole" />
+        <div className="w-3.5 sm:w-6 border-r border-[#d4c9b6] flex flex-col justify-around py-1 sm:py-3 items-center select-none bg-[#f1ebd8]/70">
+          {Array.from({ length: 8 }).map((_, idx) => (
+            <div key={`lh-${idx}`} className="tractor-sprocket-hole scale-75 sm:scale-100" />
           ))}
         </div>
 
         {/* Center Paper Transcript Stream */}
         <div className="flex-1 flex flex-col overflow-hidden relative">
           {/* Teleprinter Header Stamp on Paper */}
-          <div className="px-3 sm:px-4 py-2 border-b border-[#ded3be] flex items-center justify-between text-[9px] sm:text-[10px] font-mono text-stone-600 font-bold uppercase tracking-wider bg-white/20">
-            <div className="flex items-center gap-1.5 truncate">
-              <span className="text-amber-900">DISPATCH #{String(scenario.order || 1).padStart(2, "0")}</span>
+          <div className="px-2 sm:px-4 py-1 sm:py-1.5 border-b border-[#ded3be] flex items-center justify-between text-[8px] sm:text-[10px] font-mono text-stone-600 font-bold uppercase tracking-wider bg-white/20">
+            <div className="flex items-center gap-1 sm:gap-1.5 truncate">
+              <span className="text-amber-900 font-bold">DISPATCH #{String(scenario.order || 1).padStart(2, "0")}</span>
               <span>•</span>
               <span className="text-stone-700 truncate">{scenario.titleEn}</span>
             </div>
             <div className="flex items-center gap-1 text-stone-500 flex-shrink-0">
-              <span>TTY-142.85</span>
-              <span>•</span>
-              <span className="text-emerald-700">ONLINE</span>
+              <span className="text-emerald-700 font-bold">ONLINE</span>
             </div>
           </div>
 
@@ -491,7 +489,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
           IBM 80-COLUMN PUNCH CARDS INTAKE HOPPER (Suggested Responses)
          ========================================================================= */}
       {suggestedHints.length > 0 && (
-        <div className="relative z-10 px-3 py-1.5 bg-[#1e1813] border-t-2 border-[#33271d] flex flex-col gap-1">
+        <div className="relative z-10 px-2 sm:px-3 py-1 sm:py-1.5 bg-[#1e1813] border-t-2 border-[#33271d] hidden sm:flex flex-col gap-1">
           <div className="flex items-center justify-between text-[8px] font-mono font-bold uppercase tracking-wider text-amber-400/80">
             <span>IBM 80-COLUMN PROGRAMMED RESPONSES (CLICK TO FEED):</span>
             <span className="text-stone-400">READER READY</span>

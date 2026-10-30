@@ -563,65 +563,82 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tabletop Workbench Grid: Left = Wooden Rack | Middle = Dialogue (when playing) | Right = 3D Radio */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-6 xl:gap-8 items-start relative z-10 transition-all duration-500">
-            {/* ===================================================================
-                LEFT: Wooden Multi-Compartment Cassette Rack (Collapses to single active bay on PLAY)
-               =================================================================== */}
+          {/* Tabletop Workbench:
+              - Mobile (< lg): Top section = Shelf + Chat (when chat active: 1/3 Left Shelf + 2/3 Right Teleprinter; when shelf open: full 3-column Shelf), Bottom section = Radio Deck.
+              - Desktop (lg:): 3 parallel columns (Rack 3-col -> Chat 4-col -> Radio 5-col).
+          */}
+          <div className="flex flex-col lg:grid lg:grid-cols-12 gap-5 lg:gap-6 xl:gap-8 items-start relative z-10 transition-all duration-500">
+            {/* Top Container on Mobile / Left & Middle on Desktop */}
             <div
-              className={`${
-                isRackCollapsed ? "lg:col-span-3 xl:col-span-3" : "lg:col-span-7 xl:col-span-7"
-              } flex flex-col transition-all duration-500`}
+              className={`w-full ${
+                isRackCollapsed ? "lg:col-span-7 xl:col-span-7" : "lg:col-span-7 xl:col-span-7"
+              } transition-all duration-500`}
             >
-              <WoodenCassetteRack
-                topics={ALL_TOPICS}
-                selectedTopic={currentTopic}
-                onSelectTopic={(t) => setCurrentTopic(t)}
-                activeScenario={currentScenario}
-                onSelectScenario={handleSelectScenario}
-                completedScenarioIds={completedScenarioIds}
-                pullingScenarioId={pullingScenarioId}
-                returningScenarioId={returningScenarioId}
-                isCollapsed={isRackCollapsed}
-                onToggleCollapse={() => setIsRackCollapsed((prev) => !prev)}
-              />
+              {isRackCollapsed ? (
+                /* Split: 1/3 Left Shelf + 2/3 Right Teleprinter on Mobile (col-span-4 / col-span-8) */
+                <div className="grid grid-cols-12 gap-2 sm:gap-3 lg:gap-5 items-start w-full">
+                  {/* 1/3 Left on Mobile (col-span-4), 3 cols on Desktop (lg:col-span-5 of parent 7 = ~3 cols) */}
+                  <div className="col-span-4 lg:col-span-5 flex flex-col">
+                    <WoodenCassetteRack
+                      topics={ALL_TOPICS}
+                      selectedTopic={currentTopic}
+                      onSelectTopic={(t) => setCurrentTopic(t)}
+                      activeScenario={currentScenario}
+                      onSelectScenario={handleSelectScenario}
+                      completedScenarioIds={completedScenarioIds}
+                      pullingScenarioId={pullingScenarioId}
+                      returningScenarioId={returningScenarioId}
+                      isCollapsed={true}
+                      onToggleCollapse={() => setIsRackCollapsed(false)}
+                    />
+                  </div>
+
+                  {/* 2/3 Right on Mobile (col-span-8), 4 cols on Desktop (lg:col-span-7 of parent 7 = ~4 cols) */}
+                  <div className="col-span-8 lg:col-span-7 flex flex-col animate-in fade-in slide-in-from-left-4">
+                    <DialogueWorkbenchPanel
+                      scenario={currentScenario}
+                      topic={currentTopic}
+                      messages={messages}
+                      isAiThinking={isAiThinking}
+                      activeAudioId={activeAudioId}
+                      onPlayAudio={handlePlayAudio}
+                      onStopAudio={handleStopAudio}
+                      onToggleReveal={handleToggleReveal}
+                      subtitlesEnabled={subtitlesEnabled}
+                      userRole={userRole}
+                      onResetChat={() => {
+                        if (currentScenario) {
+                          initScenario(currentScenario, userRole, false);
+                        }
+                      }}
+                      suggestedHints={dynamicHints}
+                      onSendMessage={handleSendMessage}
+                      isUserSpeaking={isUserSpeaking}
+                      onListeningChange={setIsUserSpeaking}
+                    />
+                  </div>
+                </div>
+              ) : (
+                /* When shelf is open: Full width (3 columns on mobile and desktop) */
+                <div className="w-full flex flex-col">
+                  <WoodenCassetteRack
+                    topics={ALL_TOPICS}
+                    selectedTopic={currentTopic}
+                    onSelectTopic={(t) => setCurrentTopic(t)}
+                    activeScenario={currentScenario}
+                    onSelectScenario={handleSelectScenario}
+                    completedScenarioIds={completedScenarioIds}
+                    pullingScenarioId={pullingScenarioId}
+                    returningScenarioId={returningScenarioId}
+                    isCollapsed={false}
+                    onToggleCollapse={() => setIsRackCollapsed(true)}
+                  />
+                </div>
+              )}
             </div>
 
-            {/* ===================================================================
-                MIDDLE: Amber Phosphor CRT Radar & Comms Terminal
-               =================================================================== */}
-            {isRackCollapsed && (
-              <div className="lg:col-span-4 xl:col-span-4 flex flex-col transition-all duration-500 animate-in fade-in slide-in-from-left-4">
-                <DialogueWorkbenchPanel
-                  scenario={currentScenario}
-                  topic={currentTopic}
-                  messages={messages}
-                  isAiThinking={isAiThinking}
-                  activeAudioId={activeAudioId}
-                  onPlayAudio={handlePlayAudio}
-                  onStopAudio={handleStopAudio}
-                  onToggleReveal={handleToggleReveal}
-                  subtitlesEnabled={subtitlesEnabled}
-                  userRole={userRole}
-                  onResetChat={() => {
-                    if (currentScenario) {
-                      initScenario(currentScenario, userRole, false);
-                    }
-                  }}
-                  suggestedHints={dynamicHints}
-                  onSendMessage={handleSendMessage}
-                  isUserSpeaking={isUserSpeaking}
-                  onListeningChange={setIsUserSpeaking}
-                />
-              </div>
-            )}
-
-            {/* ===================================================================
-                RIGHT: 3D Isometric Retro Cassette Radio (Pure Hardware Deck)
-               =================================================================== */}
-            <div
-              className="lg:col-span-5 xl:col-span-5 flex flex-col items-center transition-all duration-500"
-            >
+            {/* Bottom on Mobile / Right on Desktop: 3D Retro Radio */}
+            <div className="w-full lg:col-span-5 xl:col-span-5 flex flex-col items-center transition-all duration-500">
               <IsometricRetroRadio
                 topic={currentTopic}
                 scenario={currentScenario}
@@ -640,12 +657,12 @@ export default function Home() {
                 onToggleReveal={handleToggleReveal}
                 subtitlesEnabled={subtitlesEnabled}
                 onToggleSubtitles={handleToggleSubtitles}
+                userRole={userRole}
+                onToggleUserRole={handleToggleRole}
                 speechRate={speechRate}
                 onIncreaseSpeed={handleIncreaseSpeed}
                 onDecreaseSpeed={handleDecreaseSpeed}
                 suggestedHints={dynamicHints}
-                userRole={userRole}
-                onToggleUserRole={handleToggleRole}
                 onResetChat={() => {
                   if (currentScenario) {
                     initScenario(currentScenario, userRole, false);

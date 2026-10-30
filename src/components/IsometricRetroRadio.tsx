@@ -190,12 +190,12 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
         >
           {/* Main Hardware Deck: [Cassette Bay Door] <gap> [Sound Wave Equalizer] <gap> [Speed Stepper Slider] */}
           {/* Horizontally aligned with exact equal spacing and fixed aspect ratio scaling */}
-          <div className="flex items-center justify-between gap-3 sm:gap-4.5 w-full">
+          <div className="flex items-center justify-center gap-2 sm:gap-3 lg:gap-4 w-full flex-nowrap">
             {/* ===================================================================
                 1. CASSETTE BAY DOOR (Proportional Aspect ~1.55/1, Fixed Height & Spindles)
                =================================================================== */}
             <div
-              className={`relative rounded-xl p-2.5 sm:p-3 flex-1 max-w-[220px] sm:max-w-[240px] h-[132px] sm:h-[144px] flex flex-col justify-between ${getDoorTransformClass()}`}
+              className={`relative rounded-xl p-2 sm:p-2.5 lg:p-3 w-[150px] sm:w-[175px] lg:w-[210px] h-[100px] sm:h-[116px] lg:h-[136px] flex flex-col justify-between flex-shrink-0 ${getDoorTransformClass()}`}
               style={{
                 background: "linear-gradient(135deg, #1f1d1a 0%, #121110 100%)",
                 boxShadow:
@@ -220,7 +220,7 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
               {/* Cassette Tape Shell Inside Door or Empty Compartment */}
               {scenario ? (
                 <div
-                  className={`relative rounded-lg p-2.5 sm:p-3 border h-full w-full flex flex-col justify-between ${
+                  className={`relative rounded-lg p-1.5 sm:p-2 lg:p-2.5 border h-full w-full flex flex-col justify-between ${
                     doorState === "inserting" ? "animate-cassette-drop-in" : ""
                   }`}
                   style={{
@@ -231,18 +231,18 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                   }}
                 >
                   {/* Spine Header Label on Tape */}
-                  <div className="flex items-center justify-between pb-1.5 border-b border-stone-700/60">
-                    <span className="text-[9px] sm:text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 truncate max-w-[125px] sm:max-w-[140px]">
+                  <div className="flex items-center justify-between pb-1 border-b border-stone-700/60">
+                    <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-mono font-bold uppercase tracking-wider text-amber-400 truncate max-w-[85px] sm:max-w-[105px] lg:max-w-[130px]">
                       {scenario.titleEn}
                     </span>
-                    <span className="text-[8px] font-mono px-1 py-0.5 rounded bg-black/60 text-stone-300">
+                    <span className="text-[7px] sm:text-[8px] font-mono px-1 py-0.5 rounded bg-black/60 text-stone-300">
                       TAPE-{String(scenario.order || 1).padStart(2, "0")}
                     </span>
                   </div>
 
                   {/* Tape Spool Window (Cute Double Hubs from Reference Image) */}
                   <div
-                    className="relative rounded-md py-1.5 px-2.5 sm:px-3 flex items-center justify-between"
+                    className="relative rounded-md py-1 px-1.5 sm:px-2.5 flex items-center justify-between"
                     style={{
                       background: "rgba(10, 10, 10, 0.85)",
                       border: "1.5px solid rgba(255, 255, 255, 0.1)",
@@ -251,20 +251,20 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                   >
                     {/* Left Spool Reel (Always circular: aspect-square flex-shrink-0) */}
                     <div
-                      className={`w-7 h-7 sm:w-8 sm:h-8 aspect-square flex-shrink-0 rounded-full border-2 border-stone-400/60 bg-stone-800 flex items-center justify-center relative ${
+                      className={`w-5.5 h-5.5 sm:w-6.5 sm:h-6.5 lg:w-7.5 lg:h-7.5 aspect-square flex-shrink-0 rounded-full border-2 border-stone-400/60 bg-stone-800 flex items-center justify-center relative ${
                         isReelsSpinning ? "animate-spin" : ""
                       }`}
                       style={{ animationDuration: "2.4s" }}
                     >
-                      <div className="w-2.5 h-2.5 aspect-square rounded-full bg-white/90 shadow-inner" />
-                      <span className="absolute top-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
-                      <span className="absolute bottom-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
-                      <span className="absolute left-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
-                      <span className="absolute right-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
+                      <div className="w-2 h-2 aspect-square rounded-full bg-white/90 shadow-inner" />
+                      <span className="absolute top-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
+                      <span className="absolute bottom-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
+                      <span className="absolute left-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
+                      <span className="absolute right-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
                     </div>
 
                     {/* Magnetic Tape Bridge Bar */}
-                    <div className="flex-1 mx-2 sm:mx-2.5 h-1.5 rounded-full bg-amber-600 shadow-[0_0_6px_rgba(217,119,6,0.6)] relative overflow-hidden">
+                    <div className="flex-1 mx-1.5 sm:mx-2 h-1 sm:h-1.5 rounded-full bg-amber-600 shadow-[0_0_6px_rgba(217,119,6,0.6)] relative overflow-hidden">
                       {isReelsSpinning && (
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-pulse" />
                       )}
@@ -272,34 +272,34 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
 
                     {/* Right Spool Reel (Always circular: aspect-square flex-shrink-0) */}
                     <div
-                      className={`w-7 h-7 sm:w-8 sm:h-8 aspect-square flex-shrink-0 rounded-full border-2 border-stone-400/60 bg-stone-800 flex items-center justify-center relative ${
+                      className={`w-5.5 h-5.5 sm:w-6.5 sm:h-6.5 lg:w-7.5 lg:h-7.5 aspect-square flex-shrink-0 rounded-full border-2 border-stone-400/60 bg-stone-800 flex items-center justify-center relative ${
                         isReelsSpinning ? "animate-spin" : ""
                       }`}
                       style={{ animationDuration: "2.4s" }}
                     >
-                      <div className="w-2.5 h-2.5 aspect-square rounded-full bg-white/90 shadow-inner" />
-                      <span className="absolute top-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
-                      <span className="absolute bottom-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
-                      <span className="absolute left-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
-                      <span className="absolute right-0.5 w-1 h-1 bg-stone-300 rounded-xs" />
+                      <div className="w-2 h-2 aspect-square rounded-full bg-white/90 shadow-inner" />
+                      <span className="absolute top-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
+                      <span className="absolute bottom-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
+                      <span className="absolute left-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
+                      <span className="absolute right-0.5 w-0.5 h-0.5 bg-stone-300 rounded-xs" />
                     </div>
                   </div>
                 </div>
               ) : (
                 /* EMPTY CASSETTE DECK CAVITY (When tape is ejected) */
                 <div
-                  className="relative rounded-lg p-3 sm:p-4 border border-stone-800/80 flex flex-col items-center justify-between h-full w-full"
+                  className="relative rounded-lg p-2 sm:p-3 border border-stone-800/80 flex flex-col items-center justify-between h-full w-full"
                   style={{
                     background: "linear-gradient(180deg, #141210 0%, #0d0c0a 100%)",
                     boxShadow: "inset 0 3px 8px rgba(0,0,0,0.9)",
                   }}
                 >
-                  <div className="flex items-center justify-center gap-5 opacity-30 my-auto">
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 aspect-square rounded-full border border-stone-500 bg-stone-900 flex-shrink-0" />
-                    <div className="w-8 sm:w-10 h-1 bg-stone-700" />
-                    <div className="w-6 h-6 sm:w-7 sm:h-7 aspect-square rounded-full border border-stone-500 bg-stone-900 flex-shrink-0" />
+                  <div className="flex items-center justify-center gap-3 sm:gap-4 opacity-30 my-auto">
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 aspect-square rounded-full border border-stone-500 bg-stone-900 flex-shrink-0" />
+                    <div className="w-6 sm:w-8 h-1 bg-stone-700" />
+                    <div className="w-5 h-5 sm:w-6 sm:h-6 aspect-square rounded-full border border-stone-500 bg-stone-900 flex-shrink-0" />
                   </div>
-                  <span className="text-[9px] font-mono uppercase tracking-widest text-stone-500 mt-auto">
+                  <span className="text-[8px] sm:text-[9px] font-mono uppercase tracking-widest text-stone-500 mt-auto">
                     READY FOR CASSETTE
                   </span>
                 </div>
@@ -313,7 +313,7 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                 2. SOUND WAVE EQUALIZER ("Ô VUÔNG PHÁT SOUND WAVE" - Fixed Aspect Square)
                =================================================================== */}
             <div
-              className="w-[132px] h-[132px] sm:w-[144px] sm:h-[144px] aspect-square flex-shrink-0 rounded-xl bg-stone-200/60 dark:bg-stone-800/40 border border-stone-300/80 dark:border-stone-700/60 shadow-inner grid grid-cols-7 gap-1 sm:gap-1.5 p-2 sm:p-2.5 place-content-center"
+              className="w-[100px] h-[100px] sm:w-[116px] sm:h-[116px] lg:w-[136px] lg:h-[136px] aspect-square flex-shrink-0 rounded-xl bg-stone-200/60 dark:bg-stone-800/40 border border-stone-300/80 dark:border-stone-700/60 shadow-inner grid grid-cols-7 gap-0.5 sm:gap-1 lg:gap-1.5 p-1.5 sm:p-2 lg:p-2.5 place-content-center"
               title={isAudioActive ? "Audio Equalizer (Active)" : "Speaker Grille"}
             >
               {Array.from({ length: 42 }).map((_, idx) => {
@@ -326,7 +326,7 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                 return (
                   <div
                     key={idx}
-                    className={`w-2.5 h-2.5 sm:w-3 sm:h-3 aspect-square flex-shrink-0 rounded-xs transition-all duration-100 ${
+                    className={`w-2 h-2 sm:w-2.5 sm:h-2.5 lg:w-3 lg:h-3 aspect-square flex-shrink-0 rounded-xs transition-all duration-100 ${
                       isLit
                         ? isPeak
                           ? "bg-amber-400 dark:bg-amber-300 shadow-[0_0_8px_rgba(251,191,36,0.95)]"
@@ -346,9 +346,9 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
             {/* ===================================================================
                 3. SEPARATED SPEED CONTROL (+ / - WITH STEPPER SLIDER & SPD LABEL)
                =================================================================== */}
-            <div className="h-[132px] sm:h-[144px] w-7 sm:w-8 flex-shrink-0 flex flex-col items-center justify-between">
+            <div className="relative flex flex-col items-center flex-shrink-0">
               <div
-                className="w-full flex-1 rounded-full bg-stone-300 dark:bg-stone-800 border-2 border-stone-400 dark:border-stone-700 relative flex flex-col justify-between items-center p-1 shadow-inner select-none"
+                className="w-6 sm:w-7 lg:w-8 h-[100px] sm:h-[116px] lg:h-[136px] rounded-full bg-stone-300 dark:bg-stone-800 border-2 border-stone-400 dark:border-stone-700 relative flex flex-col justify-between items-center p-0.5 sm:p-1 shadow-inner select-none flex-shrink-0"
                 title="Speech Speed Controls (+ / -)"
               >
                 {/* Top Button: [+] INCREASE SPEED */}
@@ -359,7 +359,7 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                     onIncreaseSpeed();
                   }}
                   disabled={speechRate >= 1.5}
-                  className="w-full py-0.5 text-xs font-mono font-bold text-stone-700 dark:text-stone-300 hover:text-amber-700 dark:hover:text-amber-400 disabled:opacity-25 disabled:cursor-not-allowed transition-all active:scale-85 cursor-pointer flex items-center justify-center rounded-t-full z-20"
+                  className="w-full py-0.5 text-[10px] sm:text-xs font-mono font-bold text-stone-700 dark:text-stone-300 hover:text-amber-700 dark:hover:text-amber-400 disabled:opacity-25 disabled:cursor-not-allowed transition-all active:scale-85 cursor-pointer flex items-center justify-center rounded-t-full z-20"
                   title="Increase speed (+)"
                   aria-label="Increase speed"
                 >
@@ -369,20 +369,20 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                 {/* Vertical Guide Track with Stepped Knob */}
                 <div className="flex-1 w-full relative flex items-center justify-center my-0.5 pointer-events-none">
                   {/* Track slot groove */}
-                  <div className="absolute inset-y-1 w-1 bg-stone-400/60 dark:bg-stone-700/80 rounded-full" />
-                  
+                  <div className="absolute inset-y-1 w-0.5 sm:w-1 bg-stone-400/60 dark:bg-stone-700/80 rounded-full" />
+
                   {/* Mechanical Knob */}
                   <div
-                    className="relative z-10 w-5 h-4 sm:w-5.5 sm:h-4.5 rounded-md bg-[#25221f] border border-stone-500 shadow-md transition-all duration-300 flex items-center justify-center text-[8px] font-mono text-amber-300 font-bold"
+                    className="relative z-10 w-4.5 h-3.5 sm:w-5.5 sm:h-4.5 rounded-md bg-[#25221f] border border-stone-500 shadow-md transition-all duration-300 flex items-center justify-center text-[7px] sm:text-[8px] font-mono text-amber-300 font-bold"
                     style={{
                       transform:
                         speechRate >= 1.5
-                          ? "translateY(-22px)"
+                          ? "translateY(-16px)"
                           : speechRate === 1.2
-                          ? "translateY(-7px)"
+                          ? "translateY(-5px)"
                           : speechRate === 1.0
-                          ? "translateY(7px)"
-                          : "translateY(22px)",
+                          ? "translateY(5px)"
+                          : "translateY(16px)",
                     }}
                   >
                     {speechRate}x
@@ -397,14 +397,18 @@ export const IsometricRetroRadio: React.FC<IsometricRetroRadioProps> = ({
                     onDecreaseSpeed();
                   }}
                   disabled={speechRate <= 0.8}
-                  className="w-full py-0.5 text-xs font-mono font-bold text-stone-700 dark:text-stone-300 hover:text-amber-700 dark:hover:text-amber-400 disabled:opacity-25 disabled:cursor-not-allowed transition-all active:scale-85 cursor-pointer flex items-center justify-center rounded-b-full z-20"
+                  className="w-full py-0.5 text-[10px] sm:text-xs font-mono font-bold text-stone-700 dark:text-stone-300 hover:text-amber-700 dark:hover:text-amber-400 disabled:opacity-25 disabled:cursor-not-allowed transition-all active:scale-85 cursor-pointer flex items-center justify-center rounded-b-full z-20"
                   title="Decrease speed (-)"
                   aria-label="Decrease speed"
                 >
                   -
                 </button>
               </div>
-              <span className="text-[8px] font-mono text-stone-500 mt-1 uppercase font-semibold leading-none">SPD</span>
+
+              {/* Centered SPD Label below the pill */}
+              <span className="absolute -bottom-4 inset-x-0 text-center text-[7px] sm:text-[8px] font-mono text-stone-500 uppercase font-semibold leading-none pointer-events-none">
+                SPD
+              </span>
             </div>
           </div>
 

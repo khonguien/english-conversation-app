@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Check, ChevronLeft, ChevronRight, Disc, Layers, Sparkles } from "lucide-react";
 import { Topic, Scenario } from "@/types/conversation";
 import { playTapePullSound, playRadioClickSound } from "@/utils/retroAudioFx";
@@ -55,11 +55,19 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
     return topics.slice(columnOffset, columnOffset + 3);
   }, [topics, columnOffset, isCollapsed, selectedTopic]);
 
-  // Max 7 tapes per bay viewport (User directive: "tối đa là 7 băng, nếu nhiều hơn thì cuộn")
-  const MAX_VISIBLE_TAPES = 7;
+  // Responsive row limit: 3 rows on mobile iPhone, 7 rows on tablet/desktop
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const MAX_VISIBLE_TAPES = isMobile ? 3 : 7;
   const [bayOffsets, setBayOffsets] = useState<Record<string, number>>({});
 
-  // 1 lần lên xuống được 7 hàng luôn (User directive: "1 lần lên xuống được 7 hàng luôn cho đỡ tốn công")
+  // 1 lần lên xuống theo số hàng viewport (3 hàng trên mobile, 7 hàng trên desktop)
   const handleBayPage = (topicId: string, direction: number) => {
     setBayOffsets((prev) => {
       const current = prev[topicId] || 0;
@@ -87,7 +95,7 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
     <div className="relative select-none w-full">
       {/* Wooden Rack Outer Frame - Rustic Vintage Wood Texture */}
       <div
-        className="relative rounded-2xl p-3 sm:p-5 shadow-2xl transition-all"
+        className="relative rounded-2xl p-2 sm:p-4 lg:p-5 shadow-2xl transition-all"
         style={{
           background: "linear-gradient(135deg, #422918 0%, #2e1b0e 45%, #231409 100%)",
           boxShadow:
@@ -155,8 +163,8 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
           )}
         </div>
 
-        {/* Multi-Column Wooden Compartment Grid (As in Reference Image 1) */}
-        <div className={`grid gap-3 sm:gap-4 items-stretch ${isCollapsed ? "grid-cols-1" : "grid-cols-1 md:grid-cols-3"}`}>
+        {/* Multi-Column Wooden Compartment Grid (Always 3 columns on mobile when expanded, 1 column when collapsed) */}
+        <div className={`grid gap-1.5 sm:gap-3 lg:gap-4 items-stretch ${isCollapsed ? "grid-cols-1" : "grid-cols-3"}`}>
           {visibleTopics.map((topic, colIdx) => {
             const actualTopicIndex = topics.findIndex((t) => t.id === topic.id);
             const bayNumber = actualTopicIndex >= 0 ? actualTopicIndex + 1 : colIdx + 1;
@@ -184,56 +192,56 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                   border: "2px solid #2a150a",
                 }}
               >
-                {/* Topic Brass Label Plate (Fixed 62px height, synchronized across all bays) */}
+                {/* Topic Brass Label Plate (Compact on mobile, full on desktop) */}
                 <div
                   onClick={() => onSelectTopic(topic)}
-                  className="w-full h-[62px] mb-2.5 p-2 rounded-lg bg-gradient-to-b from-[#3a2010] to-[#251308] border border-amber-800/50 transition-all shadow-xs flex items-center justify-between cursor-pointer group"
+                  className="w-full h-[40px] sm:h-[54px] lg:h-[62px] mb-1.5 sm:mb-2.5 p-1 sm:p-2 rounded-lg bg-gradient-to-b from-[#3a2010] to-[#251308] border border-amber-800/50 transition-all shadow-xs flex items-center justify-between cursor-pointer group"
                   style={{
                     boxShadow: "0 2px 4px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
                   }}
                 >
                   {/* Left Column: Category Index, Tape Count & English Title */}
-                  <div className="flex-1 min-w-0 pr-2 flex flex-col justify-between h-full">
-                    <div className="flex items-center gap-1.5">
-                      <span className="text-[10px] font-mono tracking-wider text-amber-400 font-bold uppercase whitespace-nowrap">
+                  <div className="flex-1 min-w-0 pr-1 sm:pr-2 flex flex-col justify-between h-full">
+                    <div className="flex items-center gap-1 sm:gap-1.5">
+                      <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-mono tracking-wider text-amber-400 font-bold uppercase whitespace-nowrap">
                         BAY {String(bayNumber).padStart(2, "0")}
                       </span>
-                      <span className="text-[8px] font-mono font-bold text-amber-400/90 bg-[#140803] px-1.5 py-0.5 rounded border border-amber-950 whitespace-nowrap">
-                        {topic.scenarios.length} TAPES
+                      <span className="text-[7px] sm:text-[8px] font-mono font-bold text-amber-400/90 bg-[#140803] px-1 py-0.2 sm:px-1.5 sm:py-0.5 rounded border border-amber-950 whitespace-nowrap">
+                        {topic.scenarios.length}
                       </span>
                     </div>
 
-                    <div className="text-[11px] sm:text-xs font-bold text-amber-200 truncate leading-tight group-hover:text-amber-100 transition-colors">
+                    <div className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-amber-200 truncate leading-tight group-hover:text-amber-100 transition-colors">
                       {topic.titleEn}
                     </div>
                   </div>
 
-                  {/* Right Column: Vertical Page Stepper (Rendered cleanly when > 7 tapes) */}
+                  {/* Right Column: Vertical Page Stepper (Rendered cleanly when > MAX_VISIBLE_TAPES) */}
                   {hasMoreTapes && (
                     <div
-                      className="flex flex-col items-center justify-between h-full py-0.5 px-1 bg-[#140803] rounded border border-amber-950/80 shadow-xs flex-shrink-0"
+                      className="flex flex-col items-center justify-between h-full py-0.5 px-0.5 sm:px-1 bg-[#140803] rounded border border-amber-950/80 shadow-xs flex-shrink-0"
                       onClick={(e) => e.stopPropagation()}
                     >
                       <button
                         type="button"
                         onClick={() => handleBayPage(topic.id, -1)}
                         disabled={bayOffset === 0}
-                        className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
+                        className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] sm:text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
                         title="Page up (▲)"
-                        aria-label="Previous 7 tapes"
+                        aria-label="Previous tapes"
                       >
                         ▲
                       </button>
-                      <span className="text-[7px] font-mono font-bold text-amber-300 leading-none">
+                      <span className="text-[6.5px] sm:text-[7px] font-mono font-bold text-amber-300 leading-none">
                         {Math.floor(bayOffset / MAX_VISIBLE_TAPES) + 1}/{Math.ceil(topic.scenarios.length / MAX_VISIBLE_TAPES)}
                       </span>
                       <button
                         type="button"
                         onClick={() => handleBayPage(topic.id, 1)}
                         disabled={bayOffset + MAX_VISIBLE_TAPES >= topic.scenarios.length}
-                        className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
+                        className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] sm:text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
                         title="Page down (▼)"
-                        aria-label="Next 7 tapes"
+                        aria-label="Next tapes"
                       >
                         ▼
                       </button>
@@ -257,22 +265,22 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                     return (
                       <div
                         key={scenario.id}
-                        className="relative group min-h-[34px] sm:min-h-[38px] flex items-center"
+                        className="relative group min-h-[26px] sm:min-h-[32px] lg:min-h-[36px] flex items-center"
                       >
                         {/* Always present: Empty Shelf Slot Groove / Track Cavity */}
                         <div
-                          className="absolute inset-0 rounded bg-[#0b0502] border border-amber-950/40 flex items-center justify-between px-2.5 overflow-hidden"
+                          className="absolute inset-0 rounded bg-[#0b0502] border border-amber-950/40 flex items-center justify-between px-1.5 sm:px-2.5 overflow-hidden"
                           style={{
                             boxShadow: "inset 0 3px 8px rgba(0,0,0,0.95), inset 0 0 2px rgba(255,255,255,0.03)",
                           }}
                         >
                           {/* Inner wooden guide rails */}
                           <div className="w-full flex items-center justify-between opacity-30 pointer-events-none">
-                            <span className="text-[8px] font-mono text-amber-600/60">
-                              SLOT {String(actualIdx + 1).padStart(2, "0")}
+                            <span className="text-[7px] sm:text-[8px] font-mono text-amber-600/60">
+                              #{String(actualIdx + 1).padStart(2, "0")}
                             </span>
-                            <div className="w-12 h-1 rounded-full bg-amber-950 border-b border-amber-800/20" />
-                            <span className="text-[8px] font-mono text-amber-600/40">EMPTY</span>
+                            <div className="w-8 sm:w-12 h-0.5 sm:h-1 rounded-full bg-amber-950 border-b border-amber-800/20" />
+                            <span className="text-[7px] sm:text-[8px] font-mono text-amber-600/40">EMPTY</span>
                           </div>
                         </div>
 
@@ -285,42 +293,42 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                               onSelectTopic(topic);
                               onSelectScenario(scenario);
                             }}
-                            className={`relative z-10 w-full flex items-center justify-between px-2 sm:px-2.5 py-1.5 sm:py-2 rounded border cursor-pointer select-none ${
+                            className={`relative z-10 w-full flex items-center justify-between px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded border cursor-pointer select-none ${
                               isPulling
                                 ? "animate-tape-pull-out pointer-events-none"
                                 : isReturning
                                 ? "animate-tape-slide-in pointer-events-none"
-                                : "transition-transform duration-200 hover:translate-x-2.5 hover:shadow-lg"
+                                : "transition-transform duration-200 hover:translate-x-1.5 sm:hover:translate-x-2.5 hover:shadow-lg"
                             } ${theme.bg} ${theme.border}`}
                             style={{
-                              boxShadow: "0 3px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
                               willChange: isPulling || isReturning ? "transform, opacity" : undefined,
                               backfaceVisibility: "hidden",
                             }}
                           >
                             {/* Cassette Code Pill */}
-                            <div className="flex items-center gap-1.5 min-w-0 pr-1">
+                            <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 pr-0.5 sm:pr-1">
                               <span
-                                className={`text-[9px] font-mono font-bold px-1 py-0.5 rounded ${theme.accent}`}
+                                className={`text-[7px] sm:text-[8px] lg:text-[9px] font-mono font-bold px-1 py-0.2 sm:py-0.5 rounded ${theme.accent}`}
                               >
                                 {String(actualIdx + 1).padStart(2, "0")}
                               </span>
-                              <span className="text-[11px] sm:text-xs font-semibold tracking-tight truncate leading-tight">
+                              <span className="text-[8px] sm:text-[10px] lg:text-xs font-semibold tracking-tight truncate leading-tight">
                                 {scenario.titleEn}
                               </span>
                             </div>
 
                             {/* Status Indicator */}
-                            <div className="flex items-center gap-1 flex-shrink-0">
+                            <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
                               {isCompleted ? (
                                 <span
-                                  className="w-4 h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs"
+                                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs"
                                   title="Completed scenario"
                                 >
-                                  <Check className="w-2.5 h-2.5 stroke-[3]" />
+                                  <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
                                 </span>
                               ) : (
-                                <span className="w-1.5 h-1.5 rounded-full bg-black/30 group-hover:bg-white/70 transition-colors" />
+                                <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-black/30 group-hover:bg-white/70 transition-colors" />
                               )}
                             </div>
                           </div>
