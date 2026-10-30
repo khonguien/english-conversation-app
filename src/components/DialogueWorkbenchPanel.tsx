@@ -236,7 +236,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
 
   return (
     <div
-      className="relative w-full rounded-2xl flex flex-col h-[210px] sm:h-[260px] lg:h-[580px] select-none shadow-2xl transition-all overflow-hidden"
+      className="relative w-full rounded-2xl flex flex-col h-[280px] sm:h-[320px] lg:h-[580px] select-none shadow-2xl transition-all overflow-hidden"
       style={{
         background: "linear-gradient(180deg, #241e19 0%, #171310 100%)",
         border: "3px solid #3d3228",
@@ -315,11 +315,11 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
       {/* =========================================================================
           CONTINUOUS TRACTOR-FEED PAPER (Ivory / Aged Cream Roll feeding upward)
          ========================================================================= */}
-      <div className="relative flex-1 flex flex-row overflow-hidden m-1.5 sm:m-2.5 rounded-lg teleprinter-paper border-2 border-[#b8ae9c]">
+      <div className="relative flex-1 flex flex-row overflow-hidden m-1 sm:m-2.5 rounded-lg teleprinter-paper border-2 border-[#b8ae9c]">
         {/* Left Tractor Feed Margin with Round Sprocket Holes */}
-        <div className="w-3.5 sm:w-6 border-r border-[#d4c9b6] flex flex-col justify-around py-1 sm:py-3 items-center select-none bg-[#f1ebd8]/70">
+        <div className="w-2.5 sm:w-6 border-r border-[#d4c9b6] flex flex-col justify-around py-1 sm:py-3 items-center select-none bg-[#f1ebd8]/70">
           {Array.from({ length: 8 }).map((_, idx) => (
-            <div key={`lh-${idx}`} className="tractor-sprocket-hole scale-75 sm:scale-100" />
+            <div key={`lh-${idx}`} className="tractor-sprocket-hole scale-50 sm:scale-100" />
           ))}
         </div>
 
@@ -413,11 +413,11 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
                       </div>
 
                       {/* Printed Message Box on Paper */}
-                      <div className="w-full p-2.5 rounded-md bg-[#fffdf8] border border-[#d6cbba] shadow-xs space-y-1">
+                      <div className="w-full p-1.5 sm:p-2.5 rounded-md bg-[#fffdf8] border border-[#d6cbba] shadow-xs space-y-0.5 sm:space-y-1">
                         {/* English Line: Carbon Black Ribbon Inking */}
                         <div>
                           {isRevealed ? (
-                            <div className="text-stone-900 font-mono text-xs sm:text-[13px] font-bold leading-relaxed tracking-tight">
+                            <div className="text-stone-900 font-mono text-[10.5px] sm:text-xs lg:text-[13px] font-bold leading-snug tracking-tight">
                               {msg.textEn}
                             </div>
                           ) : (
@@ -426,18 +426,18 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
                                 playDotMatrixPrintSound();
                                 onToggleReveal(msg.id);
                               }}
-                              className="restricted-stamp py-1.5 px-2.5 rounded bg-red-950/5 border border-red-700/60 text-[10px] text-red-700 font-bold uppercase cursor-pointer flex items-center justify-between"
+                              className="restricted-stamp py-1 px-1.5 sm:py-1.5 sm:px-2.5 rounded bg-red-950/5 border border-red-700/60 text-[8.5px] sm:text-[10px] text-red-700 font-bold uppercase cursor-pointer flex items-center justify-between"
                               title="Click to unseal restricted telegram"
                             >
-                              <span>[RESTRICTED TELEGRAM • TAP TO DECRYPT]</span>
-                              <Eye className="w-3.5 h-3.5 text-red-700" />
+                              <span>[RESTRICTED • TAP TO DECRYPT]</span>
+                              <Eye className="w-3 h-3 text-red-700" />
                             </div>
                           )}
                         </div>
 
                         {/* Vietnamese Translation: Vintage Red Ribbon Inking */}
                         {isRevealed && msg.textVi && (
-                          <div className="text-red-700 dark:text-red-600 font-mono text-[11px] font-semibold leading-relaxed italic border-l-2 border-red-500/50 pl-2 mt-1">
+                          <div className="text-red-700 dark:text-red-600 font-mono text-[9.5px] sm:text-[11px] font-semibold leading-snug italic border-l-2 border-red-500/50 pl-1.5 sm:pl-2 mt-0.5 sm:mt-1">
                             {msg.textVi}
                           </div>
                         )}
@@ -452,12 +452,12 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
                     key={msg.id}
                     className="flex flex-col items-end gap-1 max-w-[96%] ml-auto animate-in fade-in duration-150"
                   >
-                    <div className="flex items-center gap-1.5 font-mono text-[9px] sm:text-[10px] font-bold text-stone-700 uppercase px-1">
+                    <div className="flex items-center gap-1.5 font-mono text-[8px] sm:text-[10px] font-bold text-stone-700 uppercase px-1">
                       <span>▲ XMIT [LOCAL STATION] • YOU ({learnerRole.titleEn})</span>
                       <span className="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block" />
                     </div>
 
-                    <div className="p-2.5 rounded-md bg-[#edf3fa] border border-[#b8cde4] text-[#0f2847] font-mono text-xs sm:text-[13px] font-bold leading-relaxed shadow-xs">
+                    <div className="p-1.5 sm:p-2.5 rounded-md bg-[#edf3fa] border border-[#b8cde4] text-[#0f2847] font-mono text-[10.5px] sm:text-xs lg:text-[13px] font-bold leading-snug shadow-xs">
                       {msg.textEn}
                     </div>
                   </div>
@@ -478,9 +478,9 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
         </div>
 
         {/* Right Tractor Feed Margin with Round Sprocket Holes */}
-        <div className="w-5 sm:w-6 border-l border-[#d4c9b6] flex flex-col justify-around py-3 items-center select-none bg-[#f1ebd8]/70">
+        <div className="w-2.5 sm:w-6 border-l border-[#d4c9b6] flex flex-col justify-around py-3 items-center select-none bg-[#f1ebd8]/70">
           {Array.from({ length: 14 }).map((_, idx) => (
-            <div key={`rh-${idx}`} className="tractor-sprocket-hole" />
+            <div key={`rh-${idx}`} className="tractor-sprocket-hole scale-50 sm:scale-100" />
           ))}
         </div>
       </div>
@@ -533,7 +533,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
           BOTTOM INDUSTRIAL BASE: Heavy PTT Toggle Switch & Mechanical Keyboard
          ========================================================================= */}
       <div
-        className="relative z-20 px-3.5 py-2.5 bg-gradient-to-b from-[#261f18] via-[#1a140f] to-[#110d0a] border-t-2 border-[#382d22] flex flex-col gap-2"
+        className="relative z-20 px-2 sm:px-3.5 py-1.5 sm:py-2.5 bg-gradient-to-b from-[#261f18] via-[#1a140f] to-[#110d0a] border-t-2 border-[#382d22] flex flex-col gap-1 sm:gap-2"
         style={{
           boxShadow:
             "inset 0 1px 2px rgba(255, 255, 255, 0.15), 0 -4px 10px rgba(0,0,0,0.6)",
@@ -541,7 +541,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
       >
         {/* Recessed Mechanical Keyboard Input Drawer */}
         {isKeyboardMode ? (
-          <div className="flex items-center gap-2 p-1.5 rounded-xl bg-[#0d0905] border-2 border-amber-900/70 shadow-inner">
+          <div className="flex items-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 rounded-xl bg-[#0d0905] border-2 border-amber-900/70 shadow-inner">
             <Terminal className="w-3.5 h-3.5 text-amber-500 ml-1 flex-shrink-0" />
             <input
               type="text"
@@ -550,14 +550,14 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
               onKeyDown={handleKeyDown}
               placeholder="Type telegram message and press Enter..."
               disabled={isAiThinking}
-              className="flex-1 bg-transparent text-amber-200 placeholder-amber-700/80 text-xs font-mono outline-hidden"
+              className="flex-1 bg-transparent text-amber-200 placeholder-amber-700/80 text-[10px] sm:text-xs font-mono outline-hidden"
               autoFocus
             />
             <button
               type="button"
               onClick={handleSend}
               disabled={!inputText.trim() || isAiThinking}
-              className="px-3 py-1 rounded-lg bg-gradient-to-b from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 disabled:opacity-40 text-black font-mono font-bold text-[10px] tracking-wider uppercase border-t border-l border-amber-400 border-b-2 border-amber-900 shadow-md transition-all active:translate-y-0.5 cursor-pointer"
+              className="px-2 sm:px-3 py-0.5 sm:py-1 rounded-lg bg-gradient-to-b from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 disabled:opacity-40 text-black font-mono font-bold text-[9px] sm:text-[10px] tracking-wider uppercase border-t border-l border-amber-400 border-b-2 border-amber-900 shadow-md transition-all active:translate-y-0.5 cursor-pointer"
             >
               TRANSMIT
             </button>
@@ -565,7 +565,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
         ) : null}
 
         {/* Industrial Switch & Key Console */}
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between gap-1.5 sm:gap-3">
           {/* Left: Mechanical Keyboard Drawer Key */}
           <button
             type="button"
@@ -573,7 +573,7 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
               playRadioClickSound();
               setIsKeyboardMode((prev) => !prev);
             }}
-            className={`px-2.5 py-1.5 rounded-xl font-mono text-[10px] font-bold tracking-wider uppercase border-t border-l border-white/20 border-b-3 border-r border-black shadow-md flex items-center gap-1.5 transition-all cursor-pointer active:translate-y-0.5 ${
+            className={`p-1 sm:px-2.5 sm:py-1.5 rounded-lg sm:rounded-xl font-mono text-[9px] sm:text-[10px] font-bold tracking-wider uppercase border-t border-l border-white/20 border-b-3 border-r border-black shadow-md flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer active:translate-y-0.5 flex-shrink-0 ${
               isKeyboardMode
                 ? "bg-amber-600 text-black border-amber-400"
                 : "bg-gradient-to-b from-[#3a3025] to-[#251e17] text-amber-300 hover:from-[#45392d] hover:to-[#2e251d]"
@@ -585,17 +585,17 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
           </button>
 
           {/* Center: Industrial Toggle Switch for PTT Mic */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3">
             {/* Red Jewel Indicator Bulb */}
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center flex-shrink-0">
               <div
-                className={`w-3.5 h-3.5 rounded-full border-2 transition-all duration-200 ${
+                className={`w-2.5 sm:w-3.5 h-2.5 sm:h-3.5 rounded-full border sm:border-2 transition-all duration-200 ${
                   isListening
                     ? "bg-red-500 border-red-300 shadow-[0_0_12px_rgba(239,68,68,0.95)] animate-pulse"
                     : "bg-red-950/70 border-red-900"
                 }`}
               />
-              <span className="text-[7px] font-mono text-stone-400 uppercase font-bold mt-0.5">
+              <span className="text-[6px] sm:text-[7px] font-mono text-stone-400 uppercase font-bold mt-0.5">
                 ON AIR
               </span>
             </div>
@@ -605,37 +605,37 @@ export const DialogueWorkbenchPanel: React.FC<DialogueWorkbenchPanelProps> = ({
               type="button"
               onClick={toggleListening}
               disabled={isAiThinking}
-              className="group flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-gradient-to-b from-[#2b221a] to-[#19130f] border-2 border-[#453629] shadow-lg cursor-pointer active:scale-95 transition-all"
+              className="group flex items-center gap-1.5 sm:gap-2.5 px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-gradient-to-b from-[#2b221a] to-[#19130f] border border-[#453629] sm:border-2 shadow-lg cursor-pointer active:scale-95 transition-all"
               title={isListening ? "Flip down to stop & transmit" : "Flip up to transmit speech"}
             >
               {/* Mechanical Toggle Lever Graphic */}
-              <div className="w-6 h-9 rounded-md bg-[#110d0a] border border-stone-600 flex flex-col items-center justify-between p-1 relative shadow-inner">
-                <span className="text-[6px] font-mono font-bold text-stone-400 uppercase">UP</span>
+              <div className="w-4 sm:w-6 h-6 sm:h-9 rounded-sm sm:rounded-md bg-[#110d0a] border border-stone-600 flex flex-col items-center justify-between p-0.5 sm:p-1 relative shadow-inner">
+                <span className="text-[5px] sm:text-[6px] font-mono font-bold text-stone-400 uppercase">UP</span>
                 {/* Metallic Lever Knob */}
                 <div
-                  className={`w-4 h-3.5 rounded-sm bg-gradient-to-r from-stone-400 via-stone-200 to-stone-400 border border-stone-600 shadow-md transition-all duration-150 transform ${
+                  className={`w-3 sm:w-4 h-2 sm:h-3.5 rounded-xs sm:rounded-sm bg-gradient-to-r from-stone-400 via-stone-200 to-stone-400 border border-stone-600 shadow-md transition-all duration-150 transform ${
                     isListening
-                      ? "-translate-y-1.5 bg-gradient-to-r from-red-400 via-red-200 to-red-400"
-                      : "translate-y-1.5"
+                      ? "-translate-y-1 sm:-translate-y-1.5 bg-gradient-to-r from-red-400 via-red-200 to-red-400"
+                      : "translate-y-1 sm:translate-y-1.5"
                   }`}
                 />
-                <span className="text-[6px] font-mono font-bold text-stone-400 uppercase">DN</span>
+                <span className="text-[5px] sm:text-[6px] font-mono font-bold text-stone-400 uppercase">DN</span>
               </div>
 
               {/* Text label */}
               <div className="flex flex-col text-left">
-                <span className="text-[10px] font-mono font-bold text-amber-300 tracking-wider">
-                  PTT TOGGLE
+                <span className="text-[8.5px] sm:text-[10px] font-mono font-bold text-amber-300 tracking-wider">
+                  PTT
                 </span>
-                <span className="text-[8px] font-mono text-stone-400 font-bold uppercase">
-                  {isListening ? "TRANSMITTING (UP)" : "STANDBY (DOWN)"}
+                <span className="text-[6.5px] sm:text-[8px] font-mono text-stone-400 font-bold uppercase truncate max-w-[70px] sm:max-w-none">
+                  {isListening ? "TRANSMITTING" : "STANDBY"}
                 </span>
               </div>
             </button>
           </div>
 
           {/* Right: Audio Modulation Meter */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 flex-shrink-0">
             <span className="text-[9px] font-mono text-amber-500/70 uppercase font-semibold hidden sm:inline">
               MOD
             </span>

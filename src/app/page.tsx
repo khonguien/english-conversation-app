@@ -506,19 +506,19 @@ export default function Home() {
           Upper portion: Plaster Wall
           Lower portion: Continuous Wooden Tabletop Workbench holding Rack & Radio
          ========================================================================= */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex flex-col justify-between">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-2 sm:px-6 lg:px-8 py-2 sm:py-6 flex flex-col justify-between">
         {/* Wainscot wooden moulding trim between wall and table */}
-        <div className="w-full h-1.5 rounded-full bg-gradient-to-r from-[#2c1a0e] via-[#4a2e19] to-[#2c1a0e] opacity-80 shadow-xs mb-4" />
+        <div className="w-full h-1 sm:h-1.5 rounded-full bg-gradient-to-r from-[#2c1a0e] via-[#4a2e19] to-[#2c1a0e] opacity-80 shadow-xs mb-2 sm:mb-4" />
 
         {/* Continuous Wooden Desk Surface holding Both Entities */}
-        <div className="relative rounded-3xl p-4 sm:p-7 retro-desk-wood border-4 border-[#1c0f06] shadow-2xl flex-1 flex flex-col justify-between">
+        <div className="relative rounded-2xl sm:rounded-3xl p-2 sm:p-5 lg:p-7 retro-desk-wood border-2 sm:border-4 border-[#1c0f06] shadow-2xl flex-1 flex flex-col justify-between">
           {/* Natural Tabletop Ambient Lighting Sheen */}
-          <div className="absolute top-0 inset-x-8 h-2 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent pointer-events-none" />
+          <div className="absolute top-0 inset-x-4 sm:inset-x-8 h-2 bg-gradient-to-r from-transparent via-amber-400/10 to-transparent pointer-events-none" />
 
           {/* ===================================================================
               ELEVATED WORKSTATION CONSOLE BAR (Always visible above the fold)
              =================================================================== */}
-          <div className="mb-6 pb-3 border-b border-amber-950/70 flex flex-wrap items-center justify-between gap-3 text-xs text-amber-200/90 font-mono relative z-20">
+          <div className="mb-3 sm:mb-6 pb-2 sm:pb-3 border-b border-amber-950/70 flex flex-wrap items-center justify-between gap-2 sm:gap-3 text-xs text-amber-200/90 font-mono relative z-20">
             <div className="flex items-center gap-2.5">
               <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.8)] inline-block animate-pulse" />
               <span className="font-bold tracking-wider text-amber-300 uppercase">

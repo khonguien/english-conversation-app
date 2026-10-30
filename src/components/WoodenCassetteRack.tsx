@@ -107,11 +107,11 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
         <div className="absolute top-1 inset-x-2 h-[1px] bg-gradient-to-r from-transparent via-amber-300/20 to-transparent" />
 
         {/* Rack Header & Column Pagination */}
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-amber-950/60 text-amber-200/90">
-          <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)]" />
-            <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest uppercase text-amber-300">
-              {isCollapsed ? "ACTIVE RACK" : "CASSETTE ARCHIVE RACK"}
+        <div className="flex items-center justify-between pb-1.5 sm:pb-3 mb-1.5 sm:mb-3 border-b border-amber-950/60 text-amber-200/90">
+          <div className="flex items-center gap-1 sm:gap-2 min-w-0">
+            <div className="w-1.5 sm:w-2.5 h-1.5 sm:h-2.5 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.6)] flex-shrink-0" />
+            <span className="text-[9px] sm:text-xs font-mono font-bold tracking-widest uppercase text-amber-300 truncate">
+              {isCollapsed ? "RACK" : "CASSETTE ARCHIVE RACK"}
             </span>
           </div>
 
@@ -119,10 +119,10 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
             <button
               type="button"
               onClick={onToggleCollapse}
-              className="p-1 px-2.5 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 hover:text-amber-200 border border-amber-900/40 text-[10px] font-mono flex items-center gap-1.5 cursor-pointer transition-colors shadow-xs"
+              className="py-0.5 px-1.5 rounded bg-[#1c0e06] hover:bg-[#32190c] text-amber-400 hover:text-amber-200 border border-amber-900/40 text-[8px] sm:text-[10px] font-mono font-bold flex items-center gap-0.5 cursor-pointer transition-colors shadow-xs flex-shrink-0"
               title="Expand shelf to browse all bays"
             >
-              <span>⤢ ALL BAYS</span>
+              <span>⤢ ALL</span>
             </button>
           ) : (
             <div className="flex items-center gap-2 text-xs">
@@ -195,57 +195,103 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                 {/* Topic Brass Label Plate (Compact on mobile, full on desktop) */}
                 <div
                   onClick={() => onSelectTopic(topic)}
-                  className="w-full h-[40px] sm:h-[54px] lg:h-[62px] mb-1.5 sm:mb-2.5 p-1 sm:p-2 rounded-lg bg-gradient-to-b from-[#3a2010] to-[#251308] border border-amber-800/50 transition-all shadow-xs flex items-center justify-between cursor-pointer group"
+                  className={`w-full ${
+                    isCollapsed ? "h-[32px] sm:h-[40px]" : "h-[40px] sm:h-[54px] lg:h-[62px]"
+                  } mb-1.5 sm:mb-2.5 p-1 sm:p-2 rounded-lg bg-gradient-to-b from-[#3a2010] to-[#251308] border border-amber-800/50 transition-all shadow-xs flex items-center justify-between cursor-pointer group`}
                   style={{
                     boxShadow: "0 2px 4px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
                   }}
+                  title={topic.titleEn}
                 >
-                  {/* Left Column: Category Index, Tape Count & English Title */}
-                  <div className="flex-1 min-w-0 pr-1 sm:pr-2 flex flex-col justify-between h-full">
-                    <div className="flex items-center gap-1 sm:gap-1.5">
-                      <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-mono tracking-wider text-amber-400 font-bold uppercase whitespace-nowrap">
-                        BAY {String(bayNumber).padStart(2, "0")}
-                      </span>
-                      <span className="text-[7px] sm:text-[8px] font-mono font-bold text-amber-400/90 bg-[#140803] px-1 py-0.2 sm:px-1.5 sm:py-0.5 rounded border border-amber-950 whitespace-nowrap">
-                        {topic.scenarios.length}
-                      </span>
+                  {isCollapsed ? (
+                    <div className="w-full flex items-center justify-between">
+                      <div className="flex items-center gap-1 min-w-0">
+                        <span className="text-[9px] font-mono font-bold tracking-wider text-amber-400 uppercase">
+                          B{String(bayNumber).padStart(2, "0")}
+                        </span>
+                        <span className="text-[7px] font-mono font-bold text-amber-400/90 bg-[#140803] px-1 py-0.2 rounded border border-amber-950">
+                          {topic.scenarios.length}
+                        </span>
+                      </div>
+                      {hasMoreTapes && (
+                        <div
+                          className="flex items-center gap-0.5 bg-[#140803] px-1 py-0.5 rounded border border-amber-950/80 shadow-xs flex-shrink-0"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => handleBayPage(topic.id, -1)}
+                            disabled={bayOffset === 0}
+                            className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] leading-none active:scale-90 cursor-pointer"
+                            title="Page up (▲)"
+                          >
+                            ▲
+                          </button>
+                          <span className="text-[6.5px] font-mono font-bold text-amber-300 leading-none">
+                            {Math.floor(bayOffset / MAX_VISIBLE_TAPES) + 1}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleBayPage(topic.id, 1)}
+                            disabled={bayOffset + MAX_VISIBLE_TAPES >= topic.scenarios.length}
+                            className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] leading-none active:scale-90 cursor-pointer"
+                            title="Page down (▼)"
+                          >
+                            ▼
+                          </button>
+                        </div>
+                      )}
                     </div>
+                  ) : (
+                    <>
+                      {/* Left Column: Category Index, Tape Count & English Title */}
+                      <div className="flex-1 min-w-0 pr-1 sm:pr-2 flex flex-col justify-between h-full">
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-mono tracking-wider text-amber-400 font-bold uppercase whitespace-nowrap">
+                            BAY {String(bayNumber).padStart(2, "0")}
+                          </span>
+                          <span className="text-[7px] sm:text-[8px] font-mono font-bold text-amber-400/90 bg-[#140803] px-1 py-0.2 sm:px-1.5 sm:py-0.5 rounded border border-amber-950 whitespace-nowrap">
+                            {topic.scenarios.length}
+                          </span>
+                        </div>
 
-                    <div className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-amber-200 truncate leading-tight group-hover:text-amber-100 transition-colors">
-                      {topic.titleEn}
-                    </div>
-                  </div>
+                        <div className="text-[9px] sm:text-[11px] lg:text-xs font-bold text-amber-200 truncate leading-tight group-hover:text-amber-100 transition-colors">
+                          {topic.titleEn}
+                        </div>
+                      </div>
 
-                  {/* Right Column: Vertical Page Stepper (Rendered cleanly when > MAX_VISIBLE_TAPES) */}
-                  {hasMoreTapes && (
-                    <div
-                      className="flex flex-col items-center justify-between h-full py-0.5 px-0.5 sm:px-1 bg-[#140803] rounded border border-amber-950/80 shadow-xs flex-shrink-0"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => handleBayPage(topic.id, -1)}
-                        disabled={bayOffset === 0}
-                        className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] sm:text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
-                        title="Page up (▲)"
-                        aria-label="Previous tapes"
-                      >
-                        ▲
-                      </button>
-                      <span className="text-[6.5px] sm:text-[7px] font-mono font-bold text-amber-300 leading-none">
-                        {Math.floor(bayOffset / MAX_VISIBLE_TAPES) + 1}/{Math.ceil(topic.scenarios.length / MAX_VISIBLE_TAPES)}
-                      </span>
-                      <button
-                        type="button"
-                        onClick={() => handleBayPage(topic.id, 1)}
-                        disabled={bayOffset + MAX_VISIBLE_TAPES >= topic.scenarios.length}
-                        className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] sm:text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
-                        title="Page down (▼)"
-                        aria-label="Next tapes"
-                      >
-                        ▼
-                      </button>
-                    </div>
+                      {/* Right Column: Vertical Page Stepper (Rendered cleanly when > MAX_VISIBLE_TAPES) */}
+                      {hasMoreTapes && (
+                        <div
+                          className="flex flex-col items-center justify-between h-full py-0.5 px-0.5 sm:px-1 bg-[#140803] rounded border border-amber-950/80 shadow-xs flex-shrink-0"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <button
+                            type="button"
+                            onClick={() => handleBayPage(topic.id, -1)}
+                            disabled={bayOffset === 0}
+                            className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] sm:text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
+                            title="Page up (▲)"
+                            aria-label="Previous tapes"
+                          >
+                            ▲
+                          </button>
+                          <span className="text-[6.5px] sm:text-[7px] font-mono font-bold text-amber-300 leading-none">
+                            {Math.floor(bayOffset / MAX_VISIBLE_TAPES) + 1}/{Math.ceil(topic.scenarios.length / MAX_VISIBLE_TAPES)}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => handleBayPage(topic.id, 1)}
+                            disabled={bayOffset + MAX_VISIBLE_TAPES >= topic.scenarios.length}
+                            className="text-amber-400 hover:text-amber-200 disabled:opacity-20 text-[7px] sm:text-[8px] leading-none active:scale-90 cursor-pointer p-0.5"
+                            title="Page down (▼)"
+                            aria-label="Next tapes"
+                          >
+                            ▼
+                          </button>
+                        </div>
+                      )}
+                    </>
                   )}
                 </div>
 
@@ -279,72 +325,129 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
                             <span className="text-[7px] sm:text-[8px] font-mono text-amber-600/60">
                               #{String(actualIdx + 1).padStart(2, "0")}
                             </span>
-                            <div className="w-8 sm:w-12 h-0.5 sm:h-1 rounded-full bg-amber-950 border-b border-amber-800/20" />
-                            <span className="text-[7px] sm:text-[8px] font-mono text-amber-600/40">EMPTY</span>
+                            {!isCollapsed && (
+                              <div className="w-8 sm:w-12 h-0.5 sm:h-1 rounded-full bg-amber-950 border-b border-amber-800/20" />
+                            )}
+                            <span className="text-[7px] sm:text-[8px] font-mono text-amber-600/40">
+                              {isCollapsed ? "" : "EMPTY"}
+                            </span>
                           </div>
                         </div>
 
                         {/* Cassette Spine Component - Rendered when tape is present, pulling out, or returning */}
                         {!isEmptySlot ? (
-                          <div
-                            onClick={() => {
-                              if (isPulling) return;
-                              playTapePullSound();
-                              onSelectTopic(topic);
-                              onSelectScenario(scenario);
-                            }}
-                            className={`relative z-10 w-full flex items-center justify-between px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded border cursor-pointer select-none ${
-                              isPulling
-                                ? "animate-tape-pull-out pointer-events-none"
-                                : isReturning
-                                ? "animate-tape-slide-in pointer-events-none"
-                                : "transition-transform duration-200 hover:translate-x-1.5 sm:hover:translate-x-2.5 hover:shadow-lg"
-                            } ${theme.bg} ${theme.border}`}
-                            style={{
-                              boxShadow: "0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
-                              willChange: isPulling || isReturning ? "transform, opacity" : undefined,
-                              backfaceVisibility: "hidden",
-                            }}
-                          >
-                            {/* Cassette Code Pill */}
-                            <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 pr-0.5 sm:pr-1">
+                          isCollapsed ? (
+                            /* Collapsed 1/3 Micro-Icon Cartridge */
+                            <div
+                              onClick={() => {
+                                if (isPulling) return;
+                                playTapePullSound();
+                                onSelectTopic(topic);
+                                onSelectScenario(scenario);
+                              }}
+                              className={`relative z-10 w-full flex items-center justify-between px-1.5 py-1 rounded border cursor-pointer select-none ${
+                                isPulling
+                                  ? "animate-tape-pull-out pointer-events-none"
+                                  : isReturning
+                                  ? "animate-tape-slide-in pointer-events-none"
+                                  : "transition-transform duration-200 active:scale-95"
+                              } ${theme.bg} ${theme.border}`}
+                              style={{
+                                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                              }}
+                              title={`#${actualIdx + 1} ${scenario.titleEn}`}
+                            >
                               <span
-                                className={`text-[7px] sm:text-[8px] lg:text-[9px] font-mono font-bold px-1 py-0.2 sm:py-0.5 rounded ${theme.accent}`}
+                                className={`text-[9px] font-mono font-bold px-1 py-0.5 rounded leading-none ${theme.accent}`}
                               >
-                                {String(actualIdx + 1).padStart(2, "0")}
+                                #{String(actualIdx + 1).padStart(2, "0")}
                               </span>
-                              <span className="text-[8px] sm:text-[10px] lg:text-xs font-semibold tracking-tight truncate leading-tight">
-                                {scenario.titleEn}
-                              </span>
+                              <div className="flex items-center">
+                                {isCompleted ? (
+                                  <span className="w-3.5 h-3.5 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs">
+                                    <Check className="w-2 h-2 stroke-[3]" />
+                                  </span>
+                                ) : (
+                                  <span className="w-1.5 h-1.5 rounded-full bg-black/40" />
+                                )}
+                              </div>
                             </div>
-
-                            {/* Status Indicator */}
-                            <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
-                              {isCompleted ? (
+                          ) : (
+                            /* Full Desktop / Expanded Spines with Titles */
+                            <div
+                              onClick={() => {
+                                if (isPulling) return;
+                                playTapePullSound();
+                                onSelectTopic(topic);
+                                onSelectScenario(scenario);
+                              }}
+                              className={`relative z-10 w-full flex items-center justify-between px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded border cursor-pointer select-none ${
+                                isPulling
+                                  ? "animate-tape-pull-out pointer-events-none"
+                                  : isReturning
+                                  ? "animate-tape-slide-in pointer-events-none"
+                                  : "transition-transform duration-200 hover:translate-x-1.5 sm:hover:translate-x-2.5 hover:shadow-lg"
+                              } ${theme.bg} ${theme.border}`}
+                              style={{
+                                boxShadow: "0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+                                willChange: isPulling || isReturning ? "transform, opacity" : undefined,
+                                backfaceVisibility: "hidden",
+                              }}
+                            >
+                              {/* Cassette Code Pill */}
+                              <div className="flex items-center gap-1 sm:gap-1.5 min-w-0 pr-0.5 sm:pr-1">
                                 <span
-                                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs"
-                                  title="Completed scenario"
+                                  className={`text-[7px] sm:text-[8px] lg:text-[9px] font-mono font-bold px-1 py-0.2 sm:py-0.5 rounded ${theme.accent}`}
                                 >
-                                  <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                                  {String(actualIdx + 1).padStart(2, "0")}
                                 </span>
-                              ) : (
-                                <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-black/30 group-hover:bg-white/70 transition-colors" />
-                              )}
+                                <span className="text-[8px] sm:text-[10px] lg:text-xs font-semibold tracking-tight truncate leading-tight">
+                                  {scenario.titleEn}
+                                </span>
+                              </div>
+
+                              {/* Status Indicator */}
+                              <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
+                                {isCompleted ? (
+                                  <span
+                                    className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-emerald-500 text-white flex items-center justify-center shadow-xs"
+                                    title="Completed scenario"
+                                  >
+                                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                                  </span>
+                                ) : (
+                                  <span className="w-1 sm:w-1.5 h-1 sm:h-1.5 rounded-full bg-black/30 group-hover:bg-white/70 transition-colors" />
+                                )}
+                              </div>
                             </div>
-                          </div>
+                          )
                         ) : (
                           /* EMPTY SLOT INTERACTION: Shows tape loaded in radio */
-                          <div
-                            className="relative z-10 w-full h-full flex items-center justify-between px-2.5 py-1.5 rounded text-amber-400/40 font-mono text-[9px] pointer-events-none select-none"
-                          >
-                            <span className="italic flex items-center gap-1.5 truncate max-w-[140px]">
-                              <span className="w-1.5 h-1.5 rounded-full bg-amber-500/40 flex-shrink-0" />
-                              <span className="truncate">{scenario.titleEn}</span>
-                            </span>
-                            <span className="uppercase text-[8px] tracking-wider font-bold bg-black/60 px-1.5 py-0.5 rounded border border-amber-950/60 text-amber-400/70 flex-shrink-0">
-                              IN RADIO
-                            </span>
-                          </div>
+                          isCollapsed ? (
+                            <div
+                              className="relative z-10 w-full h-full min-h-[24px] flex items-center justify-between px-1.5 py-0.5 rounded bg-[#100703]/90 border border-amber-500/40 text-amber-400 font-mono text-[8px] pointer-events-none select-none"
+                              title={`Tape #${actualIdx + 1} is loaded in radio`}
+                            >
+                              <span className="font-bold text-amber-500/80">
+                                #{String(actualIdx + 1).padStart(2, "0")}
+                              </span>
+                              <span className="text-[7px] uppercase font-bold tracking-wider px-1 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                                DECK
+                              </span>
+                            </div>
+                          ) : (
+                            <div
+                              className="relative z-10 w-full h-full flex items-center justify-between px-2.5 py-1.5 rounded text-amber-400/40 font-mono text-[9px] pointer-events-none select-none"
+                            >
+                              <span className="italic flex items-center gap-1.5 truncate max-w-[140px]">
+                                <span className="w-1.5 h-1.5 rounded-full bg-amber-500/40 flex-shrink-0" />
+                                <span className="truncate">{scenario.titleEn}</span>
+                              </span>
+                              <span className="uppercase text-[8px] tracking-wider font-bold bg-black/60 px-1.5 py-0.5 rounded border border-amber-950/60 text-amber-400/70 flex-shrink-0">
+                                IN RADIO
+                              </span>
+                            </div>
+                          )
                         )}
                       </div>
                     );
@@ -371,9 +474,9 @@ export const WoodenCassetteRack: React.FC<WoodenCassetteRackProps> = ({
         {/* Ambient Cassette Resting on the Table (Authentic Detail from Image 1) */}
         <div className="mt-4 pt-3 border-t border-amber-950/60 flex items-center justify-between text-xs text-amber-300/70">
           <div className="flex items-center gap-2 min-w-0">
-            <span className="font-mono text-[10px] text-amber-400 uppercase tracking-wider truncate">
+            <span className="font-mono text-[9px] sm:text-[10px] text-amber-400 uppercase tracking-wider truncate">
               {isCollapsed
-                ? `✦ ACTIVE BAY ${String(selectedTopic ? topics.findIndex((t) => t.id === selectedTopic.id) + 1 : 1).padStart(2, "0")} • LOADED INTO RADIO`
+                ? `✦ B${String(selectedTopic ? topics.findIndex((t) => t.id === selectedTopic.id) + 1 : 1).padStart(2, "0")} ACTIVE`
                 : activeScenario
                 ? `✦ TAPE #${String(activeScenario.order || 1).padStart(2, "0")} ACTIVE • Click [RESUME CHAT] to return to conversation`
                 : "✦ Click any cassette on the shelf to extract & load into radio"}
