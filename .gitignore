@@ -39,3 +39,7 @@ next-env.d.ts
 __pycache__/
 cached_images/
 downloaded_images/
+.taste-skill/
+*.pdf
+Screenshot_*.jpeg
+Screenshot_*.png

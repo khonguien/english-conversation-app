@@ -1,19 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { getScenarioById } from "@/data/topics";
+import { getScenarioById, ALL_TOPICS } from "@/data/topics";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { topicId, scenarioId, messages, userRole, aiRole } = body;
 
-    const scenario = getScenarioById(topicId || "airport", scenarioId);
-    if (!scenario) {
-      return NextResponse.json(
-        { error: "Scenario not found" },
-        { status: 404 }
-      );
+    // Resilient scenario lookup: by topicId & scenarioId, or search across all topics, or fallback
+    let scenario = getScenarioById(topicId || "airport", scenarioId);
+    if (!scenario && scenarioId) {
+      for (const t of ALL_TOPICS) {
+        const found = t.scenarios.find((s) => s.id === scenarioId);
+        if (found) {
+          scenario = found;
+          break;
+        }
+      }
     }
+    if (!scenario) {
+      const fallbackTopic = ALL_TOPICS.find((t) => t.id === topicId) || ALL_TOPICS[0];
+      scenario = fallbackTopic.scenarios[0];
+    }
+
+    const safeMessages = Array.isArray(messages)
+      ? messages
+      : Array.isArray(body.history)
+      ? body.history
+      : [];
 
     const apiKey = process.env.GEMINI_API_KEY;
 
@@ -32,13 +46,13 @@ export async function POST(req: NextRequest) {
         (t: any) => t.roleName.toLowerCase() === activeAiRole.toLowerCase()
       );
       if (aiTurns.length > 0) {
-        const aiMessageCount = messages.filter(
-          (m: any) => m.roleName?.toLowerCase() === activeAiRole.toLowerCase()
+        const aiMessageCount = safeMessages.filter(
+          (m: any) => (m.roleName || m.role)?.toLowerCase() === activeAiRole.toLowerCase()
         ).length;
         const turnIdx = Math.min(aiMessageCount, aiTurns.length - 1);
         return aiTurns[turnIdx];
       }
-      return scenario.sampleDialogue[Math.min(messages.length, scenario.sampleDialogue.length - 1)];
+      return scenario.sampleDialogue[Math.min(safeMessages.length, scenario.sampleDialogue.length - 1)];
     };
 
     // Fallback if API key is not configured yet
@@ -53,12 +67,10 @@ export async function POST(req: NextRequest) {
     }
 
     const genAI = new GoogleGenerativeAI(apiKey);
-    // Prioritize ultra-low latency models for lightning-fast responses (~1.4s - 2.5s)
+    // Strictly use Gemini 3.5 models (flash-lite default ~1.1s, flash backup)
     const candidateModels = [
-      "gemini-3-flash-preview",
-      "gemini-3.6-flash",
-      "gemini-3.1-flash-lite-preview",
-      "gemini-flash-lite-latest",
+      "gemini-3.5-flash-lite",
+      "gemini-3.5-flash",
     ];
 
     const isFreeTalk = Boolean(scenario.isFreeTalk);
@@ -106,12 +118,20 @@ CRITICAL ROLEPLAY INSTRUCTIONS:
 Return ONLY the JSON object, nothing else.`;
 
     // Format chat history for context
-    const historyText = messages
-      .slice(-8) // last 8 messages for context
+    const historyText = safeMessages
+      .slice(-8)
       .map(
-        (m: { sender: string; roleName: string; textEn: string }) =>
-          `${m.roleName || (m.sender === "user" ? activeUserRole : activeAiRole)}: ${m.textEn}`
+        (m: { sender?: string; roleName?: string; textEn?: string; parts?: { text: string }[] }) => {
+          if (m.textEn) {
+            return `${m.roleName || (m.sender === "user" ? activeUserRole : activeAiRole)}: ${m.textEn}`;
+          }
+          if (m.parts && m.parts[0]?.text) {
+            return m.parts[0].text;
+          }
+          return "";
+        }
       )
+      .filter(Boolean)
       .join("\n");
 
     const prompt = `${systemPrompt}\n\nRecent conversation history:\n${historyText}\n\nNow respond as ${activeAiRole} in JSON format:`;
@@ -127,16 +147,20 @@ Return ONLY the JSON object, nothing else.`;
             temperature: 0.3,
             maxOutputTokens: 1000,
             responseMimeType: "application/json",
-            // @ts-ignore - Disable internal thinking tokens for instant conversation response
-            thinkingConfig: { thinkingBudget: 0 },
           },
         });
-        const result = await model.generateContent(prompt);
+        // Hard timeout 3.5s to prevent long hanging
+        const result: any = await Promise.race([
+          model.generateContent(prompt),
+          new Promise((_, reject) =>
+            setTimeout(() => reject(new Error(`Timeout 3.5s on ${modelName}`)), 3500)
+          ),
+        ]);
         responseText = result.response.text().trim();
         if (responseText) break;
       } catch (err: any) {
         lastError = err;
-        console.warn(`Model ${modelName} failed, trying next...:`, err.message);
+        console.warn(`Model ${modelName} failed or timed out:`, err.message);
       }
     }
 
@@ -165,7 +189,6 @@ Return ONLY the JSON object, nothing else.`;
         textVi: parsed.textVi || "Bạn có thể nhắc lại được không?",
       });
     } catch {
-      // In case Gemini returns plain text instead of JSON
       return NextResponse.json({
         textEn: responseText,
         textVi: "",
@@ -173,12 +196,14 @@ Return ONLY the JSON object, nothing else.`;
     }
   } catch (error: unknown) {
     console.error("Chat API error:", error);
+    // Never return 404/500 to break user roleplay experience
     return NextResponse.json(
       {
-        error: "Failed to generate AI response",
-        details: error instanceof Error ? error.message : String(error),
+        textEn: "Understood! Could you please repeat that?",
+        textVi: "Tôi hiểu rồi! Bạn có thể nhắc lại câu vừa rồi được không?",
+        isFallback: true,
       },
-      { status: 500 }
+      { status: 200 }
     );
   }
 }

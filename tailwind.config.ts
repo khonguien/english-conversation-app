@@ -30,6 +30,18 @@ const config: Config = {
         "safe-bottom": "env(safe-area-inset-bottom, 16px)",
         "safe-top": "env(safe-area-inset-top, 16px)",
       },
+      transitionTimingFunction: {
+        spring: "cubic-bezier(0.16, 1, 0.3, 1)",
+        tactile: "cubic-bezier(0.32, 0.72, 0, 1)",
+      },
+      boxShadow: {
+        "double-inner": "inset 0 1px 1px rgba(255, 255, 255, 0.6)",
+        "double-inner-dark": "inset 0 1px 1px rgba(255, 255, 255, 0.08)",
+        "ambient-sm": "0 2px 8px -2px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02)",
+        "ambient-md": "0 8px 24px -4px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03)",
+        "ambient-lg": "0 16px 36px -6px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03)",
+        "ambient-glow": "0 0 36px -4px rgba(245, 158, 11, 0.22)",
+      },
     },
   },
   plugins: [],

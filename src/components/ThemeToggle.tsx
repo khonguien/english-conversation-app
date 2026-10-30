@@ -37,7 +37,7 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = "" }) => {
   if (!mounted) {
     return (
       <div
-        className={`w-9 h-9 rounded-xl border border-stone-200/80 dark:border-white/10 bg-stone-100 dark:bg-white/5 ${className}`}
+        className={`w-8 h-8 rounded-full border border-black/[0.06] dark:border-white/[0.08] bg-black/[0.03] dark:bg-white/[0.05] ${className}`}
       />
     );
   }
@@ -48,17 +48,16 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = "" }) => {
       onClick={toggleTheme}
       aria-label={theme === "light" ? "Chuyển sang chế độ tối" : "Chuyển sang chế độ sáng"}
       title={theme === "light" ? "Chuyển sang giao diện tối" : "Chuyển sang giao diện sáng"}
-      className={`relative inline-flex items-center justify-center w-9 h-9 rounded-xl transition-colors cursor-pointer border select-none active:scale-95
-        ${
-          theme === "light"
-            ? "bg-stone-100 hover:bg-stone-200 text-slate-700 border-stone-200/80"
-            : "bg-white/5 hover:bg-white/10 text-amber-300 border-white/10"
-        } ${className}`}
+      className={`relative inline-flex items-center justify-center w-8 h-8 rounded-full transition-all cursor-pointer border select-none press-tactile ${
+        theme === "light"
+          ? "bg-black/[0.03] hover:bg-black/[0.06] text-slate-700 border-black/[0.06]"
+          : "bg-white/[0.05] hover:bg-white/[0.1] text-amber-300 border-white/[0.08]"
+      } ${className}`}
     >
       {theme === "light" ? (
-        <Moon className="w-4 h-4 text-slate-600" />
+        <Moon className="w-3.5 h-3.5 text-slate-600" strokeWidth={2} />
       ) : (
-        <Sun className="w-4 h-4 text-amber-300" />
+        <Sun className="w-3.5 h-3.5 text-amber-300" strokeWidth={2} />
       )}
     </button>
   );

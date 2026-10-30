@@ -97,12 +97,14 @@ Verify generated output files:
 
 ### Step 5: Generate Slide Presentations & NotebookLM Prompts
 1. **Plain Text Outline (`materials/documents/<Topic>/<topic>_ppt.txt`):**
-   - Create a clean 25-slide outline with vocabulary slides, English dialogues, Vietnamese translations, and reflection hints.
+   - Create a clean outline with vocabulary slides, English dialogues, Vietnamese translations, and reflection hints.
 2. **PowerPoint Slide Deck (`materials/slides/<Topic>.pptx`):**
-   - Run Python generation script with `python-pptx`:
-     - Dimensions: 16:9 Widescreen (`13.333` x `7.5` inches).
-     - Font: `Times New Roman`.
-     - Layout: Split column (Left = Content, Right = Visual Concept).
+   - Tuân thủ quy chuẩn theo skill [`irasutoya`](file:///D:/Desktop/English%20in%20Conservation/.agent/skills/irasutoya/SKILL.md):
+     - **Dimensions:** 16:9 Widescreen (`13.333` x `7.5` inches).
+     - **Typography:** Quy tắc cỡ chữ tối thiểu **14pt** (`min_font_size = 14pt`) cho toàn bộ lời thoại và nội dung học tập.
+     - **Hero Card Vocabulary:** 1 từ / 1 slide, ảnh Irasutoya transparent PNG lớn bên trái, IPA + nghĩa + cụm từ + câu ví dụ bên phải.
+     - **Dynamic Avatar Dialogue Scenes:** Avatar nhân vật gắn kế bên từng lượt thoại (Staff bên trái, Guest bên phải).
+     - **Full Script Review Slides:** 1 slide Full English và 1 slide Full Tiếng Việt sau mỗi kịch bản hội thoại.
      - *Defensive lock handling:* Fall back to `<Topic>_v2.pptx` if PowerPoint holds a file lock on Windows.
 3. **NotebookLM Prompts (`materials/documents/<Topic>/notebooklm_ppt_prompt.md`):**
    - Provide Standard Prompt (~650 chars), Ultra-Compact Prompt (<300 chars), and Audio Overview / Podcast Prompt.
